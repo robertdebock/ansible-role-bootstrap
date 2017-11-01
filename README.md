@@ -16,7 +16,7 @@ None known.
 Dependencies
 ------------
 
-None know. This is likely the role that comes first when using ansible, many others will depend on this role.
+None known. This is likely the role that comes first when using ansible, many others will depend on this role.
 
 Example Playbook
 ----------------
