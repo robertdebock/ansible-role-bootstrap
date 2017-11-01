@@ -6,8 +6,9 @@ galaxy_info:
   min_ansible_version: 1.2
 
   platforms:
-    - name: CentOS
+    - name: EL
       versions:
+       - 6
        - 7
 
   galaxy_tags:
