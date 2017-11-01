@@ -1,0 +1,7 @@
+---
+- name: bootstrap a host without python installed
+  raw: yum install -y python2 python2-yum libselinux-python
+
+- name: gather facts
+  setup:
+
