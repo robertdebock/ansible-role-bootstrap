@@ -27,11 +27,11 @@ before_install:
 install:
   - role=$(basename $(pwd) | sed 's/ansible-role-//g')
   - containerid=$(docker container run --detach --volume $(pwd):/etc/ansible/roles/${role} ${distro} sleep 300)
-  - if [[ distro == centos:* ]] ; then docker exec ${containerid} yum -y install ansible ; fi
-  - if [[ distro == fedora:* ]] ; then docker exec ${containerid} dnf -y install ansible ; fi
-  - if [[ distro == debian:* ]] ; then docker exec ${containerid} "bash -c 'apt-get update ; apt-get install ansible'" ; fi
-  - if [[ distro == ubuntu:* ]] ; then docker exec ${containerid} "bash -c 'apt-get update ; apt-get install ansible'" ; fi
-  - if [[ distro == alpine:* ]] ; then docker exec ${containerid} apk add --no-cache ansible ; fi
+  - if [[ ${distro} == centos:* ]] ; then docker exec ${containerid} yum -y install ansible ; fi
+  - if [[ ${distro} == fedora:* ]] ; then docker exec ${containerid} dnf -y install ansible ; fi
+  - if [[ ${distro} == debian:* ]] ; then docker exec ${containerid} "bash -c 'apt-get update ; apt-get install ansible'" ; fi
+  - if [[ ${distro} == ubuntu:* ]] ; then docker exec ${containerid} "bash -c 'apt-get update ; apt-get install ansible'" ; fi
+  - if [[ ${distro} == alpine:* ]] ; then docker exec ${containerid} apk add --no-cache ansible ; fi
 
 script:
   - docker exec ${containerid} ansible-playbook /etc/ansible/roles/${role}/tests/test.yml --syntax-check
