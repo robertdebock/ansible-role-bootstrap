@@ -4,28 +4,33 @@ language: python
 services: docker
 
 env:
+  - distro: alpine:3.4
+  - distro: alpine:3.5
+  - distro: alpine:3.6
   - distro: centos:7
   - distro: centos:6
+  - distro: debian:7
+  - distro: debian:8
+  - distro: debian:9
   - distro: fedora:25
   - distro: fedora:26
   - distro: ubuntu:16.04
   - distro: ubuntu:17.10
-  - distro: alpine:3.4
-  - distro: alpine:3.5
-  - distro: alpine:3.6
 
 before_install:
   - docker pull "${distro}"
 
 install:
   - role=$(basename $(pwd) | sed 's/ansible-role-//g')
-  - containerid=$(docker container run --detach --volume $(pwd):/etc/ansible/roles/${role} ${distro} sleep 300)
+  - containerid=$(docker container run --detach --volume $(pwd):/etc/ansible/roles/${role} ${distro} sleep 3600)
+  - if [[ ${distro} == alpine:* ]] ; then docker exec ${containerid} apk add --update ansible ; fi
   - if [[ ${distro} == centos:6 ]] ; then docker exec ${containerid} yum -y install epel-release ; fi
   - if [[ ${distro} == centos:* ]] ; then docker exec ${containerid} yum -y install ansible ; fi
+  - if [[ ${distro} == debian:* ]] ; then docker exec ${containerid} apt-get update ; fi
+  - if [[ ${distro} == debian:* ]] ; then docker exec ${containerid} apt-get -y install ansible ; fi
   - if [[ ${distro} == fedora:* ]] ; then docker exec ${containerid} dnf -y install ansible ; fi
   - if [[ ${distro} == ubuntu:* ]] ; then docker exec ${containerid} apt-get update ; fi
   - if [[ ${distro} == ubuntu:* ]] ; then docker exec ${containerid} apt-get -y install ansible ; fi
-  - if [[ ${distro} == alpine:* ]] ; then docker exec ${containerid} apk add --update ansible ; fi
 
 script:
   - docker exec ${containerid} ansible-playbook --inventory /etc/ansible/roles/${role}/tests/inventory /etc/ansible/roles/${role}/tests/test.yml --syntax-check
