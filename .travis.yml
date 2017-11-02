@@ -13,9 +13,7 @@ env:
   - distro: debian:9
   - distro: fedora:25
   - distro: fedora:26
-  - distro: opensuse:42.1
-  - distro: opensuse:42.2
-  - distro: opensuse:42.3
+  - distro: opensuse:13.2
   - distro: ubuntu:16.04
   - distro: ubuntu:17.10
 
