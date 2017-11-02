@@ -6,11 +6,27 @@ galaxy_info:
   min_ansible_version: 2.0
 
   platforms:
+    - Alpine:
+      versions:
+       - 3.4
+       - 3.5
+       - 3.6
+    - debian:
+      versions:
+       - 9
     - name: EL
       versions:
        - 6
        - 7
-
+     - name: Fedora
+       versions:
+       - 25
+       - 26
+     - name: Ubuntu:
+       version:
+        - 16.04
+        - 17.10
+     
   galaxy_tags:
     - ansible
     - bootstrap
