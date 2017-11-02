@@ -1,7 +1,29 @@
 ---
-- name: bootstrap a host without python installed
+- name: install python2
   raw: yum install -y python2 python2-yum libselinux-python
+  raw: sudo bash -c "test -e /usr/bin/python || (yum -y install python2)"
+  raw: sudo bash -c "test -e /usr/bin/python || (dnf -y install python2)"
 
 - name: gather facts
   setup:
 
+- name: install python2-yum
+  package:
+    name: python2-yum
+    state: present
+  when:
+    - ansible_distribution == "CentOS"
+    
+- name: install python2-dnf
+  package:
+    name: python2-dnf
+    state: present
+  when:
+    - ansible_distribution == "Fedora"
+
+- name: install libselinux-python
+  package:
+    name: libselinux-python
+    state: present
+  when:
+    - ( ansible_distribution == "Fedora" or ansible_distribution == "CentOS" )
