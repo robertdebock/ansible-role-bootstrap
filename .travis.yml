@@ -10,7 +10,7 @@ env:
 install:
   - sudo pip install ansible
   - echo "[defaults]" > ansible.cfg
-  - echo "roles_path = ../" >> ansible.cfg"
+  - echo "roles_path = ../" >> ansible.cfg
 
 script:
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
