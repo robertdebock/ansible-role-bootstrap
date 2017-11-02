@@ -34,7 +34,7 @@ install:
 
 script:
   - docker exec ${containerid} ansible-playbook /etc/ansible/roles/tests/test.yml --syntax-check
-  - docker exec ${containerod} ansible-playbook /etc/ansible/roles/tests/test.yml --connection=local --sudo
+  - docker exec ${containerid} ansible-playbook /etc/ansible/roles/tests/test.yml --connection=local --sudo
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
