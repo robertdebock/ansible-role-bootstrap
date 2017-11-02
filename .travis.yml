@@ -9,7 +9,6 @@ env:
   - distro: alpine:3.6
   - distro: centos:7
   - distro: centos:6
-  - distro: debian:jessie
   - distro: debian:stretch
   - distro: fedora:25
   - distro: fedora:26
