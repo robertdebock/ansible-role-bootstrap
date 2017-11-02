@@ -1,6 +1,8 @@
 ---
 - name: install python2
   raw: sudo bash -c "test -e /usr/bin/python || (yum -y install python2)"
+  register: python2install
+  changed_when: "python2install.stdout != ''"
 
 - name: gather facts
   setup:
