@@ -22,5 +22,5 @@
     - libselinux-python
     - python-simplejson
   when:
-    - ( ansible_distribution == "Fedora" or ( ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" )
+    - ( ansible_distribution == "Fedora" or ( ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" ) )
    
