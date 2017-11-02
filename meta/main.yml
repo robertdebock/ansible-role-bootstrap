@@ -11,7 +11,6 @@ galaxy_info:
     - all
   - name: Debian
     versions:
-    - jessie
     - stretch
   - name: EL
     versions:
@@ -34,5 +33,10 @@ galaxy_info:
     - bootstrap
     - raw
     - centos
+    - fedora
+    - rhel
+    - debian
+    - alpine
+    - ubuntu
 
 dependencies: []
