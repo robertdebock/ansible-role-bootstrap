@@ -9,7 +9,6 @@ env:
   - distro: alpine:3.6
   - distro: centos:7
   - distro: centos:6
-  - distro: debian:7
   - distro: debian:8
   - distro: debian:9
   - distro: fedora:25
