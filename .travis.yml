@@ -20,12 +20,17 @@ env:
   - distro: alpine:3.4
   - distro: alpine:3.5
   - distro: alpine:3.6
+  - distro: opensuse:13.2
+  - distro: opensuse:42.1
+  - distro: opensuse:42.2
+  - distro: opensuse:42.3
 
 before_install:
-- docker pull "${distro}"
+  - docker pull "${distro}"
 
 install:
-  - containerid=$(docker run --volume $(pwd):/etc/ansible/roles/testing ${distro} --quiet)
+  - docker container run --volume $(pwd):/etc/ansible/roles/testing ${distro} sleep 300
+  - containerid=$(docker container ps --all --latest --quiet)
   - docker exec ${containerid} yum -y install ansible
 
 script:
