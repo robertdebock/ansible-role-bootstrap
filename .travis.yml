@@ -8,7 +8,7 @@ env:
   - distro: fedora26
 
 install:
-  - pip install ansible
+  - sudo pip install ansible
   - echo "[defaults]" > ansible.cfg
   - echo "roles_path = ../" >> ansible.cfg"
 
