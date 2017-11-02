@@ -1,0 +1,20 @@
+---
+services: docker
+
+env:
+  - distro: centos7
+  - distro: centos6
+  - distro: fedora25
+  - distro: fedora26
+
+install:
+  - pip install ansible
+  - echo "[defaults]" > ansible.cfg
+  - echo "roles_path = ../" >> ansible.cfg"
+
+script:
+  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
