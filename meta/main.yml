@@ -8,12 +8,10 @@ galaxy_info:
   platforms:
   - name: Alpine
     versions:
-    - 3.4
-    - 3.5
-    - 3.6
+    - all
   - name: Debian
     versions:
-    - 9
+    - stretch
   - name: EL
     versions:
     - 6
@@ -27,8 +25,8 @@ galaxy_info:
     - 13.2
   - name: Ubuntu
     versions:
-    - 16.04
-    - 17.10
+    - xenial
+    - artful
      
   galaxy_tags:
     - ansible
