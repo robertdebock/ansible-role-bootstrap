@@ -29,8 +29,7 @@ before_install:
   - docker pull "${distro}"
 
 install:
-  - docker container run --volume $(pwd):/etc/ansible/roles/testing ${distro} sleep 300
-  - containerid=$(docker container ps --all --latest --quiet)
+  - containerid=$(docker container run --detach --volume $(pwd):/etc/ansible/roles/testing ${distro} sleep 300)
   - docker exec ${containerid} yum -y install ansible
 
 script:
