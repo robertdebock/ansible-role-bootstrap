@@ -27,12 +27,13 @@ install:
   - if [[ ${distro} == centos:6 ]] ; then docker exec ${containerid} yum -y install epel-release ; fi
   - if [[ ${distro} == centos:* ]] ; then docker exec ${containerid} yum -y install ansible ; fi
   - if [[ ${distro} == fedora:* ]] ; then docker exec ${containerid} dnf -y install ansible ; fi
-  - if [[ ${distro} == ubuntu:* ]] ; then docker exec ${containerid} "bash -c '/usr/bin/apt-get update ; /usr/bin/apt-get -y install ansible'" ; fi
+  - if [[ ${distro} == ubuntu:* ]] ; then docker exec ${containerid} apt-get update ; fi
+  - if [[ ${distro} == ubuntu:* ]] ; then docker exec ${containerid} apt-get -y install ansible ; fi
   - if [[ ${distro} == alpine:* ]] ; then docker exec ${containerid} apk add --update ansible ; fi
 
 script:
-  - docker exec ${containerid} ansible-playbook /etc/ansible/roles/${role}/tests/test.yml --syntax-check
-  - docker exec ${containerid} ansible-playbook /etc/ansible/roles/${role}/tests/test.yml --connection=local --become
+  - docker exec ${containerid} ansible-playbook --inventory /etc/ansible/roles/${role}/tests/inventory /etc/ansible/roles/${role}/tests/test.yml --syntax-check
+  - docker exec ${containerid} ansible-playbook --inventory /etc/ansible/roles/${role}/tests/inventory /etc/ansible/roles/${role}/tests/test.yml --connection=local --become
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
