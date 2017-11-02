@@ -11,7 +11,7 @@ galaxy_info:
        - 3.4
        - 3.5
        - 3.6
-    - debian:
+    - name: Debian:
       versions:
        - 9
     - name: EL
