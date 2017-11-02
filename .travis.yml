@@ -1,20 +1,24 @@
 ---
+sudo: required
+language: python
 services: docker
 
 env:
-  - distro: centos7
-  - distro: centos6
-  - distro: fedora25
-  - distro: fedora26
+  - distro: centos/7
+  - distro: centos/6
+  - distro: fedora/25
+  - distro: fedora/26
+
+before_install:
+- docker pull "${distro}"
 
 install:
-  - sudo pip install ansible
-  - echo "[defaults]" > ansible.cfg
-  - echo "roles_path = ../" >> ansible.cfg
+  - containerid=$(docker run --volume $(pwd):/etc/ansible/roles/testing ${distro} --quiet)
+  - docker exec ${containerid} yum -y install ansible
 
 script:
-  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
-  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
+  - docker exec ${containerid} ansible-playbook /etc/ansible/roles/tests/test.yml --syntax-check
+  - docker exec ${containerod} ansible-playbook /etc/ansible/roles/tests/test.yml --connection=local --sudo
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
