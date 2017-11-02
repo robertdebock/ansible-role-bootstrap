@@ -9,13 +9,13 @@ env:
   - distro: alpine:3.6
   - distro: centos:7
   - distro: centos:6
-  - distro: debian:8
-  - distro: debian:9
+  - distro: debian:jessie
+  - distro: debian:stretch
   - distro: fedora:25
   - distro: fedora:26
   - distro: opensuse:13.2
-  - distro: ubuntu:16.04
-  - distro: ubuntu:17.10
+  - distro: ubuntu:xenial
+  - distro: ubuntu:artful
 
 before_install:
   - docker pull "${distro}"
