@@ -20,9 +20,6 @@ galaxy_info:
     versions:
     - 25
     - 26
-  - name: opensuse
-    versions:
-    - 13.2
   - name: Ubuntu
     versions:
     - xenial
