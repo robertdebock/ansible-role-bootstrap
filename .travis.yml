@@ -28,7 +28,7 @@ install:
   - if [[ ${distro} == debian:* ]] ; then docker exec ${containerid} apt-get update ; fi
   - if [[ ${distro} == debian:* ]] ; then docker exec ${containerid} apt-get -y install ansible ; fi
   - if [[ ${distro} == fedora:* ]] ; then docker exec ${containerid} dnf -y install ansible ; fi
-  - if [[ ${distro} == opensuse:* ]] ; then docker exec ${containerid} zypper --non-interactive install ansible ; fi
+  - if [[ ${distro} == opensuse:* ]] ; then docker exec ${containerid} zypper --non-interactive install ansible || echo $? ; fi
   - if [[ ${distro} == ubuntu:* ]] ; then docker exec ${containerid} apt-get update ; fi
   - if [[ ${distro} == ubuntu:* ]] ; then docker exec ${containerid} apt-get -y install ansible ; fi
 
