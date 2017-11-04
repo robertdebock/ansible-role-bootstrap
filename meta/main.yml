@@ -24,11 +24,12 @@ galaxy_info:
     versions:
     - xenial
     - artful
-     
+
   galaxy_tags:
     - ansible
     - bootstrap
     - raw
+    - python
     - centos
     - fedora
     - rhel
