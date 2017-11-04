@@ -3,3 +3,23 @@
   remote_user: root
   roles:
     - bootstrap
+  tasks:
+    - name: ping the bootstrapped node
+      ping:
+    - name: gather_facts the bootstrapped node
+      setup:
+    - name: command on the bootstrapped node
+      command: touch /tmp/command-test
+      args:
+        creates: /tmp/command-test
+    - name: shell on the bootstrapped node
+      shell: touch /tmp/shell-test
+      args:
+        creates: /tmp/shell-test
+    - name: remove files on the bootstrapped node
+      file:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - /tmp/command-test
+        - /tmp/shell-test
