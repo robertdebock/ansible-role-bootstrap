@@ -1,4 +1,4 @@
-Role Name
+Bootstrap
 =========
 
 Bootstrap a system to use Ansible.
@@ -26,7 +26,7 @@ Example Playbook
 - hosts: servers
   become: yes
   roles:
-    - bootstrap
+    - robertdebock.bootstrap
 ```
 
 License
