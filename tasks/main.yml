@@ -6,7 +6,7 @@
 
 - name: install python on alpine
   raw: apk update ; apk add python
-  when: "'Alpine' in release.stdout"
+  when: "'alpine' in release.stdout"
 
 - name: install python2
   raw: sh -c "test -e /usr/bin/python || (yum -y install python2)"
