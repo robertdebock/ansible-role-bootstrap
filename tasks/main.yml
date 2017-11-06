@@ -1,14 +1,11 @@
 ---
-- name: alpine test
-  raw: grep alpine /etc/*-release > /dev/null 2>&1
-  register: alpine
-  changed_when: false
-  failed_when: false
+- name: release test
+  raw: cat /etc/*-release
+  register: release
 
 - name: install python on alpine
   raw: apk update ; apk add python
-  when: alpine|succeeded
-  changed_when: "alpine.stdout != ''"
+  when: "'Alpine' in release.stdout"
 
 - name: install python2
   raw: sh -c "test -e /usr/bin/python || (yum -y install python2)"
