@@ -1,4 +1,14 @@
 ---
+- name: alpine test
+  raw: grep alpine /etc/*-release > /dev/null 2>&1
+  register: alpine
+  changed_when: false
+
+- name: install python on alpine
+  raw: apk update ; apk add python
+  when: alpine|succeeded
+  changed_when: "alpine.stdout != ''"
+
 - name: install python2
   raw: sh -c "test -e /usr/bin/python || (yum -y install python2)"
   register: python2install
@@ -6,7 +16,7 @@
 
 - name: gather facts
   setup:
-    
+
 - name: install python2-dnf
   package:
     name: python2-dnf
@@ -23,4 +33,3 @@
     - python-simplejson
   when:
     - ( ansible_distribution == "Fedora" or ( ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" ) )
-   
