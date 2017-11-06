@@ -2,6 +2,7 @@
 - name: release test
   raw: cat /etc/*-release
   register: release
+  changed_when: false
 
 - name: install python on alpine
   raw: apk update ; apk add python
