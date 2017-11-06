@@ -3,6 +3,7 @@
   raw: grep alpine /etc/*-release > /dev/null 2>&1
   register: alpine
   changed_when: false
+  failed_when: false
 
 - name: install python on alpine
   raw: apk update ; apk add python
