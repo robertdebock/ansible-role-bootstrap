@@ -32,7 +32,7 @@
   raw: yum -y install python2
   when: "'CentOS' in release.stdout"
   register: python2centos
-  changed_when: "python2cento.stdout != ''"
+  changed_when: "python2centos.stdout != ''"
 
 - name: install python2 on red hat
   raw: yum -y install python2
