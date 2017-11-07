@@ -26,7 +26,7 @@
     - "'Ubuntu' in release.stdout"
   register: pythonubuntu
   changed_when: 
-    - "' 0 newly installed' not in pythondebian.stdout"
+    - "' 0 newly installed' not in pythonubuntu.stdout"
 
 - name: install python2 on fedora
   raw: yum -y install python2
