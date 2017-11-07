@@ -18,7 +18,7 @@
     - "'Debian' in release.stdout"
   register: pythondebian
   changed_when:
-    - "'0 newly installed' not in "pythondebian.stdout"
+    - "' 0 newly installed' not in "pythondebian.stdout"
 
 - name: install python on ubuntu
   raw: apt-get update ; apt-get -y install python
@@ -26,7 +26,7 @@
     - "'Ubuntu' in release.stdout"
   register: pythonubuntu
   changed_when: 
-    - "'0 newly installed' not in "pythondebian.stdout"
+    - "' 0 newly installed' not in "pythondebian.stdout"
 
 - name: install python2 on fedora
   raw: yum -y install python2
