@@ -19,7 +19,7 @@
   raw: apt-get update ; apt-get -y install python
   when: "'Debian' in release.stdout"
   register: pythondebian
-  changed_when: "pythondebian.stdout != ''"
+  changed_when: "pythondebian.stdout != '0 newly installed'"
   
 - name: DEBUG debian
   debug:
@@ -30,7 +30,7 @@
   raw: apt-get update ; apt-get -y install python
   when: "'Ubuntu' in release.stdout"
   register: pythonubuntu
-  changed_when: "pythonubuntu.stdout != ''"
+  changed_when: "pythonubuntu.stdout != '0 newly installed'"
   
 - name: DEBUG ubuntu
   debug:
