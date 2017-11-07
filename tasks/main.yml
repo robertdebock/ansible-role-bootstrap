@@ -8,7 +8,7 @@
   raw: apk update ; apk add python
   when: "'alpine' in release.stdout"
   register: pythonalpine
-  changed_when: "pythonalpine.stdout != ''"
+  changed_when: "pythonalpine.stdout.find == 'Installing python'"
 
 - name: DEBUG alpine
   debug:
