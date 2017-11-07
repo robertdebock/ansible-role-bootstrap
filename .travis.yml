@@ -12,7 +12,6 @@ env:
   - distro: debian:stretch
   - distro: fedora:25
   - distro: fedora:26
-  - distro: ubuntu:xenial
   - distro: ubuntu:artful
 
 before_install:
