@@ -41,7 +41,7 @@
   raw: yum -y install python2
   when: "'Fedora' in release.stdout"
   register: python2fedora
-  changed_when: "python2fedora.stdout != ''"
+  changed_when: "python2fedora.stdout.find != 'already installed'"
   
 - name: DEBUG fedora
   debug:
@@ -52,7 +52,8 @@
   raw: yum -y install python2
   when: "'CentOS' in release.stdout"
   register: python2centos
-  changed_when: "python2centos.stdout != ''"
+  changed_when: "python2centos.stdout.find != 'already installed'"
+
   
 - name: DEBUG centos
   debug:
@@ -63,7 +64,7 @@
   raw: yum -y install python2
   when: "'Red Hat' in release.stdout"
   register: python2redhat
-  changed_when: "python2redhat.stdout != ''"
+  changed_when: "python2redhat.stdout.find != 'already installed'
   
 - name: DEBUG redhat
   debug:
