@@ -10,7 +10,7 @@
 
 - name: install python on ubuntu or debian
   raw: apt-get update ; apt-get install python
-  when: ( "'Ubuntu' in release.stdout" or "'Debian' in release.stdout"
+  when: ( "'Ubuntu' in release.stdout" or "'Debian' in release.stdout" )
 
 - name: install python on fedora, centos or red hat
   raw: yum -y install python2
