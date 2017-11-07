@@ -10,9 +10,10 @@
   register: pythonalpine
   changed_when: "pythonalpine.stdout != ''"
 
-- name: DEBUG MESSAGE
+- name: DEBUG alpine
   debug:
     msg: "{{ pythonalpine.stdout }}"
+  when: pythonalpine is defined
 
 - name: install python on debian
   raw: apt-get update ; apt-get install python
@@ -20,9 +21,11 @@
   register: pythondebian
   changed_when: "pythondebian.stdout != ''"
   
-- name: DEBUG MESSAGE
+- name: DEBUG debian
   debug:
     msg: "{{ pythondebian.stdout }}"
+  when: pythondebian is defined
+
 
 - name: install python on ubuntu
   raw: apt-get update ; apt-get install python
@@ -30,9 +33,10 @@
   register: pythonubuntu
   changed_when: "pythonubuntu.stdout != ''"
   
-- name: DEBUG MESSAGE
+- name: DEBUG ubuntu
   debug:
     msg: "{{ pythonubuntu.stdout }}"
+  when: pythonubuntu is defined
 
 - name: install python2 on fedora
   raw: yum -y install python2
@@ -40,9 +44,10 @@
   register: python2fedora
   changed_when: "python2fedora.stdout != ''"
   
-- name: DEBUG MESSAGE
+- name: DEBUG fedora
   debug:
     msg: "{{ python2fedora.stdout }}"
+  when: python2fedora is defined
   
 - name: install python2 on centos
   raw: yum -y install python2
@@ -50,9 +55,10 @@
   register: python2centos
   changed_when: "python2centos.stdout != ''"
   
-- name: DEBUG MESSAGE
+- name: DEBUG centos
   debug:
     msg: "{{ python2centos.stdout }}"
+  when: python2centos is defined
 
 - name: install python2 on red hat
   raw: yum -y install python2
@@ -60,9 +66,10 @@
   register: python2redhat
   changed_when: "python2redhat.stdout != ''"
   
-- name: DEBUG MESSAGE
+- name: DEBUG redhat
   debug:
     msg: "{{ python2redhat.stdout }}"
+  when: python2redhat is defined
 
 - name: gather facts
   setup:
