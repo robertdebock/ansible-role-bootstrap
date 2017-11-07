@@ -47,7 +47,7 @@
   raw: yum -y install python2
   when: "'CentOS' in release.stdout"
   register: python2centos
-  changed_when: "python2centos.stderr.find != 'Nothing to do'"
+  changed_when: python2centos.stdout | search("Nothing to do")
 
 - name: DEBUG centos
   debug:
