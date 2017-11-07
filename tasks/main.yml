@@ -10,11 +10,6 @@
   register: pythonalpine
   changed_when: "pythonalpine.stdout.find == 'Installing python'"
 
-- name: DEBUG alpine
-  debug:
-    msg: "{{ pythonalpine.stdout }}"
-  when: pythonalpine.stdout is defined
-
 - name: install python on debian
   raw: apt-get update ; apt-get -y install python
   when: "'Debian' in release.stdout"
@@ -41,8 +36,8 @@
   raw: yum -y install python2
   when: "'Fedora' in release.stdout"
   register: python2fedora
-  changed_when: "python2fedora.stdout.find != 'already installed'"
-  
+  changed_when: "'already installed' no in python2fedora.stdout"
+
 - name: DEBUG fedora
   debug:
     msg: "{{ python2fedora.stdout }}"
