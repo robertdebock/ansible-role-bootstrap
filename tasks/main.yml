@@ -1,5 +1,5 @@
 ---
-- name: release test
+- name: test release
   raw: cat /etc/*-release
   register: release
   changed_when: false
@@ -7,6 +7,14 @@
 - name: install python on alpine
   raw: apk update ; apk add python
   when: "'alpine' in release.stdout"
+
+- name: install python on ubuntu or debian
+  raw: apt-get update ; apt-get install python
+  when: ( "'Ubuntu' in release.stdout" or "'Debian' in release.stdout"
+
+- name: install python on fedora, centos or red hat
+  raw: yum -y install python2
+  when: ( "'Fedora' in release.stdout" or "'CentOS' in release.stdout" or "'Red Hat' in release.stdout" )
 
 - name: install python2
   raw: sh -c "test -e /usr/bin/python || (yum -y install python2)"
