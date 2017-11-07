@@ -13,7 +13,7 @@
 - name: DEBUG alpine
   debug:
     msg: "{{ pythonalpine.stdout }}"
-  when: pythonalpine is defined
+  when: pythonalpine.stdout is defined
 
 - name: install python on debian
   raw: apt-get update ; apt-get install python
@@ -24,8 +24,7 @@
 - name: DEBUG debian
   debug:
     msg: "{{ pythondebian.stdout }}"
-  when: pythondebian is defined
-
+  when: pythondebian.stdout is defined
 
 - name: install python on ubuntu
   raw: apt-get update ; apt-get install python
@@ -36,7 +35,7 @@
 - name: DEBUG ubuntu
   debug:
     msg: "{{ pythonubuntu.stdout }}"
-  when: pythonubuntu is defined
+  when: pythonubuntu.stdout is defined
 
 - name: install python2 on fedora
   raw: yum -y install python2
@@ -47,7 +46,7 @@
 - name: DEBUG fedora
   debug:
     msg: "{{ python2fedora.stdout }}"
-  when: python2fedora is defined
+  when: python2fedora.stdout is defined
   
 - name: install python2 on centos
   raw: yum -y install python2
@@ -58,7 +57,7 @@
 - name: DEBUG centos
   debug:
     msg: "{{ python2centos.stdout }}"
-  when: python2centos is defined
+  when: python2centos.stdout is defined
 
 - name: install python2 on red hat
   raw: yum -y install python2
@@ -69,7 +68,7 @@
 - name: DEBUG redhat
   debug:
     msg: "{{ python2redhat.stdout }}"
-  when: python2redhat is defined
+  when: python2redhat.stdout is defined
 
 - name: gather facts
   setup:
