@@ -12,30 +12,6 @@
   changed_when:
     -  "'Installing python' in pythonalpine.stdout"
 
-- name: install python on debian
-  raw: apt-get update ; apt-get -y install python
-  when:
-    - "'Debian' in release.stdout"
-  register: pythondebian
-  changed_when:
-    - "' 0 newly installed' not in pythondebian.stdout"
-
-- name: install python on ubuntu
-  raw: apt-get update ; apt-get -y install python
-  when:
-    - "'Ubuntu' in release.stdout"
-  register: pythonubuntu
-  changed_when: 
-    - "' 0 newly installed' not in pythonubuntu.stdout"
-
-- name: install python2 on fedora
-  raw: yum -y install python2
-  when:
-    - "'Fedora' in release.stdout"
-  register: python2fedora
-  changed_when:
-    - "'Nothing' not in python2fedora.stdout"
-  
 - name: install python2 on centos
   raw: yum -y install python2
   when:
@@ -44,6 +20,22 @@
   changed_when:
     - "'Nothing' not in python2centos.stdout"
 
+- name: install python on debian
+  raw: apt-get update ; apt-get -y install python
+  when:
+    - "'Debian' in release.stdout"
+  register: pythondebian
+  changed_when:
+    - "' 0 newly installed' not in pythondebian.stdout"
+
+- name: install python2 on fedora
+  raw: yum -y install python2
+  when:
+    - "'Fedora' in release.stdout"
+  register: python2fedora
+  changed_when:
+    - "'Nothing' not in python2fedora.stdout"
+
 - name: install python2 on red hat
   raw: yum -y install python2
   when:
@@ -51,6 +43,14 @@
   register: python2redhat
   changed_when:
     - "'Nothing' not in python2redhat.stdout"
+
+- name: install python on ubuntu
+  raw: apt-get update ; apt-get -y install python
+  when:
+    - "'Ubuntu' in release.stdout"
+  register: pythonubuntu
+  changed_when: 
+    - "' 0 newly installed' not in pythonubuntu.stdout"
 
 - name: gather facts
   setup:
@@ -61,7 +61,7 @@
     state: present
   when:
     - ansible_distribution == "Fedora"
-    
+
 - name: install python2-yum on centos
   package:
     name: python2-yum
