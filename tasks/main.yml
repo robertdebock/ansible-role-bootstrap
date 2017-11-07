@@ -12,7 +12,7 @@
 
 - name: DEBUG MESSAGE
   debug:
-  msg: "{{ pythonalpine.stdout }}"
+    msg: "{{ pythonalpine.stdout }}"
 
 - name: install python on debian
   raw: apt-get update ; apt-get install python
@@ -22,7 +22,7 @@
   
 - name: DEBUG MESSAGE
   debug:
-  msg: "{{ pythondebian.stdout }}"
+    msg: "{{ pythondebian.stdout }}"
 
 - name: install python on ubuntu
   raw: apt-get update ; apt-get install python
@@ -32,7 +32,7 @@
   
 - name: DEBUG MESSAGE
   debug:
-  msg: "{{ pythonubuntu.stdout }}"
+    msg: "{{ pythonubuntu.stdout }}"
 
 - name: install python2 on fedora
   raw: yum -y install python2
@@ -42,7 +42,7 @@
   
 - name: DEBUG MESSAGE
   debug:
-  msg: "{{ python2fedora.stdout }}"
+    msg: "{{ python2fedora.stdout }}"
   
 - name: install python2 on centos
   raw: yum -y install python2
@@ -52,7 +52,7 @@
   
 - name: DEBUG MESSAGE
   debug:
-  msg: "{{ python2centos.stdout }}"
+    msg: "{{ python2centos.stdout }}"
 
 - name: install python2 on red hat
   raw: yum -y install python2
