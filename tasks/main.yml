@@ -54,7 +54,6 @@
   register: python2centos
   changed_when: "python2centos.stdout.find != 'already installed'"
 
-  
 - name: DEBUG centos
   debug:
     msg: "{{ python2centos.stdout }}"
@@ -64,7 +63,7 @@
   raw: yum -y install python2
   when: "'Red Hat' in release.stdout"
   register: python2redhat
-  changed_when: "python2redhat.stdout.find != 'already installed'
+  changed_when: "python2redhat.stdout.find != 'already installed'"
   
 - name: DEBUG redhat
   debug:
