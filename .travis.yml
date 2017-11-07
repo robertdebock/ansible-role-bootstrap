@@ -35,6 +35,7 @@ script:
   - test -f requirements.yml && docker exec ${containerid} ansible-galaxy install --ignore-certs --role-file /etc/ansible/roles/${role}/requirements.yml || echo "No requirements.yml found."
   - docker exec ${containerid} ansible-playbook --inventory /etc/ansible/roles/${role}/tests/inventory /etc/ansible/roles/${role}/tests/test.yml --syntax-check
   - docker exec ${containerid} ansible-playbook --inventory /etc/ansible/roles/${role}/tests/inventory /etc/ansible/roles/${role}/tests/test.yml --connection=local --become
+  - docker exec ${containerid} ansible-playbook --inventory /etc/ansible/roles/${role}/tests/inventory /etc/ansible/roles/${role}/tests/test.yml --connection=local --become
   - docker exec ${containerid} ansible-playbook --inventory /etc/ansible/roles/${role}/tests/inventory /etc/ansible/roles/${role}/tests/test.yml --connection=local --become | grep "changed=0"
 
 notifications:
