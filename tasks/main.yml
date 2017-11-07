@@ -14,25 +14,19 @@
 
 - name: install python on debian
   raw: apt-get update ; apt-get -y install python
-  when: "'Debian' in release.stdout"
+  when:
+    - "'Debian' in release.stdout"
   register: pythondebian
-  changed_when: "pythondebian.stdout.find != '0 newly installed'"
-  
-- name: DEBUG debian
-  debug:
-    msg: "{{ pythondebian.stdout }}"
-  when: pythondebian.stdout is defined
+  changed_when:
+    - "'0 newly installed' not in "pythondebian.stdout"
 
 - name: install python on ubuntu
   raw: apt-get update ; apt-get -y install python
-  when: "'Ubuntu' in release.stdout"
+  when:
+    - "'Ubuntu' in release.stdout"
   register: pythonubuntu
-  changed_when: "pythonubuntu.stdout.find != '0 newly installed'"
-  
-- name: DEBUG ubuntu
-  debug:
-    msg: "{{ pythonubuntu.stdout }}"
-  when: pythonubuntu.stdout is defined
+  changed_when: 
+    - "'0 newly installed' not in "pythondebian.stdout"
 
 - name: install python2 on fedora
   raw: yum -y install python2
