@@ -62,7 +62,7 @@
   
 - name: DEBUG MESSAGE
   debug:
-  msg: "{{ python2redhat.stdout }}"
+    msg: "{{ python2redhat.stdout }}"
 
 - name: gather facts
   setup:
