@@ -36,7 +36,7 @@
   raw: yum -y install python2
   when: "'Fedora' in release.stdout"
   register: python2fedora
-  changed_when: "'Nothing to do' not in python2fedora.stdout"
+  changed_when: "'Nothing to do' not in python2fedora.stderr"
 
 - name: DEBUG fedora
   debug:
@@ -47,7 +47,7 @@
   raw: yum -y install python2
   when: "'CentOS' in release.stdout"
   register: python2centos
-  changed_when: "python2centos.stdout.find != 'Nothing to do'"
+  changed_when: "python2centos.stderr.find != 'Nothing to do'"
 
 - name: DEBUG centos
   debug:
@@ -58,7 +58,7 @@
   raw: yum -y install python2
   when: "'Red Hat' in release.stdout"
   register: python2redhat
-  changed_when: "python2redhat.stdout.find != 'Nothing to do'"
+  changed_when: "python2redhat.stderr.find != 'Nothing to do'"
   
 - name: DEBUG redhat
   debug:
