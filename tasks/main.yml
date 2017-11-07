@@ -6,9 +6,11 @@
 
 - name: install python on alpine
   raw: apk update ; apk add python
-  when: "'alpine' in release.stdout"
+  when: 
+    - "'alpine' in release.stdout"
   register: pythonalpine
-  changed_when: "pythonalpine.stdout.find == 'Installing python'"
+  changed_when:
+    -  "'Installing python' in pythonalpine.stdout"
 
 - name: install python on debian
   raw: apt-get update ; apt-get -y install python
@@ -39,11 +41,6 @@
   register: python2fedora
   changed_when:
     - "'Nothing' not in python2fedora.stdout"
-
-- name: DEBUG fedora
-  debug:
-    msg: "{{ python2fedora.stdout }}"
-  when: python2fedora.stdout is defined
   
 - name: install python2 on centos
   raw: yum -y install python2
@@ -53,11 +50,6 @@
   changed_when:
     - "'Nothing' not in python2centos.stdout"
 
-- name: DEBUG centos
-  debug:
-    msg: "{{ python2centos.stdout }}"
-  when: python2centos.stdout is defined
-
 - name: install python2 on red hat
   raw: yum -y install python2
   when:
@@ -65,11 +57,6 @@
   register: python2redhat
   changed_when:
     - "'Nothing' not in python2redhat.stdout"
-
-- name: DEBUG redhat
-  debug:
-    msg: "{{ python2redhat.stdout }}"
-  when: python2redhat.stdout is defined
 
 - name: gather facts
   setup:
