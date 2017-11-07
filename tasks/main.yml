@@ -7,31 +7,57 @@
 - name: install python on alpine
   raw: apk update ; apk add python
   when: "'alpine' in release.stdout"
+  register: pythonalpine
+  changed_when: "pythonalpine.stdout != ''"
 
-- name: install python on ubuntu or debian
+- name: install python on debian
   raw: apt-get update ; apt-get install python
-  when: ( "'Ubuntu' in release.stdout" or "'Debian' in release.stdout" )
+  when: "'Debian' in release.stdout"
+  register: pythondebian
+  changed_when: "pythondebian.stdout != ''"
 
-- name: install python on fedora, centos or red hat
+- name: install python on ubuntu
+  raw: apt-get update ; apt-get install python
+  when: "'Ubuntu' in release.stdout"
+  register: pythonubuntu
+  changed_when: "pythonubuntu.stdout != ''"
+
+- name: install python2 on fedora
   raw: yum -y install python2
-  when: ( "'Fedora' in release.stdout" or "'CentOS' in release.stdout" or "'Red Hat' in release.stdout" )
+  when: "'Fedora' in release.stdout"
+  register: python2fedora
+  changed_when: "python2fedora.stdout != ''"
+  
+- name: install python2 on centos
+  raw: yum -y install python2
+  when: "'CentOS' in release.stdout"
+  register: python2centos
+  changed_when: "python2cento.stdout != ''"
 
-- name: install python2
-  raw: sh -c "test -e /usr/bin/python || (yum -y install python2)"
-  register: python2install
-  changed_when: "python2install.stdout != ''"
+- name: install python2 on red hat
+  raw: yum -y install python2
+  when: "'Red Hat' in release.stdout"
+  register: python2redhat
+  changed_when: "python2redhat.stdout != ''"
 
 - name: gather facts
   setup:
 
-- name: install python2-dnf
+- name: install python2-dnf on fedora
   package:
     name: python2-dnf
     state: present
   when:
     - ansible_distribution == "Fedora"
+    
+- name: install python2-yum on centos
+  package:
+    name: python2-yum
+    state: present
+  when:
+    - ansible_distribution == "Centos"
 
-- name: install libselinux-python and python-simplejson
+- name: install libselinux-python and python-simplejson on centos 6
   package:
     name: "{{ item }}"
     state: present
