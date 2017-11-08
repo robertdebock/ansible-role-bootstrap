@@ -2,4 +2,4 @@
 packages:
   - python2-yum
   - libselinux-python
-  - python-simplejson
+  - python2-simplejson
