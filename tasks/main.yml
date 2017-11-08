@@ -67,7 +67,7 @@
     name: python2-yum
     state: present
   when:
-    - ansible_distribution == "Centos"
+    - ansible_distribution == "CentOS"
 
 - name: install python-apt on debian and ubuntu
   package:
@@ -76,16 +76,14 @@
   when:
     - ( ansible_distribution == "Debian" or ansible_distribution == "Ubuntu" )
 
-- name: install libselinux-python and python-simplejson on centos 6
+- name: install libselinux-python centos and fedora
   package:
     name: libselinux-python
     state: present
   when:
-    - ( ansible_distribution == "Fedora" or ( ansible_distribution == "CentOS" )
+    - ( ansible_distribution == "CentOS" or ansible_distribution == "Fedora" )
 
 - name: install python-simplejson
   package:
     name: python-simplejson
     state: present
-
-
