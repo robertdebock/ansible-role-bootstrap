@@ -1,5 +1,5 @@
 ---
 packages:
-  - python2-apt
+  - python-apt
   - python-simplejson
 
