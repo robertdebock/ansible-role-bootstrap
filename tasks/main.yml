@@ -69,12 +69,23 @@
   when:
     - ansible_distribution == "Centos"
 
+- name: install python-apt on debian and ubuntu
+  package:
+    name: python-apt
+    state: present
+  when:
+    - ( ansible_distribution == "Debian" or ansible_distribution == "Ubuntu" )
+
 - name: install libselinux-python and python-simplejson on centos 6
   package:
-    name: "{{ item }}"
+    name: libselinux-python
     state: present
-  with_items:
-    - libselinux-python
-    - python-simplejson
   when:
-    - ( ansible_distribution == "Fedora" or ( ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" ) )
+    - ( ansible_distribution == "Fedora" or ( ansible_distribution == "CentOS" )
+
+- name: install python-simplejson
+  package:
+    name: python-simplejson
+    state: present
+
+
