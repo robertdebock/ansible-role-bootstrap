@@ -55,35 +55,15 @@
 - name: gather facts
   setup:
 
-- name: install python2-dnf on fedora
-  package:
-    name: python2-dnf
-    state: present
-  when:
-    - ansible_distribution == "Fedora"
+- name: include distribution specific tasks
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "default.yml"
 
-- name: install python2-yum on centos
+- name: install required packages
   package:
-    name: python2-yum
+    name: "{{ item }}"
     state: present
-  when:
-    - ansible_distribution == "CentOS"
-
-- name: install python-apt on debian and ubuntu
-  package:
-    name: python-apt
-    state: present
-  when:
-    - ( ansible_distribution == "Debian" or ansible_distribution == "Ubuntu" )
-
-- name: install libselinux-python centos and fedora
-  package:
-    name: libselinux-python
-    state: present
-  when:
-    - ( ansible_distribution == "CentOS" or ansible_distribution == "Fedora" )
-
-- name: install python-simplejson
-  package:
-    name: python-simplejson
-    state: present
+  with_items: "{{ packages }}"
