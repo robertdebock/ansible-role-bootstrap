@@ -3,9 +3,6 @@ sudo: required
 language: python
 services: docker
 
-notifications:
-  email: false
-
 env:
   - distro: alpine:3.4
   - distro: alpine:3.5
@@ -41,3 +38,4 @@ script:
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  email: false
