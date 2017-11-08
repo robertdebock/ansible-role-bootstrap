@@ -14,14 +14,6 @@ env:
   - distro: fedora:26
   - distro: ubuntu:artful
 
-python:
-  - 2.6
-  - 2.7
-  - 3.3
-  - 3.4
-  - 3.5
-  - 3.6
-
 before_install:
   - docker pull "${distro}"
 
