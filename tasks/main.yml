@@ -6,7 +6,7 @@
 
 - name: install python on alpine
   raw: apk update ; apk add python
-  when: 
+  when:
     - "'alpine' in release.stdout"
   register: pythonalpine
   changed_when:
@@ -49,13 +49,13 @@
   when:
     - "'Ubuntu' in release.stdout"
   register: pythonubuntu
-  changed_when: 
+  changed_when:
     - "' 0 newly installed' not in pythonubuntu.stdout"
 
 - name: gather facts
   setup:
 
-- name: include distribution specific tasks
+- name: include distribution specific variables
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
