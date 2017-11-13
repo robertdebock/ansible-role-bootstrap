@@ -1,12 +1,12 @@
 Bootstrap
 =========
 
-Bootstrap a system to use Ansible.
+Bootstrap a system (many flavors) to use Ansible, likely the first role to depend on.
 
 Requirements
 ------------
 
-None known.
+Access to a repository containing packages, likely on the internet.
 
 Role Variables
 --------------
@@ -16,17 +16,22 @@ None known.
 Dependencies
 ------------
 
-None known. This is likely the role that comes first when using ansible, many others will depend on this role.
+None known. This is likely the role that comes first when using Ansible, many others will depend on this role.
 
 Example Playbook
 ----------------
 
 ```
 ---
-- hosts: servers
+- hosts: all
   become: yes
+
   roles:
     - robertdebock.bootstrap
+
+  tasks:
+    - name: do something.
+      ping:
 ```
 
 License
