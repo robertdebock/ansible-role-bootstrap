@@ -1,5 +1,5 @@
 ---
-- name: test release
+- name: register release
   raw: cat /etc/*-release
   register: release
   changed_when: false
