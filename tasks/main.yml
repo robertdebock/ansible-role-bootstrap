@@ -1,4 +1,7 @@
 ---
+- name: wait for the machine to be available
+  wait_for_connection:
+
 - name: register release
   raw: cat /etc/*-release
   register: release
