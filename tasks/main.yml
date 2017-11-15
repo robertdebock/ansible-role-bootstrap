@@ -1,6 +1,9 @@
 ---
 - name: wait for the machine to be available
-  wait_for_connection:
+  wait_for:
+    host="{{ inventory_hostname }}"
+    port=22
+  delegate_to: localhost
 
 - name: register release
   raw: cat /etc/*-release
