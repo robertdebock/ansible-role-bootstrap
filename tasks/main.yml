@@ -4,6 +4,8 @@
     host="{{ inventory_hostname }}"
     port=22
   delegate_to: localhost
+  when:
+    - "{{ inventory_hostname }}" != localhost
 
 - name: register release
   raw: cat /etc/*-release
