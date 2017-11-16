@@ -3,7 +3,7 @@ galaxy_info:
   description: Bootstrap a system (many flavors) to use Ansible, likely the first role to depend on.
   license: Apache License, Version 2.0
 
-  min_ansible_version: 2.0
+  min_ansible_version: 2.3
 
   platforms:
   - name: Alpine
@@ -29,12 +29,12 @@ galaxy_info:
     - python
     - bootstrap
     - raw
-    - centos
-    - fedora
-    - rhel
-    - debian
-    - alpine
-    - ubuntu
+    - CentOS
+    - Fedora
+    - RHEL
+    - Debian
+    - Alpine
+    - Ubuntu
     - system
     - installer
     - server

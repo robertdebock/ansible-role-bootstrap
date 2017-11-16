@@ -7,6 +7,7 @@ Requirements
 ------------
 
 Access to a repository containing packages, likely on the internet.
+Ansible 2.3 or higher.
 
 Role Variables
 --------------

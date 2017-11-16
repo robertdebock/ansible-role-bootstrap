@@ -1,12 +1,6 @@
 ---
-- name: wait for the machine to be available
-  become: no
-  wait_for:
-    host="{{ ansible_host }}"
-    port="{{ ansible_port|default('22') }}"
-  delegate_to: localhost
-  when:
-    - inventory_hostname != "localhost"
+- name: wait for the connection to be available
+  wait_for_connection:
 
 - name: register release
   raw: cat /etc/*-release
