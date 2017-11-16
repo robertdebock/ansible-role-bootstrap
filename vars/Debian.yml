@@ -1,5 +1,4 @@
 ---
 packages:
-  - python-apt
-  - python-simplejson
-
+- python-apt
+- python-simplejson

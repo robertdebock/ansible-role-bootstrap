@@ -1,6 +1,5 @@
 ---
 packages:
-  - python2-dnf
-  - libselinux-python
-  - python-simplejson
-
+- python2-dnf
+- libselinux-python
+- python-simplejson

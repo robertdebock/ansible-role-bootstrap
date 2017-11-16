@@ -1,3 +1,5 @@
 ---
 packages:
-  - libselinux-python
+- libselinux-python
+- python-simplejson
+- python-yum
