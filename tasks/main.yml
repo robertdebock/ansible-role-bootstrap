@@ -1,7 +1,7 @@
 ---
 - name: wait for the port to be available
 - wait_for:
-    port: "{{ ansible_ssh_port | default("22") }}"
+    port: "{{ ansible_ssh_port | default('22') }}"
     host: "{{ ansible_ssh_host | default(inventory_hostname) }}"
 
 - name: register release
