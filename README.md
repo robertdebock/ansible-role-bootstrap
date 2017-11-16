@@ -25,6 +25,7 @@ Example Playbook
 ---
 - hosts: all
   become: yes
+  gather_facts: no
 
   roles:
     - robertdebock.bootstrap
@@ -33,6 +34,8 @@ Example Playbook
     - name: do something.
       ping:
 ```
+
+Fact gathering will be done in the role when all required software is installed.
 
 License
 -------
