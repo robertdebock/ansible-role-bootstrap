@@ -1,8 +1,9 @@
 ---
 - name: wait for the machine to be available
+  become: no
   wait_for:
-    host="{{ inventory_hostname }}"
-    port=22
+    host="{{ ansible_host }}"
+    port="{{ ansible_port|default('22') }}"
   delegate_to: localhost
   when:
     - inventory_hostname != "localhost"
