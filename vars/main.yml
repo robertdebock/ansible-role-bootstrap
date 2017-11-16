@@ -1,2 +1,3 @@
 ---
 # vars file for bootstrap
+host_key_checking: no
