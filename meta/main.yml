@@ -8,27 +8,27 @@ galaxy_info:
   platforms:
   - name: Alpine
     versions:
-    - all
-  - name: Debian
-    versions:
-    - jessie
-    - stretch
+      - all
   - name: centos
     version:
-    - 6
-    - 7
+      - 6
+      - 7
+  - name: Debian
+    versions:
+      - jessie
+      - buster
   - name: EL
     versions:
-    - 6
-    - 7
+      - 6
+      - 7
   - name: Fedora
     versions:
-    - 26
-    - 27
+      - 26
+      - 27
   - name: Ubuntu
     versions:
-    - zesty
-    - artful
+      - zesty
+      - artful
 
   galaxy_tags:
     - ansible
