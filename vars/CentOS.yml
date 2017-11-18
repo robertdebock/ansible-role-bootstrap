@@ -1,5 +1,0 @@
----
-packages:
-- libselinux-python
-- python-simplejson
-- python-yum

@@ -11,17 +11,23 @@ galaxy_info:
     - all
   - name: Debian
     versions:
+    - jessie
     - stretch
+  - name: centos
+    version:
+    - 6
+    - 7
   - name: EL
     versions:
     - 6
     - 7
   - name: Fedora
     versions:
-    - 25
     - 26
+    - 27
   - name: Ubuntu
     versions:
+    - zesty
     - artful
 
   galaxy_tags:

@@ -1,13 +1,5 @@
 ---
-- name: wait for the port to be available
-  become: no
-  wait_for:
-    port: "{{ ansible_ssh_port | default('22') }}"
-    host: "{{ ansible_ssh_host | default(inventory_hostname) }}"
-  delegate_to: localhost
-  when:
-    - inventory_hostname != "localhost"
-
+# tasks file for ansible-role-bootstrap
 - name: register release
   raw: cat /etc/*-release
   register: release
@@ -19,7 +11,7 @@
     - "'alpine' in release.stdout"
   register: pythonalpine
   changed_when:
-    -  "'Installing python' in pythonalpine.stdout"
+    - "'Installing python' in pythonalpine.stdout"
 
 - name: install python2 on centos
   raw: yum -y install python2

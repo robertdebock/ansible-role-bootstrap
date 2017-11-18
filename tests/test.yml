@@ -1,10 +1,10 @@
 ---
 - hosts: all
   remote_user: root
-  gather_facts: no
+  gather_facts: false
 
   roles:
-    - bootstrap
+    - ansible-role-bootstrap
 
   tasks:
     - name: ping the bootstrapped node
