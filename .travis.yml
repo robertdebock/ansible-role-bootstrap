@@ -3,16 +3,23 @@ sudo: required
 language: python
 services: docker
 
+env:
+  - ANSIBLE_VERSION=2.0
+  - ANSIBLE_VERSION=2.1
+  - ANSIBLE_VERSION=2.2
+  - ANSIBLE_VERSION=2.3
+  - ANSIBLE_VERSION=2.4
+
 cache:
  - pip
 
 install:
-- pip install ansible
+- pip install "ansible~=$ANSIBLE_VERSION"
 - pip install molecule
 - pip install docker-py
 
 script:
-  - molecule --debug test
+  - molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
