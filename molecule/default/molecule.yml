@@ -24,9 +24,6 @@ platforms:
     image: ubuntu:artful
 provisioner:
   name: ansible
-  config_options:
-    defaults:
-      remote_tmp: /tmp/$USER
   lint:
     name: ansible-lint
 scenario:

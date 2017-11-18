@@ -4,22 +4,23 @@ language: python
 services: docker
 
 env:
-  - distro: alpine:3.4
   - distro: alpine:3.5
   - distro: alpine:3.6
   - distro: centos:7
   - distro: centos:6
-  - distro: debian:stretch
+  - distro: debian:jessie
+  - distro: debian:buster
   - distro: fedora:25
   - distro: fedora:26
   - distro: ubuntu:artful
+  - distro: ubuntu:zesty
 
 before_install:
   - docker pull "${distro}"
 
 install:
   - role=$(basename $(pwd))
-  - containerid=$(docker container run --detach --volume $(pwd):/etc/ansible/roles/${role} ${distro} sleep 3600)
+  - containerid=$(docker container run --detach --volume $(pwd):/etc/ansible/roles/${role} ${distro} sleep infinite)
   - if [[ ${distro} == alpine:* ]] ; then docker exec ${containerid} apk add --update ansible ; fi
   - if [[ ${distro} == centos:6 ]] ; then docker exec ${containerid} yum -y install epel-release ; fi
   - if [[ ${distro} == centos:* ]] ; then docker exec ${containerid} yum -y install ansible ; fi
