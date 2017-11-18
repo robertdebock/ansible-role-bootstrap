@@ -4,20 +4,18 @@ language: python
 services: docker
 
 env:
-  - ansible_version: 2.0.0
-  - ansible_version: 2.1.0
   - ansible_version: 2.2.0
   - ansible_version: 2.3.0
   - ansible_version: 2.4.0
 
 cache:
- - pip
+  - pip
 
 install:
-- pip install --upgrade pip
-- pip install ansible==${ansible_version}
-- pip install molecule
-- pip install docker-py
+  - pip install --upgrade pip
+  - pip install ansible==${ansible_version}
+  - pip install molecule
+  - pip install docker-py
 
 script:
   - molecule test
