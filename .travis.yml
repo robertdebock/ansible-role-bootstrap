@@ -20,7 +20,7 @@ before_install:
 
 install:
   - role=$(basename $(pwd))
-  - containerid=$(docker container run --detach --volume $(pwd):/etc/ansible/roles/${role} ${distro} sleep infinite)
+  - containerid=$(docker container run --detach --volume $(pwd):/etc/ansible/roles/${role} ${distro} sleep infinity)
   - if [[ ${distro} == alpine:* ]] ; then docker exec ${containerid} apk add --update ansible ; fi
   - if [[ ${distro} == centos:6 ]] ; then docker exec ${containerid} yum -y install epel-release ; fi
   - if [[ ${distro} == centos:* ]] ; then docker exec ${containerid} yum -y install ansible ; fi

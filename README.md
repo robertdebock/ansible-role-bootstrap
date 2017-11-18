@@ -1,4 +1,4 @@
-Ansible Role Bootstrap
+ansible-role-bootstrap
 =========
 
 Bootstrap a system (many flavors) to use Ansible, likely the first role to depend on.
