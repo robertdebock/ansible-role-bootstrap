@@ -10,8 +10,6 @@ platforms:
     image: alpine:3.5
   - name: alpine-3.6
     image: alpine:3.6
-  - name: busybox-1.27
-    image: busybox:1.27
   - name: centos-6
     image: centos:6
   - name: centos-7
