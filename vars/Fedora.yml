@@ -1,9 +1,6 @@
 ---
 packages:
-  - bash
   - libselinux-python
-  - sudo
-  - python
   - python-devel
   - python2-dnf
   - python-simplejson

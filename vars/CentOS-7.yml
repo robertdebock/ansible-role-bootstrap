@@ -1,7 +1,4 @@
 ---
 packages:
-  - bash
   - libselinux-python
-  - python
-  - sudo
   - yum-plugin-ovl

@@ -4,54 +4,61 @@
   raw: cat /etc/*-release
   register: release
   changed_when: false
+  become: no
 
 - name: install python on alpine
-  raw: apk update ; apk add python
+  raw: apk update ; apk add python sudo
   when:
     - "'alpine' in release.stdout"
   register: pythonalpine
   changed_when:
     - "'Installing python' in pythonalpine.stdout"
+  remote_user: root
 
 - name: install python2 on centos
-  raw: yum -y install python2
+  raw: yum -y install python2 sudo
   when:
     - "'CentOS' in release.stdout"
   register: python2centos
   changed_when:
     - "'Nothing' not in python2centos.stdout"
+  remote_user: root
 
 - name: install python on debian
-  raw: apt-get update ; apt-get -y install python
+  raw: apt-get update ; apt-get -y install python sudo
   when:
     - "'Debian' in release.stdout"
   register: pythondebian
   changed_when:
     - "' 0 newly installed' not in pythondebian.stdout"
+  remote_user: root
 
 - name: install python2 and python2-dnf on fedora
-  raw: yum -y install python2 python2-dnf
+  raw: yum -y install python2 python2-dnf sudo
   when:
     - "'Fedora' in release.stdout"
   register: python2fedora
   changed_when:
     - "'Nothing' not in python2fedora.stdout"
+  remote_user: root
 
 - name: install python2 on red hat
-  raw: yum -y install python2
+  raw: yum -y install python2 sudo
   when:
     - "'Red Hat' in release.stdout"
   register: python2redhat
   changed_when:
     - "'Nothing' not in python2redhat.stdout"
+  remote_user: root
 
 - name: install python on ubuntu
-  raw: apt-get update ; apt-get -y install python
+  raw: apt-get update ; apt-get -y install python sudo
   when:
     - "'Ubuntu' in release.stdout"
   register: pythonubuntu
   changed_when:
     - "' 0 newly installed' not in pythonubuntu.stdout"
+  remote_user: root
 
 - name: gather facts
   setup:

@@ -1,8 +1,5 @@
 ---
 packages:
-  - bash
   - libselinux-python
-  - python
   - python-simplejson
-  - sudo
   - yum-plugin-ovl
