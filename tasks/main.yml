@@ -6,7 +6,7 @@
   changed_when: false
   become: no
 
-- name: install python on alpine
+- name: install python and sudo on alpine
   raw: apk update ; apk add python sudo
   when:
     - "'alpine' in release.stdout"
@@ -15,7 +15,7 @@
     - "'Installing python' in pythonalpine.stdout"
   remote_user: root
 
-- name: install python2 on centos
+- name: install python2 and sudo on centos
   raw: yum -y install python2 sudo
   when:
     - "'CentOS' in release.stdout"
@@ -24,7 +24,7 @@
     - "'Nothing' not in python2centos.stdout"
   remote_user: root
 
-- name: install python on debian
+- name: install python and sudo on debian
   raw: apt-get update ; apt-get -y install python sudo
   when:
     - "'Debian' in release.stdout"
@@ -33,7 +33,7 @@
     - "' 0 newly installed' not in pythondebian.stdout"
   remote_user: root
 
-- name: install python2 and python2-dnf on fedora
+- name: install python2, python2-dnf and sudo on fedora
   raw: yum -y install python2 python2-dnf sudo
   when:
     - "'Fedora' in release.stdout"
@@ -42,7 +42,7 @@
     - "'Nothing' not in python2fedora.stdout"
   remote_user: root
 
-- name: install python2 on red hat
+- name: install python2 and sudo on red hat
   raw: yum -y install python2 sudo
   when:
     - "'Red Hat' in release.stdout"
@@ -51,7 +51,7 @@
     - "'Nothing' not in python2redhat.stdout"
   remote_user: root
 
-- name: install python on ubuntu
+- name: install python and sudo on ubuntu
   raw: apt-get update ; apt-get -y install python sudo
   when:
     - "'Ubuntu' in release.stdout"
@@ -62,6 +62,7 @@
 
 - name: gather facts
   setup:
+  become: no
 
 - name: include distribution specific variables
   include_vars: "{{ item }}"
