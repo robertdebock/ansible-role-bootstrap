@@ -29,8 +29,8 @@
   changed_when:
     - "' 0 newly installed' not in pythondebian.stdout"
 
-- name: install python2 on fedora
-  raw: yum -y install python2
+- name: install python2 and python2-dnf on fedora
+  raw: yum -y install python2 python2-dnf
   when:
     - "'Fedora' in release.stdout"
   register: python2fedora
