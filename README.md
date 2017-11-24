@@ -27,7 +27,6 @@ Example Playbook
 ```
 ---
 - hosts: all
-  become: yes
   gather_facts: no
 
   roles:
@@ -39,6 +38,7 @@ Example Playbook
 ```
 
 Fact gathering will be done in the role when all required software is installed.
+Tasks that require root access have "become" set to yes. Therefor this role can be included without become. (See example playbook above.)
 
 License
 -------
