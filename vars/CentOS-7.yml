@@ -5,4 +5,3 @@ packages:
   - python
   - sudo
   - yum-plugin-ovl
-  - bash
