@@ -31,7 +31,7 @@ Example Playbook
   gather_facts: no
 
   roles:
-    - robertdebock.ansible-role-bootstrap
+    - ansible-role-bootstrap
 
   tasks:
     - name: do something.

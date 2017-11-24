@@ -1,7 +1,7 @@
 ---
 - hosts: all
   remote_user: root
-  gather_facts: false
+  gather_facts: no
 
   roles:
     - ansible-role-bootstrap
