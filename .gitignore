@@ -1,1 +1,2 @@
-molecule/default/.molecule
+molecule/*/.molecule
+*.log

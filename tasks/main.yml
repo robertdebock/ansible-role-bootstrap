@@ -12,7 +12,6 @@
   register: pythonalpine
   changed_when:
     - "'Installing python' in pythonalpine.stdout"
-  become: yes
 
 - name: install python2 on centos
   raw: yum -y install python2
@@ -21,7 +20,6 @@
   register: python2centos
   changed_when:
     - "'Nothing' not in python2centos.stdout"
-  become: yes
 
 - name: install python on debian
   raw: apt-get update ; apt-get -y install python
@@ -30,7 +28,6 @@
   register: pythondebian
   changed_when:
     - "' 0 newly installed' not in pythondebian.stdout"
-  become: yes
 
 - name: install python2 and python2-dnf on fedora
   raw: yum -y install python2 python2-dnf
@@ -39,7 +36,6 @@
   register: python2fedora
   changed_when:
     - "'Nothing' not in python2fedora.stdout"
-  become: yes
 
 - name: install python2 on red hat
   raw: yum -y install python2
@@ -48,7 +44,6 @@
   register: python2redhat
   changed_when:
     - "'Nothing' not in python2redhat.stdout"
-  become: yes
 
 - name: install python on ubuntu
   raw: apt-get update ; apt-get -y install python
@@ -57,7 +52,6 @@
   register: pythonubuntu
   changed_when:
     - "' 0 newly installed' not in pythonubuntu.stdout"
-  become: yes
 
 - name: gather facts
   setup:
@@ -74,4 +68,3 @@
     name: "{{ item }}"
     state: present
   with_items: "{{ packages }}"
-  become: yes
