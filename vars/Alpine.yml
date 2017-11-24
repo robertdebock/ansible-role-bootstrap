@@ -1,3 +1,7 @@
 ---
 packages:
+  - bash
+  - ca-certificates
+  - python
   - py-simplejson
+  - sudo
