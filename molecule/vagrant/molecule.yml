@@ -26,9 +26,9 @@ platforms:
     box: bento/fedora26
   - name: bento-fedora27
     box: bento/fedora27
-  - name: opensuse-openSUSE-42.1-x86_64
+  - name: opensuse-openSUSE-42-1-x86-64
     box: opensuse/openSUSE-42.1-x86_64
-  - name: opensuse-openSUSE-42.2-x86_64
+  - name: opensuse-openSUSE-42-2-x86-64
     box: opensuse/openSUSE-42.2-x86_64
   - name: ubuntu-trusty
     box: ubuntu/trusty64

@@ -42,8 +42,8 @@
     - "'Nothing' not in fedora.stdout"
   remote_user: root
 
-- name: install python3 and sudo on opensuse
-  raw: zypper -n install python3 sudo
+- name: install python, python-xml and sudo on opensuse
+  raw: zypper -n install python python-xml sudo
   when:
     - "'openSUSE' in release.stdout"
   register: opensuse
