@@ -10,8 +10,6 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: generic-alpine35
-    box: generic/alpine35
   - name: centos-6
     box: centos/6
   - name: centos-7
