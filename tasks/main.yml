@@ -43,7 +43,7 @@
   remote_user: root
 
 - name: install python3 and sudo on opensuse
-  raw: zypper -y install python3 sudo
+  raw: zypper -n install python3 sudo
   when:
     - "'openSUSE' in release.stdout"
   register: opensuse
