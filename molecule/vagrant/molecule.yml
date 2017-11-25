@@ -10,6 +10,26 @@ driver:
 lint:
   name: yamllint
 platforms:
+  - name: generic-alpine35
+    box: generic/alpine35
+  - name: generic-alpine35
+    box: generic/alpine35
+  - name: centos-6
+    box: centos/6
+  - name: centos-7
+    box: centos/7
+  - name: debian-jessie64
+    box: debian/jessie64
+  - name: desc-buster64
+    box: desc/buster64
+  - name: bento-fedora26
+    box: bento/fedora26
+  - name: bento-fedora27
+    box: bento/fedora27
+  - name: opensuse-openSUSE-42.1-x86_64
+    box: opensuse/openSUSE-42.1-x86_64
+  - name: opensuse-openSUSE-42.2-x86_64
+    box: opensuse/openSUSE-42.2-x86_64
   - name: ubuntu-trusty
     box: ubuntu/trusty64
   - name: ubuntu-zesty

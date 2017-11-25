@@ -22,6 +22,10 @@ platforms:
     image: fedora:26
   - name: fedora-27
     image: fedora:27
+  - name: opensuse-42.2
+    image: opensuse:42.2
+  - name: opensuse-42.3
+    image: opensuse:42.3
   - name: ubuntu-zesty
     image: ubuntu:zesty
   - name: ubuntu-artful

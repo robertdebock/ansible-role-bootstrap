@@ -42,6 +42,16 @@
     - "'Nothing' not in python2fedora.stdout"
   remote_user: root
 
+- name: install python3 and sudo on opensuse
+  raw: zypper install python3 sudo
+  when:
+    - "'openSUSE' in release.stdout"
+  register: opensuse
+  changed_when:
+    - "'Nothing' not in opensuse.stdout"
+  remote_user: root
+
+
 - name: install python2 and sudo on red hat
   raw: yum -y install python2 sudo
   when:
@@ -71,7 +81,7 @@
     - "{{ ansible_distribution }}.yml"
     - "default.yml"
 
-- name: install required packages
+- name: install extra software
   package:
     name: "{{ item }}"
     state: present
