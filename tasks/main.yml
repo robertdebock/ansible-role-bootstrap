@@ -50,6 +50,7 @@
   changed_when:
     - "'Nothing' not in opensuse.stdout"
   remote_user: "{{ remoteuser }}"
+  failed_when: no
 
 - name: install python2 and sudo on red hat
   raw: yum -y install python2 sudo
