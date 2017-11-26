@@ -41,7 +41,7 @@ Example Playbook
 
 Non-standard options:
 - gather_facts is set to no, because machines may not have all required software installed to be able to use common Ansible mechanisms. This role does eventually run "setup", providing all facts, when the required software is installed.
-- become is set to "yes". The first part of the playbook logs in as "remote_user" (set in defaults/main.yml) and installs required software. After that, the user specified in your inventory or ansible.cfg is used.
+- become is set to "yes". The first part of the playbook logs in as "remoteuser" (set in defaults/main.yml) and installs required software. After that, the user specified in your inventory or ansible.cfg is used.
 
 License
 -------
