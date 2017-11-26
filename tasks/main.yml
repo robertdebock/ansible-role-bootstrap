@@ -13,7 +13,7 @@
   register: alpine
   changed_when:
     - "'Installing python' in alpine.stdout"
-  remote_user: root
+  remote_user: "{{ remote_user }}"
 
 - name: install python2 and sudo on centos
   raw: yum -y install python2 sudo
@@ -22,7 +22,7 @@
   register: centos
   changed_when:
     - "'Nothing' not in centos.stdout"
-  remote_user: root
+  remote_user: "{{ remote_user }}"
 
 - name: install python and sudo on debian
   raw: apt-get update ; apt-get -y install python sudo
@@ -31,7 +31,7 @@
   register: debian
   changed_when:
     - "' 0 newly installed' not in debian.stdout"
-  remote_user: root
+  remote_user: "{{ remote_user }}"
 
 - name: install python2, python2-dnf and sudo on fedora
   raw: yum -y install python2 python2-dnf sudo
@@ -40,7 +40,7 @@
   register: fedora
   changed_when:
     - "'Nothing' not in fedora.stdout"
-  remote_user: root
+  remote_user: "{{ remote_user }}"
 
 - name: install python, python-xml and sudo on opensuse
   raw: zypper -n install python python-xml sudo
@@ -49,7 +49,7 @@
   register: opensuse
   changed_when:
     - "'Nothing' not in opensuse.stdout"
-  remote_user: root
+  remote_user: "{{ remote_user }}"
 
 - name: install python2 and sudo on red hat
   raw: yum -y install python2 sudo
@@ -58,7 +58,7 @@
   register: python2redhat
   changed_when:
     - "'Nothing' not in python2redhat.stdout"
-  remote_user: root
+  remote_user: "{{ remote_user }}"
 
 - name: install python and sudo on ubuntu
   raw: apt-get update ; apt-get -y install python sudo
@@ -67,7 +67,7 @@
   register: pythonubuntu
   changed_when:
     - "' 0 newly installed' not in pythonubuntu.stdout"
-  remote_user: root
+  remote_user: "{{ remote_user }}"
 
 - name: gather facts
   setup:

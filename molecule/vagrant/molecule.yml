@@ -18,6 +18,10 @@ platforms:
     box: debian/jessie64
   - name: desc-buster64
     box: desc/buster64
+  - name: fedora-26-cloud-base
+    box: fedora/26-cloud-base
+  - name: fedora-27-cloud-base
+    box: fedora/27-cloud-base
   - name: opensuse-openSUSE-42-2-x86-64
     box: opensuse/openSUSE-42.2-x86_64
   - name: ubuntu-trusty

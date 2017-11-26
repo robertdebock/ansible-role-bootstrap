@@ -26,19 +26,22 @@ Example Playbook
 
 ```
 ---
-- hosts: all
+- name: bootstrap
+  hosts: all
   gather_facts: no
+  become: yes
 
   roles:
     - ansible-role-bootstrap
 
   tasks:
-    - name: do something.
+    - name: test connnection
       ping:
 ```
 
-Fact gathering will be done in the role when all required software is installed.
-Tasks that require root access have "become" set to yes. Therefor this role can be included without become. (See example playbook above.)
+Non-standard options:
+- gather_facts is set to no, because machines may not have all required software installed to be able to use common Ansible mechanisms. This role does eventually run "setup", providing all facts, when the required software is installed.
+- become is set to "yes". The first part of the playbook logs in as "remote_user" (set in defaults/main.yml) and installs required software. After that, the user specified in your inventory or ansible.cfg is used.
 
 License
 -------
