@@ -32,12 +32,17 @@ Example Playbook
   become: yes
 
   roles:
-    - ansible-role-bootstrap
+    - robertdebock.ansible-role-bootstrap
 
   tasks:
     - name: test connnection
       ping:
 ```
+
+```
+To install this role:
+- either use another role that depends on this one and run `ansible-galaxy install --role-file requirements.yml` or
+- install this role individually using `ansible-galaxy install --roles-path . robertdebock.ansible-role-bootstrap`
 
 Non-standard options:
 - gather_facts is set to no, because machines may not have all required software installed to be able to use common Ansible mechanisms. This role does eventually run "setup", providing all facts, when the required software is installed.
