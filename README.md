@@ -1,7 +1,7 @@
-ansible-role-bootstrap
+bootstrap
 =========
 
-[![Build Status](https://travis-ci.org/robertdebock/ansible-role-bootstrap.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
+[![Build Status](https://travis-ci.org/robertdebock.ansible-role-bootstrap.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
 
 Bootstrap a system (many flavors) to use Ansible, likely the first role to depend on. This role does not depend on other roles, but many others may depend on this role.
 
@@ -32,16 +32,16 @@ Example Playbook
   become: yes
 
   roles:
-    - robertdebock.ansible-role-bootstrap
+    - robertdebock.bootstrap
 
   tasks:
-    - name: test connnection
+    - name: test connection
       ping:
 ```
 
 To install this role:
 - either use another role that depends on this one and run `ansible-galaxy install --role-file requirements.yml` or
-- or install this role individually using `ansible-galaxy install robertdebock.ansible-role-bootstrap`
+- or install this role individually using `ansible-galaxy install robertdebock.bootstrap`
 
 Non-standard options:
 - gather_facts is set to no, because machines may not have all required software installed to be able to use common Ansible mechanisms. This role does eventually run "setup", providing all facts, when the required software is installed.
