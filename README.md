@@ -1,7 +1,7 @@
 bootstrap
 =========
 
-[![Build Status](https://travis-ci.org/robertdebock.ansible-role-bootstrap.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
+[![Build Status](https://travis-ci.org/robertdebock/ansible-role-bootstrap.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
 
 Bootstrap a system (many flavors) to use Ansible, likely the first role to depend on. This role does not depend on other roles, but many others may depend on this role.
 
