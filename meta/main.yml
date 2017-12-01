@@ -7,22 +7,22 @@ galaxy_info:
   min_ansible_version: 2.2
 
   platforms:
-    - name: alpine
+    - name: Alpine
       versions:
         - all
     - name: centos
       version:
         - 6
         - 7
-    - name: debian
+    - name: Debian
       versions:
         - jessie
         - buster
-    - name: el
+    - name: EL
       versions:
         - 6
         - 7
-    - name: fedora
+    - name: Fedora
       versions:
         - 26
         - 27
@@ -30,7 +30,7 @@ galaxy_info:
       versions:
         - 42.2
         - 42.3
-    - name: ubuntu
+    - name: Ubuntu
       versions:
         - zesty
         - artful
