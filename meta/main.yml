@@ -16,20 +16,17 @@ galaxy_info:
         - 7
     - name: Debian
       versions:
-        - jessie
-        - buster
+         - all
     - name: EL
       versions:
         - 6
         - 7
     - name: Fedora
       versions:
-        - 26
-        - 27
+        - all
     - name: opensuse
       versions:
-        - 42.2
-        - 42.3
+        - all
     - name: Ubuntu
       versions:
         - zesty
