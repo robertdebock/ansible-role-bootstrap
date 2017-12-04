@@ -16,7 +16,7 @@ platforms:
     box: centos/7
   - name: debian-jessie64
     box: debian/jessie64
-  - name: desc-buster64
+  - name: debian-buster64
     box: desc/buster64
   - name: fedora-26-cloud-base
     box: fedora/26-cloud-base
