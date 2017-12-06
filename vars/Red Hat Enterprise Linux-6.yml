@@ -1,5 +1,5 @@
 ---
-packages:
+bootstrap_packages:
   - libselinux-python
   - python-simplejson
   - yum-plugin-ovl

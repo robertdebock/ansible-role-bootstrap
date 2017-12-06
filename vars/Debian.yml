@@ -1,5 +1,5 @@
 ---
-packages:
+bootstrap_packages:
   - ca-certificates
   - python-apt
   - python-simplejson

@@ -14,7 +14,7 @@ Ansible 2.2 or higher.
 Role Variables
 --------------
 
-- remoteuser: The user to connect to initially when installing thhe required software. Because sudo may not be installed, a user that has permission to use the package manager of the operating system you're running this role against will be used to connect to the machine. The default (set in defaults/main.yml) is set to "root". When the required software is installed, this user is not used anymore.
+- bootstrap_user: The user to connect to initially when installing the required software. Because sudo may not be installed, a user that has permission to use the package manager of the operating system you're running this role against will be used to connect to the machine. The default (set in defaults/main.yml) is set to "root". When the required software is installed, this user is not used anymore.
 
 Dependencies
 ------------
