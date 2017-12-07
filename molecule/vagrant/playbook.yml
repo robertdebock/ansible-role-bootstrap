@@ -5,7 +5,7 @@
   gather_facts: no
 
   roles:
-    - role: ansible-role-bootstrap
+    - role: robertdebock.bootstrap
 
   tasks:
     - name: test connection
