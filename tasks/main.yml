@@ -74,15 +74,11 @@
   setup:
   become: no
 
-- name: include distribution specific variables
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "bootstrap.{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-    - "bootstrap.{{ ansible_distribution }}.yml"
-    - "bootstrap.default.yml"
-
 - name: install extra software
   package:
     name: "{{ item }}"
     state: present
-  with_items: "{{ bootstrap_packages }}"
+  with_items:
+    - "{{ bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+      | default(bootstrap_packages[ansible_distribution]
+      | default(bootstrap_packages['default'] )) }}"

@@ -1,2 +1,30 @@
 ---
 # vars file for bootstrap
+bootstrap_packages:
+  Alpine:
+    - ca-certificates
+    - py-simplejson
+  CentOS-6:
+    - libselinux-python
+    - python-simplejson
+    - yum-plugin-ovl
+  CentOS-7:
+    - libselinux-python
+    - yum-plugin-ovl
+  Debian:
+    - ca-certificates
+    - python-apt
+    - python-simplejson
+  default:
+    - build-essential
+  Fedora:
+    - libselinux-python
+    - python-devel
+    - python2-dnf
+    - python-simplejson
+  openSUSE Leap:
+    - ca-certificates
+  Ubuntu:
+    - ca-certificates
+    - python-apt
+    - python-simplejson

@@ -1,4 +1,0 @@
----
-bootstrap_packages:
-  - libselinux-python
-  - yum-plugin-ovl

@@ -1,4 +1,0 @@
----
-bootstrap_packages:
-  - ca-certificates
-  - py-simplejson
