@@ -8,8 +8,8 @@ Bootstrap a system (many flavors) to use Ansible, likely the first role to depen
 Requirements
 ------------
 
-Access to a repository containing packages, likely on the internet.
-Ansible 2.2 or higher.
+- Access to a repository containing packages, likely on the internet.
+- Ansible 2.2 or higher.
 
 Role Variables
 --------------
@@ -40,12 +40,18 @@ Example Playbook
 ```
 
 To install this role:
-- either use another role that depends on this one and run `ansible-galaxy install --role-file requirements.yml` or
-- or install this role individually using `ansible-galaxy install robertdebock.bootstrap`
+- Install this role individually using `ansible-galaxy install robertdebock.bootstrap`
+- Use another role that depends on this one and run `ansible-galaxy install --role-file requirements.yml`:
+
+```
+---
+- name: robertdebock.bootstrap
+  src: robertdebock.bootstrap
+```
 
 Non-standard options:
-- gather_facts is set to no, because machines may not have all required software installed to be able to use common Ansible mechanisms. This role does eventually run "setup", providing all facts, when the required software is installed.
-- become is set to "yes". The first part of the playbook logs in as "remoteuser" (set in defaults/main.yml) and installs required software. After that, the user specified in your inventory or ansible.cfg is used.
+- "gather_facts" is set to "no", because machines may not have all required software installed to be able to use common Ansible mechanisms. This role does run "setup" when python once installed, providing all facts, when the required software is installed.
+- "become" is set to "yes". The first part of the playbook logs in as "remoteuser" (set in defaults/main.yml) and installs required software. After that, the user specified in your inventory or ansible.cfg is used.
 
 License
 -------

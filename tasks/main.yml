@@ -56,18 +56,18 @@
   raw: yum -y install python2 sudo
   when:
     - "'Red Hat' in release.stdout"
-  register: python2redhat
+  register: redhat
   changed_when:
-    - "'Nothing' not in python2redhat.stdout"
+    - "'Nothing' not in redhat.stdout"
   remote_user: "{{ bootstrap_user }}"
 
 - name: install python and sudo on ubuntu
   raw: apt-get update ; apt-get -y install python sudo
   when:
     - "'Ubuntu' in release.stdout"
-  register: pythonubuntu
+  register: ubuntu
   changed_when:
-    - "' 0 newly installed' not in pythonubuntu.stdout"
+    - "' 0 newly installed' not in ubuntu.stdout"
   remote_user: "{{ bootstrap_user }}"
 
 - name: gather facts

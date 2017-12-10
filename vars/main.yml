@@ -15,8 +15,6 @@ bootstrap_packages:
     - ca-certificates
     - python-apt
     - python-simplejson
-  default:
-    - build-essential
   Fedora:
     - libselinux-python
     - python-devel
