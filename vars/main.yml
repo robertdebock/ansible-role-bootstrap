@@ -4,6 +4,7 @@ bootstrap_packages:
   Alpine:
     - ca-certificates
     - py-simplejson
+    - tar
   CentOS-6:
     - libselinux-python
     - python-simplejson
