@@ -7,7 +7,6 @@ bootstrap_packages:
     - tar
     - shadow
   CentOS-6:
-    -
     - libselinux-python
     - python-simplejson
     - yum-plugin-ovl
