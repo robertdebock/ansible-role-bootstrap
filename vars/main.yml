@@ -5,6 +5,7 @@ bootstrap_packages:
     - ca-certificates
     - py-simplejson
     - tar
+    - shadow
   CentOS-6:
     - libselinux-python
     - python-simplejson
