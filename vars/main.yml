@@ -10,9 +10,13 @@ bootstrap_packages:
     - libselinux-python
     - python-simplejson
     - yum-plugin-ovl
+    - libselinux-python
+    - libsemanage-python
   CentOS-7:
     - libselinux-python
     - yum-plugin-ovl
+    - libselinux-python
+    - libsemanage-python
   Debian:
     - ca-certificates
     - python-apt
@@ -22,8 +26,11 @@ bootstrap_packages:
     - python-devel
     - python2-dnf
     - python-simplejson
+    - libselinux-python
+    - libsemanage-python
   openSUSE Leap:
     - ca-certificates
+    - python-selinux
   Ubuntu:
     - ca-certificates
     - python-apt
