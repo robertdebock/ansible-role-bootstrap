@@ -4,30 +4,27 @@ bootstrap_packages:
   Alpine:
     - ca-certificates
     - py-simplejson
-    - tar
     - shadow
+    - tar
   CentOS-6:
     - libselinux-python
+    - libsemanage-python
     - python-simplejson
     - yum-plugin-ovl
-    - libselinux-python
-    - libsemanage-python
   CentOS-7:
     - libselinux-python
-    - yum-plugin-ovl
-    - libselinux-python
     - libsemanage-python
+    - yum-plugin-ovl
   Debian:
     - ca-certificates
     - python-apt
     - python-simplejson
   Fedora:
     - libselinux-python
-    - python-devel
-    - python2-dnf
-    - python-simplejson
-    - libselinux-python
     - libsemanage-python
+    - python-devel
+    - python-simplejson
+    - python2-dnf
   openSUSE Leap:
     - ca-certificates
     - python-selinux
