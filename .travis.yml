@@ -18,6 +18,8 @@ install:
   - pip install docker-py
 
 script:
+  - ansible --version
+  - molecule --version
   - molecule --debug test
 
 notifications:
