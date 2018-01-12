@@ -6,6 +6,8 @@ bootstrap_packages:
     - py-simplejson
     - shadow
     - tar
+  Archlinux:
+    - python
   CentOS-6:
     - libselinux-python
     - libsemanage-python

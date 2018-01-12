@@ -15,6 +15,15 @@
     - "'Installing python' in alpine.stdout"
   remote_user: "{{ bootstrap_user }}"
 
+- name: install software on archlinux
+  raw: pacman -TS python sudo || pacman -S --noconfirm python sudo
+  when:
+    - "'archlinux' in release.stdout"
+  register: archlinux
+  changed_when:
+    - "' installing python' in archlinux.stdout"
+  remote_user: "{{ bootstrap_user }}"
+
 - name: install software on centos
   raw: yum -y install python2 sudo
   when:
