@@ -16,7 +16,7 @@
   remote_user: "{{ bootstrap_user }}"
 
 - name: install software on archlinux
-  raw: pacman -TS python sudo || pacman -S --noconfirm python sudo
+  raw: pacman -Syu ; pacman -T python sudo || pacman -S --noconfirm python sudo
   when:
     - "'archlinux' in release.stdout"
   register: archlinux
