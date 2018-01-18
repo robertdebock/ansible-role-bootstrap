@@ -10,6 +10,9 @@ galaxy_info:
     - name: Alpine
       versions:
         - all
+    - name: ArchLinux
+      version:
+        - all
     - name: centos
       version:
         - 6

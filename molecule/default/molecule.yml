@@ -30,8 +30,8 @@ platforms:
     image: opensuse:42.2
   - name: bootstrap-opensuse-42.3
     image: opensuse:42.3
-  - name: bootstrap-ubuntu-zesty
-    image: ubuntu:zesty
+  - name: bootstrap-ubuntu-trusty
+    image: ubuntu:trusty
   - name: bootstrap-ubuntu-artful
     image: ubuntu:artful
 provisioner:
