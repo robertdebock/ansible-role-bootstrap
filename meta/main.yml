@@ -13,7 +13,7 @@ galaxy_info:
     - name: ArchLinux
       version:
         - all
-    - name: centos
+    - name: CentOS
       version:
         - 6
         - 7
@@ -23,12 +23,13 @@ galaxy_info:
     - name: Fedora
       versions:
         - all
-    - name: opensuse
+    - name: OpenSUSE
       versions:
         - all
     - name: Ubuntu
       versions:
-        - zesty
+        - trusty
+        - xenial
         - artful
 
   galaxy_tags:
