@@ -20,6 +20,8 @@ platforms:
     image: centos:7
   - name: bootstrap-debian-jessie
     image: debian:jessie
+  - name: bootstrap-debian-stretch
+    image: debian:stretch
   - name: bootstrap-debian-buster
     image: debian:buster
   - name: bootstrap-fedora-26
@@ -30,8 +32,13 @@ platforms:
     image: opensuse:42.2
   - name: bootstrap-opensuse-42.3
     image: opensuse:42.3
+    # 14.04 LTS
   - name: bootstrap-ubuntu-trusty
     image: ubuntu:trusty
+    # 16.04 LTS
+  - name: bootstrap-ubuntu-xenial
+    image: ubuntu:xenial
+    # 17.04
   - name: bootstrap-ubuntu-artful
     image: ubuntu:artful
 provisioner:
