@@ -31,6 +31,8 @@ bootstrap_packages:
   openSUSE Leap:
     - ca-certificates
     - python-selinux
+    - gtar
+    - unzip
   Ubuntu:
     - ca-certificates
     - python-apt
