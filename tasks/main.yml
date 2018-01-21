@@ -5,6 +5,7 @@
   register: release
   changed_when: false
   become: no
+  check_mode: no
 
 - name: install software on alpine
   raw: apk update ; apk add python sudo
