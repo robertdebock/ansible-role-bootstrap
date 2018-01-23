@@ -5,31 +5,21 @@ bootstrap_packages:
     - ca-certificates
     - py-simplejson
     - shadow
-    - tar
-    - unzip
   Archlinux:
     - python
-    - tar
-    - unzip
   CentOS-6:
     - libselinux-python
     - libsemanage-python
     - python-simplejson
     - yum-plugin-ovl
-    - tar
-    - unzip
   CentOS-7:
     - libselinux-python
     - libsemanage-python
     - yum-plugin-ovl
-    - tar
-    - unzip
   Debian:
     - ca-certificates
     - python-apt
     - python-simplejson
-    - tar
-    - unzip
   Fedora:
     - libselinux-python
     - libsemanage-python
@@ -37,16 +27,35 @@ bootstrap_packages:
     - python-devel
     - python-simplejson
     - python2-dnf
-    - tar
-    - unzip
   openSUSE Leap:
     - ca-certificates
     - python-selinux
-    - tar
-    - unzip
   Ubuntu:
     - ca-certificates
     - python-apt
     - python-simplejson
+
+bootstrap_packages_preview:
+  Alpine:
+    - tar
+    - unzip
+  Archlinux:
+    - tar
+    - unzip
+  CentOS:
+    - tar
+    - unzip
+    - mysql
+    - MySQL-python
+  Debian:
+    - tar
+    - unzip
+  Fedora:
+    - tar
+    - unzip
+  openSUSE Leap:
+    - tar
+    - unzip
+  Ubuntu:
     - tar
     - unzip
