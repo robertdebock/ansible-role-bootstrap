@@ -30,6 +30,15 @@ bootstrap_packages:
   openSUSE Leap:
     - ca-certificates
     - python-selinux
+  RedHat-6:
+    - libselinux-python
+    - libsemanage-python
+    - python-simplejson
+    - yum-plugin-ovl
+  RedHat-7:
+    - libselinux-python
+    - libsemanage-python
+    - yum-plugin-ovl
   Ubuntu:
     - ca-certificates
     - python-apt
