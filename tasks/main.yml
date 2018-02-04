@@ -25,20 +25,19 @@
     - "' installing python' in archlinux.stdout"
   remote_user: "{{ bootstrap_user }}"
 
-- name: install software on centos or redhat
+- name: install software on centos
   raw: yum -y install python2 sudo
   when:
-    - "'CentOS' in release.stdout" or "'Red Hat Enterprise Linux' in release.stdout"
+    - "'CentOS' in release.stdout"
   register: centos
   changed_when:
     - "'Nothing' not in centos.stdout"
   remote_user: "{{ bootstrap_user }}"
 
-- name: install software debian and ubuntu
+- name: install software debian
   raw: apt-get update ; apt-get -y install python sudo
   when:
-    - "'Debian' in release.stdout" or "'Ubuntu' in release.stdout"
-
+    - "'Debian' in release.stdout"
   register: debian
   changed_when:
     - "' 0 newly installed' not in debian.stdout"
@@ -62,6 +61,24 @@
     - "'Nothing' not in opensuse.stdout"
   remote_user: "{{ bootstrap_user }}"
   failed_when: no
+
+- name: install software on redhat
+  raw: yum -y install python2 sudo
+  when:
+    - "'Red Hat' in release.stdout"
+  register: redhat
+  changed_when:
+    - "'Nothing' not in redhat.stdout"
+  remote_user: "{{ bootstrap_user }}"
+
+- name: install software ubuntu
+  raw: apt-get update ; apt-get -y install python sudo
+  when:
+    - "'Ubuntu' in release.stdout"
+  register: ubuntu
+  changed_when:
+    - "' 0 newly installed' not in ubuntu.stdout"
+  remote_user: "{{ bootstrap_user }}"
 
 - name: gather facts
   setup:
