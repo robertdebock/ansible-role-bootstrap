@@ -49,6 +49,7 @@ Example Playbook
 
   roles:
     - robertdebock.bootstrap
+      bootstrap_user: vagrant
 
   tasks:
     - name: test connection
