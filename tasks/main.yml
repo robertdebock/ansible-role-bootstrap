@@ -1,9 +1,9 @@
 ---
 # tasks file for bootstrap
-- name: register release
-  raw: cat /etc/*-release
-  register: release
-  changed_when: false
+- name: register yum
+  raw: yum version
+  register: yum
+  changed_when: no
   become: no
   check_mode: no
 
@@ -25,13 +25,13 @@
     - "' installing python' in archlinux.stdout"
   remote_user: "{{ bootstrap_user }}"
 
-- name: install software on centos
+- name: install software with yum
   raw: yum -y install python2 sudo
   when:
-    - "'CentOS' in release.stdout"
-  register: centos
+    - yum.rc == 0
+  register: yum
   changed_when:
-    - "'Nothing' not in centos.stdout"
+    - "'Nothing' not in yum.stdout"
   remote_user: "{{ bootstrap_user }}"
 
 - name: install software debian
