@@ -46,25 +46,32 @@ bootstrap_packages:
 
 bootstrap_packages_preview:
   Alpine:
+    - lvm2
     - tar
     - unzip
   Archlinux:
+    - lvm2
     - tar
     - unzip
   CentOS:
+    - lvm2
     - tar
     - unzip
     - mysql
     - MySQL-python
   Debian:
+    - lvm2
     - tar
     - unzip
   Fedora:
+    - lvm2
     - tar
     - unzip
   openSUSE Leap:
+    - lvm2
     - tar
     - unzip
   Ubuntu:
+    - lvm2
     - tar
     - unzip
