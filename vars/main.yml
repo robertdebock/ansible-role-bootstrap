@@ -57,8 +57,6 @@ bootstrap_packages_preview:
     - lvm2
     - tar
     - unzip
-    - mysql
-    - MySQL-python
   Debian:
     - lvm2
     - tar
