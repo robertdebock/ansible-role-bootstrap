@@ -45,31 +45,7 @@ bootstrap_packages:
     - python-simplejson
 
 bootstrap_packages_preview:
-  Alpine:
-    - lvm2
-    - tar
-    - unzip
-  Archlinux:
-    - lvm2
-    - tar
-    - unzip
-  CentOS:
-    - lvm2
-    - tar
-    - unzip
-  Debian:
-    - lvm2
-    - tar
-    - unzip
-  Fedora:
-    - lvm2
-    - tar
-    - unzip
-  openSUSE Leap:
-    - lvm2
-    - tar
-    - unzip
-  Ubuntu:
+  default:
     - lvm2
     - tar
     - unzip
