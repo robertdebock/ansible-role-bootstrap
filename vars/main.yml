@@ -45,26 +45,17 @@ bootstrap_packages:
     - python-simplejson
 
 bootstrap_packages_preview:
-  Alpine:
+  default:
+    - lvm2
     - tar
     - unzip
-  Archlinux:
-    - tar
-    - unzip
-  CentOS:
-    - tar
-    - unzip
-    - mysql
-    - MySQL-python
   Debian:
-    - tar
-    - unzip
-  Fedora:
-    - tar
-    - unzip
-  openSUSE Leap:
+    - apt-transport-https
+    - lvm2
     - tar
     - unzip
   Ubuntu:
+    - apt-transport-https
+    - lvm2
     - tar
     - unzip
