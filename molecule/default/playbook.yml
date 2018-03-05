@@ -3,6 +3,7 @@
   hosts: all
   gather_facts: no
   become: yes
+  strategy: free
 
   roles:
     - role: ansible-role-bootstrap
