@@ -105,6 +105,8 @@
 
 - name: gather facts
   setup:
+    gather_subset: "!all,!any,min"
+
   become: no
 
 - name: install software to support stable modules
@@ -124,3 +126,7 @@
       | default(bootstrap_packages_preview['default'] )) }}"
   when:
     - bootstrap_preview
+
+- name: gather facts after installation of packages
+  setup:
+  become: no
