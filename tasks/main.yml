@@ -105,7 +105,6 @@
 
 - name: gather facts
   setup:
-    gather_subset: "min"
 
   become: no
 
