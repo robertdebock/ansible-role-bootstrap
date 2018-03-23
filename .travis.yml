@@ -4,8 +4,8 @@ language: python
 services: docker
 
 env:
+  - ansible_version=">=2.3,<2.4"
   - ansible_version=">=2.4,<2.5"
-  - ansible_version=">=2.5,<2.6"
   - ansible_version=">=2.5,<2.6"
 
 cache:
