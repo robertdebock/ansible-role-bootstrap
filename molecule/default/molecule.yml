@@ -28,12 +28,6 @@ platforms:
     image: debian:stretch
   - name: bootstrap-debian-wheezy
     image: debian:wheezy
-  - name: bootstrap-fedora-23
-    image: fedora:23
-  - name: bootstrap-fedora-24
-    image: fedora:24
-  - name: bootstrap-fedora-25
-    image: fedora:25
   - name: bootstrap-fedora-26
     image: fedora:26
   - name: bootstrap-fedora-27
