@@ -1,0 +1,35 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: bootstrap-debian-jessie
+    image: debian:jessie
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: debian-jessie
+  test_sequence:
+    - lint
+    - destroy
+    - dependency
+    - syntax
+    - create
+    - prepare
+    - converge
+    - idempotence
+    - check
+    - side_effect
+    - verify
+    - destroy
+verifier:
+  name: goss
+  lint:
+    name: 'flake8'
