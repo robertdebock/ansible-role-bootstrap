@@ -49,13 +49,16 @@ bootstrap_packages_preview:
     - lvm2
     - tar
     - unzip
+    - gzip
   Debian:
     - apt-transport-https
+    - gzip
     - lvm2
     - tar
     - unzip
   Ubuntu:
     - apt-transport-https
+    - gzip
     - lvm2
     - tar
     - unzip
