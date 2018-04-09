@@ -8,7 +8,6 @@ driver:
 lint:
   name: yamllint
 platforms:
-    # 14.04 LTS
   - name: bootstrap-ubuntu-trusty
     image: ubuntu:trusty
 provisioner:
