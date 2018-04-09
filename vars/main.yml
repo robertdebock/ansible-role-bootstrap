@@ -2,63 +2,95 @@
 # vars file for bootstrap
 bootstrap_packages:
   Alpine:
-    - ca-certificates
-    - py-simplejson
-    - shadow
+    stable:
+      - ca-certificates
+      - py-simplejson
+      - shadow
+    preview:
+      - lvm2
+      - tar
+      - unzip
+      - gzip
   Archlinux:
-    - python
+    stable:
+      - python
+    preview:
+      - lvm2
+      - tar
+      - unzip
+      - gzip
   CentOS-6:
-    - libselinux-python
-    - libsemanage-python
-    - python-simplejson
-    - yum-plugin-ovl
+    stable:
+      - libselinux-python
+      - libsemanage-python
+      - python-simplejson
+      - yum-plugin-ovl
+    preview:
+      - lvm2
+      - tar
+      - unzip
+      - gzip
   CentOS-7:
-    - libselinux-python
-    - libsemanage-python
-    - yum-plugin-ovl
+    stable:
+      - libselinux-python
+      - libsemanage-python
+      - yum-plugin-ovl
+    preview:
+      - lvm2
+      - tar
+      - unzip
+      - gzip
   Debian:
-    - ca-certificates
-    - python-apt
-    - python-simplejson
-  Fedora:
-    - libselinux-python
-    - libsemanage-python
-    - polkit
-    - python-devel
-    - python-simplejson
-    - python2-dnf
-  openSUSE Leap:
-    - ca-certificates
-    - python-selinux
-  RedHat-6:
-    - libselinux-python
-    - libsemanage-python
-    - python-simplejson
-    - yum-plugin-ovl
-  RedHat-7:
-    - libselinux-python
-    - libsemanage-python
-    - yum-plugin-ovl
-  Ubuntu:
-    - ca-certificates
-    - python-apt
-    - python-simplejson
-
-bootstrap_packages_preview:
+    stable:
+      - ca-certificates
+      - python-apt
+      - python-simplejson
+    preview:
+      - apt-transport-https
+      - gzip
+      - lvm2
+      - tar
+      - unzip
   default:
-    - lvm2
-    - tar
-    - unzip
-    - gzip
-  Debian:
-    - apt-transport-https
-    - gzip
-    - lvm2
-    - tar
-    - unzip
+    stable:
+      - libselinux-python
+      - libsemanage-python
+      - yum-plugin-ovl
+    preview:
+      - lvm2
+      - tar
+      - unzip
+      - gzip
+  Fedora:
+    stable:
+      - libselinux-python
+      - libsemanage-python
+      - polkit
+      - python-devel
+      - python-simplejson
+      - python2-dnf
+    preview:
+      - lvm2
+      - tar
+      - unzip
+      - gzip
+  openSUSE Leap:
+    stable:
+      - ca-certificates
+      - python-selinux
+    preview:
+      - lvm2
+      - tar
+      - unzip
+      - gzip
   Ubuntu:
-    - apt-transport-https
-    - gzip
-    - lvm2
-    - tar
-    - unzip
+    stable:
+      - ca-certificates
+      - python-apt
+      - python-simplejson
+    preview:
+      - apt-transport-https
+      - gzip
+      - lvm2
+      - tar
+      - unzip
