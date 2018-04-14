@@ -15,7 +15,7 @@ provisioner:
   lint:
     name: ansible-lint
 scenario:
-  name: ubuntu-xenial
+  name: ubuntu-bionic
   test_sequence:
     - lint
     - destroy
