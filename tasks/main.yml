@@ -110,19 +110,19 @@
 
 - name: install software to support stable modules
   package:
-    name: "{{ item.stable }}"
+    name: "{{ item }}"
   with_items:
-    - "{{ bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(bootstrap_packages[ansible_distribution]
-      | default(bootstrap_packages['default'])) }}"
+    - "{{ bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]['stable']
+      | default(bootstrap_packages[ansible_distribution]['stable']
+      | default(bootstrap_packages['default']['stable'] )) }}"
 
 - name: install software to support preview modules
   package:
-    name: "{{ item.preview }}"
+    name: "{{ item }}"
   with_items:
-    - "{{ bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(bootstrap_packages[ansible_distribution]
-      | default(bootstrap_packages['default'] )) }}"
+    - "{{ bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]['preview']
+      | default(bootstrap_packages[ansible_distribution]['preview']
+      | default(bootstrap_packages['default']['preview'] )) }}"
   when:
     - bootstrap_preview
 
