@@ -1,94 +1,53 @@
 ---
 # vars file for bootstrap
 bootstrap_packages:
-  Alpine:
-    stable:
+  stable:
+    Alpine:
       - ca-certificates
       - py-simplejson
       - shadow
-    preview:
-      - lvm2
-      - tar
-      - unzip
-      - gzip
-  Archlinux:
-    stable:
+    Archlinux:
       - python
-    preview:
-      - lvm2
-      - tar
-      - unzip
-      - gzip
-  CentOS-6:
-    stable:
+    CentOS-6:
       - libselinux-python
       - libsemanage-python
       - python-simplejson
       - yum-plugin-ovl
-    preview:
-      - lvm2
-      - tar
-      - unzip
-      - gzip
-  CentOS-7:
-    stable:
+    CentOS-7:
       - libselinux-python
       - libsemanage-python
       - yum-plugin-ovl
-    preview:
-      - lvm2
-      - tar
-      - unzip
-      - gzip
-  Debian:
-    stable:
+    Debian:
       - ca-certificates
       - python-apt
       - python-simplejson
-    preview:
-      - apt-transport-https
-      - gzip
-      - lvm2
-      - tar
-      - unzip
-  default:
-    stable:
-      - libselinux-python
-      - libsemanage-python
-      - yum-plugin-ovl
-    preview:
-      - lvm2
-      - tar
-      - unzip
-      - gzip
-  Fedora:
-    stable:
+    Fedora:
       - libselinux-python
       - libsemanage-python
       - polkit
       - python-devel
       - python-simplejson
       - python2-dnf
-    preview:
-      - lvm2
-      - tar
-      - unzip
-      - gzip
-  openSUSE Leap:
-    stable:
+    openSUSE Leap:
       - ca-certificates
       - python-selinux
-    preview:
-      - lvm2
-      - tar
-      - unzip
-      - gzip
-  Ubuntu:
-    stable:
+    Ubuntu:
       - ca-certificates
       - python-apt
       - python-simplejson
-    preview:
+  preview:
+    Debian:
+      - apt-transport-https
+      - gzip
+      - lvm2
+      - tar
+      - unzip
+    default:
+      - lvm2
+      - tar
+      - unzip
+      - gzip
+    Ubuntu:
       - apt-transport-https
       - gzip
       - lvm2
