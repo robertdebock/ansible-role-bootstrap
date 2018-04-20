@@ -12,9 +12,6 @@ platforms:
     image: debian:buster
 provisioner:
   name: ansible
-  config_options:
-    defaults:
-      stdout_callback: yaml
   lint:
     name: ansible-lint
 scenario:

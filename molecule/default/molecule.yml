@@ -32,21 +32,14 @@ platforms:
     image: fedora:26
   - name: bootstrap-fedora-27
     image: fedora:27
-  # - name: bootstrap-rhel-6
-  #   image: registry.access.redhat.com/rhel6
-  # - name: bootstrap-rhel-7
-  #   image: registry.access.redhat.com/rhel7
   - name: bootstrap-opensuse-42.2
     image: opensuse:42.2
   - name: bootstrap-opensuse-42.3
     image: opensuse:42.3
-    # 14.04 LTS
   - name: bootstrap-ubuntu-trusty
     image: ubuntu:trusty
-    # 16.04 LTS
   - name: bootstrap-ubuntu-xenial
     image: ubuntu:xenial
-    # 17.04
   - name: bootstrap-ubuntu-artful
     image: ubuntu:artful
 provisioner:
