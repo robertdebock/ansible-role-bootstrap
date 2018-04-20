@@ -51,6 +51,9 @@ platforms:
     image: ubuntu:artful
 provisioner:
   name: ansible
+  config_options:
+    defaults:
+      stdout_callback: yaml
   lint:
     name: ansible-lint
 scenario:
