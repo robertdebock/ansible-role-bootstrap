@@ -33,7 +33,6 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - trusty
-        - xenial
         - artful
 
   galaxy_tags:

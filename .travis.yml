@@ -46,9 +46,6 @@ env:
   - version=">=2.3,<2.4" distro="ubuntu-bionic"
   - version=">=2.4,<2.5" distro="ubuntu-bionic"
   - version=">=2.5,<2.6" distro="ubuntu-bionic"
-  - version=">=2.3,<2.4" distro="ubuntu-xenial"
-  - version=">=2.4,<2.5" distro="ubuntu-xenial"
-  - version=">=2.5,<2.6" distro="ubuntu-xenial"
 
 cache:
   - pip
