@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: bootstrap-fedora-26
-    image: fedora:26
+  - name: bootstrap-fedora-28
+    image: fedora:28
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: fedora-26
+  name: fedora-28
   test_sequence:
     - lint
     - destroy

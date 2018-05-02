@@ -60,8 +60,8 @@ This role has been tested against the following distributions and Ansible versio
 |debian-jessie|yes|yes|yes|
 |debian-stretch|yes|yes|yes|
 |debian-wheezy|yes|yes|yes|
-|fedora-26|yes|yes|yes|
 |fedora-27|yes|yes|yes|
+|fedora-28|yes|yes|yes|
 |opensuse-42.2|yes|yes|yes|
 |opensuse-42.3|yes|yes|yes|
 |ubuntu-artful|yes|yes|yes|

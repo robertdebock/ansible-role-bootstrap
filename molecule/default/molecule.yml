@@ -28,10 +28,10 @@ platforms:
     image: debian:stretch
   - name: bootstrap-debian-wheezy
     image: debian:wheezy
-  - name: bootstrap-fedora-26
-    image: fedora:26
   - name: bootstrap-fedora-27
     image: fedora:27
+  - name: bootstrap-fedora-28
+    image: fedora:28
   - name: bootstrap-opensuse-42.2
     image: opensuse:42.2
   - name: bootstrap-opensuse-42.3
