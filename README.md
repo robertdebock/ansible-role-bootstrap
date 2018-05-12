@@ -77,7 +77,7 @@ Example Playbook
   become: yes
 
   roles:
-    - robertdebock.bootstrap
+    - role: robertdebock.bootstrap
       bootstrap_user: vagrant
 
   tasks:
