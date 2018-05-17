@@ -38,4 +38,4 @@ scenario:
 verifier:
   name: goss
   lint:
-    name: 'flake8'
+    name: yamllint
