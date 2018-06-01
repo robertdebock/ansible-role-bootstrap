@@ -37,20 +37,17 @@ bootstrap_packages:
       - python-simplejson
   preview:
     Debian:
-      - at
       - apt-transport-https
       - gzip
       - lvm2
       - tar
       - unzip
     default:
-      - at
       - lvm2
       - tar
       - unzip
       - gzip
     Ubuntu:
-      - at
       - apt-transport-https
       - gzip
       - lvm2
