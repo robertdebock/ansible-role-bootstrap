@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: bootstrap-fedora-27
-    image: fedora:27
+  - name: bootstrap-fedora-rawhide
+    image: fedora:rawhide
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: fedora-27
+  name: fedora-rawhide
 verifier:
   name: goss
   lint:
