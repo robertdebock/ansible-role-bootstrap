@@ -31,6 +31,9 @@ bootstrap_packages:
     openSUSE Leap:
       - ca-certificates
       - python-selinux
+    openSUSE Tumbleweed:
+      - ca-certificates
+      - python-selinux
     Ubuntu:
       - ca-certificates
       - python-apt
