@@ -4,12 +4,12 @@ language: python
 services: docker
 
 env:
-  - version=">=2.3,<2.4" distro="alpine-3.6"
-  - version=">=2.4,<2.5" distro="alpine-3.6"
-  - version=">=2.5,<2.6" distro="alpine-3.6"
-  - version=">=2.3,<2.4" distro="alpine-3.7"
-  - version=">=2.4,<2.5" distro="alpine-3.7"
-  - version=">=2.5,<2.6" distro="alpine-3.7"
+  - version=">=2.3,<2.4" distro="alpine-latest"
+  - version=">=2.4,<2.5" distro="alpine-latest"
+  - version=">=2.5,<2.6" distro="alpine-latest"
+  - version=">=2.3,<2.4" distro="alpine-edge"
+  - version=">=2.4,<2.5" distro="alpine-edge"
+  - version=">=2.5,<2.6" distro="alpine-edge"
   - version=">=2.3,<2.4" distro="archlinux"
   - version=">=2.4,<2.5" distro="archlinux"
   - version=">=2.5,<2.6" distro="archlinux"

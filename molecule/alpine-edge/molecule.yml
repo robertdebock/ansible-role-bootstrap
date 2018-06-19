@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: bootstrap-alpine-3.6
-    image: alpine:3.6
+  - name: bootstrap-alpine-edge
+    image: alpine:edge
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: alpine-3.6
+  name: alpine-edge
 verifier:
   name: goss
   lint:
