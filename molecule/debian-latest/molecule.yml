@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: bootstrap-debian-stretch
-    image: debian:stretch
+  - name: bootstrap-debian-latest
+    image: debian:latest
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: debian-stretch
+  name: debian-latest
 verifier:
   name: goss
   lint:

@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: bootstrap-ubuntu-bionic
-    image: ubuntu:bionic
+  - name: bootstrap-debian-stable
+    image: debian:stable
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: ubuntu-bionic
+  name: debian-stable
 verifier:
   name: goss
   lint:

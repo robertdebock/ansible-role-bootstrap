@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: bootstrap-centos-7
-    image: centos:7
+  - name: bootstrap-centos-latest
+    image: centos:latest
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: centos-7
+  name: centos-latest
 verifier:
   name: goss
   lint:
