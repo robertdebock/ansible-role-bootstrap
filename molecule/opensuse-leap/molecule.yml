@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: bootstrap-opensuse-42.2
-    image: opensuse:42.2
+  - name: bootstrap-opensuse-leap
+    image: opensuse:leap
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: opensuse-42.2
+  name: opensuse-leap
 verifier:
   name: goss
   lint:

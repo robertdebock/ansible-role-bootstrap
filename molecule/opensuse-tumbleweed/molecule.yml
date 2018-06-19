@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: bootstrap-opensuse-42.3
-    image: opensuse:42.3
+  - name: bootstrap-opensuse-tumbleweed
+    image: opensuse:tumbleweed
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: opensuse-42.3
+  name: opensuse-tumbleweed
 verifier:
   name: goss
   lint:
