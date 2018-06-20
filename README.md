@@ -29,7 +29,7 @@ Requirements
 ------------
 
 - Access to a repository containing packages, likely on the internet.
-- Ansible 2.2 or higher.
+- Ansible 2.2 or higher. (Tests run on the last 3 release of Ansible.)
 
 Role Variables
 --------------
