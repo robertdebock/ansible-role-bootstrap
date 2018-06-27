@@ -1,0 +1,4 @@
+---
+# vars file for bootstrap
+bootstrap_stable_packages:
+  - python

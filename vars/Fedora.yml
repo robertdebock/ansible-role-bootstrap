@@ -1,0 +1,9 @@
+---
+# vars file for bootstrap
+bootstrap_stable_packages:
+  - libselinux-python
+  - libsemanage-python
+  - polkit
+  - python-devel
+  - python-simplejson
+  - python2-dnf

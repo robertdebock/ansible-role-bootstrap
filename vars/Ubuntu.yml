@@ -1,0 +1,12 @@
+---
+# vars file for bootstrap
+bootstrap_stable_packages:
+  - ca-certificates
+  - python-apt
+  - python-simplejson
+bootstrap_preview_packages:
+  - apt-transport-https
+  - gzip
+  - lvm2
+  - tar
+  - unzip

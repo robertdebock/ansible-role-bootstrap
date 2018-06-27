@@ -1,0 +1,6 @@
+---
+# vars file for bootstrap
+bootstrap_stable_packages:
+  - libselinux-python
+  - libsemanage-python
+  - yum-plugin-ovl

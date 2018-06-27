@@ -108,21 +108,28 @@
   setup:
   become: no
 
+- name: load default variables
+  include_vars:
+    file: default.yml
+
+- name: load os-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ansible_distribution_majore_version }}"
+    - "{{ ansible_distribution }}.yml"
+    - default.yml
+
 - name: install software to support stable modules
   package:
     name: "{{ item }}"
   with_items:
-    - "{{ bootstrap_packages['stable'][ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(bootstrap_packages['stable'][ansible_distribution]
-      | default(bootstrap_packages['stable']['default'] )) }}"
+    - "{{ bootstrap_stable_packages }}"
 
 - name: install software to support preview modules
   package:
     name: "{{ item }}"
   with_items:
-    - "{{ bootstrap_packages['preview'][ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(bootstrap_packages['preview'][ansible_distribution]
-      | default(bootstrap_packages['preview']['default'] )) }}"
+    - "{{ bootstrap_preview_packages }}"
   when:
     - bootstrap_preview
 
