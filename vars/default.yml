@@ -8,7 +8,7 @@ bootstrap_stable_packages:
   - python-devel
   - python-simplejson
   - python2-dnf
-bootstrap_preview_packages
+bootstrap_preview_packages:
   - lvm2
   - tar
   - unzip
