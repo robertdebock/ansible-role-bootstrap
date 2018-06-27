@@ -115,7 +115,7 @@
 - name: load os-specific variables
   include_vars: "{{ item }}"
   with_first_found:
-    - "{{ ansible_distribution }}-{{ansible_distribution_majore_version }}.yml"
+    - "{{ ansible_distribution }}-{{ansible_distribution_major_version }}.yml"
     - "{{ ansible_distribution }}.yml"
     - default.yml
 
