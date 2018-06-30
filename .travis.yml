@@ -54,7 +54,7 @@ install:
   - pip install docker-py
 
 script:
-  - if [ "${expectation}" = "fail" ] ; then ! molecule test --scenario-name "${distro}" ; else molecule test --scenario-name "${distro}" ; fi
+  - if [ "${expectation}" = "fail" ] ; then ! molecule test --scenario-name "${distro}" ; else molecule --debug test --scenario-name "${distro}" ; fi
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
