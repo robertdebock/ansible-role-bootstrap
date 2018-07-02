@@ -42,13 +42,13 @@ galaxy_info:
     - bootstrap
     - sudo
     - raw
-    - CentOS
-    - Fedora
-    - RHEL
-    - EL
-    - Debian
-    - Alpine
-    - Ubuntu
+    - centos
+    - fedora
+    - rhel
+    - el
+    - debian
+    - alpine
+    - ubuntu
     - system
     - installer
     - server
