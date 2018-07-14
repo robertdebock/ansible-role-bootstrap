@@ -136,6 +136,9 @@
     name: "{{ item }}"
   with_items:
     - "{{ bootstrap_stable_packages }}"
+  register: packagestableresult
+  until: packagestableresult is succeeded
+  retries: 3
 
 - name: install software to support preview modules
   package:
@@ -144,6 +147,9 @@
     - "{{ bootstrap_preview_packages }}"
   when:
     - bootstrap_preview
+  register: packagepreviewresult
+  until: packagepreviewresult is succeeded
+  retries: 3
 
 - name: gather facts after installation of packages
   setup:
