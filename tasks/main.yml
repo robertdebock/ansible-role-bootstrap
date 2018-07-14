@@ -56,6 +56,8 @@
   changed_when:
     - "'Installing python' in apkresult.stdout"
   remote_user: "{{ bootstrap_user }}"
+  until: apkresult is succeeded
+  retries: 3
 
 - name: install software with apt-get
   raw: apt-get update ; apt-get -y install python sudo
@@ -66,6 +68,8 @@
   changed_when:
     - "' 0 newly installed' not in apt_getresult.stdout"
   remote_user: "{{ bootstrap_user }}"
+  until: apt_getresult is succeeded
+  retries: 3
 
 - name: install software with dnf
   raw: dnf -y install python2 python2-dnf sudo
@@ -75,6 +79,8 @@
   changed_when:
     - "'Nothing' not in dnfresult.stdout"
   remote_user: "{{ bootstrap_user }}"
+  until: dnfresult is succeeded
+  retries: 3
 
 - name: install software with pacman
   raw: pacman -Syu ; pacman -T python sudo || pacman -S --noconfirm python sudo
@@ -84,6 +90,8 @@
   changed_when:
     - "' installing python' in pacmanresult.stdout"
   remote_user: "{{ bootstrap_user }}"
+  until: pacmanresult is succeeded
+  retries: 3
 
 - name: install software with yum
   raw: yum -y install python2 sudo
@@ -93,6 +101,8 @@
   changed_when:
     - "'Nothing' not in yumresult.stdout"
   remote_user: "{{ bootstrap_user }}"
+  until: yumresult is succeeded
+  retries: 3
 
 - name: install software with zypper
   raw: zypper -n install python python-xml sudo
@@ -103,6 +113,8 @@
     - "'Nothing' not in zypperresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   failed_when: no
+  until: zypperresult is succeeded
+  retries: 3
 
 - name: gather facts
   setup:
