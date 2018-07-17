@@ -12,6 +12,8 @@ platforms:
     image: fedora:rawhide
     registry:
       url: registry.fedoraproject.org
+    registry:
+      url: registry.fedoraproject.org
 provisioner:
   name: ansible
   lint:
