@@ -10,7 +10,8 @@ lint:
 platforms:
   - name: bootstrap-fedora-rawhide
     image: fedora:rawhide
-    registry: registry.fedoraproject.org
+    registry:
+      url: registry.fedoraproject.org
 provisioner:
   name: ansible
   lint:
