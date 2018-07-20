@@ -106,4 +106,4 @@ Apache License, Version 2.0
 Author Information
 ------------------
 
-Robert de Bock](https://robertdebock.nl/) <robert@meinit.nl>
+[Robert de Bock](https://robertdebock.nl/) <robert@meinit.nl>
