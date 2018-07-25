@@ -49,18 +49,18 @@
   check_mode: no
 
 - name: install software with apk
-  raw: apk update ; apk add python sudo
+  raw: apk update ; apk add {{ bootstrap_apk_packages }}
   when:
     - apk.rc == 0
   register: apkresult
   changed_when:
-    - "'Installing python' in apkresult.stdout"
+    - "'Installing' in apkresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   until: apkresult is succeeded
   retries: 3
 
 - name: install software with apt-get
-  raw: apt-get update ; apt-get -y install python sudo
+  raw: apt-get update ; apt-get -y install {{ bootstrap_apt_packages }}
   when:
     - apt_get.rc == 0
     - zypper.rc != 0
@@ -72,7 +72,7 @@
   retries: 3
 
 - name: install software with dnf
-  raw: dnf -y install python2 python2-dnf sudo
+  raw: dnf -y install {{ bootstrap_dnf_packages }}
   when:
     - dnf.rc == 0
   register: dnfresult
@@ -83,7 +83,7 @@
   retries: 3
 
 - name: install software with pacman
-  raw: pacman -Syu ; pacman -T python sudo || pacman -S --noconfirm python sudo
+  raw: pacman -Syu ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}
   when:
     - pacman.rc == 0
   register: pacmanresult
@@ -94,7 +94,7 @@
   retries: 3
 
 - name: install software with yum
-  raw: yum -y install python2 sudo
+  raw: yum -y install {{ bootstrap_yum_packages }}
   when:
     - yum.rc == 0
   register: yumresult
@@ -105,7 +105,7 @@
   retries: 3
 
 - name: install software with zypper
-  raw: zypper -n install python python-xml sudo
+  raw: zypper -n install {{ bootstrap_zypper_packages }}
   when:
     - zypper.rc == 0
   register: zypperresult

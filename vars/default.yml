@@ -13,3 +13,10 @@ bootstrap_preview_packages:
   - tar
   - unzip
   - gzip
+
+bootstrap_apk_packages: python sudo
+bootstrap_apt_packages: python sudo
+bootstrap_dnf_packages: python2 python2-dnf sudo
+bootstrap_pacman_packages: python sudo
+bootstrap_yum_packages: python2 sudo
+bootstrap_zypper_packages: python python-xml sudo
