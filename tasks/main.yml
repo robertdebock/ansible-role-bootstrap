@@ -48,6 +48,10 @@
   become: no
   check_mode: no
 
+- name: load default variables
+  include_vars:
+    file: default.yml
+
 - name: install software with apk
   raw: apk update ; apk add {{ bootstrap_apk_packages }}
   when:
@@ -119,10 +123,6 @@
 - name: gather facts
   setup:
   become: no
-
-- name: load default variables
-  include_vars:
-    file: default.yml
 
 - name: load os-specific variables
   include_vars: "{{ item }}"
