@@ -1,5 +1,10 @@
 ---
 # tasks file for bootstrap
+- name: wait for the host
+  wait_for:
+    port: "{{ ansible_port }}"
+  delegate_to: localhost
+
 - name: register apk
   raw: apk --version
   register: apk
