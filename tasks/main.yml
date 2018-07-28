@@ -2,8 +2,10 @@
 # tasks file for bootstrap
 - name: wait for the host
   wait_for:
-    port: "{{ ansible_port }}"
+    port: "{{ ansible_ssh_port }}"
   delegate_to: localhost
+  when:
+    - ansible_ssh_port is defined
 
 - name: register apk
   raw: apk --version
