@@ -4,7 +4,6 @@
   wait_for:
     port: "{{ ansible_ssh_port }}"
     host: "{{ ansible_ssh_host }}"
-    timeout: 10
   delegate_to: localhost
   when:
     - ansible_ssh_port is defined
