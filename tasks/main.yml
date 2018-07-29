@@ -6,11 +6,10 @@
 
 - name: wait for the host
   wait_for:
-    port: "{{ ansible_ssh_port }}"
+    port: "{{ ansible_port | default('22') }}"
     host: "{{ inventory_hostname }}"
   delegate_to: localhost
   when:
-    - ansible_ssh_port is defined
     - inventory_hostname is defined
 
 - name: register apk
