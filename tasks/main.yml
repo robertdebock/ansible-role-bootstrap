@@ -12,8 +12,6 @@
 
 - name: register apk
   raw: apk --version
-  args:
-    executable: /bin/sh
   register: apk
   changed_when: no
   failed_when: no
@@ -22,8 +20,6 @@
 
 - name: register apt_get
   raw: apt-get --version
-  args:
-    executable: /bin/sh
   register: apt_get
   changed_when: no
   failed_when: no
@@ -32,8 +28,6 @@
 
 - name: register dnf
   raw: dnf --version
-  args:
-    executable: /bin/sh
   register: dnf
   changed_when: no
   failed_when: no
@@ -42,8 +36,6 @@
 
 - name: register pacman
   raw: pacman --version
-  args:
-    executable: /bin/sh
   register: pacman
   changed_when: no
   failed_when: no
@@ -52,8 +44,6 @@
 
 - name: register yum
   raw: yum --version
-  args:
-    executable: /bin/sh
   register: yum
   changed_when: no
   failed_when: no
@@ -62,8 +52,6 @@
 
 - name: register zypper
   raw: zypper --version
-  args:
-    executable: /bin/sh
   register: zypper
   changed_when: no
   failed_when: no
