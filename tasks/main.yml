@@ -1,5 +1,9 @@
 ---
 # tasks file for bootstrap
+- name: show stuff
+  debug:
+    msg: "hostvars: {{ hostvars }}"
+
 - name: wait for the host
   wait_for:
     port: "{{ ansible_ssh_port }}"
