@@ -7,6 +7,8 @@
   delegate_to: localhost
   when:
     - inventory_hostname is defined
+    - ansible_connection is defined
+    - ansible_connection is not docker
 
 - name: register apk
   raw: apk --version
