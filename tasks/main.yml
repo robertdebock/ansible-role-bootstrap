@@ -8,7 +8,7 @@
   when:
     - inventory_hostname is defined
     - ansible_connection is defined
-    - ansible_connection is not docker
+    - ansible_connection != "docker"
 
 - name: register apk
   raw: apk --version
