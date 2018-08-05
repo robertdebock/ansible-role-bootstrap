@@ -38,6 +38,7 @@ Role Variables
 - bootstrap_preview: Should extra software be installed to support all modules
 in the "preview" state? This can be set to either "yes", "no" or unset. The
 default (set in defaults/main.yml) is set to "yes".
+- boostrap_wait_for_host: Should the bootstrap role wait for the host to be available. Default is "yes", but for debugging with for example Vagrant, toruning it off can help.
 
 Dependencies
 ------------
