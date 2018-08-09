@@ -9,4 +9,4 @@ bootstrap_user: root
 bootstrap_preview: yes
 
 # Do you want to wait for the host to be available?
-boostrap_wait_for_host: yes
+bootstrap_wait_for_host: yes
