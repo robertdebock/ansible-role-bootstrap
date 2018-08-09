@@ -9,7 +9,7 @@
     - inventory_hostname is defined
     - ansible_connection is defined
     - ansible_connection != "docker"
-    - boostrap_wait_for_host == true
+    - bootstrap_wait_for_host == true
 
 - name: register apk
   raw: apk --version
