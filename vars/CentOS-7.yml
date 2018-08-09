@@ -4,3 +4,10 @@ bootstrap_stable_packages:
   - libselinux-python
   - libsemanage-python
   - yum-plugin-ovl
+
+bootstrap_preview_packages:
+  - lvm2
+  - tar
+  - unzip
+  - gzip
+  - policycoreutils-python
