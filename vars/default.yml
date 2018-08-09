@@ -13,6 +13,7 @@ bootstrap_preview_packages:
   - tar
   - unzip
   - gzip
+  - policycoreutils-python
 
 bootstrap_apk_packages: python sudo
 bootstrap_apt_packages: python sudo
