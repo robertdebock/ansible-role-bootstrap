@@ -73,6 +73,8 @@
   remote_user: "{{ bootstrap_user }}"
   until: apkresult is succeeded
   retries: 3
+  notify:
+    - gather facts
 
 - name: install software with apt-get
   raw: apt-get update ; apt-get -y install {{ bootstrap_apt_packages }}
@@ -85,6 +87,8 @@
   remote_user: "{{ bootstrap_user }}"
   until: apt_getresult is succeeded
   retries: 3
+  notify:
+    - gather facts
 
 - name: install software with dnf
   raw: dnf -y install {{ bootstrap_dnf_packages }}
@@ -96,6 +100,8 @@
   remote_user: "{{ bootstrap_user }}"
   until: dnfresult is succeeded
   retries: 3
+  notify:
+    - gather facts
 
 - name: install software with pacman
   raw: pacman -Syu ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}
@@ -107,6 +113,8 @@
   remote_user: "{{ bootstrap_user }}"
   until: pacmanresult is succeeded
   retries: 3
+  notify:
+    - gather facts
 
 - name: install software with yum
   raw: yum -y install {{ bootstrap_yum_packages }}
@@ -118,6 +126,8 @@
   remote_user: "{{ bootstrap_user }}"
   until: yumresult is succeeded
   retries: 3
+  notify:
+    - gather facts
 
 - name: install software with zypper
   raw: zypper -n install {{ bootstrap_zypper_packages }}
@@ -130,10 +140,11 @@
   failed_when: no
   until: zypperresult is succeeded
   retries: 3
+  notify:
+    - gather facts
 
-- name: gather facts
-  setup:
-  become: no
+- name: flush handlers
+  meta: flush_handlers
 
 - name: load os-specific variables
   include_vars: "{{ item }}"
@@ -151,7 +162,7 @@
   until: packagestableresult is succeeded
   retries: 3
   notify:
-    - gather facts after installation of packages
+    - gather facts
 
 - name: install software to support preview modules
   package:
@@ -164,4 +175,4 @@
   until: packagepreviewresult is succeeded
   retries: 3
   notify:
-    - gather facts after installation of packages
+    - gather facts
