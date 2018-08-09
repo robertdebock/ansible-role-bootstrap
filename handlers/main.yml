@@ -1,0 +1,6 @@
+---
+# handlers file for bootstrap
+- name: gather facts after installation of packages
+  setup:
+  become: no
+

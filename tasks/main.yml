@@ -150,6 +150,8 @@
   register: packagestableresult
   until: packagestableresult is succeeded
   retries: 3
+  notify:
+    - gather facts after installation of packages
 
 - name: install software to support preview modules
   package:
@@ -161,7 +163,5 @@
   register: packagepreviewresult
   until: packagepreviewresult is succeeded
   retries: 3
-
-- name: gather facts after installation of packages
-  setup:
-  become: no
+  notify:
+    - gather facts after installation of packages
