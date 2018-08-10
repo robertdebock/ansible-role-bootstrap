@@ -35,6 +35,14 @@
   become: no
   check_mode: no
 
+- name: register emerge
+  raw: emerge --version
+  register: emerge
+  changed_when: no
+  failed_when: no
+  become: no
+  check_mode: no
+
 - name: register pacman
   raw: pacman --version
   register: pacman
@@ -95,6 +103,17 @@
     - "'Nothing' not in dnfresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   until: dnfresult is succeeded
+  retries: 3
+
+- name: install software with emerge
+  raw: emerge -qkv app-admin/sudo || ( emaint -a sync ; emerge -qkv {{ bootstrap_emerge_packages }} ) ; qlist -I {{ bootstrap_emerge_packages }}
+  when:
+    - emerge.rc == 0
+  register: emergeresult
+  changed_when:
+    - emergeresult.rc == 0
+  remote_user: "{{ bootstrap_user }}"
+  until: emergeresult is succeeded
   retries: 3
 
 - name: install software with pacman
