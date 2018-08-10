@@ -30,4 +30,3 @@ bootstrap_pacman_packages: python sudo
 bootstrap_yum_packages: python2 sudo
 
 bootstrap_zypper_packages: python python-xml sudo
-
