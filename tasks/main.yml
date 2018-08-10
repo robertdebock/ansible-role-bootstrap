@@ -106,7 +106,7 @@
   retries: 3
 
 - name: install software with emerge
-  raw: emerge -qkv app-admin/sudo || ( emaint -a sync ; emerge -qkv {{ bootstrap_emerge_packages }} ) ; qlist -I {{ bootstrap_emerge_packages }}
+  raw: emerge -qkv app-admin/sudo || ( emaint -a sync ; emerge -q -a -n {{ bootstrap_emerge_packages }} ) ; qlist -I {{ bootstrap_emerge_packages }}
   when:
     - emerge.rc == 0
   register: emergeresult
