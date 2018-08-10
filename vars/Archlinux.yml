@@ -2,3 +2,9 @@
 # vars file for bootstrap
 bootstrap_stable_packages:
   - python
+
+bootstrap_preview_packages:
+  - lvm2
+  - tar
+  - unzip
+  - gzip
