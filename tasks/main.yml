@@ -35,9 +35,9 @@
   become: no
   check_mode: no
 
-- name: register emerge
-  raw: emerge --version
-  register: emerge
+- name: register equery
+  raw: equery l python sudo
+  register: equery
   changed_when: no
   failed_when: no
   become: no
@@ -106,9 +106,9 @@
   retries: 3
 
 - name: install software with emerge
-  raw: emerge -qkv app-admin/sudo || ( emaint -a sync ; emerge -q -a -n {{ bootstrap_emerge_packages }} ) ; qlist -I {{ bootstrap_emerge_packages }}
+  raw: emaint -a sync ; emerge -qkv {{ bootstrap_emerge_packages }}
   when:
-    - emerge.rc == 0
+    - equery.rc == 2 or equery.rc == 127
   register: emergeresult
   changed_when:
     - emergeresult.rc == 0
@@ -152,6 +152,7 @@
 
 - name: gather facts
   setup:
+  become: no
 
 - name: load os-specific variables
   include_vars: "{{ item }}"
