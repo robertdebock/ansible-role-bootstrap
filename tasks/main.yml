@@ -116,10 +116,6 @@
   until: emergeresult is succeeded
   retries: 3
 
-- name: show shit
-  debug:
-    var: emergeresult
-
 - name: install software with pacman
   raw: pacman -Syu ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}
   when:
