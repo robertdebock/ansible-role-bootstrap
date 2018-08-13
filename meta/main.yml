@@ -28,6 +28,9 @@ galaxy_info:
     - name: Fedora
       versions:
         - all
+    - name: Gentoo
+      version:
+        - all
     - name: OpenSUSE
       versions:
         - all
