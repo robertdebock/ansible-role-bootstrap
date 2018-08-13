@@ -23,6 +23,8 @@ bootstrap_apt_packages: python sudo
 
 bootstrap_dnf_packages: python2 python2-dnf sudo
 
+bootstrap_emerge_packages: python sudo gentoolkit
+
 bootstrap_pacman_packages: python sudo
 
 bootstrap_yum_packages: python2 sudo

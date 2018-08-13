@@ -35,6 +35,14 @@
   become: no
   check_mode: no
 
+- name: register emerge
+  raw: emerge --version
+  register: emerge
+  changed_when: no
+  failed_when: no
+  become: no
+  check_mode: no
+
 - name: register pacman
   raw: pacman --version
   register: pacman
@@ -97,6 +105,17 @@
   until: dnfresult is succeeded
   retries: 3
 
+- name: install software with emerge
+  raw: equery l {{ bootstrap_emerge_packages }} || (emaint -a sync ; emerge -qkv {{ bootstrap_emerge_packages }} ; echo "changed")
+  when:
+    - emerge.rc == 0
+  register: emergeresult
+  changed_when:
+    - "'changed' in emergeresult.stdout"
+  remote_user: "{{ bootstrap_user }}"
+  until: emergeresult is succeeded
+  retries: 3
+
 - name: install software with pacman
   raw: pacman -Syu ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}
   when:
@@ -133,6 +152,7 @@
 
 - name: gather facts
   setup:
+  become: no
 
 - name: load os-specific variables
   include_vars: "{{ item }}"

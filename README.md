@@ -14,6 +14,7 @@ A benefit is that this role prepares nearly any (Linux) system, including:
 - CentOS
 - Debian
 - Fedora
+- Gentoo
 - Red Hat
 - OpenSUSE
 - Ubuntu

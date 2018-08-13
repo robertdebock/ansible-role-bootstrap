@@ -1,0 +1,22 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: bootstrap-gentoo
+    image: gentoo/stage3-amd64
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: gentoo
+verifier:
+  name: goss
+  lint:
+    name: yamllint
