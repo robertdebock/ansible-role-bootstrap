@@ -14,10 +14,6 @@ galaxy_info:
     - name: ArchLinux
       version:
         - all
-    - name: CentOS
-      version:
-        - 6
-        - 7
     - name: Debian
       versions:
         - all
@@ -27,9 +23,6 @@ galaxy_info:
         - 7
     - name: Fedora
       versions:
-        - all
-    - name: Gentoo
-      version:
         - all
     - name: OpenSUSE
       versions:
@@ -46,9 +39,9 @@ galaxy_info:
     - debian
     - el
     - fedora
+    - gentoo
     - installer
     - opensuse
-    - packaging
     - rhel
     - server
     - sudo

@@ -11,6 +11,7 @@ The purpose of this role is to install all required software to be able to use a
 A benefit is that this role prepares nearly any (Linux) system, including:
 - Alpine
 - ArchLinux
+- Busybox
 - CentOS
 - Debian
 - Fedora
@@ -30,7 +31,7 @@ Requirements
 ------------
 
 - Access to a repository containing packages, likely on the internet.
-- Ansible 2.2 or higher. (Tests run on the last 3 release of Ansible.)
+- A recent version of Ansible. (Tests run on the last 3 release of Ansible.)
 
 Role Variables
 --------------
