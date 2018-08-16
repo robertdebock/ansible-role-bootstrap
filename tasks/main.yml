@@ -184,3 +184,6 @@
   retries: 3
   notify:
     - gather facts
+
+- name: flush handlers
+  meta: flush_handlers
