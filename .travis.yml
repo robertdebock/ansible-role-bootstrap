@@ -47,6 +47,12 @@ env:
   - version=">=2.5,<2.6" distro="ubuntu-latest"
   - version=">=2.6,<2.7" distro="ubuntu-latest"
 
+matrix:
+  allow_failures:
+    - env: version=">=2.4,<2.5" distro="fedora-rawhide"
+    - env: version=">=2.5,<2.6" distro="fedora-rawhide"
+    - env: version=">=2.6,<2.7" distro="fedora-rawhide"
+
 cache:
   - pip
 
