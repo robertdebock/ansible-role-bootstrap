@@ -25,6 +25,9 @@ env:
   - version=">=2.4,<2.5" distro="debian-stable"
   - version=">=2.5,<2.6" distro="debian-stable"
   - version=">=2.6,<2.7" distro="debian-stable"
+  - version=">=2.4,<2.5" distro="debian-unstable"
+  - version=">=2.5,<2.6" distro="debian-unstable"
+  - version=">=2.6,<2.7" distro="debian-unstable"
   - version=">=2.4,<2.5" distro="fedora-latest"
   - version=">=2.5,<2.6" distro="fedora-latest"
   - version=">=2.6,<2.7" distro="fedora-latest"
@@ -46,12 +49,24 @@ env:
   - version=">=2.4,<2.5" distro="ubuntu-latest"
   - version=">=2.5,<2.6" distro="ubuntu-latest"
   - version=">=2.6,<2.7" distro="ubuntu-latest"
+  - version=">=2.4,<2.5" distro="ubuntu-devel"
+  - version=">=2.5,<2.6" distro="ubuntu-devel"
+  - version=">=2.6,<2.7" distro="ubuntu-devel"
 
 matrix:
   allow_failures:
+    - env: version=">=2.4,<2.5" distro="alpine-edge"
+    - env: version=">=2.5,<2.6" distro="alpine-edge"
+    - env: version=">=2.6,<2.7" distro="alpine-edge"
+    - env: version=">=2.4,<2.5" distro="debian-unstable"
+    - env: version=">=2.5,<2.6" distro="debian-unstable"
+    - env: version=">=2.6,<2.7" distro="debian-unstable"
     - env: version=">=2.4,<2.5" distro="fedora-rawhide"
     - env: version=">=2.5,<2.6" distro="fedora-rawhide"
     - env: version=">=2.6,<2.7" distro="fedora-rawhide"
+    - env: version=">=2.4,<2.5" distro="ubuntu-devel"
+    - env: version=">=2.5,<2.6" distro="ubuntu-devel"
+    - env: version=">=2.6,<2.7" distro="ubuntu-devel"
 
 cache:
   - pip
