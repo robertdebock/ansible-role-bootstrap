@@ -5,6 +5,7 @@
     port: "{{ ansible_port | default('22') }}"
     host: "{{ inventory_hostname }}"
   delegate_to: localhost
+  become: no
   when:
     - inventory_hostname is defined
     - ansible_connection is defined
