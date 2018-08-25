@@ -3,10 +3,9 @@ bootstrap
 
 [![Build Status](https://travis-ci.org/robertdebock/ansible-role-bootstrap.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
 
-Bootstrap a system (many distributions) to use Ansible, likely the first role to depend on. This role does not depend on other roles, but many others may depend on this role.
-This role installs required software to be able to run all ansible packaged modules.
+Bootstrap a system (many distributions) to be managed by Ansible, likely the first role to depend on. This role does not depend on other roles, but many others may depend on this role.
 
-The purpose of this role is to install all required software to be able to use all modules that come with Ansible.
+This role installs required software to be able to run all ansible packaged modules.
 
 A benefit is that this role prepares nearly any (Linux) system, including:
 - Alpine
