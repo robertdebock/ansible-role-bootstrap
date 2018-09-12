@@ -18,7 +18,7 @@
   become: no
   register: test_connection
   until: test_connection is succeeded
-  retries: 3
+  retries: 12
 
 - name: register apk
   raw: apk --version
