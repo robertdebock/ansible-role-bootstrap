@@ -15,6 +15,7 @@
   raw: id
   check_mode: no
   changed_when: no
+  become: no
   register: test_connection
   until: test_connection is succeeded
   retries: 3
