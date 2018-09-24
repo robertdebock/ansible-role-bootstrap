@@ -165,6 +165,7 @@
 - name: install software to support stable modules
   package:
     name: "{{ item }}"
+    state: present
   with_items:
     - "{{ bootstrap_stable_packages }}"
   register: packagestableresult
@@ -176,6 +177,7 @@
 - name: install software to support preview modules
   package:
     name: "{{ item }}"
+    state: present
   with_items:
     - "{{ bootstrap_preview_packages }}"
   when:
