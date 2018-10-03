@@ -10,3 +10,6 @@ bootstrap_preview: yes
 
 # Do you want to wait for the host to be available?
 bootstrap_wait_for_host: no
+
+# Should this role only install packages or update? Either use "present" or "latest".
+bootstrap_package_state: present

@@ -162,10 +162,22 @@
     - "{{ ansible_distribution }}.yml"
     - default.yml
 
+- name: install bootstrap packages
+  package:
+    name: "{{ item }}"
+    state: "{{ bootstrap_package_state }}"
+  with_items:
+    - "{{ bootstrap_packages }}"
+  when:
+    - bootstrap_packages is defined
+  register: packageresult
+  until: packageresult is succeeded
+  retries: 3
+
 - name: install software to support stable modules
   package:
     name: "{{ item }}"
-    state: present
+    state: "{{ bootstrap_package_state }}"
   with_items:
     - "{{ bootstrap_stable_packages }}"
   when:
@@ -179,7 +191,7 @@
 - name: install software to support preview modules
   package:
     name: "{{ item }}"
-    state: present
+    state: "{{ bootstrap_package_state }}"
   with_items:
     - "{{ bootstrap_preview_packages }}"
   when:

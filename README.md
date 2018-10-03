@@ -19,6 +19,17 @@ A benefit is that this role prepares nearly any (Linux) system, including:
 - OpenSUSE
 - Ubuntu
 
+[Unit tests](https://travis-ci.org/robertdebock/ansible-role-bootstrap) are done on every commit and periodically.
+
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bootstrap/issues)
+
+To test this role locally please use [Molecule](https://github.com/metacloud/molecule):
+```
+pip install molecule
+molecule test --scenario-name fedora-latest
+```
+There are many scenarios available, please have a look in the `molecule/` directory.
+
 Context
 --------
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
@@ -35,11 +46,10 @@ Requirements
 Role Variables
 --------------
 
-- bootstrap_user: The user to connect to initially when installing the required software. Because sudo may not be installed, a user that has permission to use the package manager of the operating system you're running this role against will be used to connect to the machine. The default (set in defaults/main.yml) is set to "root". When the required software is installed, this user is not used anymore.
-- bootstrap_preview: Should extra software be installed to support all modules
-in the "preview" state? This can be set to either "yes", "no" or unset. The
-default (set in defaults/main.yml) is set to "yes".
-- bootstrap_wait_for_host: Should the bootstrap role wait for the host to be available. Default is "no", but for debugging with for example Vagrant, toruning it off can help.
+- bootstrap_user: The user to connect to initially when installing the required software. Because sudo may not be installed, a user that has permission to use the package manager of the operating system you're running this role against will be used to connect to the machine. When the required software is installed, this user is not used anymore. [default: `root`]
+- bootstrap_preview: Should extra software be installed to support all modules in the "preview" state? Either `yes`, `no` or unset. [default: `yes`]
+- bootstrap_wait_for_host: Should the bootstrap role wait for the host to be available. [default: `no`]
+- bootstrap_package_state: If you would like packages to be updated, set this to `latest`. [default: `present`]
 
 Dependencies
 ------------
@@ -51,7 +61,7 @@ Compatibility
 
 This role has been tested against the following distributions and Ansible version:
 
-|distribution|ansible 2.4|ansible 2.5|ansible 2.6|
+|distribution|ansible 2.5|ansible 2.6|ansible 2.7|
 |------------|-----------|-----------|-----------|
 |alpine-edge|yes|yes|yes|
 |alpine-latest|yes|yes|yes|
@@ -93,7 +103,6 @@ To install this role:
 ```
 ---
 - name: robertdebock.bootstrap
-  src: robertdebock.bootstrap
 ```
 
 Non-standard options:
