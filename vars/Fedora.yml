@@ -1,5 +1,10 @@
 ---
 # vars file for bootstrap
+bootstrap_packages:
+  - python2
+  - python2-dnf
+  - sudo
+
 bootstrap_stable_packages:
   - libselinux-python
   - libsemanage-python

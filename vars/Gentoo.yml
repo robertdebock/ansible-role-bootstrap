@@ -1,5 +1,10 @@
 ---
 # vars file for bootstrap
+bootstrap_packages:
+  - python
+  - sudo
+  - gentoolkit
+
 bootstrap_preview_packages:
   - gzip
   - tar
