@@ -11,7 +11,6 @@ bootstrap_stable_packages:
   - polkit
   - python-devel
   - python-simplejson
-  - python2-dnf
 
 bootstrap_preview_packages:
   - lvm2
