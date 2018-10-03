@@ -1,7 +1,5 @@
 ---
 # vars file for bootstrap
-bootstrap_stable_packages: []
-
 bootstrap_preview_packages:
   - gzip
   - tar

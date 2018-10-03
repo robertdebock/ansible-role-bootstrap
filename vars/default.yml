@@ -1,22 +1,5 @@
 ---
 # vars file for bootstrap
-bootstrap_minimal_packages: "python sudo"
-
-bootstrap_stable_packages:
-  - libselinux-python
-  - libsemanage-python
-  - polkit
-  - python-devel
-  - python-simplejson
-  - python2-dnf
-
-bootstrap_preview_packages:
-  - lvm2
-  - tar
-  - unzip
-  - gzip
-  - policycoreutils-python
-
 bootstrap_apk_packages: python sudo
 
 bootstrap_apt_packages: python sudo
