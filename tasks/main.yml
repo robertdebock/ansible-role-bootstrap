@@ -168,6 +168,8 @@
     state: present
   with_items:
     - "{{ bootstrap_stable_packages }}"
+  when:
+    - bootstrap_stable_packages is defined
   register: packagestableresult
   until: packagestableresult is succeeded
   retries: 3
@@ -182,6 +184,7 @@
     - "{{ bootstrap_preview_packages }}"
   when:
     - bootstrap_preview
+    - bootstrap_preview_packages is defined
   register: packagepreviewresult
   until: packagepreviewresult is succeeded
   retries: 3
