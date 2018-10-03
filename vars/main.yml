@@ -43,6 +43,7 @@ bootstrap_packages:
 # `ansible_distribution_major_version` containing a list of packages. The
 # packages in these lists support modules marked as `stable`.
 bootstrap_stable_packages:
+  default: []
   Alpine:
     - ca-certificates
     - py-simplejson
@@ -66,10 +67,6 @@ bootstrap_stable_packages:
     - polkit
     - python-devel
     - python-simplejson
-  Gentoo:
-    - gzip
-    - tar
-    - unzip
   openSUSE Leap:
     - ca-certificates
     - python-selinux
@@ -108,6 +105,10 @@ bootstrap_preview_packages:
     - unzip
     - gzip
     - policycoreutils-python
+  Gentoo:
+    - gzip
+    - tar
+    - unzip
   Ubuntu:
     - apt-transport-https
     - gzip
