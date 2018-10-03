@@ -1,7 +1,0 @@
----
-# vars file for bootstrap
-bootstrap_preview_packages:
-  - lvm2
-  - tar
-  - unzip
-  - gzip

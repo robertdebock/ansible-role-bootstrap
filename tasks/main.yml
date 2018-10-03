@@ -68,10 +68,6 @@
   become: no
   check_mode: no
 
-- name: load default variables
-  include_vars:
-    file: default.yml
-
 - name: install software with apk
   raw: apk update ; apk add {{ bootstrap_apk_packages }}
   when:
@@ -155,21 +151,14 @@
   setup:
   become: no
 
-- name: load os-specific variables
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-    - "{{ ansible_distribution }}.yml"
-    - default.yml
-
 - name: install bootstrap packages
   package:
     name: "{{ item }}"
     state: "{{ bootstrap_package_state }}"
   loop:
-    - "{{ bootstrap_packages }}"
-  when:
-    - bootstrap_packages is defined
+    - "{{ bootstrap_packages[ansible_distribution]
+      | default (bootstrap_packages['default']
+      | default (omit)) }}"
   register: packageresult
   until: packageresult is succeeded
   retries: 3
@@ -179,7 +168,9 @@
     name: "{{ item }}"
     state: "{{ bootstrap_package_state }}"
   loop:
-    - "{{ bootstrap_stable_packages }}"
+    - "{{ bootstrap_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+      | default (bootstrap_stable_packages[ansible_distribution]
+      | default (bootstrap_stable_packages['default'] )) }}"
   when:
     - bootstrap_stable_packages is defined
   register: packagestableresult
@@ -193,7 +184,8 @@
     name: "{{ item }}"
     state: "{{ bootstrap_package_state }}"
   loop:
-    - "{{ bootstrap_preview_packages }}"
+    - "{{ bootstrap_preview_packages[ansible_distribution]
+      | default (bootstrap_preview_packages['default'] ) }}"
   when:
     - bootstrap_preview
     - bootstrap_preview_packages is defined

@@ -1,0 +1,116 @@
+---
+# vars file for bootstrap
+
+# A string containing all packages required to be installed using the `raw`
+# module, separated by a space.
+bootstrap_apk_packages: python sudo
+bootstrap_apt_packages: python sudo
+bootstrap_dnf_packages: python2 python2-dnf sudo
+bootstrap_emerge_packages: python sudo gentoolkit
+bootstrap_pacman_packages: python sudo
+bootstrap_yum_packages: python2 sudo
+bootstrap_zypper_packages: python python-xml sudo
+
+# A dictionary based on Ansible facts `ansible_distribution` and
+# `ansible_distribution_major_version` containing a list of packages.
+# This list is very similar to the `boostrap_{{ ansible_pkg_mgr }}_package`
+# list. This dictionary is used to be able to update these packages.
+bootstrap_packages:
+  default:
+    - python
+    - sudo
+  CentOS:
+    - python2
+    - sudo
+  Fedora:
+    - python2
+    - python2-dnf
+    - sudo
+  Gentoo:
+    - python
+    - sudo
+    - gentoolkit
+  openSUSE Leap:
+    - python
+    - python-xml
+    - sudo
+  openSUSE Tumbleweed:
+    - python
+    - python-xml
+    - sudo
+
+# A dictionary based on Ansible facts `ansible_distribution` and
+# `ansible_distribution_major_version` containing a list of packages. The
+# packages in these lists support modules marked as `stable`.
+bootstrap_stable_packages:
+  Alpine:
+    - ca-certificates
+    - py-simplejson
+    - shadow
+  CentOS-6:
+    - libselinux-python
+    - libsemanage-python
+    - python-simplejson
+    - yum-plugin-ovl
+  CentOS-7:
+    - libselinux-python
+    - libsemanage-python
+    - yum-plugin-ovl
+  Debian:
+    - ca-certificates
+    - python-apt
+    - python-simplejson
+  Fedora:
+    - libselinux-python
+    - libsemanage-python
+    - polkit
+    - python-devel
+    - python-simplejson
+  Gentoo:
+    - gzip
+    - tar
+    - unzip
+  openSUSE Leap:
+    - ca-certificates
+    - python-selinux
+  openSUSE Tumbleweed:
+    - ca-certificates
+    - python-selinux
+  Ubuntu:
+    - ca-certificates
+    - python-apt
+    - python-simplejson
+
+# A dictionary based on Ansible facts `ansible_distribution` and
+# `ansible_distribution_major_version` containing a list of packages. The
+# packages in these lists support modules marked as `preview`.
+bootstrap_preview_packages:
+  default:
+    - lvm2
+    - tar
+    - unzip
+    - gzip
+  CentOS:
+    - lvm2
+    - tar
+    - unzip
+    - gzip
+    - policycoreutils-python
+  Debian:
+    - apt-transport-https
+    - gzip
+    - lvm2
+    - tar
+    - unzip
+  Fedora:
+    - lvm2
+    - tar
+    - unzip
+    - gzip
+    - policycoreutils-python
+  Ubuntu:
+    - apt-transport-https
+    - gzip
+    - lvm2
+    - tar
+    - unzip
