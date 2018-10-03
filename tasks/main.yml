@@ -166,7 +166,7 @@
   package:
     name: "{{ item }}"
     state: "{{ bootstrap_package_state }}"
-  with_items:
+  loop:
     - "{{ bootstrap_packages }}"
   when:
     - bootstrap_packages is defined
@@ -178,7 +178,7 @@
   package:
     name: "{{ item }}"
     state: "{{ bootstrap_package_state }}"
-  with_items:
+  loop:
     - "{{ bootstrap_stable_packages }}"
   when:
     - bootstrap_stable_packages is defined
@@ -192,7 +192,7 @@
   package:
     name: "{{ item }}"
     state: "{{ bootstrap_package_state }}"
-  with_items:
+  loop:
     - "{{ bootstrap_preview_packages }}"
   when:
     - bootstrap_preview
