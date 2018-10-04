@@ -43,12 +43,12 @@ bootstrap_packages:
 # `ansible_distribution_major_version` containing a list of packages. The
 # packages in these lists support modules marked as `stable`.
 bootstrap_stable_packages:
+  default:
+    - python
   Alpine:
     - ca-certificates
     - py-simplejson
     - shadow
-  Archlinux:
-    - python
   CentOS-6:
     - libselinux-python
     - libsemanage-python
