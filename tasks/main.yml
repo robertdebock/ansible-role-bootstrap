@@ -157,8 +157,7 @@
     state: "{{ bootstrap_package_state }}"
   loop:
     - "{{ bootstrap_packages[ansible_distribution]
-      | default (bootstrap_packages['default']
-      | default (omit)) }}"
+      | default (bootstrap_packages['default'] ) }}"
   register: packageresult
   until: packageresult is succeeded
   retries: 3
