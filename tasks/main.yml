@@ -5,7 +5,7 @@
     port: "{{ ansible_port | default('22') }}"
     host: '{{ (ansible_ssh_host | default (ansible_host) ) | default (inventory_hostname) }}'
     delay: 30
-  delegate_to: localhost
+  connection: local
   become: no
   when:
     - ansible_connection is defined
@@ -154,7 +154,7 @@
 - name: install bootstrap packages
   package:
     name: "{{ bootstrap_packages[ansible_distribution]
-      | default (bootstrap_packages['default'] ) }}"
+          | default (bootstrap_packages['default'] ) }}"
     state: "{{ bootstrap_package_state }}"
   register: packageresult
   until: packageresult is succeeded
@@ -163,8 +163,8 @@
 - name: install software to support stable modules
   package:
     name: "{{ bootstrap_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default (bootstrap_stable_packages[ansible_distribution]
-      | default (bootstrap_stable_packages['default'] )) }}"
+          | default (bootstrap_stable_packages[ansible_distribution]
+          | default (bootstrap_stable_packages['default'] )) }}"
     state: "{{ bootstrap_package_state }}"
   when:
     - bootstrap_stable_packages is defined
@@ -177,7 +177,7 @@
 - name: install software to support preview modules
   package:
     name: "{{ bootstrap_preview_packages[ansible_distribution]
-      | default (bootstrap_preview_packages['default'] ) }}"
+          | default (bootstrap_preview_packages['default'] ) }}"
     state: "{{ bootstrap_package_state }}"
   when:
     - bootstrap_preview

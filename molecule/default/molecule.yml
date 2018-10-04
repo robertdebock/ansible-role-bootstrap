@@ -10,10 +10,10 @@ lint:
 platforms:
   - name: bootstrap-alpine-edge
     image: alpine:edge
-    command: sh -c "while true; do sleep 10000; done"
+    command: sh -c "while true ; do sleep 1 ; done"
   - name: bootstrap-alpine-latest
     image: alpine:latest
-    command: sh -c "while true; do sleep 10000; done"
+    command: sh -c "while true ; do sleep 1 ; done"
   - name: bootstrap-archlinux
     image: base/archlinux
   - name: bootstrap-centos-6
