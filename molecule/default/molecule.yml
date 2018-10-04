@@ -8,6 +8,10 @@ driver:
 lint:
   name: yamllint
 platforms:
+  - name: bootstrap-alpine-edge
+    image: alpine:edge
+  - name: bootstrap-alpine-latest
+    image: alpine:latest
   - name: bootstrap-archlinux
     image: base/archlinux
   - name: bootstrap-centos-6
@@ -34,6 +38,8 @@ platforms:
     image: ubuntu:artful
   - name: bootstrap-ubuntu-devel
     image: ubuntu:devel
+  - name: bootstrap-alpine-latest
+    image: alpine:latest
 provisioner:
   name: ansible
   lint:
