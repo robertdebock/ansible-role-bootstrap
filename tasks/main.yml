@@ -155,7 +155,7 @@
   package:
     name: "{{ item }}"
     state: "{{ bootstrap_package_state }}"
-  loop:
+  with_items:
     - "{{ bootstrap_packages[ansible_distribution]
       | default (bootstrap_packages['default'] ) }}"
   register: packageresult
@@ -166,7 +166,7 @@
   package:
     name: "{{ item }}"
     state: "{{ bootstrap_package_state }}"
-  loop:
+  with_items:
     - "{{ bootstrap_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
       | default (bootstrap_stable_packages[ansible_distribution]
       | default (bootstrap_stable_packages['default'] )) }}"
@@ -182,7 +182,7 @@
   package:
     name: "{{ item }}"
     state: "{{ bootstrap_package_state }}"
-  loop:
+  with_items:
     - "{{ bootstrap_preview_packages[ansible_distribution]
       | default (bootstrap_preview_packages['default'] ) }}"
   when:
