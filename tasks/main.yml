@@ -153,23 +153,19 @@
 
 - name: install bootstrap packages
   package:
-    name: "{{ item }}"
-    state: "{{ bootstrap_package_state }}"
-  with_items:
-    - "{{ bootstrap_packages[ansible_distribution]
+    name: "{{ bootstrap_packages[ansible_distribution]
       | default (bootstrap_packages['default'] ) }}"
+    state: "{{ bootstrap_package_state }}"
   register: packageresult
   until: packageresult is succeeded
   retries: 3
 
 - name: install software to support stable modules
   package:
-    name: "{{ item }}"
-    state: "{{ bootstrap_package_state }}"
-  with_items:
-    - "{{ bootstrap_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+    name: "{{ bootstrap_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
       | default (bootstrap_stable_packages[ansible_distribution]
       | default (bootstrap_stable_packages['default'] )) }}"
+    state: "{{ bootstrap_package_state }}"
   when:
     - bootstrap_stable_packages is defined
   register: packagestableresult
@@ -180,11 +176,9 @@
 
 - name: install software to support preview modules
   package:
-    name: "{{ item }}"
-    state: "{{ bootstrap_package_state }}"
-  with_items:
-    - "{{ bootstrap_preview_packages[ansible_distribution]
+    name: "{{ bootstrap_preview_packages[ansible_distribution]
       | default (bootstrap_preview_packages['default'] ) }}"
+    state: "{{ bootstrap_package_state }}"
   when:
     - bootstrap_preview
     - bootstrap_preview_packages is defined
