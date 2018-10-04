@@ -124,8 +124,8 @@ cache:
 
 install:
   - pip install --upgrade pip
-  - if [ "${version} != "devel" ] ; then pip install ansible"${version}" ; fi
-  - if [ "${version} = "devel" ] ; then pip install git+https://github.com/ansible/ansible.git@devel ; fi
+  - if [ "${version}" != "devel" ] ; then pip install ansible"${version}" ; fi
+  - if [ "${version}" = "devel" ] ; then pip install git+https://github.com/ansible/ansible.git@devel ; fi
   - pip install molecule
   - pip install docker
 
