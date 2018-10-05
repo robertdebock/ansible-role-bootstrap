@@ -5,5 +5,3 @@ FROM {{ item.registry.url }}/{{ item.image }}
 {% else %}
 FROM {{ item.image }}
 {% endif %}
-
-RUN apk add --no-cache bash
