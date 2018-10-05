@@ -10,6 +10,7 @@ lint:
 platforms:
   - name: bootstrap-alpine-latest
     image: alpine:latest
+    command: sh -c "while true ; do sleep 1 ; done"
 provisioner:
   name: ansible
   lint:
