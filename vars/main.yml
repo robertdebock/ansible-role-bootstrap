@@ -48,7 +48,6 @@ bootstrap_stable_packages:
   Alpine:
     - ca-certificates
     - py-simplejson
-    - shadow
   CentOS-6:
     - libselinux-python
     - libsemanage-python
