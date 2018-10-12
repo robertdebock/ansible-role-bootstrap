@@ -151,6 +151,13 @@
   setup:
   become: no
 
+- name: add community repository for alpine
+  lineinfile:
+    path: /etc/apk/repositories
+    line: http://dl-cdn.alpinelinux.org/alpine/v{{ ansible_distribution_version.split('.')[0] }}.{{ ansible_distribution_version.split('.')[1] }}/community
+  when:
+    - ansible_distribution == "Alpine"
+
 - name: install bootstrap packages
   package:
     name: "{{ bootstrap_packages[ansible_distribution]
