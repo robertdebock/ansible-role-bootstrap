@@ -1,2 +1,3 @@
 molecule/*/.molecule
 *.log
+*.swp
