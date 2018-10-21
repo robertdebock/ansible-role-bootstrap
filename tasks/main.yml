@@ -52,6 +52,14 @@
   become: no
   check_mode: no
 
+- name: register pkg
+  raw: pkg --version
+  register: pkg
+  changed_when: no
+  failed_when: no
+  become: no
+  check_mode: no
+
 - name: register yum
   raw: yum --version
   register: yum
@@ -122,6 +130,17 @@
     - "' installing python' in pacmanresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   until: pacmanresult is succeeded
+  retries: 3
+
+- name: install software with pkg
+  raw: ASSUME_ALWAYS_YES=YES pkg install {{ bootstrap_pkg_packages }} ; ln -s /usr/local/bin/python /usr/bin/python || exit 0
+  when:
+    - pkg.rc == 0
+  register: pkgresult
+  changed_when:
+    - "'Extracting python' in pkgresult.stdout"
+  remote_user: "{{ bootstrap_user }}"
+  until: pkgresult is succeeded
   retries: 3
 
 - name: install software with yum

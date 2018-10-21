@@ -24,6 +24,10 @@ galaxy_info:
     - name: Fedora
       versions:
         - all
+    - name: FreeBSD
+      versions:
+        - 10.4
+        - 11.2
     - name: OpenSUSE
       versions:
         - all
@@ -39,6 +43,7 @@ galaxy_info:
     - debian
     - el
     - fedora
+    - freebsd
     - gentoo
     - installer
     - opensuse

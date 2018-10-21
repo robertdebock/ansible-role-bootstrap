@@ -8,6 +8,7 @@ bootstrap_apt_packages: python sudo
 bootstrap_dnf_packages: python2 python2-dnf sudo
 bootstrap_emerge_packages: python sudo gentoolkit
 bootstrap_pacman_packages: python sudo
+bootstrap_pkg_packages: python sudo
 bootstrap_yum_packages: python2 sudo
 bootstrap_zypper_packages: python python-xml sudo
 
@@ -29,6 +30,9 @@ bootstrap_packages:
   Fedora:
     - python2
     - python2-dnf
+    - sudo
+  FreeBSD:
+    - python
     - sudo
   Gentoo:
     - python
@@ -109,6 +113,9 @@ bootstrap_preview_packages:
     - unzip
     - gzip
     - policycoreutils-python
+  FreeBSD:
+    - unzip
+    - gzip
   Gentoo:
     - gzip
     - tar
