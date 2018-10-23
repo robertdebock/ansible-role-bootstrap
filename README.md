@@ -74,6 +74,7 @@ This role has been tested against the following distributions and Ansible versio
 |debian-unstable*|yes|yes|yes|yes|yes*|
 |fedora-latest|yes|yes|yes|yes|yes*|
 |fedora-rawhide*|yes|yes|yes|yes|yes*|
+|freebsd**|no|no|no|no|no|
 |gentoo|yes|yes|yes|yes|yes*|
 |opensuse-leap|yes|yes|yes|yes|yes*|
 |opensuse-tumbleweed|yes|yes|yes|yes|yes*|
@@ -81,7 +82,8 @@ This role has been tested against the following distributions and Ansible versio
 |ubuntu-devel*|yes|yes|yes|yes|yes*|
 |ubuntu-latest|yes|yes|yes|yes|yes*|
 
-The star means the build may fail, it's marked as an experimental build.
+A single star means the build may fail, it's marked as an experimental build.
+A double star means it's not testable in CI, but has been tested locally.
 
 Example Playbook
 ----------------
