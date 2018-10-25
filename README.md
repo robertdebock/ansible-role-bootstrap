@@ -42,14 +42,14 @@ Requirements
 ------------
 
 - Access to a repository containing packages, likely on the internet.
-- A recent version of Ansible. (Tests run on the last 3 release of Ansible.)
+- A recent version of Ansible. (Tests run on the last 3 releases of Ansible.)
 
 Role Variables
 --------------
 
 - bootstrap_user: The user to connect to initially when installing the required software. Because sudo may not be installed, a user that has permission to use the package manager of the operating system you're running this role against will be used to connect to the machine. When the required software is installed, this user is not used anymore. [default: `root`]
 - bootstrap_preview: Should extra software be installed to support all modules in the "preview" state? Either `yes`, `no` or unset. [default: `yes`]
-- bootstrap_wait_for_host: Should the bootstrap role wait for the host to be available. [default: `no`]
+- bootstrap_wait_for_host: Should the bootstrap role wait for the host to be available? [default: `no`]
 - bootstrap_package_state: If you would like packages to be updated, set this to `latest`. [default: `present`]
 
 Dependencies
