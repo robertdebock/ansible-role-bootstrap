@@ -20,23 +20,49 @@ A benefit is that this role prepares nearly any (Linux) system, including:
 - OpenSUSE
 - Ubuntu
 
-[Unit tests](https://travis-ci.org/robertdebock/ansible-role-bootstrap) are done on every commit and periodically.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bootstrap/issues)
+Example Playbook
+----------------
 
-To test this role locally please use [Molecule](https://github.com/metacloud/molecule):
+This example is taken from `molecule/default/playbook.yml`:
 ```
-pip install molecule
-molecule test
+---
+- name: Converge
+  hosts: all
+  gather_facts: false
+  become: true
+
+  roles:
+    - role: ansible-role-bootstrap
+
+  tasks:
+    - name: test connection
+      ping:
+
 ```
-There are many scenarios available, please have a look in the `molecule/` directory.
 
-Context
---------
-This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
+Role Variables
+--------------
 
-Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/bootstrap.png "Dependency")
+These variables are set in `defaults/main.yml`:
+```
+---
+# defaults file for bootstrap
+
+# The user to use to connect to machines.
+bootstrap_user: root
+
+# Installed software to support modules flagged as "preview" (i.e. mysql_db).
+# "yes", "no" or unset are valid.
+bootstrap_preview: yes
+
+# Do you want to wait for the host to be available?
+bootstrap_wait_for_host: no
+
+# To update all packages installed by this roles, set `bootstrap_package_state` to `latest`.
+bootstrap_package_state: present
+
+```
 
 Requirements
 ------------
@@ -44,25 +70,27 @@ Requirements
 - Access to a repository containing packages, likely on the internet.
 - A recent version of Ansible. (Tests run on the last 3 release of Ansible.)
 
-Role Variables
---------------
+These roles can be installed to ensure all requirements are met:
 
-- bootstrap_user: The user to connect to initially when installing the required software. Because sudo may not be installed, a user that has permission to use the package manager of the operating system you're running this role against will be used to connect to the machine. When the required software is installed, this user is not used anymore. [default: `root`]
-- bootstrap_preview: Should extra software be installed to support all modules in the "preview" state? Either `yes`, `no` or unset. [default: `yes`]
-- bootstrap_wait_for_host: Should the bootstrap role wait for the host to be available. [default: `no`]
-- bootstrap_package_state: If you would like packages to be updated, set this to `latest`. [default: `present`]
+- none
 
-Dependencies
-------------
+To install all requirements at once: `ansible-galaxy install -r requirements.yml`.
 
-None known. This is likely the role that comes first when using Ansible, many other roles can depend on this role.
+Context
+-------
+
+This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
+
+Here is an overview of related roles:
+![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/bootstrap.png "Dependency")
+
 
 Compatibility
 -------------
 
 This role has been tested against the following distributions and Ansible version:
 
-|distribution|ansible 2.4|ansible 2.5|ansible 2.6|ansible-2.7|ansible-devel|
+|distribution|ansible 2.4|ansible 2.5|ansible 2.6|ansible 2.7|ansible devel|
 |------------|-----------|-----------|-----------|-----------|-------------|
 |alpine-edge*|yes|yes|yes|yes|yes*|
 |alpine-latest|yes|yes|yes|yes|yes*|
@@ -74,7 +102,6 @@ This role has been tested against the following distributions and Ansible versio
 |debian-unstable*|yes|yes|yes|yes|yes*|
 |fedora-latest|yes|yes|yes|yes|yes*|
 |fedora-rawhide*|yes|yes|yes|yes|yes*|
-|freebsd**|no|no|no|no|no|
 |gentoo|yes|yes|yes|yes|yes*|
 |opensuse-leap|yes|yes|yes|yes|yes*|
 |opensuse-tumbleweed|yes|yes|yes|yes|yes*|
@@ -83,44 +110,27 @@ This role has been tested against the following distributions and Ansible versio
 |ubuntu-latest|yes|yes|yes|yes|yes*|
 
 A single star means the build may fail, it's marked as an experimental build.
-A double star means it's not testable in CI, but has been tested locally.
 
-Example Playbook
-----------------
+Testing
+-------
 
+[Unit tests](https://travis-ci.org/robertdebock/ansible-role-bootstrap) are done on every commit and periodically.
+
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bootstrap/issues)
+
+To test this role locally please use [Molecule](https://github.com/metacloud/molecule):
 ```
----
-- name: bootstrap
-  hosts: all
-  gather_facts: no
-  become: yes
-
-  roles:
-    - role: robertdebock.bootstrap
-      bootstrap_user: vagrant
-
-  tasks:
-    - name: test connection
-      ping:
+pip install molecule
+molecule test
 ```
+There are many specific scenarios available, please have a look in the `molecule/` directory.
 
-To install this role:
-- Install this role individually using `ansible-galaxy install robertdebock.bootstrap`
-- Use another role that depends on this one and run `ansible-galaxy install --role-file requirements.yml`:
-
-```
----
-- name: robertdebock.bootstrap
-```
-
-Non-standard options:
-- "gather_facts" is set to "no", because machines may not have all required software installed to be able to use common Ansible mechanisms. This role does run "setup" when python once installed, providing all facts, when the required software is installed.
-- "become" is set to "yes". The first part of the playbook logs in as "remoteuser" (set in defaults/main.yml) and installs required software. After that, the user specified in your inventory or ansible.cfg is used.
 
 License
 -------
 
-Apache License, Version 2.0
+Apache-2.0
+
 
 Author Information
 ------------------
