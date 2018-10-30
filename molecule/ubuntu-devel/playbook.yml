@@ -5,7 +5,7 @@
   become: true
 
   roles:
-    - role: ansible-role-bootstrap
+    - ansible-role-bootstrap
 
   tasks:
     - name: test connection

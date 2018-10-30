@@ -33,7 +33,7 @@ This example is taken from `molecule/default/playbook.yml`:
   become: true
 
   roles:
-    - role: ansible-role-bootstrap
+    - robertdebock.bootstrap
 
   tasks:
     - name: test connection
@@ -70,11 +70,9 @@ Requirements
 - Access to a repository containing packages, likely on the internet.
 - A recent version of Ansible. (Tests run on the last 3 release of Ansible.)
 
-These roles can be installed to ensure all requirements are met:
+The following roles can be installed to ensure all requirements are met, using `ansible-galaxy install -r requirements.yml`:
 
 - none
-
-To install all requirements at once: `ansible-galaxy install -r requirements.yml`.
 
 Context
 -------
