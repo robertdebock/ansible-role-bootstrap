@@ -110,7 +110,7 @@
   retries: 3
 
 - name: install software with emerge
-  raw: equery l {{ bootstrap_emerge_packages }} || (emaint -a sync ; emerge -qkv {{ bootstrap_emerge_packages }} ; echo "changed")
+  raw: "{{ bootstrap_emerge_command }}"
   when:
     - emerge.rc == 0
   register: emergeresult
@@ -132,7 +132,11 @@
   retries: 3
 
 - name: install software with pkg
-  raw: ASSUME_ALWAYS_YES=YES pkg install {{ bootstrap_pkg_packages }} ; ln -s /usr/local/bin/python /usr/bin/python || exit 0
+  raw: >
+    ASSUME_ALWAYS_YES=YES
+    pkg install {{ bootstrap_pkg_packages }}
+    ; ln -s /usr/local/bin/python /usr/bin/python
+    || exit 0
   when:
     - pkg.rc == 0
   register: pkgresult
@@ -172,7 +176,7 @@
 - name: add community repository for alpine
   lineinfile:
     path: /etc/apk/repositories
-    line: http://dl-cdn.alpinelinux.org/alpine/v{{ ansible_distribution_version.split('.')[0] }}.{{ ansible_distribution_version.split('.')[1] }}/community
+    line: "{{ bootstrap_alpine_community_repo }}"
   when:
     - ansible_distribution == "Alpine"
 

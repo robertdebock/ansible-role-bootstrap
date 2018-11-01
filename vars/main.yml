@@ -12,6 +12,8 @@ bootstrap_pkg_packages: python sudo
 bootstrap_yum_packages: python2 sudo
 bootstrap_zypper_packages: python python-xml sudo
 
+bootstrap_alpine_community_repo: "http://dl-cdn.alpinelinux.org/alpine/v{{ ansible_distribution_version.split('.')[0] }}.{{ ansible_distribution_version.split('.')[1] }}/community"
+
 # A dictionary based on Ansible facts `ansible_distribution` and
 # `ansible_distribution_major_version` containing a list of packages.
 # This list is very similar to the `boostrap_{{ ansible_pkg_mgr }}_package`
@@ -126,3 +128,5 @@ bootstrap_preview_packages:
     - lvm2
     - tar
     - unzip
+
+bootstrap_emerge_command: equery l {{ bootstrap_emerge_packages }} || (emaint -a sync ; emerge -qkv {{ bootstrap_emerge_packages }} ; echo "changed")
