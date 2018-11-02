@@ -182,8 +182,7 @@
 
 - name: install bootstrap packages
   package:
-    name: "{{ bootstrap_packages[ansible_distribution]
-          | default (bootstrap_packages['default'] ) }}"
+    name: "{{ bootstrap_packages }}"
     state: "{{ bootstrap_package_state }}"
   register: packageresult
   until: packageresult is succeeded
@@ -191,9 +190,7 @@
 
 - name: install software to support stable modules
   package:
-    name: "{{ bootstrap_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-          | default (bootstrap_stable_packages[ansible_distribution]
-          | default (bootstrap_stable_packages['default'] )) }}"
+    name: "{{ bootstrap_stable_packages }}"
     state: "{{ bootstrap_package_state }}"
   when:
     - bootstrap_stable_packages is defined
@@ -205,8 +202,7 @@
 
 - name: install software to support preview modules
   package:
-    name: "{{ bootstrap_preview_packages[ansible_distribution]
-          | default (bootstrap_preview_packages['default'] ) }}"
+    name: "{{ bootstrap_preview_packages }}"
     state: "{{ bootstrap_package_state }}"
   when:
     - bootstrap_preview

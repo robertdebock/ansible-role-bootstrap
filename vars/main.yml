@@ -18,7 +18,7 @@ bootstrap_alpine_community_repo: "http://dl-cdn.alpinelinux.org/alpine/v{{ ansib
 # `ansible_distribution_major_version` containing a list of packages.
 # This list is very similar to the `boostrap_{{ ansible_pkg_mgr }}_package`
 # list. This dictionary is used to be able to update these packages.
-bootstrap_packages:
+_bootstrap_packages:
   default:
     - python
     - sudo
@@ -49,10 +49,12 @@ bootstrap_packages:
     - python-xml
     - sudo
 
+bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution] | default(_bootstrap_packages['default'] ) }}"
+
 # A dictionary based on Ansible facts `ansible_distribution` and
 # `ansible_distribution_major_version` containing a list of packages. The
 # packages in these lists support modules marked as `stable`.
-bootstrap_stable_packages:
+_bootstrap_stable_packages:
   default:
     - python
   Alpine:
@@ -88,10 +90,12 @@ bootstrap_stable_packages:
     - python-apt
     - python-simplejson
 
+bootstrap_stable_packages: "{{ _bootstrap_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_bootstrap_stable_packages[ansible_distribution] | default(_bootstrap_stable_packages['default'] )) }}"
+
 # A dictionary based on Ansible facts `ansible_distribution` and
 # `ansible_distribution_major_version` containing a list of packages. The
 # packages in these lists support modules marked as `preview`.
-bootstrap_preview_packages:
+_bootstrap_preview_packages:
   default:
     - lvm2
     - tar
@@ -128,5 +132,7 @@ bootstrap_preview_packages:
     - lvm2
     - tar
     - unzip
+
+bootstrap_preview_packages: "{{ _bootstrap_preview_packages[ansible_distribution] | default(_bootstrap_preview_packages['default'] ) }}"
 
 bootstrap_emerge_command: equery l {{ bootstrap_emerge_packages }} || (emaint -a sync ; emerge -qkv {{ bootstrap_emerge_packages }} ; echo "changed")
