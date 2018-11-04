@@ -3,7 +3,7 @@
 - name: wait for the host
   wait_for:
     port: "{{ ansible_port | default('22') }}"
-    host: '{{ (ansible_ssh_host | default (ansible_host) ) | default (inventory_hostname) }}'
+    host: "{{ (ansible_ssh_host | default(ansible_host) | default(inventory_hostname)) }}"
   connection: local
   become: no
   when:
@@ -76,7 +76,7 @@
   check_mode: no
 
 - name: install software with apk
-  raw: apk update ; apk add {{ bootstrap_apk_packages }}
+  raw: "apk update ; apk add {{ bootstrap_apk_packages }}"
   when:
     - apk.rc == 0
   register: apkresult
@@ -87,7 +87,7 @@
   retries: 3
 
 - name: install software with apt-get
-  raw: apt-get update ; apt-get -y install {{ bootstrap_apt_packages }}
+  raw: "apt-get update ; apt-get -y install {{ bootstrap_apt_packages }}"
   when:
     - apt_get.rc == 0
     - zypper.rc != 0
@@ -99,7 +99,7 @@
   retries: 3
 
 - name: install software with dnf
-  raw: dnf -y install {{ bootstrap_dnf_packages }}
+  raw: "dnf -y install {{ bootstrap_dnf_packages }}"
   when:
     - dnf.rc == 0
   register: dnfresult
@@ -121,7 +121,7 @@
   retries: 3
 
 - name: install software with pacman
-  raw: pacman -Syu ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}
+  raw: "pacman -Syu ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}"
   when:
     - pacman.rc == 0
   register: pacmanresult
@@ -147,7 +147,7 @@
   retries: 3
 
 - name: install software with yum
-  raw: yum -y install {{ bootstrap_yum_packages }}
+  raw: "yum -y install {{ bootstrap_yum_packages }}"
   when:
     - yum.rc == 0
   register: yumresult
@@ -158,7 +158,7 @@
   retries: 3
 
 - name: install software with zypper
-  raw: zypper -n install {{ bootstrap_zypper_packages }}
+  raw: "zypper -n install {{ bootstrap_zypper_packages }}"
   when:
     - zypper.rc == 0
   register: zypperresult
