@@ -2,7 +2,7 @@
 galaxy_info:
   author: Robert de Bock
   role_name: bootstrap
-  description: Bootstrap a system (many flavors) to be managed by Ansible, likely the first role to depend on.
+  description: The purpose of this role is to prepare your system to be managed by Ansible.
   license: Apache-2.0
   company: none
   min_ansible_version: 2.4

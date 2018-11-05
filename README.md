@@ -3,23 +3,7 @@ bootstrap
 
 [![Build Status](https://travis-ci.org/robertdebock/ansible-role-bootstrap.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
 
-Bootstrap a system (many distributions) to be managed by Ansible, likely the first role to depend on. This role does not depend on other roles, but many others may depend on this role.
-
-This role installs required software to be able to run all ansible packaged modules.
-
-A benefit is that this role prepares nearly any (Linux) system, including:
-- Alpine
-- ArchLinux
-- Busybox
-- CentOS
-- Debian
-- Fedora
-- FreeBSD
-- Gentoo
-- Red Hat
-- OpenSUSE
-- Ubuntu
-
+The purpose of this role is to prepare your system to be managed by Ansible.
 
 Example Playbook
 ----------------
@@ -68,10 +52,11 @@ Requirements
 ------------
 
 - Access to a repository containing packages, likely on the internet.
-- A recent version of Ansible. (Tests run on the last 3 releases of Ansible.)
+- A recent version of Ansible. (Tests run on the last 3 release of Ansible.)
 
 The following roles can be installed to ensure all requirements are met, using `ansible-galaxy install -r requirements.yml`:
 
+- none
 
 Context
 -------
