@@ -11,6 +11,9 @@ galaxy_info:
     - name: Alpine
       versions:
         - all
+    - name: Amazon
+      versions:
+        - all
     - name: ArchLinux
       version:
         - all
@@ -30,6 +33,9 @@ galaxy_info:
         - 11.2
     - name: OpenSUSE
       versions:
+        - all
+    - name: SLES
+      verions:
         - all
     - name: Ubuntu
       versions:
