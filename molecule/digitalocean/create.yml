@@ -1,0 +1,60 @@
+---
+- name: Create
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  no_log: "{{ not (lookup('env', 'MOLECULE_DEBUG') | bool or molecule_yml.provisioner.log|default(false) | bool) }}"
+
+  tasks:
+    - name: create ssh key
+      command: ssh-keygen -f molecule_ssh_key
+      args:
+        creates: molecule_ssh_key
+
+    - name: save ssh key into a variable
+      command: cat molecule_ssh_key.pub
+      register: molecule_ssh_key
+      changed_when: no
+
+    - name: upload digitalocean ssh key
+      digital_ocean_sshkey:
+        name: "molecule_ssh_key"
+        state: present
+        ssh_pub_key: "{{ molecule_ssh_key.stdout }}"
+      register: digital_ocean_ssh_key
+
+    - name: start digitalocean droplet
+      digital_ocean:
+        name: "{{ item.name }}"
+        state: present
+        size_id: "{{ item.size_id | default('2gb') }}"
+        region_id: "{{ item.region_id | default('ams3') }}"
+        image_id: "{{ item.image_id | default('centos-7-x64') }}"
+        ssh_key_ids:
+          - "{{ digital_ocean_ssh_key.data.ssh_key.id }}"
+      register: server
+      with_items:
+        - "{{ molecule_yml.platforms }}"
+
+    - name: Populate instance config dict
+      set_fact:
+        instance_conf_dict:
+          instance: "{{ item.droplet.id }}"
+          address: "{{ item.droplet.ip_address }}"
+          user: "root"
+          port: "22"
+          identity_file: "molecule_ssh_key"
+      with_items: "{{ server.results }}"
+      register: instance_config_dict
+      when: server.changed | bool
+
+    - name: Convert instance config dict to a list
+      set_fact:
+        instance_conf: "{{ instance_config_dict.results | map(attribute='ansible_facts.instance_conf_dict') | list }}"
+      when: server.changed | bool
+
+    - name: Dump instance config
+      copy:
+        content: "{{ instance_conf | to_json | from_json | molecule_to_yaml | molecule_header }}"
+        dest: "{{ molecule_instance_config }}"
+      when: server.changed | bool

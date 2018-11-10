@@ -1,0 +1,22 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: delegated
+lint:
+  name: yamllint
+platforms:
+  - name: bootstrap-fedora
+    image_id: fedora-28-x64
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: digitalocean
+verifier:
+  name: goss
+  lint:
+    name: yamllint
