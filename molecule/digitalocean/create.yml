@@ -5,20 +5,25 @@
   gather_facts: false
   no_log: "{{ not (lookup('env', 'MOLECULE_DEBUG') | bool or molecule_yml.provisioner.log|default(false) | bool) }}"
 
+  vars:
+    ssh_user: root
+    ssh_port: 22
+    ssh_identity_file: molecule_ssh_key
+
   tasks:
     - name: create ssh key
-      command: ssh-keygen -f molecule_ssh_key
+      command: ssh-keygen -f {{ ssh_identity_file }}
       args:
-        creates: molecule_ssh_key
+        creates: "{{ ssh_identity_file }}"
 
     - name: save ssh key into a variable
-      command: cat molecule_ssh_key.pub
+      command: cat {{ ssh_identity_file }}.pub
       register: molecule_ssh_key
       changed_when: no
 
     - name: upload digitalocean ssh key
       digital_ocean_sshkey:
-        name: "molecule_ssh_key"
+        name: "{{ ssh_identity_file }}"
         state: present
         ssh_pub_key: "{{ molecule_ssh_key.stdout }}"
       register: digital_ocean_ssh_key
@@ -30,20 +35,24 @@
         size_id: "{{ item.size_id | default('2gb') }}"
         region_id: "{{ item.region_id | default('ams3') }}"
         image_id: "{{ item.image_id | default('centos-7-x64') }}"
+        unique_name: yes
         ssh_key_ids:
           - "{{ digital_ocean_ssh_key.data.ssh_key.id }}"
       register: server
       with_items:
         - "{{ molecule_yml.platforms }}"
 
+    # Mandatory configuration for Molecule to function.
+
     - name: Populate instance config dict
       set_fact:
-        instance_conf_dict:
-          instance: "{{ item.droplet.id }}"
-          address: "{{ item.droplet.ip_address }}"
-          user: "root"
-          port: "22"
-          identity_file: "molecule_ssh_key"
+        instance_conf_dict: {
+          'instance': "{{ item.droplet.id }}",
+          'address': "{{ item.droplet.ip_address}}",
+          'user': "{{ ssh_user }}",
+          'port': "{{ ssh_port }}",
+          'identity_file': "{{ ssh_identity_file }}",
+          'instance_ids': "{{ item.droplet.id }}", }
       with_items: "{{ server.results }}"
       register: instance_config_dict
       when: server.changed | bool
