@@ -42,6 +42,12 @@
       with_items:
         - "{{ molecule_yml.platforms }}"
 
+    - name: render ssh_config for instances
+      template:
+        src: ssh_config.j2
+        dest: "{{ molecule_ephemeral_directory }}/ssh_config"
+      when: server.changed | bool
+
     # Mandatory configuration for Molecule to function.
 
     - name: Populate instance config dict

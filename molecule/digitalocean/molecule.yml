@@ -5,6 +5,12 @@ dependency:
     role-file: requirements.yml
 driver:
   name: delegated
+  safe_files: []
+  options:
+    managed: yes
+    ansible_connection_options:
+      connection: ssh
+      ansible_ssh_common_args: -F $MOLECULE_EPHEMERAL_DIRECTORY/ssh-config
 lint:
   name: yamllint
 platforms:

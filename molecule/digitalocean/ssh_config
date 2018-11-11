@@ -1,0 +1,6 @@
+Host bootstrap-fedora
+  HostName 142.93.135.25
+  Port 22
+  IdentityFile molecule_ssh_key
+  PreferredAuthentications publickey
+  User root
