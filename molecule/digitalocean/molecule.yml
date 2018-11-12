@@ -5,12 +5,6 @@ dependency:
     role-file: requirements.yml
 driver:
   name: delegated
-  safe_files: []
-  options:
-    managed: yes
-    ansible_connection_options:
-      connection: ssh
-      ansible_ssh_common_args: -F $MOLECULE_EPHEMERAL_DIRECTORY/ssh-config
 lint:
   name: yamllint
 platforms:
@@ -20,6 +14,12 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  config_options:
+    defaults:
+      callback_plugins: /usr/lib/python2.7/site-packages/ara/plugins/callbacks
+    ssh_connection:
+      host_key_checking: no
+      ssh_args: -C -o ControlMaster=auto -o ControlPersist=60s -F ${MOLECULE_EPHEMERAL_DIRECTORY}/sshd_config
 scenario:
   name: digitalocean
 verifier:

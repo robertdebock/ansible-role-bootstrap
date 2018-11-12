@@ -8,7 +8,7 @@
   vars:
     ssh_user: root
     ssh_port: 22
-    ssh_identity_file: molecule_ssh_key
+    ssh_identity_file: /tmp/molecule_ssh_key
 
   tasks:
     - name: create ssh key
@@ -42,11 +42,21 @@
       with_items:
         - "{{ molecule_yml.platforms }}"
 
-    - name: render ssh_config for instances
+    - name: render sshd_config for instances
       template:
-        src: ssh_config.j2
-        dest: "{{ molecule_ephemeral_directory }}/ssh_config"
+        src: sshd_config.j2
+        dest: "{{ molecule_ephemeral_directory }}/sshd_config"
       when: server.changed | bool
+
+    - name: wait for ssh_port to be available
+      wait_for:
+        port: "{{ ssh_port }}"
+        host: "{{ item.droplet.ip_address }}"
+        search_regex: SSH
+        delay: 10
+        timeout: 320
+      with_items:
+        - "{{ server.results }}"
 
     # Mandatory configuration for Molecule to function.
 
@@ -57,8 +67,7 @@
           'address': "{{ item.droplet.ip_address}}",
           'user': "{{ ssh_user }}",
           'port': "{{ ssh_port }}",
-          'identity_file': "{{ ssh_identity_file }}",
-          'instance_ids': "{{ item.droplet.id }}", }
+          'identity_file': "{{ ssh_identity_file }}", }
       with_items: "{{ server.results }}"
       register: instance_config_dict
       when: server.changed | bool
