@@ -18,10 +18,21 @@ platforms:
     image: ami-02ea8f348fa28c108
     instance_type: t2.micro
     vpc_subnet_id: subnet-0e688067
+  - name: ubuntu-18.04
+    image: ami-0bdf93799014acdc4
+    instance_type: t2.micro
+    vpc_subnet_id: subnet-0e688067
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  config_options:
+    defaults:
+      callback_plugins: /usr/lib/python2.7/site-packages/ara/plugins/callbacks
+  inventory:
+    host_vars:
+      ubuntu-18.04:
+        ansible_user: ubuntu
 scenario:
   name: ec2
   create_sequence:

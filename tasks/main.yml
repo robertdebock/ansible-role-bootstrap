@@ -84,7 +84,7 @@
     - "'Installing' in apkresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   until: apkresult is succeeded
-  retries: 3
+  retries: "{{ bootstrap_retries }}"
 
 - name: install software with apt-get
   raw: "apt-get update ; apt-get -y install {{ bootstrap_apt_packages }}"
@@ -96,7 +96,7 @@
     - "' 0 newly installed' not in apt_getresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   until: apt_getresult is succeeded
-  retries: 3
+  retries: "{{ bootstrap_retries }}"
 
 - name: install software with dnf
   raw: "dnf -y install {{ bootstrap_dnf_packages }}"
@@ -107,7 +107,7 @@
     - "'Nothing' not in dnfresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   until: dnfresult is succeeded
-  retries: 3
+  retries: "{{ bootstrap_retries }}"
 
 - name: install software with emerge
   raw: "{{ bootstrap_emerge_command }}"
@@ -118,7 +118,7 @@
     - "'changed' in emergeresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   until: emergeresult is succeeded
-  retries: 3
+  retries: "{{ bootstrap_retries }}"
 
 - name: install software with pacman
   raw: "pacman -Syu ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}"
@@ -129,7 +129,7 @@
     - "' installing python' in pacmanresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   until: pacmanresult is succeeded
-  retries: 3
+  retries: "{{ bootstrap_retries }}"
 
 - name: install software with pkg
   raw: >
@@ -144,7 +144,7 @@
     - "'Extracting python' in pkgresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   until: pkgresult is succeeded
-  retries: 3
+  retries: "{{ bootstrap_retries }}"
 
 - name: install software with yum
   raw: "yum -y install {{ bootstrap_yum_packages }}"
@@ -155,7 +155,7 @@
     - "'Nothing' not in yumresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   until: yumresult is succeeded
-  retries: 3
+  retries: "{{ bootstrap_retries }}"
 
 - name: install software with zypper
   raw: "zypper -n install {{ bootstrap_zypper_packages }}"
@@ -167,7 +167,7 @@
   remote_user: "{{ bootstrap_user }}"
   failed_when: no
   until: zypperresult is succeeded
-  retries: 3
+  retries: "{{ bootstrap_retries }}"
 
 - name: gather facts
   setup:
@@ -186,7 +186,7 @@
     state: "{{ bootstrap_package_state }}"
   register: packageresult
   until: packageresult is succeeded
-  retries: 3
+  retries: "{{ bootstrap_retries }}"
 
 - name: install software to support stable modules
   package:
@@ -196,7 +196,7 @@
     - bootstrap_stable_packages is defined
   register: packagestableresult
   until: packagestableresult is succeeded
-  retries: 3
+  retries: "{{ bootstrap_retries }}"
   notify:
     - gather facts
 
@@ -209,7 +209,7 @@
     - bootstrap_preview_packages is defined
   register: packagepreviewresult
   until: packagepreviewresult is succeeded
-  retries: 3
+  retries: "{{ bootstrap_retries }}"
   notify:
     - gather facts
 

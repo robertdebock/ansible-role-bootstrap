@@ -43,6 +43,9 @@ bootstrap_preview: yes
 # Do you want to wait for the host to be available?
 bootstrap_wait_for_host: no
 
+# The number of retries you want tasks to do before failing.
+bootstrap_retries: 10
+
 # To update all packages installed by this roles, set `bootstrap_package_state` to `latest`.
 bootstrap_package_state: present
 
