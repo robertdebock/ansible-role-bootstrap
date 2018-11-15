@@ -121,7 +121,7 @@
   retries: "{{ bootstrap_retries }}"
 
 - name: install software with pacman
-  raw: "pacman -Syu ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}"
+  raw: "pacman -Sy ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}"
   when:
     - pacman.rc == 0
   register: pacmanresult
