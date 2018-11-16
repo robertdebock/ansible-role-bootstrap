@@ -39,11 +39,11 @@ provisioner:
       callback_plugins: /usr/lib/python2.7/site-packages/ara/plugins/callbacks
   inventory:
     host_vars:
-      ubuntu-18.04:
+      bootstrap-ubuntu-18.04:
         ansible_user: ubuntu
-      centos-7:
+      bootstrap-centos-7:
         ansible_user: centos
-      fedora-29:
+      bootstrap-fedora-29:
         ansible_user: fedora
 scenario:
   name: ec2
