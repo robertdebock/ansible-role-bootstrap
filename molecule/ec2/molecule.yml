@@ -14,19 +14,19 @@ platforms:
   #   image: ami-0a1886cf45f944eb1
   #   instance_type: t2.micro
   #   vpc_subnet_id: subnet-0e688067
-  - name: ubuntu-18.04
+  - name: bootstrap-ubuntu-18.04
     image: ami-0bdf93799014acdc4
     instance_type: t2.micro
     vpc_subnet_id: subnet-0e688067
-  - name: amazon-linux-2
+  - name: bootstrap-amazon-linux-2
     image: ami-02ea8f348fa28c108
     instance_type: t2.micro
     vpc_subnet_id: subnet-0e688067
-  - name: centos-7
+  - name: bootstrap-centos-7
     image: ami-9a183671
     instance_type: t2.micro
     vpc_subnet_id: subnet-0e688067
-  - name: fedora-29
+  - name: bootstrap-fedora-29
     image: ami-0f904cfaa69a1c64c
     instance_type: t2.micro
     vpc_subnet_id: subnet-0e688067
