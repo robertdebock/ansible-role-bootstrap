@@ -6,20 +6,28 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: rhel-7
-    image: ami-c86c3f23
-    instance_type: t2.micro
-    vpc_subnet_id: subnet-0e688067
-  - name: sles-15
-    image: ami-0a1886cf45f944eb1
+  # - name: rhel-7
+  #   image: ami-c86c3f23
+  #   instance_type: t2.micro
+  #   vpc_subnet_id: subnet-0e688067
+  # - name: sles-15
+  #   image: ami-0a1886cf45f944eb1
+  #   instance_type: t2.micro
+  #   vpc_subnet_id: subnet-0e688067
+  - name: ubuntu-18.04
+    image: ami-0bdf93799014acdc4
     instance_type: t2.micro
     vpc_subnet_id: subnet-0e688067
   - name: amazon-linux-2
     image: ami-02ea8f348fa28c108
     instance_type: t2.micro
     vpc_subnet_id: subnet-0e688067
-  - name: ubuntu-18.04
-    image: ami-0bdf93799014acdc4
+  - name: centos-7
+    image: ami-9a183671
+    instance_type: t2.micro
+    vpc_subnet_id: subnet-0e688067
+  - name: fedora-29
+    image: ami-0f904cfaa69a1c64c
     instance_type: t2.micro
     vpc_subnet_id: subnet-0e688067
 provisioner:
@@ -33,6 +41,10 @@ provisioner:
     host_vars:
       ubuntu-18.04:
         ansible_user: ubuntu
+      centos-7:
+        ansible_user: centos
+      fedora-29:
+        ansible_user: fedora
 scenario:
   name: ec2
   create_sequence:

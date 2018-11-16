@@ -110,6 +110,11 @@ molecule test
 ```
 There are many specific scenarios available, please have a look in the `molecule/` directory.
 
+Run the [ansible-galaxy[(https://github.com/ansible/galaxy-lint-rules) and [my](https://github.com/robertdebock/ansible-lint-rules) lint rules if you want your change to be merges:
+```
+ansible-lint -r /path/to/galaxy-lint-rules/rules .
+ansible-lint -r /path/to/ansible-lint-rules/rules .
+```
 
 License
 -------
