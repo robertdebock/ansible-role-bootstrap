@@ -56,36 +56,45 @@ bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution] | default(_boo
 # packages in these lists support modules marked as `stable`.
 _bootstrap_stable_packages:
   default:
+    - acl
     - python
   Alpine:
+    - acl
     - ca-certificates
     - py-simplejson
   CentOS-6:
+    - acl
     - libselinux-python
     - libsemanage-python
     - python-simplejson
     - yum-plugin-ovl
   CentOS-7:
+    - acl
     - libselinux-python
     - libsemanage-python
     - yum-plugin-ovl
   Debian:
+    - acl
     - ca-certificates
     - python-apt
     - python-simplejson
   Fedora:
+    - acl
     - libselinux-python
     - libsemanage-python
     - polkit
     - python-devel
     - python-simplejson
   openSUSE Leap:
+    - acl
     - ca-certificates
     - python-selinux
   openSUSE Tumbleweed:
+    - acl
     - ca-certificates
     - python-selinux
   Ubuntu:
+    - acl
     - ca-certificates
     - python-apt
     - python-simplejson

@@ -41,7 +41,7 @@ platforms:
   - name: bootstrap-ubuntu-devel
     image: ubuntu:devel
   - name: bootstrap-ubuntu-latest
-    image: ubuntu-latest
+    image: ubuntu:latest
 provisioner:
   name: ansible
   lint:
