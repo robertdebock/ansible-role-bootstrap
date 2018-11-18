@@ -56,7 +56,6 @@ bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution] | default(_boo
 # packages in these lists support modules marked as `stable`.
 _bootstrap_stable_packages:
   default:
-    - acl
     - python
   Alpine:
     - acl
