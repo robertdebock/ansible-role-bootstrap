@@ -63,14 +63,10 @@ _bootstrap_stable_packages:
     - py-simplejson
   CentOS-6:
     - acl
-    - libselinux-python
-    - libsemanage-python
     - python-simplejson
     - yum-plugin-ovl
   CentOS-7:
     - acl
-    - libselinux-python
-    - libsemanage-python
     - yum-plugin-ovl
   Debian:
     - acl
@@ -79,19 +75,15 @@ _bootstrap_stable_packages:
     - python-simplejson
   Fedora:
     - acl
-    - libselinux-python
-    - libsemanage-python
     - polkit
     - python-devel
     - python-simplejson
   openSUSE Leap:
     - acl
     - ca-certificates
-    - python-selinux
   openSUSE Tumbleweed:
     - acl
     - ca-certificates
-    - python-selinux
   Ubuntu:
     - acl
     - ca-certificates
