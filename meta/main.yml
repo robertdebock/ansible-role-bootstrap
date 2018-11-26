@@ -5,7 +5,7 @@ galaxy_info:
   description: The purpose of this role is to prepare your system to be managed by Ansible.
   license: Apache-2.0
   company: none
-  min_ansible_version: 2.4
+  min_ansible_version: 2.6
 
   platforms:
     - name: Alpine
