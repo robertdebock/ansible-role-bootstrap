@@ -150,6 +150,7 @@
   raw: "yum -y install {{ bootstrap_yum_packages }}"
   when:
     - yum.rc == 0
+    - dnfresult is not succeeded
   register: yumresult
   changed_when:
     - "'Nothing' not in yumresult.stdout"

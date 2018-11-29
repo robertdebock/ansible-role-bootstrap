@@ -19,6 +19,10 @@ provisioner:
   config_options:
     defaults:
       callback_plugins: /usr/lib/python2.7/site-packages/ara/plugins/callbacks
+  inventory:
+    group_vars:
+      all:
+        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: fedora-rawhide
 verifier:
