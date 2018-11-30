@@ -49,6 +49,10 @@ provisioner:
   config_options:
     defaults:
       callback_plugins: /usr/lib/python2.7/site-packages/ara/plugins/callbacks
+  inventory:
+    host_vars:
+      bootstrap-fedora-rawhide:
+        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: default
 verifier:
