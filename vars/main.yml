@@ -5,10 +5,11 @@
 # module, separated by a space.
 bootstrap_apk_packages: python sudo
 bootstrap_apt_packages: python sudo
-bootstrap_dnf_packages: python2 python2-dnf sudo
+bootstrap_dnf_packages: python sudo
 bootstrap_emerge_packages: python sudo gentoolkit
 bootstrap_pacman_packages: python sudo
 bootstrap_pkg_packages: python sudo
+bootstrap_pkg_add_packages: python-3* sudo--
 bootstrap_yum_packages: python2 sudo
 bootstrap_zypper_packages: python python-xml sudo
 
@@ -29,10 +30,17 @@ _bootstrap_packages:
   CentOS:
     - python2
     - sudo
+  Fedora-30:
+    - python3
+    - python3-dnf
+    - sudo
   Fedora:
     - python2
     - python2-dnf
     - sudo
+  OpenBSD:
+    - python%3
+    - sudo--
   FreeBSD:
     - python
     - sudo
@@ -49,7 +57,7 @@ _bootstrap_packages:
     - python-xml
     - sudo
 
-bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution] | default(_bootstrap_packages['default'] ) }}"
+bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_version] | default(_bootstrap_packages[ansible_distribution] | default(_bootstrap_packages['default'] | default(_bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_version]))) }}"
 
 # A dictionary based on Ansible facts `ansible_distribution` and
 # `ansible_distribution_major_version` containing a list of packages. The
@@ -58,39 +66,41 @@ _bootstrap_stable_packages:
   default:
     - python
   Alpine:
+    - acl
     - ca-certificates
     - py-simplejson
   CentOS-6:
-    - libselinux-python
-    - libsemanage-python
+    - acl
     - python-simplejson
     - yum-plugin-ovl
   CentOS-7:
-    - libselinux-python
-    - libsemanage-python
+    - acl
     - yum-plugin-ovl
   Debian:
+    - acl
     - ca-certificates
     - python-apt
     - python-simplejson
   Fedora:
-    - libselinux-python
-    - libsemanage-python
+    - acl
     - polkit
     - python-devel
     - python-simplejson
+  OpenBSD:
+    - py-simplejson--
   openSUSE Leap:
+    - acl
     - ca-certificates
-    - python-selinux
   openSUSE Tumbleweed:
+    - acl
     - ca-certificates
-    - python-selinux
   Ubuntu:
+    - acl
     - ca-certificates
     - python-apt
     - python-simplejson
 
-bootstrap_stable_packages: "{{ _bootstrap_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_bootstrap_stable_packages[ansible_distribution] | default(_bootstrap_stable_packages['default'] )) }}"
+bootstrap_stable_packages: "{{ _bootstrap_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_version] | default(_bootstrap_stable_packages[ansible_distribution] | default(_bootstrap_stable_packages['default'] | default(_bootstrap_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_version]))) }}"
 
 # A dictionary based on Ansible facts `ansible_distribution` and
 # `ansible_distribution_major_version` containing a list of packages. The
@@ -119,6 +129,8 @@ _bootstrap_preview_packages:
     - unzip
     - gzip
     - policycoreutils-python
+  OpenBSD:
+    - unzip--
   FreeBSD:
     - unzip
     - gzip
@@ -133,6 +145,6 @@ _bootstrap_preview_packages:
     - tar
     - unzip
 
-bootstrap_preview_packages: "{{ _bootstrap_preview_packages[ansible_distribution] | default(_bootstrap_preview_packages['default'] ) }}"
+bootstrap_preview_packages: "{{ _bootstrap_preview_packages[ansible_distribution] | default(_bootstrap_preview_packages['default']) }}"
 
 bootstrap_emerge_command: equery l {{ bootstrap_emerge_packages }} || (emaint -a sync ; emerge -qkv {{ bootstrap_emerge_packages }} ; echo "changed")

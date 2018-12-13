@@ -27,6 +27,14 @@
   become: no
   check_mode: no
 
+- name: register pkg_add
+  raw: pkg_info
+  register: pkg_add
+  changed_when: no
+  failed_when: no
+  become: no
+  check_mode: no
+
 - name: register dnf
   raw: dnf --version
   register: dnf
@@ -98,6 +106,39 @@
   until: apt_getresult is succeeded
   retries: "{{ bootstrap_retries }}"
 
+- name: check if packages are already installed
+  raw: "pkg_info -E /usr/local/bin/python3 -E /usr/local/bin/sudo"
+  register: pkg_info_getresult
+  changed_when: no
+  failed_when: no
+  become: no
+  check_mode: no
+
+- name: install software with pkg_add
+  raw: "pkg_add -Iz {{ bootstrap_pkg_add_packages }}"
+  when:
+    - pkg_add.rc == 0
+    - pkg_info_getresult.rc != 0
+  register: pkg_add_result
+  remote_user: "{{ bootstrap_user }}"
+  until: pkg_add_result is succeeded
+  retries: "{{ bootstrap_retries }}"
+
+- name: check for symlink
+  raw: "test -L /usr/bin/python"
+  when: pkg_add_result is succeeded
+  register: symlink_exists
+  changed_when: no
+  failed_when: no
+  become: no
+  check_mode: no
+
+- name: create symlink
+  raw: "/bin/ln -sf /usr/local/bin/python3 /usr/bin/python"
+  when:
+    - pkg_add_result is succeeded
+    - symlink_exists.rc != 0
+
 - name: install software with dnf
   raw: "dnf -y install {{ bootstrap_dnf_packages }}"
   when:
@@ -121,7 +162,7 @@
   retries: "{{ bootstrap_retries }}"
 
 - name: install software with pacman
-  raw: "pacman -Syu ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}"
+  raw: "pacman -Sy ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}"
   when:
     - pacman.rc == 0
   register: pacmanresult
@@ -180,6 +221,16 @@
   when:
     - ansible_distribution == "Alpine"
 
+- name: install bootstrap packages for OpenBSD
+  openbsd_pkg:
+    name: "{{ bootstrap_packages }}"
+    state: "{{ bootstrap_package_state }}"
+  register: packageresult
+  until: packageresult is succeeded
+  retries: "{{ bootstrap_retries }}"
+  when:
+    - ansible_distribution == "OpenBSD"
+
 - name: install bootstrap packages
   package:
     name: "{{ bootstrap_packages }}"
@@ -187,6 +238,8 @@
   register: packageresult
   until: packageresult is succeeded
   retries: "{{ bootstrap_retries }}"
+  when:
+    - ansible_distribution != "OpenBSD"
 
 - name: install software to support stable modules
   package:
