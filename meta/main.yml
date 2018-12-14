@@ -31,6 +31,9 @@ galaxy_info:
       versions:
         - 10.4
         - 11.2
+    - name: OpenBSD
+      version:
+        - all
     - name: OpenSUSE
       versions:
         - all
@@ -52,6 +55,7 @@ galaxy_info:
     - freebsd
     - gentoo
     - installer
+    - openbsd
     - opensuse
     - rhel
     - server
