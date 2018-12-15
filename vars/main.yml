@@ -87,7 +87,7 @@ _bootstrap_stable_packages:
     - python-devel
     - python-simplejson
   OpenBSD:
-￼   - py-simplejson--
+    - py-simplejson--
   openSUSE Leap:
     - acl
     - ca-certificates
@@ -137,7 +137,7 @@ _bootstrap_preview_packages:
     - tar
     - unzip
   OpenBSD:
-￼   - unzip--
+    - unzip--
   Ubuntu:
     - apt-transport-https
     - gzip
