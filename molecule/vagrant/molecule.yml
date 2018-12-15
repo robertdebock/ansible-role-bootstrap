@@ -15,7 +15,7 @@ platforms:
   - name: bootstrap-fedora
     box: fedora/29-cloud-base
   - name: bootstap-openbsd
-    box:generic/openbsd6
+    box: generic/openbsd6
 provisioner:
   name: ansible
   lint:
