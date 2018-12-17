@@ -10,10 +10,10 @@ driver:
 lint:
   name: yamllint
 platforms:
-  # - name: bootstrap-debian
-  #   box: debian/stretch64
-  # - name: bootstrap-fedora
-  #   box: fedora/29-cloud-base
+  - name: bootstrap-debian
+    box: debian/stretch64
+  - name: bootstrap-fedora
+    box: fedora/29-cloud-base
   - name: bootstrap-openbsd
     box: generic/openbsd6
 provisioner:
@@ -29,7 +29,3 @@ provisioner:
         ansible_python_interpreter: /usr/local/bin/python3
 scenario:
   name: vagrant
-# verifier:
-#   name: goss
-#   lint:
-#     name: yamllint
