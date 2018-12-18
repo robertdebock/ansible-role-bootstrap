@@ -59,6 +59,14 @@
   become: no
   check_mode: no
 
+- name: register pkg_add
+  raw: pkg_info
+  register: pkg_add
+  changed_when: no
+  failed_when: no
+  become: no
+  check_mode: no
+
 - name: register yum
   raw: yum --version
   register: yum
@@ -144,6 +152,17 @@
     - "'Extracting python' in pkgresult.stdout"
   remote_user: "{{ bootstrap_user }}"
   until: pkgresult is succeeded
+  retries: "{{ bootstrap_retries }}"
+
+- name: install software with pkg_add
+  raw: pkg_add -Iz {{ bootstrap_pkg_add_packages }}
+  when:
+    - pkg_add.rc == 0
+  register: pkg_add_getresult
+  changed_when:
+    - "': ok' in pkg_add_getresult.stdout"
+  remote_user: "{{ bootstrap_user }}"
+  until: pkg_add_getresult is succeeded
   retries: "{{ bootstrap_retries }}"
 
 - name: install software with yum

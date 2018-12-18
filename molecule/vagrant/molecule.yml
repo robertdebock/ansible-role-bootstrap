@@ -14,6 +14,8 @@ platforms:
     box: debian/stretch64
   - name: bootstrap-fedora
     box: fedora/29-cloud-base
+  - name: bootstrap-openbsd
+    box: generic/openbsd6
 provisioner:
   name: ansible
   lint:
@@ -21,9 +23,9 @@ provisioner:
   config_options:
     defaults:
       callback_plugins: /usr/lib/python2.7/site-packages/ara/plugins/callbacks
+  inventory:
+    host_vars:
+      bootstrap-openbsd:
+        ansible_python_interpreter: /usr/local/bin/python3
 scenario:
   name: vagrant
-verifier:
-  name: goss
-  lint:
-    name: yamllint
