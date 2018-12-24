@@ -3,7 +3,7 @@ bootstrap
 
 [![Build Status](https://travis-ci.org/robertdebock/ansible-role-bootstrap.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
 
-The purpose of this role is to prepare your system to be managed by Ansible.
+Prepare your system to be managed by Ansible.
 
 Example Playbook
 ----------------
@@ -44,7 +44,7 @@ bootstrap_preview: yes
 bootstrap_wait_for_host: no
 
 # The number of retries you want tasks to do before failing.
-bootstrap_retries: 10
+bootstrap_retries: 3
 
 # To update all packages installed by this roles, set `bootstrap_package_state` to `latest`.
 bootstrap_package_state: present
