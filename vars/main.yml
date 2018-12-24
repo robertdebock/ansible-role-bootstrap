@@ -8,11 +8,18 @@ bootstrap_apt_packages: python sudo
 bootstrap_dnf_packages: python sudo
 bootstrap_emerge_packages: python sudo gentoolkit
 bootstrap_pacman_packages: python sudo
+bootstrap_pkg_add_packages: python-3* sudo--
 bootstrap_pkg_packages: python sudo
 bootstrap_yum_packages: python2 sudo
 bootstrap_zypper_packages: python python-xml sudo
 
 bootstrap_alpine_community_repo: "http://dl-cdn.alpinelinux.org/alpine/v{{ ansible_distribution_version.split('.')[0] }}.{{ ansible_distribution_version.split('.')[1] }}/community"
+
+# Some distributions do not have the fact `ansible_distribution_major_version`,
+# as a workaround it's determined here, saved to another variable and used
+# later.
+
+bootstrap_ansible_distribution_major_version: ansible_distibution_major_version | default('none')
 
 # A dictionary based on Ansible facts `ansible_distribution` and
 # `ansible_distribution_major_version` containing a list of packages.
@@ -44,6 +51,9 @@ _bootstrap_packages:
     - python
     - sudo
     - gentoolkit
+  OpenBSD:
+    - python%3
+    - sudo--
   openSUSE Leap:
     - python
     - python-xml
@@ -53,7 +63,7 @@ _bootstrap_packages:
     - python-xml
     - sudo
 
-bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_bootstrap_packages[ansible_distribution] | default(_bootstrap_packages['default'])) }}"
+bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution ~ '-' ~ bootstrap_ansible_distribution_major_version] | default(_bootstrap_packages[ansible_distribution] | default(_bootstrap_packages['default'])) }}"
 
 # A dictionary based on Ansible facts `ansible_distribution` and
 # `ansible_distribution_major_version` containing a list of packages. The
@@ -82,6 +92,8 @@ _bootstrap_stable_packages:
     - polkit
     - python-devel
     - python-simplejson
+  OpenBSD:
+    - py-simplejson--
   openSUSE Leap:
     - acl
     - ca-certificates
@@ -94,7 +106,7 @@ _bootstrap_stable_packages:
     - python-apt
     - python-simplejson
 
-bootstrap_stable_packages: "{{ _bootstrap_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_bootstrap_stable_packages[ansible_distribution] | default(_bootstrap_stable_packages['default'])) }}"
+bootstrap_stable_packages: "{{ _bootstrap_stable_packages[ansible_distribution ~ '-' ~ bootstrap_ansible_distribution_major_version] | default(_bootstrap_stable_packages[ansible_distribution] | default(_bootstrap_stable_packages['default'])) }}"
 
 # A dictionary based on Ansible facts `ansible_distribution` and
 # `ansible_distribution_major_version` containing a list of packages. The
@@ -130,6 +142,8 @@ _bootstrap_preview_packages:
     - gzip
     - tar
     - unzip
+  OpenBSD:
+    - unzip--
   Ubuntu:
     - apt-transport-https
     - gzip
