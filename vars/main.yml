@@ -33,14 +33,21 @@ _bootstrap_packages:
     - python
     - sudo
     - shadow
+  Archlinux:
+    - iproute2
+    - python
+    - sudo
   CentOS:
+    - iproute
     - python2
     - sudo
   Fedora-30:
+    - iproute
     - python3
     - python3-dnf
     - sudo
   Fedora:
+    - iproute
     - python2
     - python2-dnf
     - sudo
@@ -55,12 +62,18 @@ _bootstrap_packages:
     - python%3
     - sudo--
   openSUSE Leap:
+    - iproute2
     - python
     - python-xml
     - sudo
   openSUSE Tumbleweed:
+    - iproute2
     - python
     - python-xml
+    - sudo
+  Ubuntu:
+    - iproute2
+    - python
     - sudo
 
 bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution ~ '-' ~ bootstrap_ansible_distribution_major_version] | default(_bootstrap_packages[ansible_distribution] | default(_bootstrap_packages['default'])) }}"
