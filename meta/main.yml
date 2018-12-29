@@ -32,6 +32,7 @@ galaxy_info:
         - 10.4
         - 11.2
     - name: OpenBSD
+      versions:
         - all
     - name: OpenSUSE
       versions:
