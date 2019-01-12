@@ -55,6 +55,7 @@ galaxy_info:
     - freebsd
     - gentoo
     - installer
+    - kali
     - openbsd
     - opensuse
     - rhel
