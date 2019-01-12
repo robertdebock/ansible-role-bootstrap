@@ -21,6 +21,7 @@
         dest: "{{ goss_dst }}"
         sha256sum: "{{ goss_sha256sum }}"
         mode: 0755
+        validate_certs: no
       register: download_goss
       until: download_goss is succeeded
       retries: 3
