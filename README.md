@@ -25,6 +25,8 @@ This example is taken from `molecule/default/playbook.yml`:
 
 ```
 
+Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
+
 Role Variables
 --------------
 
