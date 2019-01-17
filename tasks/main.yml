@@ -11,6 +11,17 @@
     - ansible_connection != "docker"
     - bootstrap_wait_for_host
 
+- name: wait for connection
+  wait_for_connection:
+    timeout: "{{ bootstrap_timeout }}"
+  register: bootstrap_connection
+  changed_when: no
+  failed_when: no
+
+- name: set remote user
+  set_fact:
+    ansible_user: "{{ ansible_user if bootstrap_connection is succeeded else bootstrap_user }}"
+
 - name: register apk
   raw: apk --version
   register: apk
@@ -90,7 +101,6 @@
   register: apkresult
   changed_when:
     - "'Installing' in apkresult.stdout"
-  remote_user: "{{ bootstrap_user }}"
   until: apkresult is succeeded
   retries: "{{ bootstrap_retries }}"
 
@@ -102,7 +112,6 @@
   register: apt_getresult
   changed_when:
     - "' 0 newly installed' not in apt_getresult.stdout"
-  remote_user: "{{ bootstrap_user }}"
   until: apt_getresult is succeeded
   retries: "{{ bootstrap_retries }}"
 
@@ -113,7 +122,6 @@
   register: dnfresult
   changed_when:
     - "'Nothing' not in dnfresult.stdout"
-  remote_user: "{{ bootstrap_user }}"
   until: dnfresult is succeeded
   retries: "{{ bootstrap_retries }}"
 
@@ -124,7 +132,6 @@
   register: emergeresult
   changed_when:
     - "'changed' in emergeresult.stdout"
-  remote_user: "{{ bootstrap_user }}"
   until: emergeresult is succeeded
   retries: "{{ bootstrap_retries }}"
 
@@ -135,7 +142,6 @@
   register: pacmanresult
   changed_when:
     - "' installing python' in pacmanresult.stdout"
-  remote_user: "{{ bootstrap_user }}"
   until: pacmanresult is succeeded
   retries: "{{ bootstrap_retries }}"
 
@@ -150,7 +156,6 @@
   register: pkgresult
   changed_when:
     - "'Extracting python' in pkgresult.stdout"
-  remote_user: "{{ bootstrap_user }}"
   until: pkgresult is succeeded
   retries: "{{ bootstrap_retries }}"
 
@@ -161,7 +166,6 @@
   register: pkg_add_getresult
   changed_when:
     - "': ok' in pkg_add_getresult.stdout"
-  remote_user: "{{ bootstrap_user }}"
   until: pkg_add_getresult is succeeded
   retries: "{{ bootstrap_retries }}"
 
@@ -172,7 +176,6 @@
   register: yumresult
   changed_when:
     - "'Nothing' not in yumresult.stdout"
-  remote_user: "{{ bootstrap_user }}"
   until: yumresult is succeeded
   retries: "{{ bootstrap_retries }}"
 
@@ -183,7 +186,6 @@
   register: zypperresult
   changed_when:
     - "'Nothing' not in zypperresult.stdout"
-  remote_user: "{{ bootstrap_user }}"
   failed_when: no
   until: zypperresult is succeeded
   retries: "{{ bootstrap_retries }}"
