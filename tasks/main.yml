@@ -11,30 +11,22 @@
     - ansible_connection != "docker"
     - bootstrap_wait_for_host
 
-- name: cache remote users
-  set_fact:
-    cache: "{{ dict(ansible_user=(ansible_user | default(omit, true)),
-            bootstrap_user=bootstrap_user) }}"
-
-- debug:
-    msg: "{{ dict(cache=dict(ansible_user=(ansible_user | default(omit, true)),
-          bootstrap_user=bootstrap_user)) }}"
-
 - name: test connection
   wait_for_connection:
     timeout: "{{ bootstrap_timeout }}"
-  register: bootstrap_connection
+  register: bootstrap_connect
   changed_when: no
   ignore_errors: yes
 
-- name: bootstrap
-  remote_user: "{{ (cache.ansible_user | default(omit, true))
-                if bootstrap_connection is succeeded else bootstrap_user }}"
-  block:
+- name: register temporary remote user
+  set_fact:
+    bootstrap_remote_user: "{{ (ansible_user | default(omit, true))
+                            if bootstrap_connect is succeeded else bootstrap_user }}"
+  changed_when: no
 
-    - debug:
-        msg: "{{ dict(cache=dict(ansible_user=(ansible_user | default(omit, true)),
-              bootstrap_user=bootstrap_user)) }}"
+- name: bootstrap
+  remote_user: "{{ bootstrap_remote_user | default(omit) }}"
+  block:
 
     - name: register apk
       raw: apk --version
