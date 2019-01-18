@@ -23,14 +23,13 @@
 - name: test connection
   wait_for_connection:
     timeout: "{{ bootstrap_timeout }}"
-  remote_user: "{{ bootstrap_user }}"
   register: bootstrap_connection
   changed_when: no
   ignore_errors: yes
 
 - name: bootstrap
-  remote_user: "{{ bootstrap_user if bootstrap_connection is succeeded else
-                (cache.ansible_user | default(lookup('env','USER'))) }}"
+  remote_user: "{{ (cache.ansible_user | default(omit, true))
+                if bootstrap_connection is succeeded else bootstrap_user }}"
   block:
 
     - debug:
