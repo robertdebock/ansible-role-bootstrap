@@ -45,6 +45,9 @@ bootstrap_preview: yes
 # Do you want to wait for the host to be available?
 bootstrap_wait_for_host: no
 
+# The number of seconds you want to wait during connection test before failing.
+bootstrap_timeout: 3
+
 # The number of retries you want tasks to do before failing.
 bootstrap_retries: 3
 
