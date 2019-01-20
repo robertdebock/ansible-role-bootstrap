@@ -24,8 +24,10 @@
                             if bootstrap_connect is succeeded else bootstrap_user }}"
   changed_when: no
 
-- name: bootstrap
+- name: find package manager
   remote_user: "{{ bootstrap_remote_user | default(omit) }}"
+  become: no
+  check_mode: no
   block:
 
     - name: register apk
@@ -33,72 +35,58 @@
       register: apk
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register apt_get
       raw: apt-get --version
       register: apt_get
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register dnf
       raw: dnf --version
       register: dnf
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register emerge
       raw: emerge --version
       register: emerge
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register pacman
       raw: pacman --version
       register: pacman
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register pkg
       raw: pkg --version
       register: pkg
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register pkg_add
       raw: pkg_info
       register: pkg_add
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register yum
       raw: yum --version
       register: yum
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register zypper
       raw: zypper --version
       register: zypper
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
+
+- name: install using found package manager
+  remote_user: "{{ bootstrap_remote_user | default(omit) }}"
+  block:
 
     - name: install software with apk
       raw: "apk update ; apk add {{ bootstrap_apk_packages }}"
@@ -196,49 +184,46 @@
       until: zypperresult is succeeded
       retries: "{{ bootstrap_retries }}"
 
-    - name: gather facts
-      setup:
-      become: no
+- name: gather facts
+  setup:
+  become: no
 
-    - name: add community repository for alpine
-      lineinfile:
-        path: /etc/apk/repositories
-        line: "{{ bootstrap_alpine_community_repo }}"
-      when:
-        - ansible_distribution == "Alpine"
+- name: add community repository for alpine
+  lineinfile:
+    path: /etc/apk/repositories
+    line: "{{ bootstrap_alpine_community_repo }}"
+  when:
+    - ansible_distribution == "Alpine"
 
-    - name: install bootstrap packages
-      package:
-        name: "{{ bootstrap_packages }}"
-        state: "{{ bootstrap_package_state }}"
-      register: packageresult
-      until: packageresult is succeeded
-      retries: "{{ bootstrap_retries }}"
+- name: install bootstrap packages
+  package:
+    name: "{{ bootstrap_packages }}"
+    state: "{{ bootstrap_package_state }}"
+  register: packageresult
+  until: packageresult is succeeded
 
-    - name: install software to support stable modules
-      package:
-        name: "{{ bootstrap_stable_packages }}"
-        state: "{{ bootstrap_package_state }}"
-      when:
-        - bootstrap_stable_packages is defined
-      register: packagestableresult
-      until: packagestableresult is succeeded
-      retries: "{{ bootstrap_retries }}"
-      notify:
-        - gather facts
+- name: install software to support stable modules
+  package:
+    name: "{{ bootstrap_stable_packages }}"
+    state: "{{ bootstrap_package_state }}"
+  when:
+    - bootstrap_stable_packages is defined
+  register: packagestableresult
+  until: packagestableresult is succeeded
+  notify:
+    - gather facts
 
-    - name: install software to support preview modules
-      package:
-        name: "{{ bootstrap_preview_packages }}"
-        state: "{{ bootstrap_package_state }}"
-      when:
-        - bootstrap_preview
-        - bootstrap_preview_packages is defined
-      register: packagepreviewresult
-      until: packagepreviewresult is succeeded
-      retries: "{{ bootstrap_retries }}"
-      notify:
-        - gather facts
+- name: install software to support preview modules
+  package:
+    name: "{{ bootstrap_preview_packages }}"
+    state: "{{ bootstrap_package_state }}"
+  when:
+    - bootstrap_preview
+    - bootstrap_preview_packages is defined
+  register: packagepreviewresult
+  until: packagepreviewresult is succeeded
+  notify:
+    - gather facts
 
-    - name: flush handlers
-      meta: flush_handlers
+- name: flush handlers
+  meta: flush_handlers
