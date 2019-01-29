@@ -48,7 +48,7 @@ provisioner:
       bootstrap-fedora-29:
         ansible_user: fedora
 scenario:
-  name: ec2
+  name: ec2-all
   create_sequence:
     - create
   check_sequence:
