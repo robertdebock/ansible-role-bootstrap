@@ -10,3 +10,5 @@
   tasks:
     - name: test connection
       ping:
+      vars:
+        ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"

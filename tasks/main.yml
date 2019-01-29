@@ -18,10 +18,10 @@
   changed_when: no
   ignore_errors: yes
 
-- name: register temporary bootstrap ssh user
+- name: register temporary bootstrap user
   set_fact:
-    bootstrap_ssh_user: "{{ (ansible_user | default(omit, true))
-                         if bootstrap_connect is succeeded else bootstrap_user }}"
+    bootstrap_ansible_user: "{{ (ansible_user | default(omit, true))
+                             if bootstrap_connect is succeeded else bootstrap_user }}"
   changed_when: no
 
 - name: bootstrap
@@ -243,4 +243,4 @@
       meta: flush_handlers
 
   vars:
-    ansible_user: "{{ bootstrap_ssh_user | default(omit) }}"
+    ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"

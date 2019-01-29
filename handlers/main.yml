@@ -4,4 +4,4 @@
   setup:
   become: no
   vars:
-    ansible_user: "{{ bootstrap_ssh_user | default(omit) }}"
+    ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
