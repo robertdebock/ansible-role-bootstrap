@@ -5,7 +5,7 @@
   gather_facts: false
   no_log: "{{ not (lookup('env', 'MOLECULE_DEBUG') | bool or molecule_yml.provisioner.log|default(false) | bool) }}"
   vars:
-    ssh_user: molecule
+    ssh_user: ec2-user
     ssh_port: 22
 
     security_group_name: molecule
@@ -25,8 +25,8 @@
         to_port: 0
         cidr_ip: '0.0.0.0/0'
 
-    keypair_name: "molecule_{{ (lookup('env', 'MOLECULE_EPHEMERAL_DIRECTORY') | hash('sha256'))[:7] }}"
-    keypair_path: "{{ lookup('env', 'MOLECULE_EPHEMERAL_DIRECTORY') }}/ssh_key/molecule"
+    keypair_name: molecule_key
+    keypair_path: "{{ lookup('env', 'MOLECULE_EPHEMERAL_DIRECTORY') }}/ssh_key"
   tasks:
     - name: Create security group
       ec2_group:
@@ -34,11 +34,6 @@
         description: "{{ security_group_name }}"
         rules: "{{ security_group_rules }}"
         rules_egress: "{{ security_group_rules_egress }}"
-
-    - name: Persist local keypair directory
-      file:
-        path: "{{ lookup('env', 'MOLECULE_EPHEMERAL_DIRECTORY') }}/ssh_key"
-        state: directory
 
     - name: Test for presence of local keypair
       stat:
@@ -63,16 +58,12 @@
         mode: 0600
       when: keypair.changed
 
-    - name: Gather facts about all VPC subnets
-      ec2_vpc_subnet_facts:
-      register: ec2_vpc
-
     - name: Create molecule instance(s)
       ec2:
         key_name: "{{ keypair_name }}"
         image: "{{ item.image }}"
         instance_type: "{{ item.instance_type }}"
-        vpc_subnet_id: "{{ item.vpc_subnet_id | default(ec2_vpc.subnets[0].id, True) }}"
+        vpc_subnet_id: "{{ item.vpc_subnet_id }}"
         group: "{{ security_group_name }}"
         instance_tags:
           instance: "{{ item.name }}"

@@ -16,11 +16,6 @@
             instance_conf: {}
             skip_instances: true
 
-    - name: Delete remote keypair
-      ec2_key:
-        name: "molecule_{{ (lookup('env', 'MOLECULE_EPHEMERAL_DIRECTORY') | hash('sha256'))[:7] }}"
-        state: absent
-
     - name: Destroy molecule instance(s)
       ec2:
         state: absent

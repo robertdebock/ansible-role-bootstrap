@@ -25,7 +25,6 @@
   changed_when: no
 
 - name: bootstrap
-  remote_user: "{{ bootstrap_remote_user | default(omit) }}"
   block:
 
     - name: register apk
@@ -242,3 +241,6 @@
 
     - name: flush handlers
       meta: flush_handlers
+
+  vars:
+    ansible_user: "{{ bootstrap_remote_user | default(omit) }}"
