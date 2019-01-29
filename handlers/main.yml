@@ -3,3 +3,5 @@
 - name: gather facts
   setup:
   become: no
+  vars:
+    ansible_user: "{{ bootstrap_ssh_user | default(omit) }}"
