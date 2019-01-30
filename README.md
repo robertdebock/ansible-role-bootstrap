@@ -13,8 +13,9 @@ This example is taken from `molecule/default/playbook.yml`:
 ---
 - name: Converge
   hosts: all
-  gather_facts: false
-  become: true
+  gather_facts: no
+  become: yes
+  serial: 30%
 
   roles:
     - robertdebock.bootstrap
