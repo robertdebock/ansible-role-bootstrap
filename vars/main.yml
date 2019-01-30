@@ -1,6 +1,8 @@
 ---
 # vars file for bootstrap
 
+bootstrap_remote_user: "{{ (ansible_user | default(omit, true)) if bootstrap_connect is succeeded else bootstrap_user }}"
+
 # A string containing all packages required to be installed using the `raw`
 # module, separated by a space.
 bootstrap_apk_packages: python sudo
