@@ -57,6 +57,7 @@ env:
   - version="devel" distro="ubuntu-devel"
 
 matrix:
+  fast_finish: yes
   allow_failures:
     - env: version=">=2.6,<2.7" distro="alpine-edge"
     - env: version="" distro="alpine-edge"
