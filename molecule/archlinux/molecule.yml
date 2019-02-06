@@ -9,7 +9,7 @@ lint:
   name: yamllint
 platforms:
   - name: bootstrap-archlinux
-    image: base/archlinux
+    image: archlinux/base
 provisioner:
   name: ansible
   lint:
