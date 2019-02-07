@@ -15,7 +15,7 @@ platforms:
     image: alpine:latest
     command: sh -c "while true ; do sleep 1 ; done"
   - name: bootstrap-archlinux
-    image: base/archlinux
+    image: archlinux/base
   - name: bootstrap-centos-6
     image: centos:6
   - name: bootstrap-centos-latest
