@@ -99,9 +99,9 @@ This role has been tested against the following distributions and Ansible versio
 |kali|yes|yes|yes*|
 |opensuse-leap|yes|yes|yes*|
 |opensuse-tumbleweed|yes|yes|yes*|
-|ubuntu-artful|yes|yes|yes*|
 |ubuntu-devel*|yes|yes|yes*|
 |ubuntu-latest|yes|yes|yes*|
+|ubuntu-rolling|yes|yes|yes*|
 
 A single star means the build may fail, it's marked as an experimental build.
 

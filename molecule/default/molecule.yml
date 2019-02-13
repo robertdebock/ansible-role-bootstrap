@@ -36,8 +36,10 @@ platforms:
     image: opensuse:leap
   - name: bootstrap-opensuse-tumbleweed
     image: opensuse:tumbleweed
-  - name: bootstrap-ubuntu-artful
-    image: ubuntu:artful
+  - name: bootstrap-ubuntu-latest
+    image: ubuntu:latest
+  - name: bootstrap-ubuntu-rolling
+    image: ubuntu:rolling
   - name: bootstrap-ubuntu-devel
     image: ubuntu:devel
   - name: bootstrap-ubuntu-latest
