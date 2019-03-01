@@ -34,8 +34,6 @@ platforms:
     image: gentoo/stage3-amd64
   - name: bootstrap-opensuse-leap
     image: opensuse:leap
-  - name: bootstrap-opensuse-tumbleweed
-    image: opensuse:tumbleweed
   - name: bootstrap-ubuntu-latest
     image: ubuntu:latest
   - name: bootstrap-ubuntu-rolling
