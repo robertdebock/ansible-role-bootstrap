@@ -68,11 +68,6 @@ _bootstrap_packages:
     - python
     - python-xml
     - sudo
-  openSUSE Tumbleweed:
-    - iproute2
-    - python
-    - python-xml
-    - sudo
   Ubuntu:
     - iproute2
     - python
@@ -110,9 +105,6 @@ _bootstrap_stable_packages:
   OpenBSD:
     - py-simplejson--
   openSUSE Leap:
-    - acl
-    - ca-certificates
-  openSUSE Tumbleweed:
     - acl
     - ca-certificates
   Ubuntu:
