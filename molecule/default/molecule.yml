@@ -55,7 +55,3 @@ provisioner:
         ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: default
-verifier:
-  name: goss
-  lint:
-    name: yamllint

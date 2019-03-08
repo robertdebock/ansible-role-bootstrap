@@ -25,7 +25,3 @@ provisioner:
         ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: fedora-rawhide
-verifier:
-  name: goss
-  lint:
-    name: yamllint
