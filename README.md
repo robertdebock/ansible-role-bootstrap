@@ -23,7 +23,6 @@ This example is taken from `molecule/default/playbook.yml`:
   tasks:
     - name: test connection
       ping:
-
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -48,7 +47,6 @@ bootstrap_wait_for_host: no
 
 # The number of seconds you want to wait during connection test before failing.
 bootstrap_timeout: 3
-
 ```
 
 Requirements
