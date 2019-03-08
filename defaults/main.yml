@@ -13,6 +13,3 @@ bootstrap_wait_for_host: no
 
 # The number of seconds you want to wait during connection test before failing.
 bootstrap_timeout: 3
-
-# To update all packages installed by this roles, set `bootstrap_package_state` to `latest`.
-bootstrap_package_state: present
