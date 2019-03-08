@@ -192,14 +192,14 @@
 - name: install bootstrap packages
   package:
     name: "{{ bootstrap_packages }}"
-    state: "{{ bootstrap_package_state }}"
+    state: present
   register: packageresult
   until: packageresult is succeeded
 
 - name: install software to support stable modules
   package:
     name: "{{ bootstrap_stable_packages }}"
-    state: "{{ bootstrap_package_state }}"
+    state: present
   when:
     - bootstrap_stable_packages is defined
   register: packagestableresult
@@ -210,7 +210,7 @@
 - name: install software to support preview modules
   package:
     name: "{{ bootstrap_preview_packages }}"
-    state: "{{ bootstrap_package_state }}"
+    state: present
   when:
     - bootstrap_preview
     - bootstrap_preview_packages is defined
