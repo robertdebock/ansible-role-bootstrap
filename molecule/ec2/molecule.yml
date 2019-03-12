@@ -3,19 +3,19 @@ dependency:
   name: galaxy
   options:
     role-file: requirements.yml
-driver:
-  name: ec2
 lint:
   name: yamllint
+driver:
+  name: ec2
 platforms:
-  # - name: rhel-7
-  #   image: ami-c86c3f23
-  #   instance_type: t2.micro
-  #   vpc_subnet_id: subnet-0e688067
-  # - name: sles-15
-  #   image: ami-0a1886cf45f944eb1
-  #   instance_type: t2.micro
-  #   vpc_subnet_id: subnet-0e688067
+  - name: bootstrap-rhel-7
+    image: ami-c86c3f23
+    instance_type: t2.micro
+    vpc_subnet_id: subnet-0e688067
+  - name: bootstrap-sles-15
+    image: ami-0a1886cf45f944eb1
+    instance_type: t2.micro
+    vpc_subnet_id: subnet-0e688067
   - name: bootstrap-ubuntu-18.04
     image: ami-0bdf93799014acdc4
     instance_type: t2.micro

@@ -3,10 +3,10 @@ dependency:
   name: galaxy
   options:
     role-file: requirements.yml
-driver:
-  name: docker
 lint:
   name: yamllint
+driver:
+  name: docker
 platforms:
   - name: bootstrap-alpine-edge
     image: alpine:edge
@@ -30,8 +30,6 @@ platforms:
     image: fedora:latest
   - name: bootstrap-fedora-rawhide
     image: fedora:rawhide
-  - name: bootstrap-gentoo
-    image: gentoo/stage3-amd64
   - name: bootstrap-opensuse-leap
     image: opensuse:leap
   - name: bootstrap-ubuntu-latest
@@ -46,9 +44,5 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
-  inventory:
-    host_vars:
-      bootstrap-fedora-rawhide:
-        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: default

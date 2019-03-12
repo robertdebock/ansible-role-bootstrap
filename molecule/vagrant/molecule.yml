@@ -3,26 +3,20 @@ dependency:
   name: galaxy
   options:
     role-file: requirements.yml
+lint:
+  name: yamllint
 driver:
   name: vagrant
   provider:
     name: virtualbox
-lint:
-  name: yamllint
 platforms:
   - name: bootstrap-debian
     box: debian/stretch64
   - name: bootstrap-fedora
     box: fedora/29-cloud-base
-  - name: bootstrap-openbsd
-    box: generic/openbsd6
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
-  inventory:
-    host_vars:
-      bootstrap-openbsd:
-        ansible_python_interpreter: /usr/local/bin/python3
 scenario:
   name: vagrant
