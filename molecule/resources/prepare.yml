@@ -1,12 +1,11 @@
 ---
-- name: Converge
+- name: Prepare
   hosts: all
   gather_facts: no
   become: yes
   serial: 30%
 
   roles:
-    - ansible-role-bootstrap
 
   tasks:
     - name: test connection

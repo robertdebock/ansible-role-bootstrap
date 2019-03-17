@@ -16,6 +16,9 @@ platforms:
     box: fedora/29-cloud-base
 provisioner:
   name: ansible
+  playbooks:
+    prepare: ../resources/prepare.yml
+    converge: ../resources/playbook.yml
   lint:
     name: ansible-lint
 scenario:

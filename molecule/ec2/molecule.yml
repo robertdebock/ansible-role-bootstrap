@@ -34,6 +34,9 @@ platforms:
     vpc_subnet_id: subnet-0e688067
 provisioner:
   name: ansible
+  playbooks:
+    prepare: ../resources/prepare.yml
+    converge: ../resources/playbook.yml
   lint:
     name: ansible-lint
   inventory:

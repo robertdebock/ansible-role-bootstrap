@@ -10,8 +10,12 @@ driver:
 platforms:
   - name: bootstrap-archlinux
     image: archlinux/base
+    pre_build_image: yes
 provisioner:
   name: ansible
+  playbooks:
+    prepare: ../resources/prepare.yml
+    converge: ../resources/playbook.yml
   lint:
     name: ansible-lint
 scenario:

@@ -13,12 +13,23 @@ This example is taken from `molecule/default/playbook.yml`:
 ---
 - name: Converge
   hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - robertdebock.bootstrap
+```
+
+The machine you are running this on, may need to be prepared. Tests have been done on machines prepared by this playbook:
+```yaml
+---
+- name: Prepare
+  hosts: all
   gather_facts: no
   become: yes
   serial: 30%
 
   roles:
-    - robertdebock.bootstrap
 
   tasks:
     - name: test connection
