@@ -10,8 +10,11 @@ lint:
 platforms:
   - name: bootstrap-kali
     image: kalilinux/kali-linux-docker
+    pre_build_image: yes
 provisioner:
   name: ansible
+  playbooks:
+    converge: ../resources/playbook.yml
   lint:
     name: ansible-lint
 scenario:

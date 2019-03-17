@@ -10,8 +10,11 @@ lint:
 platforms:
   - name: bootstrap-gentoo
     image: gentoo/stage3-amd64
+    pre_build_image: yes
 provisioner:
   name: ansible
+  playbooks:
+    converge: ../resources/playbook.yml
   lint:
     name: ansible-lint
 scenario:

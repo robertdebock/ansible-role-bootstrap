@@ -12,6 +12,8 @@ platforms:
     image_id: fedora-28-x64
 provisioner:
   name: ansible
+  playbooks:
+    converge: ../resources/playbook.yml
   lint:
     name: ansible-lint
     ssh_connection:
