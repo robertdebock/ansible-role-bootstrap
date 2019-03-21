@@ -124,39 +124,46 @@ _bootstrap_preview_packages:
     - tar
     - unzip
     - gzip
+    - xz
   CentOS:
     - lvm2
     - tar
     - unzip
     - gzip
     - policycoreutils-python
+    - xz
   Debian:
     - apt-transport-https
     - gzip
     - lvm2
     - tar
     - unzip
+    - xz-utils
   Fedora:
     - lvm2
     - tar
     - unzip
     - gzip
     - policycoreutils-python
+    - xz
   FreeBSD:
     - unzip
     - gzip
+    - xz
   Gentoo:
     - gzip
     - tar
     - unzip
   OpenBSD:
     - unzip--
+    - xz
   Ubuntu:
     - apt-transport-https
     - gzip
     - lvm2
     - tar
     - unzip
+    - xz-utils
 
 bootstrap_preview_packages: "{{ _bootstrap_preview_packages[ansible_distribution] | default(_bootstrap_preview_packages['default']) }}"
 
