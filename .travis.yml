@@ -72,6 +72,7 @@ matrix:
     - env: version="" distro="fedora-rawhide"
     - env: version="devel" distro="fedora-rawhide"
     - env: version="devel" distro="gentoo"
+    - env: version="devel" distro="kali"
     - env: version="devel" distro="opensuse-leap"
     - env: version="devel" distro="ubuntu-rolling"
     - env: version=">=2.6,<2.7" distro="ubuntu-devel"
