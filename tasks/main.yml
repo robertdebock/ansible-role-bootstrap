@@ -207,14 +207,6 @@
   notify:
     - gather facts
 
-- name: show ansible_distribution
-  debug:
-    var: ansible_distribution
-
-- name: show bootstrap_preview_packages
-  debug:
-    var: bootstrap_preview_packages
-
 - name: install software to support preview modules
   package:
     name: "{{ bootstrap_preview_packages }}"

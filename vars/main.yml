@@ -160,6 +160,12 @@ _bootstrap_preview_packages:
     - gzip
     - tar
     - unzip
+  Kali GNU/Linux:
+    - lvm2
+    - tar
+    - unzip
+    - gzip
+    - xz-utils
   OpenBSD:
     - unzip--
     - xz
