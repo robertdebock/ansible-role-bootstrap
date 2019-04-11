@@ -15,4 +15,4 @@ bootstrap_wait_for_host: no
 bootstrap_timeout: 3
 
 # The number of retries during installation
-install_retries: 3
+bootstrap_retries: 3
