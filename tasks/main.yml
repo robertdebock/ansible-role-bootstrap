@@ -177,15 +177,6 @@
       failed_when: no
       until: zypperresult is succeeded
       retries: 3
-      async: 1000
-      poll: 0
-
-    - name: wait for zypper
-      async_status:
-        jid: "{{ zypperresult.ansible_job_id }}"
-      register: job_result
-      until: job_result.finished
-      retries: 30
 
 - name: gather facts
   setup:
