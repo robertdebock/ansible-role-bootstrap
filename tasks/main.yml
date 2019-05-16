@@ -90,7 +90,7 @@
       changed_when:
         - "'Installing' in apkresult.stdout"
       until: apkresult is succeeded
-      retries: 3
+      retries: "{{ bootstrap_retries }}"
 
     - name: install software with apt-get
       raw: "apt-get update ; apt-get -y install {{ bootstrap_apt_packages }}"
@@ -101,7 +101,7 @@
       changed_when:
         - "' 0 newly installed' not in apt_getresult.stdout"
       until: apt_getresult is succeeded
-      retries: 3
+      retries: "{{ bootstrap_retries }}"
 
     - name: install software with dnf
       raw: "dnf -y install {{ bootstrap_dnf_packages }}"
@@ -111,7 +111,7 @@
       changed_when:
         - "'Nothing' not in dnfresult.stdout"
       until: dnfresult is succeeded
-      retries: 3
+      retries: "{{ bootstrap_retries }}"
 
     - name: install software with emerge
       raw: "{{ bootstrap_emerge_command }}"
@@ -121,7 +121,7 @@
       changed_when:
         - "'changed' in emergeresult.stdout"
       until: emergeresult is succeeded
-      retries: 3
+      retries: "{{ bootstrap_retries }}"
 
     - name: install software with pacman
       raw: "pacman -Sy ; pacman -T {{ bootstrap_pacman_packages }} || pacman -S --noconfirm {{ bootstrap_pacman_packages }}"
@@ -131,7 +131,7 @@
       changed_when:
         - "' installing python' in pacmanresult.stdout"
       until: pacmanresult is succeeded
-      retries: 3
+      retries: "{{ bootstrap_retries }}"
 
     - name: install software with pkg
       raw: >
@@ -145,7 +145,7 @@
       changed_when:
         - "'Extracting python' in pkgresult.stdout"
       until: pkgresult is succeeded
-      retries: 3
+      retries: "{{ bootstrap_retries }}"
 
     - name: install software with pkg_add
       raw: pkg_add -Iz {{ bootstrap_pkg_add_packages }}
@@ -155,7 +155,7 @@
       changed_when:
         - "': ok' in pkg_add_getresult.stdout"
       until: pkg_add_getresult is succeeded
-      retries: 3
+      retries: "{{ bootstrap_retries }}"
 
     - name: install software with yum
       raw: "yum -y install {{ bootstrap_yum_packages }}"
@@ -165,7 +165,7 @@
       changed_when:
         - "'Nothing' not in yumresult.stdout"
       until: yumresult is succeeded
-      retries: 3
+      retries: "{{ bootstrap_retries }}"
 
     - name: install software with zypper
       raw: "zypper -n install {{ bootstrap_zypper_packages }}"
@@ -176,7 +176,7 @@
         - "'Nothing' not in zypperresult.stdout"
       failed_when: no
       until: zypperresult is succeeded
-      retries: 3
+      retries: "{{ bootstrap_retries }}"
 
 - name: gather facts
   setup:
