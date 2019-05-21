@@ -132,12 +132,6 @@ _bootstrap_preview_packages:
     - gzip
     - policycoreutils-python
     - xz
-  ClearLinux:
-    - lvm2
-    - tar
-    - unzip
-    - gzip
-    - xz-utils
   Debian:
     - apt-transport-https
     - gzip
@@ -160,6 +154,12 @@ _bootstrap_preview_packages:
     - gzip
     - tar
     - unzip
+  Kali:
+    - lvm2
+    - tar
+    - unzip
+    - gzip
+    - xz-utils
   OpenBSD:
     - unzip--
     - xz
