@@ -212,7 +212,7 @@
     name: "{{ bootstrap_preview_packages }}"
     state: present
   when:
-    - bootstrap_preview
+    - bootstrap_preview | bool
     - bootstrap_preview_packages is defined
   register: packagepreviewresult
   until: packagepreviewresult is succeeded
