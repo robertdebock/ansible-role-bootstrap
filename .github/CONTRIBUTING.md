@@ -34,7 +34,7 @@ molecule test --scenario-name ec2-all
 molecule test --scenario-name vagrant
 ```
 
-In addition, if you want to run the tests on different Ansible versions locally with locally with Docker and/or on Amazon EC2, use [tox](https://tox.readthedocs.io/en/latest/):
+In addition, if you want to run the tests on different Ansible versions locally with Docker and/or on Amazon EC2, use [tox](https://tox.readthedocs.io/en/latest/):
 ```
 sudo pip install tox-travis
 
