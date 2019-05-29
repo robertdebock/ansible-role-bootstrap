@@ -41,7 +41,7 @@ matrix:
   allow_failures:
     - env: MOLECULE_DISTRO="alpine-latest" ANSIBLE="devel" MOLECULE_DOCKER_IMAGE="alpine:latest" MOLECULE_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
     - env: MOLECULE_DISTRO="alpine-edge" ANSIBLE="all" MOLECULE_DOCKER_IMAGE="alpine:edge" MOLECULE_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
-    - env: MOLECULE_DISTRO="archlinux-latest" ANSIBLE="devel" MOLECULE_DOCKER_IMAGE="archlinux/base"
+    - env: MOLECULE_DISTRO="archlinux-latest" ANSIBLE="devel" MOLECULE_DOCKER_IMAGE="archlinux/base:latest"
     - env: MOLECULE_DISTRO="centos-latest" ANSIBLE="devel" MOLECULE_DOCKER_IMAGE="centos:latest"
     - env: MOLECULE_DISTRO="debian-latest" ANSIBLE="devel" MOLECULE_DOCKER_IMAGE="debian:latest"
     - env: MOLECULE_DISTRO="debian-unstable" ANSIBLE="all" MOLECULE_DOCKER_IMAGE="debian:unstable"
@@ -72,7 +72,7 @@ install:
   - pip install tox-travis
 
 script:
-  - unbuffer tox
+  - travis_wait unbuffer tox
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
