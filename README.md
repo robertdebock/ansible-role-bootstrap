@@ -62,6 +62,8 @@ This example is taken from `molecule/playbook.yml`:
 Role Tests
 ----------
 
+[![Python](https://img.shields.io/badge/python-2.7%20%7C%203.6-1488C6.svg)](https://www.python.org/)
+
 This role is tested periodically against the following Linux distributions and Ansible versions:
 
 | Distribution ||
