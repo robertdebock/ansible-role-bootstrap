@@ -52,7 +52,7 @@ provisioner:
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-../playbook.yml}
 scenario:
-  name: default
+  name: docker-all
 verifier:
   name: goss
   directory: ../tests
