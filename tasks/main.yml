@@ -82,7 +82,7 @@
       register: zypper
       changed_when: no
       failed_when: no
-  
+
   vars:
     ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
 
