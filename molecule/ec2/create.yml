@@ -25,7 +25,7 @@
         to_port: 0
         cidr_ip: '0.0.0.0/0'
 
-    keypair_name: "molecule_{{ (lookup('env', 'MOLECULE_EPHEMERAL_DIRECTORY') | hash('sha256'))[:7] }}"
+    keypair_name: "molecule_{{ (lookup('env', 'MOLECULE_EPHEMERAL_DIRECTORY') | hash('sha256'))[:15] }}"
     keypair_path: "{{ lookup('env', 'MOLECULE_EPHEMERAL_DIRECTORY') }}/ssh_key/molecule"
   tasks:
     - name: Create security group
@@ -78,6 +78,11 @@
           instance: "{{ item.name }}"
         wait: true
         assign_public_ip: true
+        volumes:
+          - device_name: "{{ (item.root_device | default({}))['device_name'] | default('/dev/sda1', True) }}"
+            volume_type: "{{ (item.root_device | default({}))['volume_type'] | default('gp2', True) }}"
+            volume_size: "{{ (item.root_device | default({}))['volume_size'] | default(8, True) }}"
+            delete_on_termination: yes
         exact_count: 1
         count_tag:
           instance: "{{ item.name }}"

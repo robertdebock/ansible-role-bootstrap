@@ -1,36 +1,24 @@
-bootstrap
-=========
+Ansible Role: Bootstrap
+=======================
 
-[![Build Status](https://travis-ci.org/robertdebock/ansible-role-bootstrap.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
+[![Build Status](https://img.shields.io/travis/rembik/ansible-role-bootstrap/master.svg?logo=travis&logoColor=EEE)](https://travis-ci.org/rembik/ansible-role-bootstrap)
+[![GitHub release](https://img.shields.io/github/release/rembik/ansible-role-bootstrap.svg?&colorB=56b4b6&logo=github&logoColor=EEE)](https://github.com/rembik/ansible-role-bootstrap/releases)
+[![Ansible Role](https://img.shields.io/ansible/role/36340.svg?colorB=56b4b6&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEdUlEQVRYR61Xa4iUVRh+n8PMCjXOzHlPmZUlZlgpoVBBUdBlUyExTRJsyUrqdxcw6EKhBEUX6fKvG5l0IUvZUKSr1I8uZpCUCVLE0lZo6znn29mVcpv53jjTzDLOzux3Vvv+fs/znOf7zvO+7zmgE3hE5NQkSU4HcBoAJSJHSqXSEICRqcohllCpVObVarVb0jTtAzCvE09EDgPYLSKfAniPmYez9DMNeO+vTdP0QQCLs8Ta3h8hoke01i8BSLtxuxpwzpVEZDuA66a4cDv8u56enhsKhcKhTjodDXjvZ6dp+iGAC05y8TpdRH4noqXGmB/b9SYYsNbOIqJvAZzxfyze1BCRChFdYYw50Kp7nIGQbufcXgAXRS5eI6JfiWhOJH4wn89fMn369KEm/jgD1tqtAFZHihGAdeVyeYtz7msAl0XyvmDmqyYYSJLk0jRN90aKhH09xMxnh4Rba1cD2BrLJaJbmfnNgB//A9bajwFcHysC4FGt9WONkOWcc4MAZsbwReQPZj4PwLG6Ae/9QhHZF0NuYKq5XG5msVi03vs7tNabrbUbg6kpaNT/Qt2Ac+4JInpgCuS3mbnPe3+NiLzGzHNGR0dnjo2NhXJTkTrvMPOapoGQ5HMiiWH/rzTGfGmt3QzgdgA3aa37rbXbAKyK1BnWWht478si4iNJYfEDxpgFbbz3mXllkiS9aZp+EquVy+UuhLV2AYD9sSQRucsY86r3/l4ReXa8nIA5WusB59xPRHR+jJ5SqhdJkixO0/SjGELoZsw8I6TXe79SRDYTUalRCRuNMRu89/eIyHMxekS0NhhYEvp+DAHAJq31+ibWe7+oYWIhEQ2EMFpriwD+JKJpWZr1/DjnLiai77PA/80UmW2MGXTOvaCU6i+Xy7sbWQh/YkUzjN77l8NWZWkqpZaiUqmYarUaZnfWs4uZlzXwodzyYd4z8+OBaK3dAGBRCGNsrgK+WYa/RAyUZcy8yzl3PxE91eJ2p9Z6DYCjoS8Q0T6tdWKt/QrA5ZN81ZjWmusGrLXPA7h7EvCg1np2o2sOENG5rVgROZjP51cUi8WDLflYKyJbJtHcwcw31g1kVYKIrDfGbLLWLgXwQSdRETmqlLpNa729URXTvPdhq0wnPIDQwl+vGxCREMb9AOZ3AB8TkRnGmIpzrj+ELSMsT2qtH2pMyVcA3NkBb7XWswD8PT4NvfdXi8hnHcA/i0gYnQrAw5G9fgeA7SKyiYi4XRPAfVrreq9oP5C8C+DmrHI4mfci8hszzwUwNsGAiBScc3u6bMXJrFvnishfoTKYebzvdDqUhqn4TezhYoquljPzzlZO12N5uN0Q0dwpLtAN/g8RrWsewzINBMDw8DDXarVtRBSaywk/IjKilFqutf68YzlmKTvn+kTkGQBnZmFb34vIqFLqxXw+/3ShUDjcjZt5N2yE5xTv/SoR6SWiJQDO6iYoInuUUm8ppd4olUouy3SUgXaRkZGRGdVqdb6IhAtMGL9DIhKu5z+EQ0nWoq3v/wWf4hm52dSUyAAAAABJRU5ErkJggg==)](https://galaxy.ansible.com/rembik/bootstrap)
+[![Ansible Role downloads](https://img.shields.io/ansible/role/d/36340.svg?label=downloads&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEdUlEQVRYR61Xa4iUVRh+n8PMCjXOzHlPmZUlZlgpoVBBUdBlUyExTRJsyUrqdxcw6EKhBEUX6fKvG5l0IUvZUKSr1I8uZpCUCVLE0lZo6znn29mVcpv53jjTzDLOzux3Vvv+fs/znOf7zvO+7zmgE3hE5NQkSU4HcBoAJSJHSqXSEICRqcohllCpVObVarVb0jTtAzCvE09EDgPYLSKfAniPmYez9DMNeO+vTdP0QQCLs8Ta3h8hoke01i8BSLtxuxpwzpVEZDuA66a4cDv8u56enhsKhcKhTjodDXjvZ6dp+iGAC05y8TpdRH4noqXGmB/b9SYYsNbOIqJvAZzxfyze1BCRChFdYYw50Kp7nIGQbufcXgAXRS5eI6JfiWhOJH4wn89fMn369KEm/jgD1tqtAFZHihGAdeVyeYtz7msAl0XyvmDmqyYYSJLk0jRN90aKhH09xMxnh4Rba1cD2BrLJaJbmfnNgB//A9bajwFcHysC4FGt9WONkOWcc4MAZsbwReQPZj4PwLG6Ae/9QhHZF0NuYKq5XG5msVi03vs7tNabrbUbg6kpaNT/Qt2Ac+4JInpgCuS3mbnPe3+NiLzGzHNGR0dnjo2NhXJTkTrvMPOapoGQ5HMiiWH/rzTGfGmt3QzgdgA3aa37rbXbAKyK1BnWWht478si4iNJYfEDxpgFbbz3mXllkiS9aZp+EquVy+UuhLV2AYD9sSQRucsY86r3/l4ReXa8nIA5WusB59xPRHR+jJ5SqhdJkixO0/SjGELoZsw8I6TXe79SRDYTUalRCRuNMRu89/eIyHMxekS0NhhYEvp+DAHAJq31+ibWe7+oYWIhEQ2EMFpriwD+JKJpWZr1/DjnLiai77PA/80UmW2MGXTOvaCU6i+Xy7sbWQh/YkUzjN77l8NWZWkqpZaiUqmYarUaZnfWs4uZlzXwodzyYd4z8+OBaK3dAGBRCGNsrgK+WYa/RAyUZcy8yzl3PxE91eJ2p9Z6DYCjoS8Q0T6tdWKt/QrA5ZN81ZjWmusGrLXPA7h7EvCg1np2o2sOENG5rVgROZjP51cUi8WDLflYKyJbJtHcwcw31g1kVYKIrDfGbLLWLgXwQSdRETmqlLpNa729URXTvPdhq0wnPIDQwl+vGxCREMb9AOZ3AB8TkRnGmIpzrj+ELSMsT2qtH2pMyVcA3NkBb7XWswD8PT4NvfdXi8hnHcA/i0gYnQrAw5G9fgeA7SKyiYi4XRPAfVrreq9oP5C8C+DmrHI4mfci8hszzwUwNsGAiBScc3u6bMXJrFvnishfoTKYebzvdDqUhqn4TezhYoquljPzzlZO12N5uN0Q0dwpLtAN/g8RrWsewzINBMDw8DDXarVtRBSaywk/IjKilFqutf68YzlmKTvn+kTkGQBnZmFb34vIqFLqxXw+/3ShUDjcjZt5N2yE5xTv/SoR6SWiJQDO6iYoInuUUm8ppd4olUouy3SUgXaRkZGRGdVqdb6IhAtMGL9DIhKu5z+EQ0nWoq3v/wWf4hm52dSUyAAAAABJRU5ErkJggg==)](https://galaxy.ansible.com/rembik/bootstrap)
 
 Prepare your system to be managed by Ansible.
 
-Example Playbook
-----------------
+Requirements
+------------
 
-This example is taken from `molecule/default/playbook.yml`:
-```yaml
----
-- name: Converge
-  hosts: all
-  gather_facts: false
-  become: true
-
-  roles:
-    - robertdebock.bootstrap
-
-  tasks:
-    - name: test connection
-      ping:
-
-```
-
-Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
+- Access to repositories containing system packages, likely on the internet.
+- A recent Ansible version (tested last 3 major versions).
 
 Role Variables
 --------------
 
-These variables are set in `defaults/main.yml`:
+These defaults are set in `defaults/main.yml`:
+
 ```yaml
 ---
 # defaults file for bootstrap
@@ -45,96 +33,63 @@ bootstrap_preview: yes
 # Do you want to wait for the host to be available?
 bootstrap_wait_for_host: no
 
-# The number of retries you want tasks to do before failing.
+# The number of seconds you want to wait during connection test before failing.
+bootstrap_timeout: 3
+
+# The number of retries during installation
 bootstrap_retries: 3
-
-# To update all packages installed by this roles, set `bootstrap_package_state` to `latest`.
-bootstrap_package_state: present
-
 ```
 
-Requirements
+Dependencies
 ------------
 
-- Access to a repository containing packages, likely on the internet.
-- A recent version of Ansible. (Tests run on the last 3 release of Ansible.)
+None.
 
-The following roles can be installed to ensure all requirements are met, using `ansible-galaxy install -r requirements.yml`:
+Example Playbook
+----------------
 
+This example is taken from `molecule/playbook.yml`:
 ```yaml
-- none
+---
+- hosts: all
+  gather_facts: no
+  become: yes
+
+  roles:
+    - role: rembik.bootstrap
 ```
 
-Context
--------
+Role Tests
+----------
 
-This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
+This role is tested periodically against the following Linux distributions and Ansible versions:
 
-Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/bootstrap.png "Dependency")
+| Distribution ||
+|---|---|
+| [![DockerDistro](https://img.shields.io/badge/Alpine-latest%20%7C%20edge%2A-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/_/alpine) | [![Ansible](https://img.shields.io/badge/Ansible-2.5%20%7C%202.6%20%7C%202.7%20%7C%20devel%2A-56b4b6.svg)](https://docs.ansible.com/) |
+| [![DockerDistro](https://img.shields.io/badge/ArchLinux-latest-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/r/archlinux/base) | [![Ansible](https://img.shields.io/badge/Ansible-2.5%20%7C%202.6%20%7C%202.7%20%7C%20devel%2A-56b4b6.svg)](https://docs.ansible.com/) |
+| [![DockerDistro](https://img.shields.io/badge/CentOS-latest-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/_/centos) | [![Ansible](https://img.shields.io/badge/Ansible-2.5%20%7C%202.6%20%7C%202.7%20%7C%20devel%2A-56b4b6.svg)](https://docs.ansible.com/) |
+| [![DockerDistro](https://img.shields.io/badge/Debian-latest%20%7C%20unstable%2A-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/_/debian) | [![Ansible](https://img.shields.io/badge/Ansible-2.5%20%7C%202.6%20%7C%202.7%20%7C%20devel%2A-56b4b6.svg)](https://docs.ansible.com/) |
+| [![DockerDistro](https://img.shields.io/badge/Fedora-latest%20%7C%20rawhide%2A-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/_/fedora) | [![Ansible](https://img.shields.io/badge/Ansible-2.5%20%7C%202.6%20%7C%202.7%20%7C%20devel%2A-56b4b6.svg)](https://docs.ansible.com/) |
+| [![DockerDistro](https://img.shields.io/badge/Gentoo-latest-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/r/gentoo/stage3-amd64) | [![Ansible](https://img.shields.io/badge/Ansible-2.5%20%7C%202.6%20%7C%202.7%20%7C%20devel%2A-56b4b6.svg)](https://docs.ansible.com/) |
+| [![DockerDistro](https://img.shields.io/badge/Kali-latest-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/r/kalilinux/kali-linux-docker) | [![Ansible](https://img.shields.io/badge/Ansible-2.5%20%7C%202.6%20%7C%202.7%20%7C%20devel%2A-56b4b6.svg)](https://docs.ansible.com/) |
+| [![DockerDistro](https://img.shields.io/badge/openSUSE-Leap%20%7C%20Tumbleweed-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/_/opensuse) | [![Ansible](https://img.shields.io/badge/Ansible-2.5%20%7C%202.6%20%7C%202.7%20%7C%20devel%2A-56b4b6.svg)](https://docs.ansible.com/) |
+| [![DockerDistro](https://img.shields.io/badge/Ubuntu-latest%20%7C%20devel%2A-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/_/ubuntu) | [![Ansible](https://img.shields.io/badge/Ansible-2.5%20%7C%202.6%20%7C%202.7%20%7C%20devel%2A-56b4b6.svg)](https://docs.ansible.com/) |
 
+> Asteriks means the build is allowed to fail, it's marked as an experimental build.
 
-Compatibility
--------------
+Contributing
+------------
 
-This role has been tested against the following distributions and Ansible version:
-
-|distribution|ansible 2.6|ansible 2.7|ansible devel|
-|------------|-----------|-----------|-------------|
-|alpine-edge*|yes|yes|yes*|
-|alpine-latest|yes|yes|yes*|
-|archlinux|yes|yes|yes*|
-|centos-6|yes|yes|yes*|
-|centos-latest|yes|yes|yes*|
-|debian-latest|yes|yes|yes*|
-|debian-stable|yes|yes|yes*|
-|debian-unstable*|yes|yes|yes*|
-|fedora-latest|yes|yes|yes*|
-|fedora-rawhide*|yes|yes|yes*|
-|gentoo|yes|yes|yes*|
-|kali|yes|yes|yes*|
-|opensuse-leap|yes|yes|yes*|
-|opensuse-tumbleweed|yes|yes|yes*|
-|ubuntu-artful|yes|yes|yes*|
-|ubuntu-devel*|yes|yes|yes*|
-|ubuntu-latest|yes|yes|yes*|
-
-A single star means the build may fail, it's marked as an experimental build.
-
-Testing
--------
-
-[Unit tests](https://travis-ci.org/robertdebock/ansible-role-bootstrap) are done on every commit and periodically.
-
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bootstrap/issues)
-
-To test this role locally please use [Molecule](https://github.com/metacloud/molecule):
-```
-pip install molecule
-molecule test
-```
-
-To test on Amazon EC2, configure [~/.aws/credentials](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html) and `export AWS_REGION=eu-central-1` before running `molecule test --scenario-name ec2`.
-
-There are many specific scenarios available, please have a look in the `molecule/` directory.
-
-Run the [ansible-galaxy](https://github.com/ansible/galaxy-lint-rules) and [my](https://github.com/robertdebock/ansible-lint-rules) lint rules if you want your change to be merges:
-
-```shell
-git clone https://github.com/ansible/ansible-lint.git /tmp/ansible-lint
-ansible-lint -r /tmp/ansible-lint/lib/ansiblelint/rules .
-
-git clone https://github.com/robertdebock/ansible-lint /tmp/my-ansible-lint
-ansible-lint -r /tmp/my-ansible-lint/rules .
-```
+If you find issues, please register them at this [GitHub project issue page](https://github.com/rembik/ansible-role-bootstrap/issues/new/choose) or consider contributing code by following this [guideline](http://github.com/rembik/ansible-role-bootstrap/tree/master/.github/CONTRIBUTING.md).
 
 License
 -------
 
-Apache-2.0
-
+[Apache License, Version 2.0](https://github.com/rembik/ansible-role-bootstrap/blob/master/LICENSE)
 
 Author Information
 ------------------
 
-[Robert de Bock](https://robertdebock.nl/) <robert@meinit.nl>
+- [Robert de Bock](https://robertdebock.nl/) <robert@meinit.nl>
+- [Brian Rimek](https://github.com/rembik)

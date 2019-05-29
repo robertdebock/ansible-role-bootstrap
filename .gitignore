@@ -1,5 +1,5 @@
 molecule/*/.molecule
 *.log
+molecule/*/ssh_keys
 *.swp
-*_ssh_key
-*_ssh_key.pub
+.tox

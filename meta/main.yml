@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Robert de Bock
+  author: Robert de Bock, Brian Rimek
   role_name: bootstrap
   description: Prepare your system to be managed by Ansible.
   license: Apache-2.0

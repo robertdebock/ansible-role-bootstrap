@@ -1,0 +1,60 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: docker
+lint:
+  name: yamllint
+  options:
+    config-file: molecule/.yamllint
+platforms:
+  # https://hub.docker.com/search/?type=image
+  - name: instance-alpine-latest-docker
+    image: alpine:latest
+    pre_build_image: yes
+    command: sh -c "while true ; do sleep 1 ; done"
+  - name: instance-archlinux-latest-docker
+    image: archlinux/base:latest
+    pre_build_image: yes
+  - name: instance-centos-latest-docker
+    image: centos:latest
+    pre_build_image: yes
+  - name: instance-debian-latest-docker
+    image: debian:latest
+    pre_build_image: yes
+  - name: instance-fedora-latest-docker
+    image: fedora:latest
+    pre_build_image: yes
+  - name: instance-gentoo-latest-docker
+    image: gentoo/stage3-amd64:latest
+    pre_build_image: yes
+  - name: instance-kali-latest-docker
+    image: kalilinux/kali-linux-docker:latest
+    pre_build_image: yes
+  - name: instance-opensuse-leap-docker
+    image: opensuse/leap:latest
+    pre_build_image: yes
+  - name: instance-opensuse-tumbleweed-docker
+    image: opensuse/tumbleweed:latest
+    pre_build_image: yes
+  - name: instance-ubuntu-latest-docker
+    image: ubuntu:latest
+    pre_build_image: yes
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  config_options:
+    defaults:
+      callback_plugins: /usr/lib/python${MOLECULE_PYTHON:-2.7}/site-packages/ara/plugins/callbacks
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-../playbook.yml}
+scenario:
+  name: default
+verifier:
+  name: goss
+  directory: ../tests
+  lint:
+    name: yamllint

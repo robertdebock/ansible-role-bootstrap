@@ -24,7 +24,9 @@
                              if bootstrap_connect is succeeded else bootstrap_user }}"
   changed_when: no
 
-- name: bootstrap
+- name: find package manager
+  become: no
+  check_mode: no
   block:
 
     - name: register apk
@@ -32,72 +34,60 @@
       register: apk
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register apt_get
       raw: apt-get --version
       register: apt_get
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register dnf
       raw: dnf --version
       register: dnf
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register emerge
       raw: emerge --version
       register: emerge
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register pacman
       raw: pacman --version
       register: pacman
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register pkg
       raw: pkg --version
       register: pkg
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register pkg_add
       raw: pkg_info
       register: pkg_add
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register yum
       raw: yum --version
       register: yum
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
 
     - name: register zypper
       raw: zypper --version
       register: zypper
       changed_when: no
       failed_when: no
-      become: no
-      check_mode: no
+  
+  vars:
+    ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
+
+- name: bootstrap system
+  block:
 
     - name: install software with apk
       raw: "apk update ; apk add {{ bootstrap_apk_packages }}"
@@ -209,7 +199,7 @@
     - name: install bootstrap packages
       package:
         name: "{{ bootstrap_packages }}"
-        state: "{{ bootstrap_package_state }}"
+        state: present
       register: packageresult
       until: packageresult is succeeded
       retries: "{{ bootstrap_retries }}"
@@ -217,7 +207,7 @@
     - name: install software to support stable modules
       package:
         name: "{{ bootstrap_stable_packages }}"
-        state: "{{ bootstrap_package_state }}"
+        state: present
       when:
         - bootstrap_stable_packages is defined
       register: packagestableresult
@@ -229,7 +219,7 @@
     - name: install software to support preview modules
       package:
         name: "{{ bootstrap_preview_packages }}"
-        state: "{{ bootstrap_package_state }}"
+        state: present
       when:
         - bootstrap_preview
         - bootstrap_preview_packages is defined
