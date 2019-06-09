@@ -168,7 +168,7 @@
       retries: "{{ bootstrap_retries }}"
 
     - name: install software with zypper
-      raw: "LANG=C gzypper -n install {{ bootstrap_zypper_packages }}"
+      raw: "LANG=C zypper -n install {{ bootstrap_zypper_packages }}"
       when:
         - zypper.rc == 0
       register: zypperresult
