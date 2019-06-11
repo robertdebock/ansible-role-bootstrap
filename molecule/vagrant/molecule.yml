@@ -13,12 +13,16 @@ platforms:
   - name: bootstrap-debian
     box: debian/stretch64
   - name: bootstrap-fedora
-    box: fedora/29-cloud-base
+    box: fedora/30-cloud-base
 provisioner:
   name: ansible
   playbooks:
     converge: ../resources/playbook.yml
   lint:
     name: ansible-lint
+  inventory:
+    host_vars:
+      bootstrap-fedora:
+        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: vagrant
