@@ -65,7 +65,7 @@ _bootstrap_packages:
     - sudo
   Ubuntu:
     - iproute2
-    - python
+    - python3
     - sudo
 
 bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution] | default(_bootstrap_packages['default']) }}"
@@ -105,8 +105,8 @@ _bootstrap_stable_packages:
   Ubuntu:
     - acl
     - ca-certificates
-    - python-apt
-    - python-simplejson
+    - python3-apt
+    - python3-simplejson
 
 bootstrap_stable_packages: "{{ _bootstrap_stable_packages[ansible_distribution ~ '-' ~ bootstrap_ansible_distribution_major_version] | default(_bootstrap_stable_packages[ansible_distribution] | default(_bootstrap_stable_packages['default'])) }}"
 
