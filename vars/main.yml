@@ -7,7 +7,7 @@ bootstrap_remote_user: "{{ (ansible_user | default(omit, true)) if bootstrap_con
 # module, separated by a space.
 bootstrap_apk_packages: python sudo
 bootstrap_apt_packages: python sudo
-bootstrap_dnf_packages: python sudo
+bootstrap_dnf_packages: python3 sudo
 bootstrap_emerge_packages: python sudo gentoolkit
 bootstrap_pacman_packages: python sudo
 bootstrap_pkg_add_packages: python-3* sudo--
@@ -63,6 +63,10 @@ _bootstrap_packages:
     - python
     - python-xml
     - sudo
+  RedHat:
+    - iproute
+    - python3
+    - sudo
   Ubuntu:
     - iproute2
     - python3
@@ -102,6 +106,8 @@ _bootstrap_stable_packages:
   openSUSE Leap:
     - acl
     - ca-certificates
+  RedHat:
+    - acl
   Ubuntu:
     - acl
     - ca-certificates

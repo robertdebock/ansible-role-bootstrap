@@ -40,9 +40,16 @@ platforms:
   - name: bootstrap-fedora-rawhide
     image: fedora:rawhide
     pre_build_image: yes
+    registry:
+      url: registry.fedoraproject.org
   - name: bootstrap-opensuse-leap
     image: opensuse:leap
     pre_build_image: yes
+  - name: bootstrap-rhel-latest
+    image: ubi8/ubi
+    pre_build_image: yes
+    registry:
+      url: registry.access.redhat.com
   - name: bootstrap-ubuntu-latest
     image: ubuntu:latest
     pre_build_image: yes
