@@ -1,0 +1,23 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+lint:
+  name: yamllint
+driver:
+  name: docker
+platforms:
+  - name: bootstrap-rhel-7
+    image: ubi7/ubi
+    pre_build_image: yes
+    registry:
+      url: registry.access.redhat.com
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ../resources/playbook.yml
+  lint:
+    name: ansible-lint
+scenario:
+  name: redhat-7

@@ -93,6 +93,8 @@ This role has been tested against the following distributions and Ansible versio
 |gentoo|yes|yes|yes*|
 |kali|yes|yes|yes*|
 |opensuse-leap|yes|yes|yes*|
+|redhat-7|yes|yes|yes*|
+|redhat-latest|yes|yes|yes*|
 |ubuntu-devel*|yes|yes|yes*|
 |ubuntu-latest|yes|yes|yes*|
 |ubuntu-rolling|yes|yes|yes*|

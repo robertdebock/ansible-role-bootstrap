@@ -63,6 +63,10 @@ _bootstrap_packages:
     - python
     - python-xml
     - sudo
+  RedHat-7:
+    - iproute
+    - python
+    - sudo
   RedHat:
     - iproute
     - python3
@@ -72,7 +76,7 @@ _bootstrap_packages:
     - python3
     - sudo
 
-bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution] | default(_bootstrap_packages['default']) }}"
+bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_bootstrap_packages[ansible_distribution] | default(_bootstrap_packages['default'])) }}"
 
 # A dictionary based on Ansible facts `ansible_distribution` and
 # `ansible_distribution_major_version` containing a list of packages. The
