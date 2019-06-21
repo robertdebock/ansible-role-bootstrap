@@ -14,8 +14,8 @@ platforms:
     registry:
       url: registry.access.redhat.com
       credentials:
-        username: ${registry_redhat_io_username}
-        password: ${registry_redhat_io_password}
+        username: $registryredhatiousername
+        password: $registryredhatiopassword
 provisioner:
   name: ansible
   playbooks:
