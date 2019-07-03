@@ -6,3 +6,7 @@
 
   roles:
     - ansible-role-bootstrap
+
+  tasks:
+    - name: test connection
+      ping:
