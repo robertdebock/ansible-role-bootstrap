@@ -1,0 +1,60 @@
+---
+- name: register package manager
+  remote_user: "{{ bootstrap_remote_user | default(omit) }}"
+  become: no
+  check_mode: no
+  block:
+
+    - name: register apk
+      raw: apk --version
+      register: apk
+      changed_when: no
+      failed_when: no
+
+    - name: register apt_get
+      raw: apt-get --version
+      register: apt_get
+      changed_when: no
+      failed_when: no
+
+    - name: register dnf
+      raw: dnf --version
+      register: dnf
+      changed_when: no
+      failed_when: no
+
+    - name: register emerge
+      raw: emerge --version
+      register: emerge
+      changed_when: no
+      failed_when: no
+
+    - name: register pacman
+      raw: pacman --version
+      register: pacman
+      changed_when: no
+      failed_when: no
+
+    - name: register pkg
+      raw: pkg --version
+      register: pkg
+      changed_when: no
+      failed_when: no
+
+    - name: register pkg_add
+      raw: pkg_info
+      register: pkg_add
+      changed_when: no
+      failed_when: no
+
+    - name: register yum
+      raw: yum --version
+      register: yum
+      changed_when: no
+      failed_when: no
+
+    - name: register zypper
+      raw: zypper --version
+      register: zypper
+      changed_when: no
+      failed_when: no

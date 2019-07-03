@@ -1,0 +1,101 @@
+---
+- name: install using registered package manager
+  remote_user: "{{ bootstrap_remote_user | default(omit) }}"
+  block:
+    - name: install software with apk
+      raw: "apk update ; apk add {{ bootstrap_apk_packages }}"
+      when:
+        - apk.rc == 0
+      register: apkresult
+      changed_when:
+        - "'Installing' in apkresult.stdout"
+      until: apkresult is succeeded
+      retries: "{{ bootstrap_retries }}"
+      notify:
+        - add community repository for apk
+
+    - name: install software with apt-get
+      raw: "apt-get update ; LANG=C apt-get -y install {{ bootstrap_apt_packages }}"
+      when:
+        - apt_get.rc == 0
+        - zypper.rc != 0
+      register: apt_getresult
+      changed_when:
+        - "' 0 newly installed' not in apt_getresult.stdout"
+      until: apt_getresult is succeeded
+      retries: "{{ bootstrap_retries }}"
+
+    - name: install software with dnf
+      raw: "LANG=C dnf -y install {{ bootstrap_dnf_packages }}"
+      when:
+        - dnf.rc == 0
+      register: dnfresult
+      changed_when:
+        - "'Nothing' not in dnfresult.stdout"
+      until: dnfresult is succeeded
+      retries: "{{ bootstrap_retries }}"
+
+    - name: install software with emerge
+      raw: "{{ bootstrap_emerge_command }}"
+      when:
+        - emerge.rc == 0
+      register: emergeresult
+      changed_when:
+        - "'changed' in emergeresult.stdout"
+      until: emergeresult is succeeded
+      retries: "{{ bootstrap_retries }}"
+
+    - name: install software with pacman
+      raw: "pacman -Sy ; pacman -T {{ bootstrap_pacman_packages }} || LANG=C pacman -S --noconfirm {{ bootstrap_pacman_packages }}"
+      when:
+        - pacman.rc == 0
+      register: pacmanresult
+      changed_when:
+        - "' installing python' in pacmanresult.stdout"
+      until: pacmanresult is succeeded
+      retries: "{{ bootstrap_retries }}"
+
+    - name: install software with pkg
+      raw: >
+        ASSUME_ALWAYS_YES=YES LANG=C
+        pkg install {{ bootstrap_pkg_packages }}
+        ; ln -s /usr/local/bin/python /usr/bin/python
+        || exit 0
+      when:
+        - pkg.rc == 0
+      register: pkgresult
+      changed_when:
+        - "'Extracting python' in pkgresult.stdout"
+      until: pkgresult is succeeded
+      retries: "{{ bootstrap_retries }}"
+
+    - name: install software with pkg_add
+      raw: LANG=C pkg_add -Iz {{ bootstrap_pkg_add_packages }}
+      when:
+        - pkg_add.rc == 0
+      register: pkg_add_getresult
+      changed_when:
+        - "': ok' in pkg_add_getresult.stdout"
+      until: pkg_add_getresult is succeeded
+      retries: "{{ bootstrap_retries }}"
+
+    - name: install software with yum
+      raw: "LANG=C yum -y install {{ bootstrap_yum_packages }}"
+      when:
+        - yum.rc == 0
+      register: yumresult
+      changed_when:
+        - "'Nothing' not in yumresult.stdout"
+      until: yumresult is succeeded
+      retries: "{{ bootstrap_retries }}"
+
+    - name: install software with zypper
+      raw: "LANG=C zypper -n install {{ bootstrap_zypper_packages }}"
+      when:
+        - zypper.rc == 0
+      register: zypperresult
+      changed_when:
+        - "'Nothing' not in zypperresult.stdout"
+      failed_when: no
+      until: zypperresult is succeeded
+      retries: "{{ bootstrap_retries }}"
