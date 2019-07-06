@@ -43,7 +43,7 @@ platforms:
     registry:
       url: registry.fedoraproject.org
   - name: bootstrap-opensuse-leap
-    image: opensuse:leap
+    image: opensuse/leap
     pre_build_image: yes
   - name: bootstrap-rhel-7
     image: ubi7/ubi

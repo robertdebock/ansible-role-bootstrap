@@ -19,6 +19,10 @@ This example is taken from `molecule/resources/playbook.yml`:
 
   roles:
     - robertdebock.bootstrap
+
+  tasks:
+    - name: test connection
+      ping:
 ```
 
 The machine you are running this on, may need to be prepared.
@@ -93,8 +97,6 @@ This role has been tested against the following distributions and Ansible versio
 |gentoo|yes|yes|yes*|
 |kali|yes|yes|yes*|
 |opensuse-leap|yes|yes|yes*|
-|redhat-7|yes|yes|yes*|
-|redhat-latest|yes|yes|yes*|
 |ubuntu-devel*|yes|yes|yes*|
 |ubuntu-latest|yes|yes|yes*|
 |ubuntu-rolling|yes|yes|yes*|

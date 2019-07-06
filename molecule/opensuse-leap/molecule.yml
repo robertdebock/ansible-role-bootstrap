@@ -9,7 +9,7 @@ driver:
   name: docker
 platforms:
   - name: bootstrap-opensuse-leap
-    image: opensuse:leap
+    image: opensuse/leap
     pre_build_image: yes
 provisioner:
   name: ansible
