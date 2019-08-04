@@ -43,6 +43,10 @@ _bootstrap_packages:
     - iproute
     - python2
     - sudo
+  Debian:
+    - aptitude
+    - python
+    - sudo
   Fedora:
     - iproute
     - python3
