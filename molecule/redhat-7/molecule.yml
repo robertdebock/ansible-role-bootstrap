@@ -22,5 +22,9 @@ provisioner:
     converge: ../resources/playbook.yml
   lint:
     name: ansible-lint
+    options:
+      exclude:
+        - meta/version.yml
+        - meta/exception.yml
 scenario:
   name: redhat-7
