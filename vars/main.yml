@@ -139,7 +139,6 @@ _bootstrap_preview_packages:
     - tar
     - unzip
     - gzip
-    - policycoreutils-python
     - xz
   Debian:
     - apt-transport-https
@@ -153,7 +152,6 @@ _bootstrap_preview_packages:
     - tar
     - unzip
     - gzip
-    - policycoreutils-python
     - xz
   FreeBSD:
     - unzip
