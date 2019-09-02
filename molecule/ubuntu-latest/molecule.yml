@@ -21,5 +21,9 @@ provisioner:
       exclude:
         - meta/version.yml
         - meta/exception.yml
+  inventory:
+    host_vars:
+      bootstrap-ubuntu-latest:
+        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: ubuntu-latest
