@@ -6,7 +6,7 @@ bootstrap_remote_user: "{{ (ansible_user | default(omit, true)) if bootstrap_con
 # A string containing all packages required to be installed using the `raw`
 # module, separated by a space.
 bootstrap_apk_packages: python sudo
-bootstrap_apt_packages: python sudo
+bootstrap_apt_packages: python3 sudo
 bootstrap_dnf_packages: python3 sudo
 bootstrap_emerge_packages: python sudo gentoolkit
 bootstrap_pacman_packages: python sudo
@@ -45,7 +45,7 @@ _bootstrap_packages:
     - sudo
   Debian:
     - aptitude
-    - python
+    - python3
     - sudo
   Fedora:
     - iproute
@@ -102,8 +102,8 @@ _bootstrap_stable_packages:
   Debian:
     - acl
     - ca-certificates
-    - python-apt
-    - python-simplejson
+    - python3-apt
+    - python3-simplejson
   Fedora:
     - acl
     - polkit
