@@ -20,6 +20,7 @@ _bootstrap_packages:
   Debian-9: python sudo
   Debian: python3 sudo
   Kali: python3 sudo
+  Kali GNU/Linux: python3 sudo
   openSUSE: python python-xml sudo
   openSUSE Leap: python python-xml sudo
   Red Hat Enterprise Linux Server-6: python sudo
