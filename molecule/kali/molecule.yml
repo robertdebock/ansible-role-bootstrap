@@ -22,8 +22,8 @@ provisioner:
         - meta/version.yml
         - meta/exception.yml
   inventory:
-    host_vars:
-      bootstrap-kali:
+    group_vars:
+      all:
         ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: kali
