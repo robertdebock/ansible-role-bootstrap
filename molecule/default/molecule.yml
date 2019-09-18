@@ -55,12 +55,6 @@ provisioner:
   name: ansible
   playbooks:
     converge: ../resources/playbook.yml
-  lint:
-    name: ansible-lint
-    options:
-      exclude:
-        - meta/version.yml
-        - meta/exception.yml
   inventory:
     host_vars:
       bootstrap-fedora-latest:
