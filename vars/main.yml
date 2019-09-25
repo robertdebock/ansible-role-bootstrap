@@ -117,7 +117,6 @@ _bootstrap_stable_packages:
   RedHat:
     - acl
   Ubuntu:
-    - acl
     - ca-certificates
     - python3-apt
     - python3-simplejson
