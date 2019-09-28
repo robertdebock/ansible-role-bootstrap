@@ -19,5 +19,9 @@ provisioner:
     group_vars:
       all:
         ansible_python_interpreter: /usr/bin/python3
+  config_options:
+    defaults:
+      stdout_callback: yaml
+      bin_ansible_callbacks: true
 scenario:
   name: debian-stable
