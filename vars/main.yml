@@ -47,6 +47,7 @@ _bootstrap_packages:
     - aptitude
     - python3
     - sudo
+    - gnupg
   Fedora:
     - iproute
     - python3
@@ -79,6 +80,7 @@ _bootstrap_packages:
     - iproute2
     - python3
     - sudo
+    - gnupg
 
 bootstrap_packages: "{{ _bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_bootstrap_packages[ansible_distribution] | default(_bootstrap_packages['default'])) }}"
 
