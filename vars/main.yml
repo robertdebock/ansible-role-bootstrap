@@ -21,7 +21,7 @@ bootstrap_alpine_community_repo: "http://dl-cdn.alpinelinux.org/alpine/v{{ ansib
 # as a workaround it's determined here, saved to another variable and used
 # later.
 
-bootstrap_ansible_distribution_major_version: ansible_distibution_major_version | default('none')
+bootstrap_ansible_distribution_major_version: "{{ ansible_distibution_major_version | default('none') }}"
 
 # A dictionary based on Ansible facts `ansible_distribution` and
 # `ansible_distribution_major_version` containing a list of packages.
