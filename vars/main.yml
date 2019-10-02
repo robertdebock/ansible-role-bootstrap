@@ -101,6 +101,8 @@ _bootstrap_stable_packages:
   CentOS-7:
     - acl
     - yum-plugin-ovl
+  CentOS:
+    - acl
   Debian:
     - acl
     - ca-certificates
