@@ -8,8 +8,8 @@ lint:
 driver:
   name: docker
 platforms:
-  - name: bootstrap-centos-6
-    image: centos:6
+  - name: bootstrap-centos-7
+    image: centos:7
     pre_build_image: yes
 provisioner:
   name: ansible
@@ -20,4 +20,4 @@ provisioner:
       stdout_callback: yaml
       bin_ansible_callbacks: true
 scenario:
-  name: centos-6
+  name: centos-7
