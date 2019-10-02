@@ -6,6 +6,9 @@ bootstrap
 
 Prepare your system to be managed by Ansible.
 
+<img src="https://img.shields.io/ansible/role/d/21642"/>
+<img src="https://img.shields.io/ansible/quality/21642"/>
+
 Example Playbook
 ----------------
 
@@ -73,6 +76,7 @@ This role uses the following modules:
 ```yaml
 ---
 - lineinfile
+- meta
 - package
 - remote_user
 - setup

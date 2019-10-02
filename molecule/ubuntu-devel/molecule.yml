@@ -15,6 +15,12 @@ provisioner:
   name: ansible
   playbooks:
     converge: ../resources/playbook.yml
+  lint:
+    name: ansible-lint
+    options:
+      exclude:
+        - meta/version.yml
+        - meta/exception.yml
   inventory:
     group_vars:
       all:

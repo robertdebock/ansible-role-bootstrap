@@ -18,7 +18,7 @@ _bootstrap_packages:
   Fedora: python3 sudo
   Debian-8: python sudo gnupg
   Debian-9: python sudo gnupg
-  Debian: python3 sudo gnupg
+  Debian: python3 sudo gnupg python3-apt
   Kali: python3 sudo gnupg
   Kali GNU/Linux: python3 sudo gnupg
   openSUSE: python python-xml sudo
