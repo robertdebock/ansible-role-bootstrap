@@ -15,6 +15,10 @@ provisioner:
   name: ansible
   playbooks:
     converge: ../resources/playbook.yml
+  config_options:
+    defaults:
+      stdout_callback: yaml
+      bin_ansible_callbacks: true
   lint:
     name: ansible-lint
     options:

@@ -11,7 +11,7 @@
     - ansible_connection != "docker"
     - bootstrap_wait_for_host | bool
 
-- name: test connection, otherwise register package manager
+- name: test connection and prepare system on failure
   block:
     - name: test connection (allowed to fail)
       wait_for_connection:
@@ -20,45 +20,20 @@
       changed_when: no
 
   rescue:
-    - name: register package manager
+    - name: register distribution
       include_tasks: register.yml
 
-    - name: install using registered package manager
+    - name: install using registered distribution
       include_tasks: install.yml
 
 - name: gather facts
   setup:
-  become: no
+    gather_subset:
+      - min
 
-- name: install bootstrap packages
+- name: install bootstrap_facts_packages
   package:
-    name: "{{ bootstrap_packages }}"
+    name: "{{ item }}"
     state: present
-  register: packageresult
-  until: packageresult is succeeded
-
-- name: install software to support stable modules
-  package:
-    name: "{{ bootstrap_stable_packages }}"
-    state: present
-  when:
-    - bootstrap_stable_packages is defined
-  register: packagestableresult
-  until: packagestableresult is succeeded
-  notify:
-    - gather facts
-
-- name: install software to support preview modules
-  package:
-    name: "{{ bootstrap_preview_packages }}"
-    state: present
-  when:
-    - bootstrap_preview | bool
-    - bootstrap_preview_packages is defined
-  register: packagepreviewresult
-  until: packagepreviewresult is succeeded
-  notify:
-    - gather facts
-
-- name: flush handlers
-  meta: flush_handlers
+  with_items:
+    - "{{ bootstrap_facts_packages.split() }}"

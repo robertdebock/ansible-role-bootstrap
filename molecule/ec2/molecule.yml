@@ -36,12 +36,6 @@ provisioner:
   name: ansible
   playbooks:
     converge: ../resources/playbook.yml
-  lint:
-    name: ansible-lint
-    options:
-      exclude:
-        - meta/version.yml
-        - meta/exception.yml
   inventory:
     host_vars:
       bootstrap-ubuntu-18.04:
@@ -50,6 +44,10 @@ provisioner:
         ansible_user: centos
       bootstrap-fedora-29:
         ansible_user: fedora
+  config_options:
+    defaults:
+      stdout_callback: yaml
+      bin_ansible_callbacks: true
 scenario:
   name: ec2
   create_sequence:
