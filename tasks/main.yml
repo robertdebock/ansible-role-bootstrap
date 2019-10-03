@@ -28,8 +28,6 @@
 
 - name: gather facts
   setup:
-    gather_subset:
-      - min
 
 - name: install bootstrap_facts_packages
   package:
