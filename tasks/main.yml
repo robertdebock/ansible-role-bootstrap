@@ -35,3 +35,6 @@
     state: present
   with_items:
     - "{{ bootstrap_facts_packages.split() }}"
+  register: bootstrap_install_bootstrap_facts_packages
+  until: bootstrap_install_bootstrap_facts_packages is succeeded
+  retries: 3
