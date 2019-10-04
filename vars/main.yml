@@ -10,9 +10,8 @@ bootstrap_remote_user: "{{ (ansible_user | default(omit, true)) if bootstrap_con
 _bootstrap_packages:
   Alpine: python3 sudo
   Archlinux: python3 sudo
-  CentOS-6: python sudo
-  CentOS Linux-7: python sudo
-  CentOS-7: python sudo
+  CentOS Linux-7: python3 sudo
+  CentOS-7: python3 sudo
   CentOS: python3 sudo
   CentOS Linux: python3 sudo
   Gentoo: python sudo gentoolkit
@@ -24,8 +23,7 @@ _bootstrap_packages:
   Kali GNU/Linux: python3 sudo gnupg
   openSUSE: python python-xml sudo
   openSUSE Leap: python python-xml sudo
-  Red Hat Enterprise Linux Server-6: python sudo
-  Red Hat Enterprise Linux-7: python sudo
+  Red Hat Enterprise Linux-7: python3 sudo
   Red Hat Enterprise Linux: python3 sudo
   Ubuntu: python3 sudo gnupg
 
