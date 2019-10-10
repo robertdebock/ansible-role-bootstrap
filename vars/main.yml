@@ -23,8 +23,10 @@ _bootstrap_packages:
   Kali GNU/Linux: python3 sudo gnupg
   openSUSE: python python-xml sudo
   openSUSE Leap: python python-xml sudo
-  Red Hat Enterprise Linux-7: python3 sudo
-  Red Hat Enterprise Linux: python3 sudo
+  RedHat: python3 sudo
+  RedHat-7: python3 sudo
+  Red Hat Enterprise Linux Server-7: python3 sudo
+  Red Hat Enterprise Linux Server: python3 sudo
   Ubuntu: python3 sudo gnupg
 
 # Map the right set of package based on values found in `tasks/register.yml`.
