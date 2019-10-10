@@ -54,7 +54,7 @@
         - bootstrap_packages is defined
       register: opensuseresult
       changed_when:
-        - "'Nothing' not in opensuse.stdout"
+        - "'Nothing' not in opensuseresult.stdout"
       until: opensuseresult is succeeded
       retries: "{{ bootstrap_retries }}"
 
