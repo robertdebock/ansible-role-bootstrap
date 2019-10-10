@@ -1,6 +1,6 @@
 ---
 # vars file for bootstrap
-
+bootstrap_connect: {}
 bootstrap_remote_user: "{{ (ansible_user | default(omit, true)) if bootstrap_connect is succeeded else bootstrap_user }}"
 
 # A string for each distribution and version of packages to install.
