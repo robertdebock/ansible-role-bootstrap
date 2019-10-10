@@ -12,6 +12,7 @@
     - bootstrap_wait_for_host | bool
 
 - name: test connection and prepare system on failure
+  remote_user: "{{ bootstrap_remote_user | default(omit) }}"
   block:
     - name: test connection (allowed to fail)
       wait_for_connection:
@@ -26,14 +27,17 @@
     - name: install using registered distribution
       include_tasks: install.yml
 
-- name: gather facts
-  setup:
+- name: ensure all bootstrap_packages are installed
+  remote_user: "{{ bootstrap_remote_user | default(omit) }}"
+  block:
+    - name: gather facts
+      setup:
 
-- name: install bootstrap_facts_packages
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ bootstrap_facts_packages.split() }}"
-  register: bootstrap_install_bootstrap_facts_packages
-  until: bootstrap_install_bootstrap_facts_packages is succeeded
-  retries: 3
+    - name: install bootstrap_facts_packages
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ bootstrap_facts_packages.split() }}"
+      register: bootstrap_install_bootstrap_facts_packages
+      until: bootstrap_install_bootstrap_facts_packages is succeeded
+      retries: 3
