@@ -12,6 +12,9 @@ platforms:
     image: ubi8:latest
     registry:
       url: registry.access.redhat.com
+      credentials:
+        username: $redhatregistryusername
+        password: $redhatregistrypassword
     pre_build_image: yes
 provisioner:
   name: ansible
