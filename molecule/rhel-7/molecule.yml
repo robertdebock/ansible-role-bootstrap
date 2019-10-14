@@ -11,7 +11,7 @@ platforms:
   - name: bootstrap-rhel-7
     image: ubi7:latest
     registry:
-      url: registry.access.redhat.com
+      url: registry.redhat.io
       credentials:
         username: "${redhatregistryusername}"
         password: "${redhatregistrypassword}"
