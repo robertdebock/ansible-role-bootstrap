@@ -87,11 +87,6 @@ matrix:
 cache:
   - pip
 
-before_install:
-  - openssl aes-256-cbc -K $encrypted_79eea3811236_key -iv $encrypted_79eea3811236_iv -in molecule/resources/travis-auth.json.enc -out travis-auth.json -d
-  - mkdir ~/.docker
-  - mv travis-auth.json ~/.docker/config.json
-
 install:
   - pip install --upgrade pip
   - if [ "${version}" != "devel" ] ; then pip install ansible"${version}" ; fi
