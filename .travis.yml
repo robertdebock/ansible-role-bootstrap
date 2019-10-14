@@ -88,9 +88,9 @@ cache:
   - pip
 
 before_install:
-  - docker login --username $redhatregistryusername --password $redhatregistrypassword registry.redhat.io
-  - docker pull registry.redhat.io/ubi8/ubi
-  - docker pull registry.redhat.io/ubi7/ubi
+  - docker login --username $redhatregistryusername --password $redhatregistrypassword registry.access.redhat.com
+  - docker pull registry.access.redhat.com/ubi8/ubi
+  - docker pull registry.access.redhat.com/ubi7/ubi
 
 install:
   - pip install --upgrade pip
