@@ -9,9 +9,9 @@ driver:
   name: docker
 platforms:
   - name: bootstrap-rhel-7
-    image: ubi7:latest
+    image: ubi7/ubi
     registry:
-      url: registry.redhat.io
+      url: registry.access.redhat.com
       credentials:
         username: $redhatregistryusername
         password: $redhatregistrypassword
