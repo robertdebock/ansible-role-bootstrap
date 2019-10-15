@@ -87,11 +87,6 @@ matrix:
 cache:
   - pip
 
-before_install:
-  - docker login --username $redhatregistryusername --password $redhatregistrypassword registry.access.redhat.com
-  - docker pull registry.access.redhat.com/ubi8/ubi
-  - docker pull registry.access.redhat.com/ubi7/ubi
-
 install:
   - pip install --upgrade pip
   - if [ "${version}" != "devel" ] ; then pip install ansible"${version}" ; fi

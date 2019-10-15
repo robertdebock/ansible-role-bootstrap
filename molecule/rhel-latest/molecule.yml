@@ -9,12 +9,9 @@ driver:
   name: docker
 platforms:
   - name: bootstrap-rhel-latest
-    image: ubi8/ubi
+    image: ubi8/ubi:latest
     registry:
       url: registry.access.redhat.com
-      credentials:
-        username: $redhatregistryusername
-        password: $redhatregistrypassword
     pre_build_image: yes
 provisioner:
   name: ansible
