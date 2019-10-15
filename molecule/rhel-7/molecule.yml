@@ -15,6 +15,7 @@ platforms:
     pre_build_image: yes
 provisioner:
   name: ansible
+  log: true
   playbooks:
     converge: ../resources/playbook.yml
   config_options:
