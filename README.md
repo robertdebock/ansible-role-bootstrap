@@ -108,8 +108,8 @@ This role has been tested against the following distributions and Ansible versio
 |fedora-rawhide*|yes|yes|yes*|
 |kali|yes|yes|yes*|
 |opensuse-leap|yes|yes|yes*|
-|rhel-7|yes|yes|yes*|
-|rhel-latest|yes|yes|yes*|
+|rhel-7|no|no|no*|
+|rhel-latest|no|no|no*|
 |ubuntu-devel*|yes|yes|yes*|
 |ubuntu-latest|yes|yes|yes*|
 |ubuntu-rolling|yes|yes|yes*|
