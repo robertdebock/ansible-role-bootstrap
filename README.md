@@ -93,28 +93,31 @@ Here is an overview of related roles:
 Compatibility
 -------------
 
-This role has been tested against the following distributions and Ansible version:
+This role has been tested on these [container images](https://hub.docker.com/):
 
-|distribution|ansible 2.7|ansible 2.8|ansible devel|
-|------------|-----------|-----------|-------------|
-|alpine-edge*|yes|yes|yes*|
-|alpine-latest|yes|yes|yes*|
-|archlinux|yes|yes|yes*|
-|centos-7|yes|yes|yes*|
-|centos-latest|yes|yes|yes*|
-|debian-stable|yes|yes|yes*|
-|debian-unstable*|yes|yes|yes*|
-|fedora-latest|yes|yes|yes*|
-|fedora-rawhide*|yes|yes|yes*|
-|kali|yes|yes|yes*|
-|opensuse-leap|yes|yes|yes*|
-|rhel-7|no|no|no*|
-|rhel-latest|no|no|no*|
-|ubuntu-devel*|yes|yes|yes*|
-|ubuntu-latest|yes|yes|yes*|
-|ubuntu-rolling|yes|yes|yes*|
+|container|allow_failures|
+|---------|--------------|
+|docker-alpine-openrc|yes|
+|docker-alpine-openrc|yes|
+|docker-centos-systemd|no|
+|docker-centos-systemd|no|
+|docker-debian-systemd|yes|
+|docker-debian-systemd|yes|
+|docker-debian-systemd|yes|
+|docker-fedora-systemd|yes|
+|docker-fedora-systemd|yes|
+|opensuse/|no|
+|docker-ubuntu-systemd|yes|
+|docker-ubuntu-systemd|yes|
+|docker-ubuntu-systemd|yes|
 
-A single star means the build may fail, it's marked as an experimental build.
+This role has been tested on these Ansible versions:
+
+- ansible~=2.7
+- ansible~=2.8
+- git+https://github.com/ansible/ansible.git@devel
+
+The indicator '~=' means [compatible with](https://www.python.org/dev/peps/pep-0440/#compatible-release). For example 'ansible~=2.8' would pick the latest ansible-2.8, for example ansible-2.8.5.
 
 
 
