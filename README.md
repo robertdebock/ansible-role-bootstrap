@@ -106,6 +106,8 @@ This role has been tested on these [container images](https://hub.docker.com/):
 |docker-debian-systemd|yes|
 |docker-fedora-systemd|yes|
 |docker-fedora-systemd|yes|
+|gentoo/|no|
+|kalilinux/|no|
 |opensuse/|no|
 |docker-ubuntu-systemd|yes|
 |docker-ubuntu-systemd|yes|

@@ -21,6 +21,8 @@ env:
     - image="docker-debian-systemd"
     - image="docker-fedora-systemd"
     - image="docker-fedora-systemd" tag="rawhide"
+    - namespace="gentoo/" image="stage3-amd64"
+    - namespace="kalilinux/" image="kali-linux-docker"
     - namespace="opensuse/" image="leap"
     - image="docker-ubuntu-systemd" tag="rolling"
     - image="docker-ubuntu-systemd" tag="devel"
