@@ -15,13 +15,13 @@ galaxy_info:
       versions:
         - all
     - name: ArchLinux
-      version:
+      versions:
         - all
     - name: Debian
       versions:
         - all
     - name: EL
-      version:
+      versions:
         - 7
         - 8
     - name: Fedora
