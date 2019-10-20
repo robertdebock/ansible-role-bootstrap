@@ -24,6 +24,8 @@ env:
     - namespace="gentoo/" image="stage3-amd64"
     - namespace="kalilinux/" image="kali-linux-docker"
     - namespace="opensuse/" image="leap"
+    - image="docker-redhat-systemd" tag="7"
+    - image="docker-redhat-systemd"
     - image="docker-ubuntu-systemd" tag="rolling"
     - image="docker-ubuntu-systemd" tag="devel"
     - image="docker-ubuntu-systemd"
