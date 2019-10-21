@@ -11,6 +11,7 @@ env:
   matrix:
     - image="docker-alpine-openrc"
     - image="docker-alpine-openrc" tag="edge"
+    # - namespace="archlinux/" image="base"
     - image="docker-debian-systemd" tag="stable"
     - image="docker-debian-systemd" tag="unstable"
     - image="docker-debian-systemd"
