@@ -1,0 +1,9 @@
+---
+- name: Verify
+  hosts: all
+  become: no
+  gather_facts: yes
+
+  tasks:
+    - name: test connection
+      ping:
