@@ -14,8 +14,9 @@ platforms:
     pre_build_image: yes
 provisioner:
   name: ansible
-  playbooks:
-    prepare: prepare.yml
-    converge: playbook.yml
+verifier:
+  name: ansible
+  lint:
+    name: ansible-lint
 scenario:
   name: default
