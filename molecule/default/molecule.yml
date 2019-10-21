@@ -9,7 +9,7 @@ driver:
   name: docker
 platforms:
   - name: "${image:-default}-${TOX_ENVNAME:-default}"
-    image: "${namespace:-robertdebock/}${image:-docker-fedora-systemd}:${tag:-latest}"
+    image: "robertdebock/${image:-docker-fedora-systemd}:${tag:-latest}"
     command: sh -c "while true ; do sleep 30 ; done"
     pre_build_image: yes
 provisioner:
@@ -18,5 +18,6 @@ verifier:
   name: ansible
   lint:
     name: ansible-lint
+    enabled: false
 scenario:
   name: default
