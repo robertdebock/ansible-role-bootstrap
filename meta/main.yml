@@ -11,9 +11,6 @@ galaxy_info:
     - name: Alpine
       versions:
         - all
-    - name: Amazon
-      versions:
-        - all
     - name: ArchLinux
       versions:
         - all
@@ -25,13 +22,6 @@ galaxy_info:
         - 7
         - 8
     - name: Fedora
-      versions:
-        - all
-    - name: FreeBSD
-      versions:
-        - 10.4
-        - 11.2
-    - name: OpenBSD
       versions:
         - all
     - name: OpenSUSE
