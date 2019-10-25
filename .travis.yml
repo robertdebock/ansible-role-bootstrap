@@ -8,31 +8,33 @@ services:
   - docker
 
 env:
+  global:
+    namespace="robertdebock"
   matrix:
-    - image="docker-alpine-openrc"
-    - image="docker-alpine-openrc" tag="edge"
-    # - namespace="archlinux/" image="base"
-    - image="docker-debian-systemd" tag="stable"
-    - image="docker-debian-systemd" tag="unstable"
-    - image="docker-debian-systemd"
-    - image="docker-centos-systemd" tag="7"
-    - image="docker-redhat-systemd" tag="7"
-    - image="docker-centos-systemd"
-    - image="docker-redhat-systemd"
-    - image="docker-fedora-systemd"
-    - image="docker-fedora-systemd" tag="rawhide"
-    - image="docker-opensuse-systemd"
-    - image="docker-ubuntu-systemd" tag="rolling"
-    - image="docker-ubuntu-systemd" tag="devel"
-    - image="docker-ubuntu-systemd"
+    - image="alpine"
+    - image="alpine" tag="edge"
+    # - namespace="archlinux" image="base"
+    - image="debian" tag="stable"
+    - image="debian" tag="unstable"
+    - image="debian"
+    - image="centos" tag="7"
+    - image="redhat" tag="7"
+    - image="centos"
+    - image="redhat"
+    - image="fedora"
+    - image="fedora" tag="rawhide"
+    - image="opensuse"
+    - image="ubuntu" tag="rolling"
+    - image="ubuntu" tag="devel"
+    - image="ubuntu"
 
 matrix:
   allow_failures:
-    - env: image="docker-alpine-openrc" tag="edge"
-    - env: image="docker-debian-systemd" tag="unstable"
-    - env: image="docker-fedora-systemd" tag="rawhide"
-    - env: image="docker-ubuntu-systemd" tag="rolling"
-    - env: image="docker-ubuntu-systemd" tag="devel"
+    - env: image="alpine" tag="edge"
+    - env: image="debian" tag="unstable"
+    - env: image="fedora" tag="rawhide"
+    - env: image="ubuntu" tag="rolling"
+    - env: image="ubuntu" tag="devel"
 
 cache:
   - pip

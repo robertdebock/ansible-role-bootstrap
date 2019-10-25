@@ -8,8 +8,8 @@ lint:
 driver:
   name: docker
 platforms:
-  - name: "${image:-default}-${TOX_ENVNAME:-default}"
-    image: "robertdebock/${image:-docker-fedora-systemd}:${tag:-latest}"
+  - name: "${namespace:-robertdebock-}${image:-fedora}-${TOX_ENVNAME:-default}"
+    image: "${namespace:-robertdebock/}${image:-fedora}:${tag:-latest}"
     command: sh -c "while true ; do sleep 30 ; done"
     pre_build_image: yes
 provisioner:
