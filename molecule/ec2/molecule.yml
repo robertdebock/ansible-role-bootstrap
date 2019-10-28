@@ -11,14 +11,14 @@ lint:
     config-file: molecule/.yamllint
 platforms:
   # https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/finding-an-ami.html
-  - name: "${MOLECULE_INSTANCE_PREFIX:-instance}_${MOLECULE_DISTRO:-centos-latest}_${TOX_ENVNAME:-ec2}"
-    image: ${MOLECULE_EC2_AMI:-ami-dd3c0f36}
+  - name: "${TEST_INSTANCE_PREFIX:-instance}_${TEST_DISTRO:-centos-latest}_${TOX_ENVNAME:-ec2}"
+    image: ${TEST_EC2_AMI:-ami-dd3c0f36}
     instance_type: t2.micro
-    vpc_subnet_id: ${MOLECULE_EC2_VPC_SUBNET_ID:-""}
+    vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     root_device:
-      device_name: ${MOLECULE_EC2_ROOT_DEVICE:-""}
+      device_name: ${TEST_EC2_ROOT_DEVICE:-""}
     groups:
-      - ${MOLECULE_DISTRO:-centos-latest}_ec2
+      - ${TEST_DISTRO:-centos-latest}_ec2
 provisioner:
   name: ansible
   lint:
@@ -27,7 +27,7 @@ provisioner:
     defaults:
       callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
   playbooks:
-    converge: ${MOLECULE_PLAYBOOK:-../playbook.yml}
+    converge: ${TEST_PLAYBOOK:-../playbook.yml}
   inventory:
     group_vars:
       amazon-linux-2_ec2:

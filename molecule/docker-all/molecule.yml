@@ -21,17 +21,14 @@ platforms:
   - name: instance_centos-latest_docker
     image: centos:latest
     pre_build_image: yes
+  - name: instance_redhat-latest_docker
+    image: registry.redhat.io/ubi8/ubi-init:latest
+    pre_build_image: yes
   - name: instance_debian-latest_docker
     image: debian:latest
     pre_build_image: yes
   - name: instance_fedora-latest_docker
     image: fedora:latest
-    pre_build_image: yes
-  - name: instance_gentoo-latest_docker
-    image: gentoo/stage3-amd64:latest
-    pre_build_image: yes
-  - name: instance_kali-latest_docker
-    image: kalilinux/kali-linux-docker:latest
     pre_build_image: yes
   - name: instance_opensuse-leap_docker
     image: opensuse/leap:latest
@@ -50,7 +47,7 @@ provisioner:
     defaults:
       callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
   playbooks:
-    converge: ${MOLECULE_PLAYBOOK:-../playbook.yml}
+    converge: ${TEST_PLAYBOOK:-../playbook.yml}
 scenario:
   name: docker-all
 verifier:

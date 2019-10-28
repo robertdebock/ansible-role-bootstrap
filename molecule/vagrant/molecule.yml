@@ -13,8 +13,8 @@ lint:
     config-file: molecule/.yamllint
 platforms:
   # https://app.vagrantup.com/boxes/search
-  - name: "${MOLECULE_INSTANCE_PREFIX:-instance}-${MOLECULE_DISTRO:-centos-latest}-vagrant"
-    image: ${MOLECULE_VBOX:-centos/7}
+  - name: "${TEST_INSTANCE_PREFIX:-instance}-${TEST_DISTRO:-centos-latest}-vagrant"
+    image: ${TEST_VBOX:-centos/7}
 provisioner:
   name: ansible
   lint:
@@ -23,7 +23,7 @@ provisioner:
     defaults:
       callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
   playbooks:
-    converge: ${MOLECULE_PLAYBOOK:-../playbook.yml}
+    converge: ${TEST_PLAYBOOK:-../playbook.yml}
 scenario:
   name: vagrant
 verifier:

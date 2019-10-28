@@ -11,12 +11,12 @@ lint:
     config-file: molecule/.yamllint
 platforms:
   # https://hub.docker.com/search/?type=image
-  - name: "${MOLECULE_INSTANCE_PREFIX:-instance}_${MOLECULE_DISTRO:-centos-latest}_${TOX_ENVNAME:-docker}"
-    image: ${MOLECULE_DOCKER_IMAGE:-centos:latest}
+  - name: "${TEST_INSTANCE_PREFIX:-instance}_${TEST_DISTRO:-centos-latest}_${TOX_ENVNAME:-docker}"
+    image: ${TEST_DOCKER_IMAGE:-centos:latest}
     pre_build_image: yes
-    command: ${MOLECULE_DOCKER_COMMAND:-sleep infinity}
+    command: ${TEST_DOCKER_COMMAND:-sleep infinity}
     groups:
-      - ${MOLECULE_DISTRO:-centos-latest}_docker
+      - ${TEST_DISTRO:-centos-latest}_docker
 provisioner:
   name: ansible
   lint:
@@ -25,7 +25,7 @@ provisioner:
     defaults:
       callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
   playbooks:
-    converge: ${MOLECULE_PLAYBOOK:-../playbook.yml}
+    converge: ${TEST_PLAYBOOK:-../playbook.yml}
 scenario:
   name: default
 verifier:
