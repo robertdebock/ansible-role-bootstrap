@@ -11,34 +11,34 @@ lint:
     config-file: molecule/.yamllint
 platforms:
   # https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/finding-an-ami.html
-  - name: "${MOLECULE_INSTANCE_PREFIX:-instance}-${MOLECULE_DISTRO:-centos-latest}-${MOLECULE_TOXENV:-ec2}"
+  - name: "${MOLECULE_INSTANCE_PREFIX:-instance}_${MOLECULE_DISTRO:-centos-latest}_${TOX_ENVNAME:-ec2}"
     image: ${MOLECULE_EC2_AMI:-ami-dd3c0f36}
     instance_type: t2.micro
     vpc_subnet_id: ${MOLECULE_EC2_VPC_SUBNET_ID:-""}
     root_device:
       device_name: ${MOLECULE_EC2_ROOT_DEVICE:-""}
     groups:
-      - ${MOLECULE_DISTRO:-centos-latest}-ec2
+      - ${MOLECULE_DISTRO:-centos-latest}_ec2
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
   config_options:
     defaults:
-      callback_plugins: /usr/lib/python${MOLECULE_PYTHON:-2.7}/site-packages/ara/plugins/callbacks
+      callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-../playbook.yml}
   inventory:
     group_vars:
-      amazon-linux-2-ec2:
+      amazon-linux-2_ec2:
         bootstrap_user: ec2-user
-      centos-latest-ec2:
+      centos-latest_ec2:
         bootstrap_user: centos
-      debian-latest-ec2:
+      debian-latest_ec2:
         bootstrap_user: admin
-      fedora-latest-ec2:
+      fedora-latest_ec2:
         bootstrap_user: fedora
-      ubuntu-latest-ec2:
+      ubuntu-latest_ec2:
         bootstrap_user: ubuntu
 scenario:
   name: ec2

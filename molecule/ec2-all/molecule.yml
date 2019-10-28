@@ -11,60 +11,60 @@ lint:
     config-file: molecule/.yamllint
 platforms:
   # https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/finding-an-ami.html
-  - name: instance-amazon-linux-2-ec2
+  - name: instance_amazon-linux-2_ec2
     image: ami-0eaec5838478eb0ba
     instance_type: t2.micro
     vpc_subnet_id: ${MOLECULE_EC2_VPC_SUBNET_ID:-""}
     root_device:
       device_name: /dev/xvda
     groups:
-      - amazon-linux-2-ec2
-  - name: instance-centos-latest-ec2
+      - amazon-linux-2_ec2
+  - name: instance-centos-latest_ec2
     image: ami-dd3c0f36
     instance_type: t2.micro
     vpc_subnet_id: ${MOLECULE_EC2_VPC_SUBNET_ID:-""}
     groups:
-      - centos-latest-ec2
-  - name: instance-debian-latest-ec2
+      - centos-latest_ec2
+  - name: instance-debian-latest_ec2
     image: ami-0ca467408e84df23c
     instance_type: t2.micro
     vpc_subnet_id: ${MOLECULE_EC2_VPC_SUBNET_ID:-""}
     root_device:
       device_name: xvda
     groups:
-      - debian-latest-ec2
-  - name: instance-fedora-latest-ec2
+      - debian-latest_ec2
+  - name: instance-fedora-latest_ec2
     image: ami-0f904cfaa69a1c64c
     instance_type: t2.micro
     vpc_subnet_id: ${MOLECULE_EC2_VPC_SUBNET_ID:-""}
     groups:
-      - fedora-latest-ec2
-  - name: instance-ubuntu-latest-ec2
+      - fedora-latest_ec2
+  - name: instance-ubuntu-latest_ec2
     image: ami-0cf8fa6a01bb07363
     instance_type: t2.micro
     vpc_subnet_id: ${MOLECULE_EC2_VPC_SUBNET_ID:-""}
     groups:
-      - ubuntu-latest-ec2
+      - ubuntu-latest_ec2
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
   config_options:
     defaults:
-      callback_plugins: /usr/lib/python${MOLECULE_PYTHON:-2.7}/site-packages/ara/plugins/callbacks
+      callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-../playbook.yml}
   inventory:
     group_vars:
-      amazon-linux-2-ec2:
+      amazon-linux-2_ec2:
         bootstrap_user: ec2-user
-      centos-latest-ec2:
+      centos-latest_ec2:
         bootstrap_user: centos
-      debian-latest-ec2:
+      debian-latest_ec2:
         bootstrap_user: admin
-      fedora-latest-ec2:
+      fedora-latest_ec2:
         bootstrap_user: fedora
-      ubuntu-latest-ec2:
+      ubuntu-latest_ec2:
         bootstrap_user: ubuntu
 scenario:
   name: ec2-all

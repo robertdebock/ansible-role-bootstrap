@@ -11,35 +11,35 @@ lint:
     config-file: molecule/.yamllint
 platforms:
   # https://hub.docker.com/search/?type=image
-  - name: instance-alpine-latest-docker
+  - name: instance_alpine-latest_docker
     image: alpine:latest
     pre_build_image: yes
     command: sh -c "while true ; do sleep 1 ; done"
-  - name: instance-archlinux-latest-docker
+  - name: instance_archlinux-latest_docker
     image: archlinux/base:latest
     pre_build_image: yes
-  - name: instance-centos-latest-docker
+  - name: instance_centos-latest_docker
     image: centos:latest
     pre_build_image: yes
-  - name: instance-debian-latest-docker
+  - name: instance_debian-latest_docker
     image: debian:latest
     pre_build_image: yes
-  - name: instance-fedora-latest-docker
+  - name: instance_fedora-latest_docker
     image: fedora:latest
     pre_build_image: yes
-  - name: instance-gentoo-latest-docker
+  - name: instance_gentoo-latest_docker
     image: gentoo/stage3-amd64:latest
     pre_build_image: yes
-  - name: instance-kali-latest-docker
+  - name: instance_kali-latest_docker
     image: kalilinux/kali-linux-docker:latest
     pre_build_image: yes
-  - name: instance-opensuse-leap-docker
+  - name: instance_opensuse-leap_docker
     image: opensuse/leap:latest
     pre_build_image: yes
-  - name: instance-opensuse-tumbleweed-docker
+  - name: instance_opensuse-tumbleweed_docker
     image: opensuse/tumbleweed:latest
     pre_build_image: yes
-  - name: instance-ubuntu-latest-docker
+  - name: instance_ubuntu-latest_docker
     image: ubuntu:latest
     pre_build_image: yes
 provisioner:
@@ -48,7 +48,7 @@ provisioner:
     name: ansible-lint
   config_options:
     defaults:
-      callback_plugins: /usr/lib/python${MOLECULE_PYTHON:-2.7}/site-packages/ara/plugins/callbacks
+      callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-../playbook.yml}
 scenario:
