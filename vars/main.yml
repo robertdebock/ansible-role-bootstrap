@@ -23,6 +23,7 @@ _bootstrap_packages:
   Kali GNU/Linux: python3 sudo gnupg
   openSUSE: python python-xml sudo
   openSUSE Leap: python python-xml sudo
+  openSUSE Tumbleweed: python python-xml sudo
   RedHat: python3 sudo
   RedHat-7: python sudo
   Red Hat Enterprise Linux Server-7: python sudo
