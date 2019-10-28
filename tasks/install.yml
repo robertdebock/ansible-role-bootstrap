@@ -1,6 +1,5 @@
 ---
 - name: install using registered package manager
-  remote_user: "{{ bootstrap_remote_user | default(omit) }}"
   block:
     - name: install software for Alpine
       raw: "LANG=C apk update ; apk add {{ bootstrap_packages }}"

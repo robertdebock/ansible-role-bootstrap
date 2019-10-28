@@ -18,14 +18,14 @@
         timeout: "{{ bootstrap_timeout }}"
       register: bootstrap_connect
       changed_when: no
+      vars:
+        ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
   rescue:
     - name: register distribution
       include_tasks: register.yml
 
     - name: install for registered distribution
       include_tasks: install.yml
-  vars:
-    ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
 
 - name: ensure all bootstrap_packages are installed
   block:
