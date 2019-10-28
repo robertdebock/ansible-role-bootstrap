@@ -11,20 +11,25 @@
     - ansible_connection != "docker"
     - bootstrap_wait_for_host | bool
 
-- name: test connection and prepare system on failure
+- name: test connection
+  wait_for_connection:
+    timeout: "{{ bootstrap_timeout }}"
+  register: bootstrap_connect
+  changed_when: no
+  ignore_errors: yes
+
+- name: register temporary bootstrap user
+  set_fact:
+    bootstrap_ansible_user: "{{ (ansible_user | default(omit, true))
+                             if bootstrap_connect is succeeded else bootstrap_user }}"
+  changed_when: no
+
+- name: prepare system
   block:
-    - name: test connection (allowed to fail)
-      wait_for_connection:
-        timeout: "{{ bootstrap_timeout }}"
-      register: bootstrap_connect
-      changed_when: no
-      vars:
-        ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
-  rescue:
     - name: register distribution
       include_tasks: register.yml
 
-    - name: install for registered distribution
+    - name: install requirements for registered distribution
       include_tasks: install.yml
 
 - name: ensure all bootstrap_packages are installed
