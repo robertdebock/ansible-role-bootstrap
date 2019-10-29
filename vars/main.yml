@@ -28,24 +28,8 @@ _bootstrap_packages:
   Red Hat Enterprise Linux: python3 sudo
   Ubuntu: python3 sudo gnupg
 
-_bootstrap_python_interpreter:
-  Alpine:
-  Archlinux:
-  CentOS Linux: alternatives --set python /usr/bin/python3
-  Debian: update-alternatives --install /usr/bin/python python /usr/bin/python3 10
-  Fedora:
-  Gentoo:
-  Kali: update-alternatives --install /usr/bin/python python /usr/bin/python3 10
-  openSUSE Leap:
-  OpenSUSE Tumbleweed:
-  Red Hat Enterprise Linux: alternatives --set python /usr/bin/python3
-  Ubuntu: update-alternatives --install /usr/bin/python python /usr/bin/python3 10
-
 # Map the right set of package based on values found in `tasks/register.yml`.
 bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~ '-' ~ bootstrap_distribution_major_version] | default(_bootstrap_packages[bootstrap_distribution] ) }}"
-
-# Map the right set of python interpreter based on values found in `tasks/register.yml`.
-bootstrap_python_interpreter: "{{ _bootstrap_packages[bootstrap_distribution] }}"
 
 # Map the right set of packages, based on gathered facts.
 bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_bootstrap_packages[ansible_distribution]) }}"

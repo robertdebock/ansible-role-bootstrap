@@ -68,11 +68,5 @@
         - "'Nothing' not in redhatresult.stdout"
       until: redhatresult is succeeded
       retries: "{{ bootstrap_retries }}"
-
-    - name: set default python interpreter
-      raw: "{{ bootstrap_python_interpreter }}"
-      when:
-        - bootstrap_python_interpreter is defined
-      changed_when: no
   vars:
     ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
