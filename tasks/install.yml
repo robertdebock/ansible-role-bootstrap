@@ -36,7 +36,8 @@
       retries: "{{ bootstrap_retries }}"
 
     - name: install software for Gentoo
-      raw: "LANG=C {{ bootstrap_emerge_command }}"
+      raw: "LANG=C equery l {{ bootstrap_packages }} ||
+            (emaint -a sync ; emerge -qkv {{ bootstrap_packages }} ; echo 'changed')"
       when:
         - gentoo.rc == 0
         - bootstrap_packages is defined

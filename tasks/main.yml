@@ -31,6 +31,7 @@
 
     - name: install requirements for registered distribution
       include_tasks: install.yml
+  when: bootstrap_connect is not succeeded
 
 - name: ensure all bootstrap_packages are installed
   block:
