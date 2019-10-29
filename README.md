@@ -68,15 +68,6 @@ The following roles can be installed to ensure all requirements are met, using `
 - none
 ```
 
-This role uses the following modules:
-```yaml
----
-- lineinfile
-- remote_user
-- setup
-- wait_for
-```
-
 Context
 -------
 
@@ -121,19 +112,49 @@ The indicator '\~=' means [compatible with](https://www.python.org/dev/peps/pep-
 Testing
 -------
 
-[Unit tests](https://travis-ci.org/robertdebock/ansible-role-bootstrap) are done on every commit and periodically.
+[Unit tests](https://travis-ci.org/robertdebock/ansible-role-bootstrap) are done on every commit, pull request, release and periodically.
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bootstrap/issues)
 
-To test this role locally please use [Molecule](https://github.com/ansible/molecule):
+Testing is done using [Tox](https://tox.readthedocs.io/en/latest/) and [Molecule](https://github.com/ansible/molecule):
+
+[Tox](https://tox.readthedocs.io/en/latest/) tests multiple ansible versions.
+[Molecule](https://github.com/ansible/molecule) tests multiple distributions.
+
+To test using the defaults (any installed ansible version, namespace: `robertdebock`, image: `fedora`, tag: `latest`):
+
 ```
-pip install molecule
 molecule test
+
+# Or select a specific image:
+image=ubuntu molecule test
+# Or select a specific image and a specific tag:
+image="debian" tag="stable" tox
 ```
 
-To test on Amazon EC2, configure [~/.aws/credentials](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html) and set a region using `export AWS_REGION=eu-central-1` before running `molecule test --scenario-name ec2`.
+Or you can test multiple versions of Ansible, and select images:
+Tox allows multiple versions of Ansible to be tested. To run the default (namespace: `robertdebock`, image: `fedora`, tag: `latest`) tests:
 
-There are many specific scenarios available, please have a look in the `molecule/` directory.
+```
+tox
+
+# To run CentOS (namespace: `robertdebock`, tag: `latest`)
+image="centos" tox
+# Or customize more:
+image="debian" tag="stable" tox
+```
+
+Modules
+-------
+
+This role uses the following modules:
+```yaml
+---
+- lineinfile
+- remote_user
+- setup
+- wait_for
+```
 
 License
 -------
