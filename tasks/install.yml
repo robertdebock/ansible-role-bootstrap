@@ -25,7 +25,8 @@
       retries: "{{ bootstrap_retries }}"
 
     - name: install software for Debian
-      raw: "LANG=C apt-get update && apt-get install -y {{ bootstrap_packages }}"
+      raw: "LANG=C apt-get update && apt-get install -y {{ bootstrap_packages }} &&
+            {{ bootstrap_python_interpreter }}"
       when:
         - debian.rc == 0
         - bootstrap_packages is defined
@@ -37,7 +38,8 @@
 
     - name: install software for Gentoo
       raw: "LANG=C equery l {{ bootstrap_packages }} ||
-            (emaint -a sync ; emerge -qkv {{ bootstrap_packages }} ; echo 'changed')"
+            (emaint -a sync ; emerge -qkv {{ bootstrap_packages }} ; echo 'changed') &&
+            {{ bootstrap_python_interpreter }}"
       when:
         - gentoo.rc == 0
         - bootstrap_packages is defined
@@ -59,7 +61,8 @@
       retries: "{{ bootstrap_retries }}"
 
     - name: install software for Red Hat
-      raw: "LANG=C yum -y install {{ bootstrap_packages }}"
+      raw: "LANG=C yum -y install {{ bootstrap_packages }} &&
+            {{ bootstrap_python_interpreter }}"
       when:
         - redhat.rc == 0
         - bootstrap_packages is defined
