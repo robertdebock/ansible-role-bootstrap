@@ -11,12 +11,12 @@ _bootstrap_packages:
   CentOS Linux-7: python2 python3 sudo
   CentOS-7: python2 python3 sudo
   CentOS: python2 python3 sudo
-  CentOS Linux: python3 sudo
+  CentOS Linux: python2 python3 sudo
   Gentoo: python sudo gentoolkit
-  Fedora: python3 sudo
+  Fedora: python2 python3 sudo
   Debian-8: python sudo gnupg
   Debian-9: python sudo gnupg
-  Debian: python python3 sudo gnupg python3-apt
+  Debian: python python3 sudo gnupg python-apt python3-apt
   Kali: python python3 sudo gnupg
   Kali GNU/Linux: python python3 sudo gnupg
   openSUSE: python python-xml sudo
@@ -25,9 +25,9 @@ _bootstrap_packages:
   RedHat: python3 sudo
   RedHat-7: python sudo
   Red Hat Enterprise Linux Server-7: python sudo
-  Red Hat Enterprise Linux Server: python3 sudo
+  Red Hat Enterprise Linux Server: python python3 sudo
   Red Hat Enterprise Linux-7: python sudo
-  Red Hat Enterprise Linux: python3 sudo
+  Red Hat Enterprise Linux: python python3 sudo
   Ubuntu: python python3 sudo gnupg
 
 # Map the right set of package based on values found in `tasks/register.yml`.
