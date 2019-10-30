@@ -8,6 +8,9 @@ galaxy_info:
   min_ansible_version: 2.6
 
   platforms:
+    - name: Amazon
+      version:
+        - all
     - name: Alpine
       versions:
         - all
@@ -36,22 +39,11 @@ galaxy_info:
         - bionic
 
   galaxy_tags:
-    - alpine
     - bootstrap
     - centos
-    - debian
-    - el
-    - fedora
-    - freebsd
-    - gentoo
     - installer
-    - kali
-    - openbsd
-    - opensuse
-    - rhel
     - server
-    - sudo
     - system
-    - ubuntu
+    - oraclelinux
 
 dependencies: []

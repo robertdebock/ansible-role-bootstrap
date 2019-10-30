@@ -11,6 +11,8 @@ env:
   global:
     namespace="robertdebock"
   matrix:
+    - image="amazonlinux" tag="1"
+    - image="amazonlinux"
     - image="alpine"
     - image="alpine" tag="edge"
     # - namespace="archlinux" image="base"
@@ -22,6 +24,8 @@ env:
     - image="fedora"
     - image="fedora" tag="rawhide"
     - image="opensuse"
+    - image="oraclelinux" tag="7"
+    - image="oraclelinux"
     - image="ubuntu" tag="rolling"
     - image="ubuntu" tag="devel"
     - image="ubuntu"

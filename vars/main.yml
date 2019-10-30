@@ -8,6 +8,7 @@ bootstrap_remote_user: "{{ (ansible_user | default(omit, true)) if bootstrap_con
 # `tasks/register.yml` discovers what distribution and version ansible
 # is running against.
 _bootstrap_packages:
+  Amazon: python sudo
   Alpine: python3 sudo
   Archlinux: python3 sudo
   CentOS Linux-7: python3 sudo
@@ -21,6 +22,7 @@ _bootstrap_packages:
   Debian: python3 sudo gnupg python3-apt
   Kali: python3 sudo gnupg
   Kali GNU/Linux: python3 sudo gnupg
+  OracleLinux: python sudo
   openSUSE: python python-xml sudo
   openSUSE Leap: python python-xml sudo
   openSUSE Tumbleweed: python python-xml sudo
