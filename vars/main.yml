@@ -6,13 +6,10 @@
 # `tasks/register.yml` discovers what distribution and version ansible
 # is running against.
 _bootstrap_packages:
-  Alpine: python python3 sudo
+  Alpine: python3 sudo
   Archlinux: python3 sudo
-  CentOS Linux-7: python3 sudo
-  CentOS-7: python3 sudo
-  CentOS: python3 sudo
-  CentOS Linux: python python3 sudo
-  Debian: python python3 sudo gnupg python-apt python3-apt
+  CentOS Linux: python3 sudo
+  Debian: python3 sudo gnupg python3-apt
   Fedora: python3 sudo
   Gentoo: python sudo gentoolkit
   Kali: python3 sudo gnupg
@@ -20,13 +17,8 @@ _bootstrap_packages:
   openSUSE: python python-xml sudo
   openSUSE Leap: python python-xml sudo
   openSUSE Tumbleweed: python python-xml sudo
-  RedHat: python3 sudo
-  RedHat-7: python sudo
-  Red Hat Enterprise Linux Server-7: python sudo
-  Red Hat Enterprise Linux Server: python3 sudo
-  Red Hat Enterprise Linux-7: python sudo
-  Red Hat Enterprise Linux: python python3 sudo
-  Ubuntu: python python3 sudo gnupg
+  Red Hat Enterprise Linux: python3 sudo
+  Ubuntu: python3 sudo gnupg
 
 # Map the right set of package based on values found in `tasks/register.yml`.
 bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~ '-' ~ bootstrap_distribution_major_version] | default(_bootstrap_packages[bootstrap_distribution] ) }}"

@@ -26,6 +26,28 @@ provisioner:
       callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
   playbooks:
     converge: ${TEST_PLAYBOOK:-../playbook.yml}
+  inventory:
+    group_vars:
+      alpine-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      centos-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      debian-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      debian-unstable_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      fedora-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      fedora-rawhide_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      kali-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      redhat-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      ubuntu-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      ubuntu-devel_docker:
+        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: default
 verifier:
