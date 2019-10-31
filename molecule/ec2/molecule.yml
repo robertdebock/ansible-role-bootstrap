@@ -32,14 +32,19 @@ provisioner:
     group_vars:
       amazon-linux-2_ec2:
         bootstrap_user: ec2-user
+        ansible_python_interpreter: /usr/bin/python3
       centos-latest_ec2:
         bootstrap_user: centos
+        ansible_python_interpreter: /usr/bin/python3
       debian-latest_ec2:
         bootstrap_user: admin
+        ansible_python_interpreter: /usr/bin/python3
       fedora-latest_ec2:
         bootstrap_user: fedora
+        ansible_python_interpreter: /usr/bin/python3
       ubuntu-latest_ec2:
         bootstrap_user: ubuntu
+        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: ec2
 verifier:

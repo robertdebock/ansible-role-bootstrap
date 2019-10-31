@@ -8,6 +8,7 @@
 _bootstrap_packages:
   Alpine: python3 sudo
   Archlinux: python3 sudo
+  CentOS: python3 sudo
   CentOS Linux: python3 sudo
   Debian: python3 sudo gnupg python3-apt
   Fedora: python3 sudo

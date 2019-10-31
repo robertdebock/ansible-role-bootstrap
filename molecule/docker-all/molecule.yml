@@ -15,21 +15,31 @@ platforms:
     image: alpine:latest
     pre_build_image: yes
     command: sh -c "while true ; do sleep 1 ; done"
+    groups:
+      - alpine-latest_docker
   - name: instance_archlinux-latest_docker
     image: archlinux/base:latest
     pre_build_image: yes
   - name: instance_centos-latest_docker
     image: centos:latest
     pre_build_image: yes
+    groups:
+      - centos-latest_docker
   - name: instance_redhat-latest_docker
     image: registry.redhat.io/ubi8/ubi-init:latest
     pre_build_image: yes
+    groups:
+      - redhat-latest_docker
   - name: instance_debian-latest_docker
     image: debian:latest
     pre_build_image: yes
+    groups:
+      - debian-latest_docker
   - name: instance_fedora-latest_docker
     image: fedora:latest
     pre_build_image: yes
+    groups:
+      - fedora-latest_docker
   - name: instance_opensuse-leap_docker
     image: opensuse/leap:latest
     pre_build_image: yes
@@ -39,6 +49,8 @@ platforms:
   - name: instance_ubuntu-latest_docker
     image: ubuntu:latest
     pre_build_image: yes
+    groups:
+      - ubuntu-latest_docker
 provisioner:
   name: ansible
   lint:
@@ -48,6 +60,22 @@ provisioner:
       callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
   playbooks:
     converge: ${TEST_PLAYBOOK:-../playbook.yml}
+  inventory:
+    group_vars:
+      alpine-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      centos-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      debian-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      fedora-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      kali-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      redhat-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
+      ubuntu-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: docker-all
 verifier:

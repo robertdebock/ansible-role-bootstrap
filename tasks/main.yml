@@ -29,7 +29,7 @@
     - name: register distribution
       include_tasks: register.yml
 
-    - name: install requirements for registered distribution
+    - name: install bootstrap_packages
       include_tasks: install.yml
   when: bootstrap_connect is not succeeded
 

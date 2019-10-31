@@ -19,19 +19,19 @@ platforms:
       device_name: /dev/xvda
     groups:
       - amazon-linux-2_ec2
-  - name: instance-centos-latest_ec2
+  - name: instance_centos-latest_ec2
     image: ami-dd3c0f36
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     groups:
       - centos-latest_ec2
-  - name: instance-redhat-latest_ec2
+  - name: instance_redhat-latest_ec2
     image: ami-875042eb
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     groups:
       - redhat-latest_ec2
-  - name: instance-debian-latest_ec2
+  - name: instance_debian-latest_ec2
     image: ami-0ca467408e84df23c
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
@@ -39,13 +39,13 @@ platforms:
       device_name: xvda
     groups:
       - debian-latest_ec2
-  - name: instance-fedora-latest_ec2
+  - name: instance_fedora-latest_ec2
     image: ami-0f904cfaa69a1c64c
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     groups:
       - fedora-latest_ec2
-  - name: instance-ubuntu-latest_ec2
+  - name: instance_ubuntu-latest_ec2
     image: ami-0cf8fa6a01bb07363
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
@@ -64,16 +64,22 @@ provisioner:
     group_vars:
       amazon-linux-2_ec2:
         bootstrap_user: ec2-user
+        ansible_python_interpreter: /usr/bin/python3
       centos-latest_ec2:
         bootstrap_user: centos
+        ansible_python_interpreter: /usr/bin/python3
       redhat-latest_ec2:
         bootstrap_user: ec2-user
+        ansible_python_interpreter: /usr/bin/python3
       debian-latest_ec2:
         bootstrap_user: admin
+        ansible_python_interpreter: /usr/bin/python3
       fedora-latest_ec2:
         bootstrap_user: fedora
+        ansible_python_interpreter: /usr/bin/python3
       ubuntu-latest_ec2:
         bootstrap_user: ubuntu
+        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: ec2-all
 verifier:
