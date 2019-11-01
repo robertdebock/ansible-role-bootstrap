@@ -25,7 +25,7 @@ provisioner:
     name: ansible-lint
   config_options:
     defaults:
-      callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
+      callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-3.7}/site-packages/ara/plugins/callbacks
   playbooks:
     converge: ${TEST_PLAYBOOK:-../playbook.yml}
   inventory:

@@ -2,8 +2,7 @@
 sudo: required
 language: python
 python:
-  - "2.7"
-  - "3.6"
+  - "3.7"
 services:
   - docker
 
@@ -12,6 +11,8 @@ env:
     - BOTO_CONFIG="/dev/null"
     - AWS_REGION="eu-central-1"
   matrix:
+    - TEST_DISTRO="amazonlinux-latest" ANSIBLE="stable" TEST_DOCKER_IMAGE="amazonlinux:latest"
+    - TEST_DISTRO="amazonlinux-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="amazonlinux:latest"
     - TEST_DISTRO="alpine-latest" ANSIBLE="stable" TEST_DOCKER_IMAGE="alpine:latest" TEST_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
     - TEST_DISTRO="alpine-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="alpine:latest" TEST_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
     - TEST_DISTRO="alpine-edge" ANSIBLE="all" TEST_DOCKER_IMAGE="alpine:edge" TEST_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
@@ -33,8 +34,8 @@ env:
     - TEST_DISTRO="opensuse-leap" ANSIBLE="devel" TEST_DOCKER_IMAGE="opensuse/leap:latest"
     - TEST_DISTRO="opensuse-tumbleweed" ANSIBLE="stable" TEST_DOCKER_IMAGE="opensuse/tumbleweed:latest"
     - TEST_DISTRO="opensuse-tumbleweed" ANSIBLE="devel" TEST_DOCKER_IMAGE="opensuse/tumbleweed:latest"
-    - TEST_DISTRO="redhat-latest" ANSIBLE="stable" TEST_DOCKER_IMAGE="registry.redhat.io/ubi8/ubi-init:latest" TEST_EC2_AMI="ami-875042eb"
-    - TEST_DISTRO="redhat-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="registry.redhat.io/ubi8/ubi-init:latest"
+    - TEST_DISTRO="redhat-latest" ANSIBLE="stable" TEST_DOCKER_IMAGE="registry.redhat.io/ubi8/ubi:latest" TEST_EC2_AMI="ami-875042eb"
+    - TEST_DISTRO="redhat-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="registry.redhat.io/ubi8/ubi:latest"
     - TEST_DISTRO="ubuntu-latest" ANSIBLE="stable" TEST_DOCKER_IMAGE="ubuntu:latest" TEST_EC2_AMI="ami-0cf8fa6a01bb07363"
     - TEST_DISTRO="ubuntu-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="ubuntu:latest"
     - TEST_DISTRO="ubuntu-devel" ANSIBLE="all" TEST_DOCKER_IMAGE="ubuntu:devel"
@@ -42,6 +43,7 @@ env:
 matrix:
   fast_finish: false
   allow_failures:
+    - env: TEST_DISTRO="amazonlinux-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="amazonlinux:latest"
     - env: TEST_DISTRO="alpine-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="alpine:latest" TEST_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
     - env: TEST_DISTRO="alpine-edge" ANSIBLE="all" TEST_DOCKER_IMAGE="alpine:edge" TEST_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
     - env: TEST_DISTRO="archlinux-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="archlinux/base:latest"
@@ -54,7 +56,7 @@ matrix:
     - env: TEST_DISTRO="kali-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="kalilinux/kali-linux-docker:latest"
     - env: TEST_DISTRO="opensuse-leap" ANSIBLE="devel" TEST_DOCKER_IMAGE="opensuse/leap:latest"
     - env: TEST_DISTRO="opensuse-tumbleweed" ANSIBLE="devel" TEST_DOCKER_IMAGE="opensuse/tumbleweed:latest"
-    - env: TEST_DISTRO="redhat-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="registry.redhat.io/ubi8/ubi-init:latest"
+    - env: TEST_DISTRO="redhat-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="registry.redhat.io/ubi8/ubi:latest"
     - env: TEST_DISTRO="ubuntu-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="ubuntu:latest"
     - env: TEST_DISTRO="ubuntu-devel" ANSIBLE="all" TEST_DOCKER_IMAGE="ubuntu:devel"
 

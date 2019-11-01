@@ -11,6 +11,11 @@ lint:
     config-file: molecule/.yamllint
 platforms:
   # https://hub.docker.com/search/?type=image
+  - name: instance_amazonlinux-latest_docker
+    image: amazonlinux:latest
+    pre_build_image: yes
+    groups:
+      - amazonlinux-latest_docker
   - name: instance_alpine-latest_docker
     image: alpine:latest
     pre_build_image: yes
@@ -25,11 +30,6 @@ platforms:
     pre_build_image: yes
     groups:
       - centos-latest_docker
-  - name: instance_redhat-latest_docker
-    image: registry.redhat.io/ubi8/ubi-init:latest
-    pre_build_image: yes
-    groups:
-      - redhat-latest_docker
   - name: instance_debian-latest_docker
     image: debian:latest
     pre_build_image: yes
@@ -40,12 +40,27 @@ platforms:
     pre_build_image: yes
     groups:
       - fedora-latest_docker
+  - name: instance_gentoo-latest_docker
+    image: gentoo/stage3-amd64:latest
+    pre_build_image: yes
+    groups:
+      - gentoo-latest_docker
+  - name: instance_kali-latest_docker
+    image: kalilinux/kali-linux-docker:latest
+    pre_build_image: yes
+    groups:
+      - kali-latest_docker
   - name: instance_opensuse-leap_docker
     image: opensuse/leap:latest
     pre_build_image: yes
   - name: instance_opensuse-tumbleweed_docker
     image: opensuse/tumbleweed:latest
     pre_build_image: yes
+  - name: instance_redhat-latest_docker
+    image: registry.redhat.io/ubi8/ubi-init:latest
+    pre_build_image: yes
+    groups:
+      - redhat-latest_docker
   - name: instance_ubuntu-latest_docker
     image: ubuntu:latest
     pre_build_image: yes
@@ -57,7 +72,7 @@ provisioner:
     name: ansible-lint
   config_options:
     defaults:
-      callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
+      callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-3.7}/site-packages/ara/plugins/callbacks
   playbooks:
     converge: ${TEST_PLAYBOOK:-../playbook.yml}
   inventory:

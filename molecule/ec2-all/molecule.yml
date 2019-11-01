@@ -11,14 +11,14 @@ lint:
     config-file: molecule/.yamllint
 platforms:
   # https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/finding-an-ami.html
-  - name: instance_amazon-linux-2_ec2
+  - name: instance_amazonlinux-latest_ec2
     image: ami-084ab95c0cbe247e5
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     root_device:
       device_name: /dev/xvda
     groups:
-      - amazon-linux-2_ec2
+      - amazonlinux-latest_ec2
   - name: instance_centos-latest_ec2
     image: ami-dd3c0f36
     instance_type: t2.micro
@@ -57,12 +57,12 @@ provisioner:
     name: ansible-lint
   config_options:
     defaults:
-      callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-2.7}/site-packages/ara/plugins/callbacks
+      callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-3.7}/site-packages/ara/plugins/callbacks
   playbooks:
     converge: ${TEST_PLAYBOOK:-../playbook.yml}
   inventory:
     group_vars:
-      amazon-linux-2_ec2:
+      amazonlinux-latest_ec2:
         bootstrap_user: ec2-user
         ansible_python_interpreter: /usr/bin/python3
       centos-latest_ec2:

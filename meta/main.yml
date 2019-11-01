@@ -22,16 +22,9 @@ galaxy_info:
         - all
     - name: EL
       version:
-        - 6
         - 7
+        - 8
     - name: Fedora
-      versions:
-        - all
-    - name: FreeBSD
-      versions:
-        - 10.4
-        - 11.2
-    - name: OpenBSD
       versions:
         - all
     - name: OpenSUSE
@@ -52,11 +45,9 @@ galaxy_info:
     - debian
     - el
     - fedora
-    - freebsd
     - gentoo
     - installer
     - kali
-    - openbsd
     - opensuse
     - rhel
     - server
