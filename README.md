@@ -104,8 +104,8 @@ This role has been tested on these [container images](https://hub.docker.com/):
 
 This role has been tested on these Ansible versions:
 
-- ansible~=2.7
 - ansible~=2.8
+- ansible~=2.9
 - git+https://github.com/ansible/ansible.git@devel
 
 The indicator '\~=' means [compatible with](https://www.python.org/dev/peps/pep-0440/#compatible-release). For example 'ansible\~=2.8' would pick the latest ansible-2.8, for example ansible-2.8.6.
