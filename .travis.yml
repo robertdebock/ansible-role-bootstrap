@@ -13,6 +13,8 @@ env:
   matrix:
     - image="amazonlinux" tag="1"
     - image="amazonlinux"
+    - image="amazonlinux" tag="1"
+    - image="amazonlinux"
     - image="alpine"
     - image="alpine" tag="edge"
     # - namespace="archlinux" image="base"
