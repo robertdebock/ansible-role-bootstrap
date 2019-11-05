@@ -11,9 +11,6 @@ platforms:
   - name: "bootstrap-${image:-fedora}-${tag:-latest}${TOX_ENVNAME}"
     image: "${namespace:-robertdebock}/${image:-fedora}:${tag:-latest}"
     command: /sbin/init
-    tmpfs:
-      - /run
-      - /tmp
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: yes
