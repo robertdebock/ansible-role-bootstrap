@@ -9,9 +9,6 @@ galaxy_info:
 
   platforms:
     - name: Amazon
-      versions:
-        - all
-    - name: Amazon
       version:
         - all
     - name: Alpine
