@@ -3,6 +3,19 @@
   become: no
   check_mode: no
   block:
+    - name: register Amazon
+      raw: test -f /etc/system-release && grep PRETTY_NAME /etc/os-release
+      register: amazon
+      changed_when: no
+      failed_when: no
+
+    - name: set variables for Amazon
+      set_fact:
+        bootstrap_distribution: "{{ amazon.stdout | regex_replace('^.*=.([a-zA-Z]*) .*\n$', '\\1') }}"
+        bootstrap_distribution_major_version: "{{ amazon.stdout | regex_replace('^.* (\\d{2,3})(\\.\\d)?.*\n$', '\\1') }}"
+      when:
+        - alpine.rc == 0
+
     - name: register Alpine
       raw: cat /etc/alpine-release
       register: alpine
@@ -12,7 +25,7 @@
     - name: set variables for Alpine
       set_fact:
         bootstrap_distribution: Alpine
-        bootstrap_distribution_major_version: "{{ alpine.stdout.split('.')[0] }}"
+        bootstrap_distribution_major_version: undefined
       when:
         - alpine.rc == 0
 

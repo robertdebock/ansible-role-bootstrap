@@ -57,7 +57,7 @@ platforms:
     image: opensuse/tumbleweed:latest
     pre_build_image: yes
   - name: instance_redhat-latest_docker
-    image: registry.redhat.io/ubi8/ubi-init:latest
+    image: registry.access.redhat.com/ubi8/ubi:latest
     pre_build_image: yes
     groups:
       - redhat-latest_docker
@@ -77,6 +77,8 @@ provisioner:
     converge: ${TEST_PLAYBOOK:-../playbook.yml}
   inventory:
     group_vars:
+      amazonlinux-latest_docker:
+        ansible_python_interpreter: /usr/bin/python3
       alpine-latest_docker:
         ansible_python_interpreter: /usr/bin/python3
       centos-latest_docker:

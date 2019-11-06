@@ -30,7 +30,7 @@ provisioner:
     converge: ${TEST_PLAYBOOK:-../playbook.yml}
   inventory:
     group_vars:
-      amazon-linux-2_ec2:
+      amazonlinux-latest_ec2:
         bootstrap_user: ec2-user
         ansible_python_interpreter: /usr/bin/python3
       centos-latest_ec2:
