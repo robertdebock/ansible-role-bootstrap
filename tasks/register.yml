@@ -14,7 +14,7 @@
         bootstrap_distribution: "{{ amazon.stdout | regex_replace('^.*=.([a-zA-Z]*) .*\n$', '\\1') }}"
         bootstrap_distribution_major_version: "{{ amazon.stdout | regex_replace('^.* (\\d{2,3})(\\.\\d)?.*\n$', '\\1') }}"
       when:
-        - alpine.rc == 0
+        - amazon.rc == 0
 
     - name: register Alpine
       raw: cat /etc/alpine-release
