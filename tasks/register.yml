@@ -3,6 +3,19 @@
   become: no
   check_mode: no
   block:
+    - name: register Alpine
+      raw: cat /etc/alpine-release
+      register: alpine
+      changed_when: no
+      failed_when: no
+
+    - name: set variables for Alpine
+      set_fact:
+        bootstrap_distribution: Alpine
+        bootstrap_distribution_major_version: undefined
+      when:
+        - alpine.rc == 0
+
     - name: register Amazon
       raw: test -f /etc/system-release && grep PRETTY_NAME /etc/os-release
       register: amazon
@@ -16,19 +29,6 @@
       when:
         - amazon.rc == 0
         - amazon.stdout.find('Amazon') != -1
-
-    - name: register Alpine
-      raw: cat /etc/alpine-release
-      register: alpine
-      changed_when: no
-      failed_when: no
-
-    - name: set variables for Alpine
-      set_fact:
-        bootstrap_distribution: Alpine
-        bootstrap_distribution_major_version: undefined
-      when:
-        - alpine.rc == 0
 
     - name: register Archlinux
       raw: test -f /etc/arch-release && cat /etc/os-release

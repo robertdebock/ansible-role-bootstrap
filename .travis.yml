@@ -11,11 +11,11 @@ env:
     - BOTO_CONFIG="/dev/null"
     - AWS_REGION="eu-central-1"
   matrix:
-    - TEST_DISTRO="amazonlinux-latest" ANSIBLE="stable" TEST_DOCKER_IMAGE="amazonlinux:latest"
-    - TEST_DISTRO="amazonlinux-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="amazonlinux:latest"
     - TEST_DISTRO="alpine-latest" ANSIBLE="stable" TEST_DOCKER_IMAGE="alpine:latest" TEST_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
     - TEST_DISTRO="alpine-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="alpine:latest" TEST_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
     - TEST_DISTRO="alpine-edge" ANSIBLE="all" TEST_DOCKER_IMAGE="alpine:edge" TEST_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
+    - TEST_DISTRO="amazonlinux-latest" ANSIBLE="stable" TEST_DOCKER_IMAGE="amazonlinux:latest"
+    - TEST_DISTRO="amazonlinux-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="amazonlinux:latest"
     - TEST_DISTRO="archlinux-latest" ANSIBLE="stable" TEST_DOCKER_IMAGE="archlinux/base:latest"
     - TEST_DISTRO="archlinux-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="archlinux/base:latest"
     - TEST_DISTRO="centos-latest" ANSIBLE="stable" TEST_DOCKER_IMAGE="centos:latest" TEST_EC2_AMI="ami-dd3c0f36"
@@ -43,9 +43,9 @@ env:
 matrix:
   fast_finish: false
   allow_failures:
-    - env: TEST_DISTRO="amazonlinux-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="amazonlinux:latest"
     - env: TEST_DISTRO="alpine-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="alpine:latest" TEST_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
     - env: TEST_DISTRO="alpine-edge" ANSIBLE="all" TEST_DOCKER_IMAGE="alpine:edge" TEST_DOCKER_COMMAND="sh -c 'while true ; do sleep 1 ; done'"
+    - env: TEST_DISTRO="amazonlinux-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="amazonlinux:latest"
     - env: TEST_DISTRO="archlinux-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="archlinux/base:latest"
     - env: TEST_DISTRO="centos-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="centos:latest"
     - env: TEST_DISTRO="debian-latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="debian:latest"
