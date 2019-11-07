@@ -6,6 +6,7 @@
 # `tasks/register.yml` discovers what distribution and version ansible
 # is running against.
 _bootstrap_packages:
+  default: python3 sudo
   Amazon Linux: python3 sudo
   Alpine: python3 sudo
   Archlinux: python3 sudo
@@ -26,4 +27,4 @@ _bootstrap_packages:
 bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~ '-' ~ bootstrap_distribution_major_version] | default(_bootstrap_packages[bootstrap_distribution] ) }}"
 
 # Map the right set of packages, based on gathered facts.
-bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_bootstrap_packages[ansible_distribution]) }}"
+bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_bootstrap_packages[(ansible_distribution | default('default'))] }}"
