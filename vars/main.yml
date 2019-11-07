@@ -24,7 +24,9 @@ _bootstrap_packages:
   Ubuntu: python3 sudo gnupg
 
 # Map the right set of package based on values found in `tasks/register.yml`.
-bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~ '-' ~ bootstrap_distribution_major_version] | default(_bootstrap_packages[bootstrap_distribution] ) }}"
+bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'-'~ bootstrap_distribution_major_version]|default(
+                     _bootstrap_packages[bootstrap_distribution]) }}"
 
 # Map the right set of packages, based on gathered facts.
-bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_bootstrap_packages[(ansible_distribution | default('generic'))] }}"
+bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~'-'~ ansible_distribution_major_version]|default(
+                           _bootstrap_packages[ansible_distribution]) }}"

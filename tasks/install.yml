@@ -60,7 +60,8 @@
 
     - name: install software for Red Hat
       raw: "LANG=C yum -y install {{ bootstrap_packages }}"
-      when: (redhat.rc == 0 or (amazon.rc == 0 and 'Amazon' in amazon.stdout)) and
+      when: (redhat.rc == 0 or
+            (amazon.rc == 0 and "'Amazon' in amazon.stdout")) and
             bootstrap_packages is defined
       register: redhatresult
       changed_when:
