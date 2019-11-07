@@ -10,7 +10,7 @@ _bootstrap_packages:
   Amazon: python sudo
   Amazon Linux: python sudo
   Alpine: python3 sudo
-  Archlinux: python3 sudo
+  Archlinux: python sudo
   CentOS: python3 sudo
   CentOS Linux: python3 sudo
   Debian: python3 sudo gnupg python3-apt
