@@ -6,7 +6,7 @@
 # `tasks/register.yml` discovers what distribution and version ansible
 # is running against.
 _bootstrap_packages:
-  generic: python3 sudo
+  NA: python3 sudo
   Amazon Linux: python3 sudo
   Alpine: python3 sudo
   Archlinux: python3 sudo
