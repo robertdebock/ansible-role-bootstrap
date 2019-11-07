@@ -32,8 +32,6 @@ matrix:
     - env: image="alpine" tag="edge"
     - env: image="debian" tag="unstable"
     - env: image="fedora" tag="rawhide"
-    - env: image="ubuntu" tag="rolling"
-    - env: image="ubuntu" tag="devel"
 
 cache:
   - pip
