@@ -77,8 +77,6 @@ provisioner:
     converge: ${TEST_PLAYBOOK:-../playbook.yml}
   inventory:
     group_vars:
-      amazonlinux-latest_docker:
-        ansible_python_interpreter: /usr/bin/python3
       alpine-latest_docker:
         ansible_python_interpreter: /usr/bin/python3
       centos-latest_docker:
