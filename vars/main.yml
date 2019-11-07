@@ -7,6 +7,7 @@
 # is running against.
 _bootstrap_packages:
   NA: python3 sudo
+  Amazon: python3 sudo
   Amazon Linux: python3 sudo
   Alpine: python3 sudo
   Archlinux: python3 sudo
@@ -20,6 +21,7 @@ _bootstrap_packages:
   openSUSE: python python-xml sudo
   openSUSE Leap: python python-xml sudo
   openSUSE Tumbleweed: python python-xml sudo
+  RedHat: python3 sudo
   Red Hat Enterprise Linux: python3 sudo
   Ubuntu: python3 sudo gnupg
 
