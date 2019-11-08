@@ -1,7 +1,7 @@
 Ansible Role: Bootstrap
 =======================
 
-[![Build Status](https://img.shields.io/travis/rembik/ansible-role-bootstrap/master.svg?logo=travis&logoColor=EEE)][travis_ci]
+[![Build Status](https://img.shields.io/travis/rembik/ansible-role-bootstrap/master.svg?logo=travis-ci&logoColor=EEE)][travis_ci]
 [![GitHub release](https://img.shields.io/github/release/rembik/ansible-role-bootstrap.svg?&colorB=56b4b6&logo=github&logoColor=EEE)](https://github.com/rembik/ansible-role-bootstrap/releases)
 [![Ansible Role](https://img.shields.io/ansible/role/36340.svg?colorB=56b4b6&logo=ansible&logoColor=EEE)][ansible_galaxy]
 [![Ansible Role downloads](https://img.shields.io/ansible/role/d/36340.svg?label=downloads&logo=ansible&logoColor=EEE)][ansible_galaxy]
