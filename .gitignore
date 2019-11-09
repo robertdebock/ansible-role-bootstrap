@@ -1,6 +1,4 @@
-# Molecule's temporary data
 .molecule
-# Tox's temporary data
+*.log
+*.swp
 .tox
-# Vi's temporary data
-.swp
