@@ -7,28 +7,39 @@
 # is running against.
 _bootstrap_packages:
   NA: python3 sudo
-  Amazon: python sudo
-  Amazon Linux: python sudo
   Alpine: python3 sudo
+  Amazon: python sudo
   Archlinux: python sudo
   CentOS: python3 sudo
-  CentOS Linux: python3 sudo
+  CentOS_7: python sudo
   Debian: python3 sudo gnupg python3-apt
   Fedora: python3 sudo
   Gentoo: python sudo gentoolkit
   Kali: python3 sudo gnupg
-  Kali GNU/Linux: python3 sudo gnupg
   openSUSE: python python-xml sudo
-  openSUSE Leap: python python-xml sudo
-  openSUSE Tumbleweed: python python-xml sudo
   RedHat: python3 sudo
-  Red Hat Enterprise Linux: python3 sudo
+  RedHat_7: python sudo
   Ubuntu: python3 sudo gnupg
 
 # Map the right set of package based on values found in `tasks/register.yml`.
-bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'-'~ bootstrap_distribution_major_version]|default(
+bootstrap_distributions:
+  NA: ['NA']
+  Alpine: ['Alpine']
+  Amazon: ['Amazon', 'Amazon Linux']
+  Archlinux: ['Archlinux', 'Arch Linux']
+  CentOS: ['CentOS', 'CentOS Linux']
+  Debian: ['Debian']
+  Fedora: ['Fedora']
+  Gentoo: ['Gentoo']
+  Kali: ['Kali', 'Kali GNU/Linux']
+  openSUSE: ['openSUSE', 'openSUSE Leap', 'openSUSE Tumbleweed']
+  RedHat: ['RedHat', 'Red Hat', 'Red Hat Server', 'Red Hat Enterprise Linux', 'Red Hat Enterprise Linux Server']
+  Ubuntu: ['Ubuntu']
+
+# Map the right set of package based on values found in `tasks/register.yml`.
+bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'_'~ bootstrap_distribution_major_version]|default(
                      _bootstrap_packages[bootstrap_distribution]) }}"
 
 # Map the right set of packages, based on gathered facts.
-bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~'-'~ ansible_distribution_major_version]|default(
+bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~'_'~ ansible_distribution_major_version]|default(
                            _bootstrap_packages[ansible_distribution]) }}"

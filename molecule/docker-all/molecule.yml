@@ -11,61 +11,61 @@ lint:
     config-file: molecule/.yamllint
 platforms:
   # https://hub.docker.com/search/?type=image
-  - name: instance_amazonlinux-latest_docker
+  - name: instance_amazonlinux_latest_docker
     image: amazonlinux:latest
     pre_build_image: yes
     groups:
-      - amazonlinux-latest_docker
-  - name: instance_alpine-latest_docker
+      - amazonlinux_latest_docker
+  - name: instance_alpine_latest_docker
     image: alpine:latest
     pre_build_image: yes
     command: sh -c "while true ; do sleep 1 ; done"
     groups:
-      - alpine-latest_docker
-  - name: instance_archlinux-latest_docker
+      - alpine_latest_docker
+  - name: instance_archlinux_latest_docker
     image: archlinux/base:latest
     pre_build_image: yes
-  - name: instance_centos-latest_docker
+  - name: instance_centos_latest_docker
     image: centos:latest
     pre_build_image: yes
     groups:
-      - centos-latest_docker
-  - name: instance_debian-latest_docker
+      - centos_latest_docker
+  - name: instance_debian_latest_docker
     image: debian:latest
     pre_build_image: yes
     groups:
-      - debian-latest_docker
-  - name: instance_fedora-latest_docker
+      - debian_latest_docker
+  - name: instance_fedora_latest_docker
     image: fedora:latest
     pre_build_image: yes
     groups:
-      - fedora-latest_docker
-  - name: instance_gentoo-latest_docker
+      - fedora_latest_docker
+  - name: instance_gentoo_latest_docker
     image: gentoo/stage3-amd64:latest
     pre_build_image: yes
     groups:
-      - gentoo-latest_docker
-  - name: instance_kali-latest_docker
+      - gentoo_latest_docker
+  - name: instance_kali_latest_docker
     image: kalilinux/kali-linux-docker:latest
     pre_build_image: yes
     groups:
-      - kali-latest_docker
-  - name: instance_opensuse-leap_docker
+      - kali_latest_docker
+  - name: instance_opensuse_leap_docker
     image: opensuse/leap:latest
     pre_build_image: yes
-  - name: instance_opensuse-tumbleweed_docker
+  - name: instance_opensuse_tumbleweed_docker
     image: opensuse/tumbleweed:latest
     pre_build_image: yes
-  - name: instance_redhat-latest_docker
+  - name: instance_redhat_latest_docker
     image: registry.access.redhat.com/ubi8/ubi:latest
     pre_build_image: yes
     groups:
-      - redhat-latest_docker
-  - name: instance_ubuntu-latest_docker
+      - redhat_latest_docker
+  - name: instance_ubuntu_latest_docker
     image: ubuntu:latest
     pre_build_image: yes
     groups:
-      - ubuntu-latest_docker
+      - ubuntu_latest_docker
 provisioner:
   name: ansible
   lint:
@@ -75,22 +75,6 @@ provisioner:
       callback_plugins: /usr/lib/python${TOX_PYTHON_VERSION:-3.7}/site-packages/ara/plugins/callbacks
   playbooks:
     converge: ${TEST_PLAYBOOK:-../playbook.yml}
-  inventory:
-    group_vars:
-      alpine-latest_docker:
-        ansible_python_interpreter: /usr/bin/python3
-      centos-latest_docker:
-        ansible_python_interpreter: /usr/bin/python3
-      debian-latest_docker:
-        ansible_python_interpreter: /usr/bin/python3
-      fedora-latest_docker:
-        ansible_python_interpreter: /usr/bin/python3
-      kali-latest_docker:
-        ansible_python_interpreter: /usr/bin/python3
-      redhat-latest_docker:
-        ansible_python_interpreter: /usr/bin/python3
-      ubuntu-latest_docker:
-        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: docker-all
 verifier:

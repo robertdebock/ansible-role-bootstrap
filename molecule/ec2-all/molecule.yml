@@ -11,46 +11,46 @@ lint:
     config-file: molecule/.yamllint
 platforms:
   # https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/finding-an-ami.html
-  - name: instance_amazonlinux-latest_ec2
+  - name: instance_amazonlinux_latest_ec2
     image: ami-084ab95c0cbe247e5
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     root_device:
       device_name: /dev/xvda
     groups:
-      - amazonlinux-latest_ec2
-  - name: instance_centos-latest_ec2
+      - amazonlinux_latest_ec2
+  - name: instance_centos_latest_ec2
     image: ami-dd3c0f36
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     groups:
-      - centos-latest_ec2
-  - name: instance_redhat-latest_ec2
+      - centos_latest_ec2
+  - name: instance_redhat_latest_ec2
     image: ami-875042eb
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     groups:
-      - redhat-latest_ec2
-  - name: instance_debian-latest_ec2
+      - redhat_latest_ec2
+  - name: instance_debian_latest_ec2
     image: ami-0ca467408e84df23c
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     root_device:
       device_name: xvda
     groups:
-      - debian-latest_ec2
-  - name: instance_fedora-latest_ec2
+      - debian_latest_ec2
+  - name: instance_fedora_latest_ec2
     image: ami-0f904cfaa69a1c64c
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     groups:
-      - fedora-latest_ec2
-  - name: instance_ubuntu-latest_ec2
+      - fedora_latest_ec2
+  - name: instance_ubuntu_latest_ec2
     image: ami-0cf8fa6a01bb07363
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     groups:
-      - ubuntu-latest_ec2
+      - ubuntu_latest_ec2
 provisioner:
   name: ansible
   lint:
@@ -62,23 +62,18 @@ provisioner:
     converge: ${TEST_PLAYBOOK:-../playbook.yml}
   inventory:
     group_vars:
-      amazonlinux-latest_ec2:
+      amazonlinux_latest_ec2:
         bootstrap_user: ec2-user
-      centos-latest_ec2:
+      centos_latest_ec2:
         bootstrap_user: centos
-        ansible_python_interpreter: /usr/bin/python3
-      redhat-latest_ec2:
-        bootstrap_user: ec2-user
-        ansible_python_interpreter: /usr/bin/python3
-      debian-latest_ec2:
+      debian_latest_ec2:
         bootstrap_user: admin
-        ansible_python_interpreter: /usr/bin/python3
-      fedora-latest_ec2:
+      fedora_latest_ec2:
         bootstrap_user: fedora
-        ansible_python_interpreter: /usr/bin/python3
-      ubuntu-latest_ec2:
+      redhat_latest_ec2:
+        bootstrap_user: ec2-user
+      ubuntu_latest_ec2:
         bootstrap_user: ubuntu
-        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: ec2-all
 verifier:

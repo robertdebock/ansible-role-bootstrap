@@ -11,14 +11,14 @@ lint:
     config-file: molecule/.yamllint
 platforms:
   # https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/finding-an-ami.html
-  - name: "${TEST_INSTANCE_PREFIX:-instance}_${TEST_DISTRO:-centos-latest}_${TOX_ENVNAME:-ec2}"
+  - name: "${TEST_INSTANCE_PREFIX:-instance}_${TEST_DISTRO:-centos_latest}_${TOX_ENVNAME:-ec2}"
     image: ${TEST_EC2_AMI:-ami-dd3c0f36}
     instance_type: t2.micro
     vpc_subnet_id: ${TEST_EC2_VPC_SUBNET_ID:-""}
     root_device:
       device_name: ${TEST_EC2_ROOT_DEVICE:-""}
     groups:
-      - ${TEST_DISTRO:-centos-latest}_ec2
+      - ${TEST_DISTRO:-centos_latest}_ec2
 provisioner:
   name: ansible
   lint:
@@ -30,20 +30,18 @@ provisioner:
     converge: ${TEST_PLAYBOOK:-../playbook.yml}
   inventory:
     group_vars:
-      amazonlinux-latest_ec2:
+      amazonlinux_latest_ec2:
         bootstrap_user: ec2-user
-      centos-latest_ec2:
+      centos_latest_ec2:
         bootstrap_user: centos
-        ansible_python_interpreter: /usr/bin/python3
-      debian-latest_ec2:
+      debian_latest_ec2:
         bootstrap_user: admin
-        ansible_python_interpreter: /usr/bin/python3
-      fedora-latest_ec2:
+      fedora_latest_ec2:
         bootstrap_user: fedora
-        ansible_python_interpreter: /usr/bin/python3
-      ubuntu-latest_ec2:
+      redhat_latest_ec2:
+        bootstrap_user: ec2-user
+      ubuntu_latest_ec2:
         bootstrap_user: ubuntu
-        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: ec2
 verifier:
