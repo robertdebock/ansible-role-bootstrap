@@ -38,7 +38,7 @@ env:
     - TEST_DISTRO="redhat_latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="registry.access.redhat.com/ubi8/ubi:latest"
     - TEST_DISTRO="ubuntu_latest" ANSIBLE="stable" TEST_DOCKER_IMAGE="ubuntu:latest" TEST_EC2_AMI="ami-0cf8fa6a01bb07363"
     - TEST_DISTRO="ubuntu_latest" ANSIBLE="devel" TEST_DOCKER_IMAGE="ubuntu:latest"
-    - TEST_DISTRO="ubuntu-devel" ANSIBLE="all" TEST_DOCKER_IMAGE="ubuntu:devel"
+    - TEST_DISTRO="ubuntu_devel" ANSIBLE="all" TEST_DOCKER_IMAGE="ubuntu:devel"
 
 matrix:
   fast_finish: false

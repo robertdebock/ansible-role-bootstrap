@@ -35,6 +35,7 @@
 
 - name: set ansible python interpreter (support ansible<2.8)
   set_fact:
+    cacheable: yes
     ansible_python_interpreter: "{{ '/usr/bin/python3' if 'python3' in bootstrap_packages else '/usr/bin/python' }}"
   changed_when: no
   when:
