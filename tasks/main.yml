@@ -37,6 +37,8 @@
         ansible_python_interpreter: "{{ '/usr/bin/python3' if 'python3' in bootstrap_packages else '/usr/bin/python' }}"
         goss_python_interpreter: "{{ '/usr/bin/python3' if 'python3' in bootstrap_packages else '/usr/bin/python' }}"
         cacheable: yes
+      args:
+        warn: no
       changed_when: no
       when:
         - ansible_version.major <= 2

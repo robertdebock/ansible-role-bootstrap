@@ -5,6 +5,7 @@
 
 - name: Verify
   hosts: all
+  gather_facts: no
   become: true
   vars:
     goss_version: v0.3.7
@@ -22,6 +23,8 @@
       when:
         - ansible_version.major <= 2
         - ansible_version.minor < 8
+    - name: Gather facts
+      setup:
   tasks:
     - name: Download and install Goss
       get_url:
