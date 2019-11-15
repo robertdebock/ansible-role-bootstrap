@@ -31,7 +31,7 @@
 
     - name: install bootstrap_packages
       include_tasks: install.yml
-    
+
     - name: set ansible python interpreter (support ansible<2.8)
       set_fact:
         ansible_python_interpreter: "{{ '/usr/bin/python3' if 'python3' in bootstrap_packages else '/usr/bin/python' }}"
