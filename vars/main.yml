@@ -21,7 +21,7 @@ _bootstrap_packages:
   RedHat_7: python sudo
   Ubuntu: python3 sudo gnupg
 
-# Map the right set of package based on values found in `tasks/register.yml`.
+# Map the right distribution name based on values found in `tasks/register.yml`.
 bootstrap_distributions:
   NA: ['NA']
   Alpine: ['Alpine']

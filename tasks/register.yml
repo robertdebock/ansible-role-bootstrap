@@ -94,7 +94,7 @@
         bootstrap_distribution_major_version: "{{ redhat.stdout.split(' release ')[1].split('.')[0] }}"
       when:
         - redhat.rc == 0
-    
+
     - name: map distribution name
       set_fact:
         bootstrap_distribution: "{{ item.key }}"
