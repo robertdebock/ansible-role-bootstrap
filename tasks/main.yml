@@ -33,19 +33,13 @@
       include_tasks: install.yml
   when: bootstrap_connect is not succeeded
 
-- name: support python3 on ansible <= 2.7
-  block:
-    - name: register local ansible version
-      command: ansible --version
-      register: bootstrap_ansible
-      delegate_to: localhost
-      changed_when: no
-    - name: set ansible python interpreter
-      set_fact:
-        ansible_python_interpreter: "{{ '/usr/bin/python3' if 'python3' in bootstrap_packages else '/usr/bin/python' }}"
-      when:
-        - bootstrap_ansible.stdout|regex_replace('^ansible (\\d{1,2})(\\.\\d)?.*\n$', '\\1')|int <= 2
-        - bootstrap_ansible.stdout|regex_replace('^ansible \\d{1,2}\\.(\\d{1,2})(\\.\\d)?.*\n$', '\\1')|int < 8
+- name: set ansible python interpreter (support ansible<2.8)
+  set_fact:
+    ansible_python_interpreter: "{{ '/usr/bin/python3' if 'python3' in bootstrap_packages else '/usr/bin/python' }}"
+  changed_when: no
+  when:
+    - ansible_version.major <= 2
+    - ansible_version.minor < 8
 
 - name: ensure all bootstrap_packages are installed
   block:

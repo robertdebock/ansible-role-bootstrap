@@ -101,6 +101,7 @@
       loop: "{{ bootstrap_distributions|dict2items }}"
       loop_control:
         label: "{{ item.key }}"
+      changed_when: no
       when: bootstrap_distribution|default('NA') in item.value
   vars:
     ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
