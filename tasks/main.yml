@@ -31,16 +31,17 @@
 
     - name: install bootstrap_packages
       include_tasks: install.yml
+    
+    - name: set ansible python interpreter (support ansible<2.8)
+      set_fact:
+        ansible_python_interpreter: "{{ '/usr/bin/python3' if 'python3' in bootstrap_packages else '/usr/bin/python' }}"
+        goss_python_interpreter: "{{ '/usr/bin/python3' if 'python3' in bootstrap_packages else '/usr/bin/python' }}"
+        cacheable: yes
+      changed_when: no
+      when:
+        - ansible_version.major <= 2
+        - ansible_version.minor < 8
   when: bootstrap_connect is not succeeded
-
-- name: set ansible python interpreter (support ansible<2.8)
-  set_fact:
-    cacheable: yes
-    ansible_python_interpreter: "{{ '/usr/bin/python3' if 'python3' in bootstrap_packages else '/usr/bin/python' }}"
-  changed_when: no
-  when:
-    - ansible_version.major <= 2
-    - ansible_version.minor < 8
 
 - name: ensure all bootstrap_packages are installed
   block:
