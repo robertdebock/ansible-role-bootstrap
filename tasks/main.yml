@@ -54,7 +54,7 @@
       register: bootstrap_install_bootstrap_facts_packages
       until: bootstrap_install_bootstrap_facts_packages is succeeded
       retries: 3
-    
+
     - name: save ansible python interpreter (ansible<2.8)
       ini_file:
         path: /etc/ansible/facts.d/python.fact
