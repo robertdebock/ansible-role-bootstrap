@@ -27,7 +27,6 @@ _bootstrap_packages:
 # Map the right distribution name based on values found in `tasks/register.yml`.
 bootstrap_distributions:
   Amazon: ['Amazon', 'Amazon Linux']
-  Archlinux: ['Archlinux', 'Arch Linux']
   CentOS: ['CentOS', 'CentOS Linux']
   Kali: ['Kali', 'Kali GNU/Linux']
   RedHat: ['RedHat', 'Red Hat Enterprise Linux', 'Red Hat Enterprise Linux Server']
