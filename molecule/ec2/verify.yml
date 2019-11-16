@@ -16,13 +16,14 @@
     goss_test_directory: /tmp/molecule/goss
     goss_format: documentation
   pre_tasks:
-    - name: Set ansible python interpreter (support ansible<2.8)
+    - name: Set ansible python interpreter (ansible<2.8)
       set_fact:
-        ansible_python_interpreter: "{{ goss_python_interpreter }}"
-      changed_when: no
+        ansible_python_interpreter: "{{ lookup('ini', inventory_hostname
+                                     ~' section=interpreter_python file=/etc/ansible/facts.d/python.fact') }}"
       when:
         - ansible_version.major <= 2
         - ansible_version.minor < 8
+
     - name: Gather facts
       setup:
   tasks:
