@@ -39,6 +39,18 @@
       when:
         - ansible_version.major <= 2
         - ansible_version.minor < 8
+
+    - name: save ansible python interpreter (ansible<2.8)
+      ini_file:
+        path: /etc/ansible/facts.d/python.fact
+        section: interpreter_python
+        option: "{{ inventory_hostname }}"
+        value: "{{ ansible_python_interpreter }}"
+        mode: '0644'
+      delegate_to: localhost
+      when:
+        - ansible_version.major <= 2
+        - ansible_version.minor < 8
   when: bootstrap_connect is not succeeded
 
 - name: ensure all bootstrap_packages are installed
@@ -54,17 +66,5 @@
       register: bootstrap_install_bootstrap_facts_packages
       until: bootstrap_install_bootstrap_facts_packages is succeeded
       retries: 3
-
-    - name: save ansible python interpreter (ansible<2.8)
-      ini_file:
-        path: /etc/ansible/facts.d/python.fact
-        section: interpreter_python
-        option: "{{ inventory_hostname }}"
-        value: "{{ ansible_python_interpreter }}"
-        mode: '0644'
-      delegate_to: localhost
-      when:
-        - ansible_version.major <= 2
-        - ansible_version.minor < 8
   vars:
     ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
