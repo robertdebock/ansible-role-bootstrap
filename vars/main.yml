@@ -9,7 +9,7 @@ _bootstrap_packages:
   NA: python3 sudo
   Alpine: python3 sudo
   Amazon: python sudo
-  Archlinux: python sudo
+  Archlinux: python3 sudo
   CentOS: python3 sudo
   CentOS_7: python sudo
   Debian: python3 sudo gnupg python3-apt
@@ -17,7 +17,7 @@ _bootstrap_packages:
   Debian_8: python sudo gnupg
   Fedora: python3 sudo
   Gentoo: python sudo gentoolkit
-  Kali: python3 sudo gnupg
+  Kali: python3 sudo gnupg python3-apt
   openSUSE: python python-xml sudo
   openSUSE Leap: python python-xml sudo
   openSUSE Tumbleweed: python python-xml sudo
@@ -32,7 +32,7 @@ bootstrap_distributions:
   Archlinux: ['Archlinux', 'Arch Linux']
   CentOS: ['CentOS', 'CentOS Linux']
   Kali: ['Kali', 'Kali GNU/Linux']
-  RedHat: ['RedHat', 'Red Hat', 'Red Hat Server', 'Red Hat Enterprise Linux', 'Red Hat Enterprise Linux Server']
+  RedHat: ['RedHat', 'Red Hat Enterprise Linux', 'Red Hat Enterprise Linux Server']
 
 # Map the right set of package based on values found in `tasks/register.yml`.
 bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'_'~ bootstrap_distribution_major_version]|default(

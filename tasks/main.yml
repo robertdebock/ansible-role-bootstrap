@@ -11,28 +11,25 @@
     - ansible_connection != "docker"
     - bootstrap_wait_for_host | bool
 
-- name: test connection
-  wait_for_connection:
-    timeout: "{{ bootstrap_timeout }}"
-  register: bootstrap_connect
-  changed_when: no
-  ignore_errors: yes
-
-- name: register temporary bootstrap user
-  set_fact:
-    bootstrap_ansible_user: "{{ (ansible_user | default(omit, true))
-                             if bootstrap_connect is succeeded else bootstrap_user }}"
-  changed_when: no
-
 - name: prepare system
   block:
+    - name: test connection
+      wait_for_connection:
+        timeout: "{{ bootstrap_timeout }}"
+      register: bootstrap_connect
+      changed_when: no
+  rescue:
+    - name: register temporary bootstrap user
+      set_fact:
+        bootstrap_ansible_user: "{{ bootstrap_user }}"
+      changed_when: no
     - name: register distribution
       include_tasks: register.yml
 
     - name: install bootstrap_packages
       include_tasks: install.yml
 
-    - name: set ansible python interpreter (ansible<2.8)
+    - name: set ansible_python_interpreter (ansible<2.8)
       set_fact:
         ansible_python_interpreter: "{{ '/usr/bin/python3' if 'python3' in bootstrap_packages else '/usr/bin/python' }}"
       changed_when: no
@@ -40,7 +37,7 @@
         - ansible_version.major <= 2
         - ansible_version.minor < 8
 
-    - name: save ansible python interpreter (ansible<2.8)
+    - name: save ansible_python_interpreter (ansible<2.8)
       ini_file:
         path: /etc/ansible/facts.d/python.fact
         section: interpreter_python
@@ -51,7 +48,6 @@
       when:
         - ansible_version.major <= 2
         - ansible_version.minor < 8
-  when: bootstrap_connect is not succeeded
 
 - name: ensure all bootstrap_packages are installed
   block:
@@ -66,5 +62,6 @@
       register: bootstrap_install_bootstrap_facts_packages
       until: bootstrap_install_bootstrap_facts_packages is succeeded
       retries: 3
+      when: bootstrap_connect is succeeded
   vars:
     ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
