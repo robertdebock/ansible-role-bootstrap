@@ -62,6 +62,6 @@
       register: bootstrap_install_bootstrap_facts_packages
       until: bootstrap_install_bootstrap_facts_packages is succeeded
       retries: 3
-      when: bootstrap_connect is succeeded
+  when: bootstrap_connect is succeeded
   vars:
     ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
