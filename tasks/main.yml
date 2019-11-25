@@ -1,6 +1,6 @@
 ---
 # tasks file for bootstrap
-- name: wait for the host
+- name: wait for host
   wait_for:
     port: "{{ ansible_port | default('22') }}"
     host: "{{ (ansible_ssh_host | default(ansible_host) | default(inventory_hostname)) }}"
@@ -19,15 +19,49 @@
       register: bootstrap_connect
       changed_when: no
   rescue:
-    - name: register temporary bootstrap user
+    - name: set bootstrap ansible_user
       set_fact:
         bootstrap_ansible_user: "{{ bootstrap_user }}"
       changed_when: no
-    - name: register distribution
-      include_tasks: register.yml
 
-    - name: install bootstrap_packages
-      include_tasks: install.yml
+    - name: gather bootstrap facts
+      become: no
+      raw: "cat /etc/os-release"
+      register: bootstrap_facts
+      changed_when: no
+      vars:
+        ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
+
+    - name: set bootstrap facts (I)
+      set_fact:
+        bootstrap_distribution: "{{ item }}"
+        bootstrap_distribution_major_version: "{{ bootstrap_facts.stdout_lines|join(',')|regex_replace(
+                                               '^.*VERSION_ID=\"(\\d{1,2})(\\.\\d{1,4})*?\".*$','\\1')|default('NA') }}"
+      loop: "{{ bootstrap_osfamily|dict2items|map(attribute='value')|flatten }}"
+      when:
+        - bootstrap_facts.rc == 0
+        - bootstrap_distribution is not defined
+        - bootstrap_facts.stdout is regex('PRETTY_NAME=.'~ bootstrap_search[item]|default(item) ~'.*')
+
+    - name: set bootstrap facts (II)
+      set_fact:
+        bootstrap_os_family: "{{ item.key }}"
+      loop: "{{ bootstrap_osfamily|dict2items }}"
+      loop_control:
+          label: "{{ item.key }}"
+      when: bootstrap_distribution in item.value
+
+    - name: install bootstrap packages
+      raw: "{{ bootstrap_install[0] }}"
+      register: bootstrap_install_packages
+      changed_when: (bootstrap_install[1] in bootstrap_install_packages.stdout and
+                     bootstrap_os_family in ['Alpine','Archlinux','Gentoo']) or (
+                     bootstrap_install[1] not in bootstrap_install_packages.stdout and
+                     bootstrap_os_family in ['Debian','RedHat','Suse'])
+      until: bootstrap_install_packages is succeeded
+      retries: "{{ bootstrap_retries }}"
+      vars:
+        ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
 
     - name: set ansible_python_interpreter (ansible<2.8)
       set_fact:
@@ -49,19 +83,19 @@
         - ansible_version.major <= 2
         - ansible_version.minor < 8
 
-- name: ensure all bootstrap_packages are installed
+- name: ensure system is prepared
   block:
-    - name: gather facts
+    - name: gather bootstrap ansible_facts
       setup:
 
-    - name: install bootstrap_facts_packages
+    - name: install bootstrap packages
       package:
         name: "{{ item }}"
         state: present
-      with_items: "{{ bootstrap_facts_packages.split() }}"
-      register: bootstrap_install_bootstrap_facts_packages
-      until: bootstrap_install_bootstrap_facts_packages is succeeded
-      retries: 3
+      loop: "{{ bootstrap_facts_packages.split() }}"
+      register: bootstrap_install_facts_packages
+      until: bootstrap_install_facts_packages is succeeded
+      retries: "{{ bootstrap_retries }}"
       when:
         - bootstrap_connect is succeeded
         - ansible_distribution is defined

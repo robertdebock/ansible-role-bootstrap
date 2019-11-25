@@ -1,40 +1,55 @@
 ---
 # vars file for bootstrap
 
-# A string for each distribution and version of packages to install.
-# Because this is a bootstrap role, there are no facts. The file
-# `tasks/register.yml` discovers what distribution and version ansible
-# is running against.
 _bootstrap_packages:
   Alpine: python3 sudo
-  Amazon: python sudo
   Archlinux: python sudo
-  CentOS: python3 sudo
-  CentOS_7: python sudo
   Debian: python3 sudo gnupg python3-apt
   Debian_9: python sudo gnupg
   Debian_8: python sudo gnupg
-  Fedora: python3 sudo
   Gentoo: python sudo gentoolkit
-  Kali: python3 sudo gnupg python3-apt
-  openSUSE: python python-xml sudo
-  openSUSE Leap: python python-xml sudo
-  openSUSE Tumbleweed: python python-xml sudo
+  Suse: python python-xml sudo
   RedHat: python3 sudo
   RedHat_7: python sudo
-  Ubuntu: python3 sudo gnupg
+  Amazon: python sudo
 
-# Map the right distribution name based on values found in `tasks/register.yml`.
-bootstrap_distributions:
-  Amazon: ['Amazon', 'Amazon Linux']
-  CentOS: ['CentOS', 'CentOS Linux']
-  Kali: ['Kali', 'Kali GNU/Linux']
-  RedHat: ['RedHat', 'Red Hat Enterprise Linux', 'Red Hat Enterprise Linux Server']
+_bootstrap_install:
+  Alpine: ["LANG=C apk update ; apk add {{ bootstrap_packages }}", "Installing"]
+  Archlinux: ["LANG=C pacman -Sy --noconfirm {{ bootstrap_packages }}", " installing python"]
+  Debian: ["LANG=C apt-get update && apt-get install -y {{ bootstrap_packages }}", " 0 newly installed"]
+  Gentoo: ["LANG=C equery l {{ bootstrap_packages }} ||
+            (emaint -a sync ; emerge -qkv {{ bootstrap_packages }} ; echo 'changed')", "changed"]
+  Suse: ["LANG=C zypper -n install {{ bootstrap_packages }}", "Nothing"]
+  RedHat: ["LANG=C yum -y install {{ bootstrap_packages }}", "Nothing"]
 
-# Map the right set of package based on values found in `tasks/register.yml`.
+bootstrap_family:
+  Alpine: ['Alpine']
+  Archlinux: ['Archlinux', 'Antergos', 'Manjaro']
+  Debian: ['Debian', 'Ubuntu', 'Raspbian', 'Neon', 'KDE neon',
+           'Linux Mint', 'SteamOS', 'Devuan', 'Kali', 'Cumulus Linux']
+  Gentoo: ['Gentoo', 'Funtoo']
+  Suse: ['SLED', 'openSUSE Tumbleweed', 'openSUSE Leap',
+         'SLES_SAP', 'SUSE_LINUX', 'SLES', 'openSUSE', 'SuSE']
+  RedHat: ['RedHat', 'Fedora', 'CentOS', 'Scientific', 'SLC',
+           'Ascendos', 'CloudLinux', 'PSBM', 'OracleLinux', 'OVS',
+           'OEL', 'Amazon', 'Virtuozzo', 'XenServer', 'Alibaba']
+
+bootstrap_search:
+  Archlinux: 'Arch Linux'
+  OracleLinux: 'Oracle Linux'
+  RedHat: 'Red Hat'
+
+# Map the right set of packages, based on gathered bootstrap facts.
 bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'_'~ bootstrap_distribution_major_version]|default(
-                     _bootstrap_packages[bootstrap_distribution]) }}"
+                     _bootstrap_packages[bootstrap_distribution])|default(
+                     _bootstrap_packages[bootstrap_os_family] ~'_'~ bootstrap_distribution_major_version])|default(
+                     _bootstrap_packages[bootstrap_os_family]) }}"
+
+# Map the right install command, based on gathered bootstrap facts.
+bootstrap_install: "{{ _bootstrap_install[bootstrap_os_family] }}"
 
 # Map the right set of packages, based on gathered facts.
 bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~'_'~ ansible_distribution_major_version]|default(
-                           _bootstrap_packages[ansible_distribution]) }}"
+                           _bootstrap_packages[ansible_distribution])|default(
+                           _bootstrap_packages[ansible_os_family] ~'_'~ ansible_distribution_major_version])|default(
+                           _bootstrap_packages[ansible_os_family]) }}"
