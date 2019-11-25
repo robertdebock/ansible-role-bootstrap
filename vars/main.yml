@@ -22,7 +22,7 @@ _bootstrap_install:
   Suse: ["LANG=C zypper -n install {{ bootstrap_packages }}", "Nothing"]
   RedHat: ["LANG=C yum -y install {{ bootstrap_packages }}", "Nothing"]
 
-bootstrap_family:
+bootstrap_os_family_map:
   Alpine: ['Alpine']
   Archlinux: ['Archlinux', 'Antergos', 'Manjaro']
   Debian: ['Debian', 'Ubuntu', 'Raspbian', 'Neon', 'KDE neon',
