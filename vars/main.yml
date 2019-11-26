@@ -8,9 +8,9 @@ _bootstrap_packages:
   Debian_9: python sudo gnupg
   Debian_8: python sudo gnupg
   Gentoo: python sudo gentoolkit
-  Suse: python python-xml sudo
   RedHat: python3 sudo
   RedHat_7: python sudo
+  Suse: python python-xml sudo
   Amazon: python sudo
 
 _bootstrap_install:
@@ -19,8 +19,8 @@ _bootstrap_install:
   Debian: ["LANG=C apt-get update && apt-get install -y {{ bootstrap_packages }}", " 0 newly installed"]
   Gentoo: ["LANG=C equery l {{ bootstrap_packages }} ||
             (emaint -a sync ; emerge -qkv {{ bootstrap_packages }} ; echo 'changed')", "changed"]
-  Suse: ["LANG=C zypper -n install {{ bootstrap_packages }}", "Nothing"]
   RedHat: ["LANG=C yum -y install {{ bootstrap_packages }}", "Nothing"]
+  Suse: ["LANG=C zypper -n install {{ bootstrap_packages }}", "Nothing"]
 
 bootstrap_os_family_map:
   Alpine: ['Alpine']
@@ -28,11 +28,11 @@ bootstrap_os_family_map:
   Debian: ['Debian', 'Ubuntu', 'Raspbian', 'Neon', 'KDE neon',
            'Linux Mint', 'SteamOS', 'Devuan', 'Kali', 'Cumulus Linux']
   Gentoo: ['Gentoo', 'Funtoo']
-  Suse: ['SLED', 'openSUSE Tumbleweed', 'openSUSE Leap',
-         'SLES_SAP', 'SUSE_LINUX', 'SLES', 'openSUSE', 'SuSE']
   RedHat: ['RedHat', 'Fedora', 'CentOS', 'Scientific', 'SLC',
            'Ascendos', 'CloudLinux', 'PSBM', 'OracleLinux', 'OVS',
            'OEL', 'Amazon', 'Virtuozzo', 'XenServer', 'Alibaba']
+  Suse: ['SLED', 'openSUSE Tumbleweed', 'openSUSE Leap',
+         'SLES_SAP', 'SUSE_LINUX', 'SLES', 'openSUSE', 'SuSE']
 
 bootstrap_search:
   Archlinux: 'Arch Linux'
@@ -46,9 +46,10 @@ bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'_'~ bootstr
                      _bootstrap_packages[bootstrap_os_family]) }}"
 
 # Map the right install command, based on gathered bootstrap facts.
-bootstrap_install: "{{ _bootstrap_install[bootstrap_os_family] }}"
+bootstrap_install: "{{ _bootstrap_packages[bootstrap_distribution])|default(
+                    _bootstrap_install[bootstrap_os_family]) }}"
 
-# Map the right set of packages, based on gathered facts.
+# Map the right set of packages, based on gathered ansible_facts.
 bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~'_'~ ansible_distribution_major_version]|default(
                            _bootstrap_packages[ansible_distribution])|default(
                            _bootstrap_packages[ansible_os_family ~'_'~ ansible_distribution_major_version])|default(

@@ -16,7 +16,7 @@
     goss_test_directory: /tmp/molecule/goss
     goss_format: documentation
   pre_tasks:
-    - name: Set ansible python interpreter (ansible<2.8)
+    - name: Set ansible_python_interpreter (ansible<2.8)
       set_fact:
         ansible_python_interpreter: "{{ lookup('ini', inventory_hostname
                                      ~' section=interpreter_python file=/etc/ansible/facts.d/python.fact') }}"
