@@ -63,22 +63,8 @@
       vars:
         ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
 
-    - name: set ansible_python_interpreter (ansible<2.8)
-      set_fact:
-        ansible_python_interpreter: "{{ '/usr/bin/python3' if 'python3' in bootstrap_packages else '/usr/bin/python' }}"
-      changed_when: no
-      when:
-        - ansible_version.major <= 2
-        - ansible_version.minor < 8
-
-    - name: save ansible_python_interpreter (ansible<2.8)
-      ini_file:
-        path: /etc/ansible/facts.d/python.fact
-        section: interpreter_python
-        option: "{{ inventory_hostname }}"
-        value: "{{ ansible_python_interpreter }}"
-        mode: '0644'
-      delegate_to: localhost
+    - name: support deprecated ansible (version<2.8)
+      include_tasks: deprecated.yml
       when:
         - ansible_version.major <= 2
         - ansible_version.minor < 8
@@ -98,6 +84,5 @@
       retries: "{{ bootstrap_retries }}"
       when:
         - bootstrap_connect is succeeded
-        - ansible_distribution is defined
   vars:
     ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
