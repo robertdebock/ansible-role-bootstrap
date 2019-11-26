@@ -58,6 +58,7 @@
       package:
         name: "{{ item }}"
         state: present
+        use: "{{ ansible_pkg_mgr }}"
       loop: "{{ bootstrap_facts_packages.split() }}"
       register: bootstrap_install_facts_packages
       until: bootstrap_install_facts_packages is succeeded
