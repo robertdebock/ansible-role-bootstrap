@@ -42,11 +42,12 @@
 - name: ensure system is prepared
   block:
     - name: support deprecated ansible (version<2.8)
-      include_tasks: "{{ item }}"
-      loop:
-        - 'gather.yml'
-        - 'deprecated.yml'
+      include_tasks: "{{ deprecated_item }}"
+      loop: ['gather.yml', 'deprecated.yml']
+      loop_control:
+        loop_var: deprecated_item
       when:
+        - deprecated_item == 'deprecated.yml' or bootstrap_connect is succeeded
         - ansible_version.major <= 2
         - ansible_version.minor < 8
 
