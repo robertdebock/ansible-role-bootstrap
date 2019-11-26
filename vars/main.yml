@@ -1,6 +1,5 @@
 ---
 # vars file for bootstrap
-
 _bootstrap_packages:
   Alpine: python3 sudo
   Archlinux: python sudo
@@ -40,6 +39,8 @@ _bootstrap_install:
     stdout_regex: 'Nothing'
     pkg_mgr: zypper
 
+# See URL for available OS families and search queries
+# https://github.com/ansible/ansible/blob/devel/lib/ansible/module_utils/facts/system/distribution.py
 bootstrap_os_family_map:
   Alpine: ['Alpine']
   Archlinux: ['Archlinux', 'Antergos', 'Manjaro']
