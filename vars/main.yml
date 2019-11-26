@@ -46,7 +46,7 @@ bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'_'~ bootstr
                      _bootstrap_packages[bootstrap_os_family]) }}"
 
 # Map the right install command, based on gathered bootstrap facts.
-bootstrap_install: "{{ _bootstrap_packages[bootstrap_distribution]|default(
+bootstrap_install: "{{ _bootstrap_install[bootstrap_distribution]|default(
                     _bootstrap_install[bootstrap_os_family]) }}"
 
 # Map the right set of packages, based on gathered ansible_facts.
