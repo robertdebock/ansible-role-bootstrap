@@ -5,6 +5,7 @@
     ansible_distribution: "{{ bootstrap_distribution }}"
     ansible_distribution_major_version: "{{ bootstrap_distribution_major_version }}"
     ansible_os_family: "{{ bootstrap_os_family }}"
+    ansible_pkg_mgr: "{{ bootstrap_install.pkg_mgr }}"
   changed_when: no
 
 - name: save ansible_python_interpreter (molecule/goss)

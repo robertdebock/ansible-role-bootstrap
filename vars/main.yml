@@ -14,13 +14,31 @@ _bootstrap_packages:
   Amazon: python sudo
 
 _bootstrap_install:
-  Alpine: ["LANG=C apk update ; apk add {{ bootstrap_packages }}", "Installing"]
-  Archlinux: ["LANG=C pacman -Sy --noconfirm {{ bootstrap_packages }}", " installing python"]
-  Debian: ["LANG=C apt-get update && apt-get install -y {{ bootstrap_packages }}", " 0 newly installed"]
-  Gentoo: ["LANG=C equery l {{ bootstrap_packages }} ||
-            (emaint -a sync ; emerge -qkv {{ bootstrap_packages }} ; echo 'changed')", "changed"]
-  RedHat: ["LANG=C yum -y install {{ bootstrap_packages }}", "Nothing"]
-  Suse: ["LANG=C zypper -n install {{ bootstrap_packages }}", "Nothing"]
+  Alpine:
+    raw: "LANG=C apk update ; apk add {{ bootstrap_packages }}"
+    stdout_regex: 'Installing'
+    pkg_mgr: apk
+  Archlinux:
+    raw: "LANG=C pacman -Sy --noconfirm {{ bootstrap_packages }}"
+    stdout_regex: ' installing python'
+    pkg_mgr: pacman
+  Debian:
+    raw: "LANG=C apt-get update && apt-get install -y {{ bootstrap_packages }}"
+    stdout_regex: ' 0 newly installed'
+    pkg_mgr: apt
+  Gentoo:
+    raw: "LANG=C equery l {{ bootstrap_packages }} ||
+          (emaint -a sync ; emerge -qkv {{ bootstrap_packages }} ; echo 'changed')"
+    stdout_regex: 'changed'
+    pkg_mgr: portage
+  RedHat:
+    raw: "LANG=C yum -y install {{ bootstrap_packages }}"
+    stdout_regex: 'Nothing'
+    pkg_mgr: yum
+  Suse:
+    raw: "LANG=C zypper -n install {{ bootstrap_packages }}"
+    stdout_regex: 'Nothing'
+    pkg_mgr: zypper
 
 bootstrap_os_family_map:
   Alpine: ['Alpine']
