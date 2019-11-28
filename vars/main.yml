@@ -4,13 +4,14 @@ _bootstrap_packages:
   Alpine: python3 sudo
   Archlinux: python sudo
   Debian: python3 sudo gnupg python3-apt
-  Debian_9: python sudo gnupg
-  Debian_8: python sudo gnupg
   Gentoo: python sudo gentoolkit
   RedHat: python3 sudo
-  RedHat_7: python sudo
   Suse: python python-xml sudo
   Amazon: python sudo
+  CentOS_7: python sudo
+  Debian_8: python sudo gnupg
+  Debian_9: python sudo gnupg
+  RedHat_7: python sudo
 
 _bootstrap_install:
   Alpine:
@@ -61,15 +62,14 @@ bootstrap_search:
 # Map the right set of packages, based on gathered bootstrap facts.
 bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'_'~ bootstrap_distribution_major_version]|default(
                      _bootstrap_packages[bootstrap_distribution])|default(
-                     _bootstrap_packages[bootstrap_os_family ~'_'~ bootstrap_distribution_major_version])|default(
                      _bootstrap_packages[bootstrap_os_family]) }}"
 
 # Map the right install command, based on gathered bootstrap facts.
-bootstrap_install: "{{ _bootstrap_install[bootstrap_distribution]|default(
+bootstrap_install: "{{ _bootstrap_install[bootstrap_distribution ~'_'~ bootstrap_distribution_major_version]|default(
+                    _bootstrap_install[bootstrap_distribution])|default(
                     _bootstrap_install[bootstrap_os_family]) }}"
 
 # Map the right set of packages, based on gathered ansible_facts.
 bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~'_'~ ansible_distribution_major_version]|default(
                            _bootstrap_packages[ansible_distribution])|default(
-                           _bootstrap_packages[ansible_os_family ~'_'~ ansible_distribution_major_version])|default(
                            _bootstrap_packages[ansible_os_family]) }}"

@@ -19,11 +19,6 @@
       register: bootstrap_connect
       changed_when: no
   rescue:
-    - name: set bootstrap ansible_user
-      set_fact:
-        bootstrap_ansible_user: "{{ bootstrap_user }}"
-      changed_when: no
-
     - name: gather bootstrap facts
       include_tasks: "gather.yml"
 
@@ -37,7 +32,12 @@
       until: bootstrap_install_packages is succeeded
       retries: "{{ bootstrap_retries }}"
       vars:
-        ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
+        ansible_user: "{{ bootstrap_user }}"
+  always:
+    - name: set bootstrap ansible_user
+      set_fact:
+        bootstrap_ansible_user: "{{ ansible_user | default(omit) if bootstrap_connect is succeeded else bootstrap_user }}"
+      changed_when: no
 
 - name: ensure system is prepared
   block:

@@ -5,7 +5,7 @@
   register: bootstrap_facts
   changed_when: no
   vars:
-    ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
+    ansible_user: "{{ bootstrap_ansible_user | default(omit) if bootstrap_connect is succeeded else bootstrap_user }}"
 
 - name: set bootstrap facts (I)
   set_fact:
