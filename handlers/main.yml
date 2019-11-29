@@ -1,6 +1,0 @@
----
-# handlers file for bootstrap
-- name: gather bootstrap ansible_facts
-  setup:
-  vars:
-    ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"

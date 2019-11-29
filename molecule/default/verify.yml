@@ -5,7 +5,6 @@
 
 - name: Verify
   hosts: all
-  gather_facts: no
   become: true
   vars:
     goss_version: v0.3.7
@@ -15,17 +14,6 @@
     goss_url: "https://github.com/aelsabbahy/goss/releases/download/{{ goss_version }}/goss-linux-{{ goss_arch }}"
     goss_test_directory: /tmp/molecule/goss
     goss_format: documentation
-  pre_tasks:
-    - name: Set ansible_python_interpreter (ansible<2.8)
-      set_fact:
-        ansible_python_interpreter: "{{ lookup('ini', inventory_hostname
-                                     ~' section=interpreter_python file=/etc/ansible/facts.d/python.fact') }}"
-      when:
-        - ansible_version.major <= 2
-        - ansible_version.minor < 8
-
-    - name: Gather facts
-      setup:
   tasks:
     - name: Download and install Goss
       get_url:

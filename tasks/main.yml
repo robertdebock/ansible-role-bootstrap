@@ -1,6 +1,6 @@
 ---
 # tasks file for bootstrap
-- name: wait for host
+- name: Wait for host
   wait_for:
     port: "{{ ansible_port | default('22') }}"
     host: "{{ (ansible_ssh_host | default(ansible_host) | default(inventory_hostname)) }}"
@@ -11,59 +11,46 @@
     - ansible_connection != "docker"
     - bootstrap_wait_for_host | bool
 
-- name: prepare system
+- name: Prepare system
   block:
-    - name: test connection
+    - name: Test connection
       wait_for_connection:
         timeout: "{{ bootstrap_timeout }}"
       register: bootstrap_connect
       changed_when: no
   rescue:
-    - name: gather bootstrap facts
-      include_tasks: "gather.yml"
+    - name: Gather bootstrap facts
+      include_tasks: "gather_facts.yml"
 
-    - name: install bootstrap packages
+    - name: Install bootstrap packages
       raw: "{{ bootstrap_install.raw }}"
       register: bootstrap_install_packages
       changed_when: (bootstrap_install.stdout_regex in bootstrap_install_packages.stdout and
-                     bootstrap_os_family in ['Alpine','Archlinux','Gentoo']) or (
+                     bootstrap_os_family in [Alpine, Archlinux, Gentoo]) or (
                      bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
-                     bootstrap_os_family in ['Debian','RedHat','Suse'])
+                     bootstrap_os_family in [Debian, RedHat, Suse])
       until: bootstrap_install_packages is succeeded
       retries: "{{ bootstrap_retries }}"
       vars:
         ansible_user: "{{ bootstrap_user }}"
   always:
-    - name: set bootstrap ansible_user
+    - name: Set bootstrap ansible_user
       set_fact:
         bootstrap_ansible_user: "{{ ansible_user | default(omit) if bootstrap_connect is succeeded else bootstrap_user }}"
       changed_when: no
 
-- name: ensure system is prepared
+- name: Ensure system is prepared
   block:
-    - name: support deprecated ansible (version<2.8)
-      include_tasks: "{{ deprecated_item }}"
-      loop: ['gather.yml', 'deprecated.yml']
-      loop_control:
-        loop_var: deprecated_item
-      when:
-        - deprecated_item == 'deprecated.yml' or bootstrap_connect is succeeded
-        - ansible_version.major <= 2
-        - ansible_version.minor < 8
-
-    - name: gather bootstrap ansible_facts
+    - name: Gather ansible facts
       setup:
 
-    - name: install bootstrap packages
+    - name: Install bootstrap packages
       package:
         name: "{{ item }}"
         state: present
-        use: "{{ ansible_pkg_mgr }}"
       loop: "{{ bootstrap_facts_packages.split() }}"
       register: bootstrap_install_facts_packages
       until: bootstrap_install_facts_packages is succeeded
       retries: "{{ bootstrap_retries }}"
-      when:
-        - bootstrap_connect is succeeded
   vars:
     ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"

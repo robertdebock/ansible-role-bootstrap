@@ -8,7 +8,7 @@
     - role: ansible-role-bootstrap
 
   tasks:
-    - name: test connection
+    - name: Test connection
       ping:
       vars:
         ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
