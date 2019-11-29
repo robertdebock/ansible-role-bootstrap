@@ -64,7 +64,7 @@ Role Tests
 This role is tested periodically against the following Linux distributions:
 
 || [![Ansible](https://img.shields.io/badge/2.8-56b4b6.svg)](https://docs.ansible.com/ansible/2.8/) | [![Ansible](https://img.shields.io/badge/2.9-56b4b6.svg)](https://docs.ansible.com/ansible/2.9/)| [![Ansible](https://img.shields.io/badge/devel%2A-56b4b6.svg)](https://docs.ansible.com/ansible/devel/) |
-|---|---|---|---|---|
+|---|---|---|---|
 | [![DockerDistro](https://img.shields.io/badge/Alpine-latest%20%7C%20edge%2A-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/_/alpine) | [![Check](https://img.shields.io/badge/X-grey.svg)][travis_ci] | [![Check](https://img.shields.io/badge/X-grey.svg)][travis_ci] | [![Check](https://img.shields.io/badge/X-grey.svg)][travis_ci] |
 | [![DockerDistro](https://img.shields.io/badge/AmazonLinux-latest-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/_/amazonlinux) | [![Check](https://img.shields.io/badge/X-grey.svg)][travis_ci] | [![Check](https://img.shields.io/badge/X-grey.svg)][travis_ci] | [![Check](https://img.shields.io/badge/X-grey.svg)][travis_ci] |
 | [![DockerDistro](https://img.shields.io/badge/ArchLinux-latest-1488C6.svg?logo=docker&logoColor=EEE)](https://hub.docker.com/r/archlinux/base) | [![Check](https://img.shields.io/badge/X-grey.svg)][travis_ci] | [![Check](https://img.shields.io/badge/X-grey.svg)][travis_ci] | [![Check](https://img.shields.io/badge/X-grey.svg)][travis_ci] |
