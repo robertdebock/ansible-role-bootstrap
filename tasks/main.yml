@@ -26,9 +26,9 @@
       raw: "{{ bootstrap_install.raw }}"
       register: bootstrap_install_packages
       changed_when: (bootstrap_install.stdout_regex in bootstrap_install_packages.stdout and
-                     bootstrap_os_family in [Alpine, Archlinux, Gentoo]) or (
+                     bootstrap_os_family in ['Alpine', 'Archlinux', 'Gentoo']) or (
                      bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
-                     bootstrap_os_family in [Debian, RedHat, Suse])
+                     bootstrap_os_family in ['Debian', 'RedHat', 'Suse'])
       until: bootstrap_install_packages is succeeded
       retries: "{{ bootstrap_retries }}"
       vars:
