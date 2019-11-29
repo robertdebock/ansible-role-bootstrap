@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - ansible-role-bootstrap

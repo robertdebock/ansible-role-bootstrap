@@ -1,0 +1,4 @@
+.molecule
+*.log
+*.swp
+.tox
