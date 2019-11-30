@@ -1,44 +1,69 @@
 ---
 # vars file for bootstrap
-bootstrap_connect: {}
-bootstrap_remote_user: "{{ (ansible_user | default(omit, true)) if bootstrap_connect is succeeded else bootstrap_user }}"
-
-# A string for each distribution and version of packages to install.
-# Because this is a bootstrap role, there are no facts. The file
-# `tasks/register.yml` discovers what distribution and version ansible
-# is running against.
 _bootstrap_packages:
-  Amazon: python sudo
   Alpine: python3 sudo
-  Archlinux: python3 sudo
-  CentOS Linux-7: python3 sudo
-  CentOS-7: python3 sudo
-  CentOS: python3 sudo
-  CentOS Linux: python3 sudo
-  Gentoo: python sudo gentoolkit
-  Fedora: python3 sudo
-  Debian-8: python sudo gnupg
-  Debian-9: python sudo gnupg
+  Archlinux: python sudo
   Debian: python3 sudo gnupg python3-apt
-  Kali: python3 sudo gnupg
-  Kali GNU/Linux: python3 sudo gnupg
-  OracleLinux: python3 sudo
-  openSUSE: python python-xml sudo
-  openSUSE Leap: python python-xml sudo
-  openSUSE Tumbleweed: python python-xml sudo
+  Gentoo: python sudo gentoolkit
   RedHat: python3 sudo
-  RedHat-7: python sudo
-  Red Hat Enterprise Linux Server-7: python sudo
-  Red Hat Enterprise Linux Server: python3 sudo
-  Red Hat Enterprise Linux-7: python sudo
-  Red Hat Enterprise Linux: python3 sudo
-  Ubuntu: python3 sudo gnupg
+  Suse: python python-xml sudo
+  Amazon: python sudo
+  CentOS_7: python sudo
+  Debian_8: python sudo gnupg
+  Debian_9: python sudo gnupg
+  RedHat_7: python sudo
 
-# Map the right set of package based on values found in `tasks/register.yml`.
-bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~ '-' ~ bootstrap_distribution_major_version] | default(_bootstrap_packages[bootstrap_distribution] ) }}"
+_bootstrap_install:
+  Alpine:
+    raw: "LANG=C apk update ; apk add {{ bootstrap_packages }}"
+    stdout_regex: 'Installing'
+  Archlinux:
+    raw: "LANG=C pacman -Sy --noconfirm {{ bootstrap_packages }}"
+    stdout_regex: ' installing python'
+  Debian:
+    raw: "LANG=C apt-get update && apt-get install -y {{ bootstrap_packages }}"
+    stdout_regex: ' 0 newly installed'
+  Gentoo:
+    raw: "LANG=C equery l {{ bootstrap_packages }} ||
+          (emaint -a sync ; emerge -qkv {{ bootstrap_packages }} ; echo 'changed')"
+    stdout_regex: 'changed'
+  RedHat:
+    raw: "LANG=C yum -y install {{ bootstrap_packages }}"
+    stdout_regex: 'Nothing'
+  Suse:
+    raw: "LANG=C zypper -n install {{ bootstrap_packages }}"
+    stdout_regex: 'Nothing'
 
-# Map the right set of packages, based on gathered facts.
-bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_bootstrap_packages[ansible_distribution]) }}"
+# See URL for available OS families and search queries
+# https://github.com/ansible/ansible/blob/devel/lib/ansible/module_utils/facts/system/distribution.py
+bootstrap_os_family_map:
+  Alpine: [Alpine]
+  Archlinux: [Archlinux, Antergos, Manjaro]
+  Debian: [Debian, Ubuntu, Raspbian, Neon, KDE neon,
+           Linux Mint, SteamOS, Devuan, Kali, 'Cumulus Linux']
+  Gentoo: [Gentoo, Funtoo]
+  RedHat: [RedHat, Fedora, CentOS, Scientific, SLC,
+           Ascendos, CloudLinux, PSBM, OracleLinux, OVS,
+           OEL, Amazon, Virtuozzo, XenServer, Alibaba]
+  Suse: [SLED, 'openSUSE Tumbleweed', 'openSUSE Leap',
+         SLES_SAP, SUSE_LINUX, SLES, openSUSE, SuSE]
 
-# Save this hideously long command here.
-bootstrap_emerge_command: equery l {{ bootstrap_packages }} || (emaint -a sync ; emerge -qkv {{ bootstrap_packages }} ; echo "changed")
+bootstrap_search:
+  Archlinux: 'Arch Linux'
+  OracleLinux: 'Oracle Linux'
+  RedHat: 'Red Hat'
+
+# Map the right set of packages, based on gathered bootstrap facts.
+bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'_'~ bootstrap_distribution_major_version]|default(
+                     _bootstrap_packages[bootstrap_distribution])|default(
+                     _bootstrap_packages[bootstrap_os_family]) }}"
+
+# Map the right install command, based on gathered bootstrap facts.
+bootstrap_install: "{{ _bootstrap_install[bootstrap_distribution ~'_'~ bootstrap_distribution_major_version]|default(
+                    _bootstrap_install[bootstrap_distribution])|default(
+                    _bootstrap_install[bootstrap_os_family]) }}"
+
+# Map the right set of packages, based on gathered ansible_facts.
+bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~'_'~ ansible_distribution_major_version]|default(
+                           _bootstrap_packages[ansible_distribution])|default(
+                           _bootstrap_packages[ansible_os_family]) }}"
