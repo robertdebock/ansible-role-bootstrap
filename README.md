@@ -53,10 +53,6 @@ These variables are set in `defaults/main.yml`:
 # The user to use to connect to machines.
 bootstrap_user: root
 
-# Installed software to support modules flagged as "preview" (i.e. mysql_db).
-# "yes", "no" or unset are valid.
-bootstrap_preview: yes
-
 # Do you want to wait for the host to be available?
 bootstrap_wait_for_host: no
 
@@ -160,9 +156,8 @@ Modules
 This role uses the following modules:
 ```yaml
 ---
-- lineinfile
-- remote_user
-- setup
+- become
+- set_fact
 - wait_for
 ```
 
