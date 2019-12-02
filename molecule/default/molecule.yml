@@ -17,6 +17,7 @@ platforms:
     pre_build_image: yes
 provisioner:
   name: ansible
+  log: yes
 verifier:
   name: ansible
   lint:
