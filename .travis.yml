@@ -1,4 +1,7 @@
 ---
+#
+# Ansible managed
+#
 language: python
 
 python:

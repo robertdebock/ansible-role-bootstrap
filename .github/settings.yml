@@ -1,4 +1,7 @@
 ---
+#
+# Ansible managed
+#
 repository:
   description: Prepare your system to be managed by Ansible.
   homepage: https://robertdebock.nl/

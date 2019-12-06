@@ -1,4 +1,7 @@
 ---
+#
+# Ansible managed
+#
 dependency:
   name: galaxy
   options:
