@@ -31,7 +31,7 @@ galaxy_info:
       versions:
         - all
     - name: SLES
-      verions:
+      versions:
         - all
     - name: Ubuntu
       versions:
