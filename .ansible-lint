@@ -1,3 +1,5 @@
 #
 # Ansible managed
 #
+exclude_paths:
+  - ./meta/preferences.yml
