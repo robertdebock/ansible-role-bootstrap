@@ -3,13 +3,28 @@
 # Ansible managed
 #
 
-name: GitHub Action
+name: Ansible Molecule
 
 on:
-  - push
+  push:
+    tags_ignore:
+      - '*'
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: molecule
+        uses: robertdebock/molecule-action@1.1.1
+        with:
+          image: ${{ matrix.image }}
+          entrypoint: /usr/local/bin/molecule
+          args: lint
   test:
+    needs:
+      - lint
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -101,12 +116,3 @@ jobs:
         with:
           image: ${{ matrix.image }}
           options: "--parallel all"
-  release:
-    needs:
-      - test
-    runs-on: ubuntu-latest
-    steps:
-      - name: galaxy
-        uses: robertdebock/galaxy-action@1.0.0
-        with:
-          galaxy_api_key: ${{ secrets.galaxy_api_key }}
