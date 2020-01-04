@@ -18,7 +18,6 @@ env:
     - image="amazonlinux"
     - image="alpine"
     - image="alpine" tag="edge"
-    # - namespace="archlinux" image="base"
     - image="debian" tag="unstable"
     - image="debian"
     - image="centos" tag="7"

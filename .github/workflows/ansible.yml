@@ -31,7 +31,6 @@ jobs:
         image:
           - amazonlinux
           - alpine
-          - archlinux
           - debian
           - centos
           - fedora
