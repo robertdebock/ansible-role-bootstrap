@@ -35,7 +35,6 @@ jobs:
           - centos
           - fedora
           - opensuse
-          - sles
           - ubuntu
         tag:
           - 1

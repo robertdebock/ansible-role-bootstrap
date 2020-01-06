@@ -27,9 +27,6 @@ galaxy_info:
     - name: OpenSUSE
       versions:
         - all
-    - name: SLES
-      versions:
-        - all
     - name: Ubuntu
       versions:
         - artful
