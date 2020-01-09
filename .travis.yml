@@ -15,25 +15,18 @@ env:
     namespace="robertdebock"
   matrix:
     - image="amazonlinux" tag="1"
-    - image="amazonlinux"
-    - image="alpine"
+    - image="amazonlinux" tag="latest"
+    - image="alpine" tag="latest"
     - image="alpine" tag="edge"
+    - image="debian" tag="latest"
     - image="debian" tag="unstable"
-    - image="debian"
     - image="centos" tag="7"
-    - image="oraclelinux" tag="7"
-    - image="centos"
-    - image="oraclelinux"
-    - image="fedora"
+    - image="centos" tag="latest"
+    - image="fedora" tag="30"
+    - image="fedora" tag="latest"
     - image="fedora" tag="rawhide"
-    - image="opensuse"
-    - image="ubuntu"
-
-matrix:
-  allow_failures:
-    - env: image="alpine" tag="edge"
-    - env: image="debian" tag="unstable"
-    - env: image="fedora" tag="rawhide"
+    - image="opensuse" tag="latest"
+    - image="ubuntu" tag="latest"
 
 cache:
   - pip
