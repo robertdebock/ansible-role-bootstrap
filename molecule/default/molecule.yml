@@ -23,7 +23,7 @@ provisioner:
   config_options:
     defaults:
       stdout_callback: yaml
-      bin_ansible_callbacks: true
+      bin_ansible_callbacks: yes
 verifier:
   name: ansible
   lint:
