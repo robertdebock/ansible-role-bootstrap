@@ -2,7 +2,7 @@ bootstrap
 =========
 
 <img src="https://docs.ansible.com/ansible-tower/3.2.4/html_ja/installandreference/_static/images/logo_invert.png" width="10%" height="10%" alt="Ansible logo" align="right"/>
-<a href="https://travis-ci.org/robertdebock/ansible-role-bootstrap"> <img src="https://travis-ci.org/robertdebock/ansible-role-bootstrap.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/"/> <img src="https://img.shields.io/ansible/quality/"/>
+<a href="https://travis-ci.org/robertdebock/ansible-role-bootstrap"> <img src="https://travis-ci.org/robertdebock/ansible-role-bootstrap.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/21642"/> <img src="https://img.shields.io/ansible/quality/21642"/>
 
 <a href="https://github.com/robertdebock/ansible-role-bootstrap/actions"><img src="https://github.com/robertdebock/ansible-role-bootstrap/workflows/GitHub%20Action/badge.svg"/></a>
 
