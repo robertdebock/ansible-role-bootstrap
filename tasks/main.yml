@@ -9,6 +9,7 @@
   when:
     - ansible_connection is defined
     - ansible_connection != "docker"
+    - ansible_connection != "container"
     - bootstrap_wait_for_host | bool
 
 - name: prepare system
