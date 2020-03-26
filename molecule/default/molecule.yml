@@ -27,5 +27,3 @@ provisioner:
       bin_ansible_callbacks: yes
 verifier:
   name: ansible
-scenario:
-  name: default
