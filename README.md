@@ -1,14 +1,12 @@
-bootstrap
-=========
+# bootstrap
 
 Prepare your system to be managed by Ansible.
 
 |Travis|GitHub|Quality|Downloads|
 |------|------|-------|---------|
-|[![travis](https://travis-ci.org/robertdebock/ansible-role-bootstrap.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-bootstrap)|[![github](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|![quality](https://img.shields.io/ansible/quality/21642)|![downloads](https://img.shields.io/ansible/role/d/21642)|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-bootstrap.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-bootstrap)|[![github](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![quality](https://img.shields.io/ansible/quality/21642)](https://galaxy.ansible.com/robertdebock/bootstrap)|[![downloads](https://img.shields.io/ansible/role/d/21642)](https://galaxy.ansible.com/robertdebock/bootstrap)|
 
-Example Playbook
-----------------
+## Example Playbook
 
 This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
 ```yaml
@@ -42,8 +40,7 @@ For verification `molecule/resources/verify.yml` run after the role has been app
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
-Role Variables
---------------
+## Role Variables
 
 These variables are set in `defaults/main.yml`:
 ```yaml
@@ -63,8 +60,7 @@ bootstrap_timeout: 3
 bootstrap_retries: 3
 ```
 
-Requirements
-------------
+## Requirements
 
 - Access to a repository containing packages, likely on the internet.
 - A recent version of Ansible. (Tests run on the current, previous and next release of Ansible.)
@@ -75,17 +71,14 @@ The following roles can be installed to ensure all requirements are met, using `
 - none
 ```
 
-Context
--------
+## Context
 
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
 
 Here is an overview of related roles:
 ![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/bootstrap.png "Dependency")
 
-
-Compatibility
--------------
+## Compatibility
 
 This role has been tested on these [container images](https://hub.docker.com/):
 
@@ -107,10 +100,9 @@ The minimum version of Ansible required is 2.8 but tests have been done to:
 
 
 
-Testing
--------
+## Testing
 
-[Unit tests](https://travis-ci.org/robertdebock/ansible-role-bootstrap) are done on every commit, pull request, release and periodically.
+[Unit tests](https://travis-ci.com/robertdebock/ansible-role-bootstrap) are done on every commit, pull request, release and periodically.
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-bootstrap/issues)
 
@@ -142,13 +134,11 @@ image="centos" tox
 image="debian" tag="stable" tox
 ```
 
-License
--------
+## License
 
 Apache-2.0
 
 
-Author Information
-------------------
+## Author Information
 
 [Robert de Bock](https://robertdebock.nl/)
