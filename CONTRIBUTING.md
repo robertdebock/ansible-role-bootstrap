@@ -40,7 +40,7 @@ Now you can start to edit on your laptop.
 Install [molecule](https://molecule.readthedocs.io/en/stable/) and [Tox](https://tox.readthedocs.io/):
 
 ```
-pip install molecule tox
+pip install molecule tox ansible-lint docker
 ```
 
 And run `molecule test`. If you want to test a specific distribution, set `image` and optionally `tag`:
