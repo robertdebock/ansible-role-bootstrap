@@ -142,3 +142,5 @@ Apache-2.0
 ## Author Information
 
 [Robert de Bock](https://robertdebock.nl/)
+
+Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

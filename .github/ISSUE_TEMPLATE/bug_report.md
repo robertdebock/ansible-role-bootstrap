@@ -1,28 +1,31 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Create a report to help me improve
 
 ---
 
-**Describe the bug**
+## Describe the bug
 A clear and concise description of what the bug is.
 
-**Playbook**
+## Playbook
+
 Please paste the playbook you are using. (Consider `requirements.yml` and
 optionally the command you've invoked.)
 
 
 ```yaml
+---
 YOUR PLAYBOOK HERE
 ```
 
-**Output**
+## Output
+
 Show at least the error, possible related output, maybe just all the output.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Environment
 
-**Environment**
 - Control node OS: [e.g. Debian 9] (`cat /etc/os-release`)
 - Control node Ansible version: [e.g. 2.9.1] (`ansible --version`)
 - Managed node OS: [e.g. CentOS 7] (`cat /etc/os-release`)
+
+Please consider [sponsoring me](https://github.com/sponsors/robertdebock).
