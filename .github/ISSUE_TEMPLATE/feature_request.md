@@ -10,7 +10,7 @@ A clear and concise description of what you want to happen.
 
 ## Rationale
 
-Why is theis feature required?
+Why is this feature required?
 
 ## Additional context
 
