@@ -1,4 +1,3 @@
----
 galaxy_info:
   author: Robert de Bock
   role_name: bootstrap
@@ -8,28 +7,33 @@ galaxy_info:
   min_ansible_version: 2.8
 
   platforms:
-    - name: Amazon
-      versions:
-        - all
     - name: Alpine
       versions:
         - all
-    - name: Debian
+    - name: Amazon
       versions:
-        - all
+        - 2018.03
     - name: EL
       versions:
         - 7
         - 8
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
     - name: Fedora
       versions:
-        - all
+        - 31
+        - 32
+        - 33
     - name: OpenSUSE
       versions:
         - all
     - name: Ubuntu
       versions:
-        - all
+        - focal
+        - bionic
+        - xenial
 
   galaxy_tags:
     - bootstrap
