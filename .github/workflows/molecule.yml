@@ -32,22 +32,20 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - image: "amazonlinux"
-            tag: "1"
-          - image: "amazonlinux"
-            tag: "latest"
           - image: "alpine"
             tag: "latest"
           - image: "alpine"
             tag: "edge"
-          - image: "debian"
-            tag: "latest"
-          - image: "debian"
-            tag: "bullseye"
+          - image: "amazonlinux"
+            tag: "1"
           - image: "centos"
             tag: "7"
           - image: "centos"
             tag: "latest"
+          - image: "debian"
+            tag: "latest"
+          - image: "debian"
+            tag: "bullseye"
           - image: "fedora"
             tag: "31"
           - image: "fedora"
@@ -59,7 +57,9 @@ jobs:
           - image: "ubuntu"
             tag: "latest"
           - image: "ubuntu"
-            tag: "1804"
+            tag: "bionic"
+          - image: "ubuntu"
+            tag: "xenial"
     steps:
       - name: checkout
         uses: actions/checkout@v2
