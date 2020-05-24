@@ -25,7 +25,7 @@ galaxy_info:
       versions:
         - 31
         - 32
-        - rawhide
+        - 33
     - name: OpenSUSE
       versions:
         - all
