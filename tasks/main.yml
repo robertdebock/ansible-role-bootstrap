@@ -1,5 +1,8 @@
 ---
 # tasks file for bootstrap
+- name: include assert.yml
+  include_tasks: assert.yml
+
 - name: wait for host
   wait_for:
     port: "{{ ansible_port | default('22') }}"
