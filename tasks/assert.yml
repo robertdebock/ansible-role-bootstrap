@@ -21,4 +21,4 @@
   assert:
     that:
       - bootstrap_retries is defined
-      - X | int >= 0
+      - bootstrap_retries | int >= 0
