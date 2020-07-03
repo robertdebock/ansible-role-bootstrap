@@ -36,7 +36,7 @@ install:
   - pip install tox
 
 script:
-  - tox --parallel all
+  - n=0 ; until [ "$n" = 3 ] ; do tox --parallel all && break ; n=$((n+1)) ; done
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
