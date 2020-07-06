@@ -1,5 +1,6 @@
 ---
 # vars file for bootstrap
+
 _bootstrap_packages:
   Alpine: python3 sudo
   Archlinux: python sudo
