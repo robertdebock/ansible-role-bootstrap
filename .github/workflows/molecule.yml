@@ -22,7 +22,7 @@ jobs:
         with:
           path: "${{ github.repository }}"
       - name: molecule
-        uses: robertdebock/molecule-action@2.5.0
+        uses: robertdebock/molecule-action@2.5.1
         with:
           command: lint
   test:
@@ -69,7 +69,7 @@ jobs:
       - name: parse apparmor for mysql
         run: sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
       - name: molecule
-        uses: robertdebock/molecule-action@2.5.0
+        uses: robertdebock/molecule-action@2.5.1
         with:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
