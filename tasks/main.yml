@@ -33,8 +33,6 @@
                      bootstrap_os_family in ['Alpine', 'Archlinux', 'Gentoo']) or (
                      bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
                      bootstrap_os_family in ['Debian', 'RedHat', 'Suse'])
-      until: bootstrap_install_packages is succeeded
-      retries: "{{ bootstrap_retries }}"
       vars:
         ansible_user: "{{ bootstrap_user }}"
   always:
@@ -53,8 +51,5 @@
         name: "{{ item }}"
         state: present
       loop: "{{ bootstrap_facts_packages.split() }}"
-      register: bootstrap_install_facts_packages
-      until: bootstrap_install_facts_packages is succeeded
-      retries: "{{ bootstrap_retries }}"
   vars:
     ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
