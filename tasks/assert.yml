@@ -4,21 +4,25 @@
     that:
       - bootstrap_user is defined
       - bootstrap_user | length > 0
+    quiet: yes
 
 - name: test if bootstrap_wait_for_host is set correctly
   assert:
     that:
       - bootstrap_wait_for_host is defined
       - bootstrap_wait_for_host | type_debug == "bool"
+    quiet: yes
 
 - name: test if bootstrap_timeout is set correctly
   assert:
     that:
       - bootstrap_timeout is defined
       - bootstrap_timeout | int >= 0
+    quiet: yes
 
 - name: test if bootstrap_retries is set correctly
   assert:
     that:
       - bootstrap_retries is defined
       - bootstrap_retries | int >= 0
+    quiet: yes
