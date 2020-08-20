@@ -7,6 +7,7 @@ dependency:
   options:
     role-file: requirements.yml
 lint: |
+  PATH=${PATH}
   yamllint molecule/default/converge.yml
   ansible-lint molecule/default/converge.yml
 driver:
