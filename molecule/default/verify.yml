@@ -2,7 +2,7 @@
 - name: Verify
   hosts: all
   become: no
-  gather_facts: yes
+  gather_facts: no
 
   tasks:
     - name: test connection
