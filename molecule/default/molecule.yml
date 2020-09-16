@@ -9,7 +9,6 @@ dependency:
 lint: |
   set -e
   yamllint .
-  ansible-lint tasks/main.yml
 driver:
   name: docker
 platforms:
