@@ -37,10 +37,15 @@ galaxy_info:
 
   galaxy_tags:
     - bootstrap
+    - python
+    - sudo
+    - alpine
+    - amazonlinux
     - centos
-    - installer
-    - server
-    - system
-    - oraclelinux
+    - debian
+    - redhat
+    - rhel
+    - opensuse
+    - ubuntu
 
 dependencies: []
