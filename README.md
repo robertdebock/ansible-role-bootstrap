@@ -1,4 +1,4 @@
-# [bootstrap](#bootstrap)
+# [bootstrap](#bootstrap) - A Front-end Library
 
 Prepare your system to be managed by Ansible.
 
