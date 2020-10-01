@@ -7,7 +7,7 @@ _bootstrap_packages:
   Debian: python3 sudo gnupg python3-apt
   Gentoo: python sudo gentoolkit
   RedHat: python3 sudo
-  Suse: python python-xml sudo
+  Suse: python3 python3-xml sudo
   Amazon: python sudo
   CentOS_7: python sudo
   Debian_8: python sudo gnupg
