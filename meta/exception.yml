@@ -1,0 +1,4 @@
+---
+exceptions:
+  - variation: alpine:edge
+    reason: "Failed to create temporary directory."

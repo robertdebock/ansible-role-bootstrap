@@ -17,8 +17,6 @@ env:
   global:
     namespace="robertdebock"
   jobs:
-    - image="alpine" tag="latest"
-    - image="alpine" tag="edge"
     - image="amazonlinux" tag="1"
     - image="centos" tag="7"
     - image="centos" tag="latest"

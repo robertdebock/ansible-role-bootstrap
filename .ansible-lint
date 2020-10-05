@@ -2,6 +2,7 @@
 # Ansible managed
 #
 exclude_paths:
+  - ./meta/exception.yml
   - ./meta/preferences.yml
   - ./molecule/default/verify.yml
   - ./.tox
