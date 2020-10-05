@@ -11,8 +11,7 @@
   become: no
   when:
     - ansible_connection is defined
-    - ansible_connection != "docker"
-    - ansible_connection != "container"
+    - ansible_connection not in ["docker", "container"]
     - bootstrap_wait_for_host | bool
 
 - name: prepare system
@@ -36,7 +35,7 @@
       vars:
         ansible_user: "{{ bootstrap_user }}"
   always:
-    - name: set bootstrap ansible_user
+    - name: set bootstrap_ansible_user
       set_fact:
         bootstrap_ansible_user: "{{ ansible_user | default(omit) if bootstrap_connect is succeeded else bootstrap_user }}"
       changed_when: no

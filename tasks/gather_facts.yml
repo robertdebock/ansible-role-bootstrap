@@ -25,4 +25,5 @@
   loop: "{{ bootstrap_os_family_map | dict2items }}"
   loop_control:
     label: "{{ item.key }}"
-  when: bootstrap_distribution in item.value
+  when:
+    - bootstrap_distribution in item.value
