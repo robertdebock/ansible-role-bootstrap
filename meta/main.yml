@@ -41,13 +41,5 @@ galaxy_info:
     - bootstrap
     - python
     - sudo
-    - alpine
-    - amazonlinux
-    - centos
-    - debian
-    - redhat
-    - rhel
-    - opensuse
-    - ubuntu
 
 dependencies: []
