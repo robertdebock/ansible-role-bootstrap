@@ -69,6 +69,3 @@ jobs:
         with:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
-          options: "--parallel all"
-        env:
-          TOX_PARALLEL_NO_SPINNER: 1
