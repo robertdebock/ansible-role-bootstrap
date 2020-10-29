@@ -18,6 +18,7 @@ env:
     namespace="robertdebock"
   jobs:
     - image="amazonlinux" tag="1"
+    - image="amazonlinux" tag="latest"
     - image="centos" tag="7"
     - image="centos" tag="latest"
     - image="debian" tag="latest"
