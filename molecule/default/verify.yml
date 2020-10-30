@@ -7,3 +7,8 @@
   tasks:
     - name: test connection
       ping:
+
+    - name: try the package module
+      package:
+        name: gzip
+        state: present

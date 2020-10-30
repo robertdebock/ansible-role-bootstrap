@@ -8,11 +8,9 @@ galaxy_info:
   min_ansible_version: 2.9
 
   platforms:
-    # Edge is broken, on idempotence tests molecule errors out:
-    # "Failed to create temporary directory."
-    # - name: Alpine
-    #   versions:
-    #     - all
+    - name: Alpine
+      versions:
+        - all
     - name: Amazon
       versions:
         - all
@@ -22,8 +20,7 @@ galaxy_info:
         - 8
     - name: Debian
       versions:
-        - buster
-        - bullseye
+        - all
     - name: Fedora
       versions:
         - all
@@ -32,9 +29,7 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - focal
-        - bionic
-        - xenial
+        - all
 
   galaxy_tags:
     - bootstrap
