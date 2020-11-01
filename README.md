@@ -20,29 +20,6 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
     - role: robertdebock.bootstrap
 ```
 
-The machine may need to be prepared using `molecule/resources/prepare.yml`:
-```yaml
-No preparation required.
-```
-
-For verification `molecule/resources/verify.yml` runs after the role has been applied.
-```yaml
----
-- name: Verify
-  hosts: all
-  become: no
-  gather_facts: no
-
-  tasks:
-    - name: test connection
-      ping:
-
-    - name: try the package module
-      package:
-        name: gzip
-        state: present
-```
-
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
 ## [Role Variables](#role-variables)
@@ -70,11 +47,6 @@ bootstrap_retries: 3
 - Access to a repository containing packages, likely on the internet.
 - A recent version of Ansible. (Tests run on the current, previous and next release of Ansible.)
 
-The following roles can be installed to ensure all requirements are met, using `ansible-galaxy install -r requirements.yml`:
-
-```yaml
-- none
-```
 
 ## [Context](#context)
 
