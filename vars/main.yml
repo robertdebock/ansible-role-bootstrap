@@ -4,12 +4,13 @@
 _bootstrap_packages:
   Alpine: python3 sudo
   Archlinux: python sudo
-  Debian: python3 sudo gnupg python3-apt
+  Debian: python3 sudo gnupg python3-apt python3-lxml
   Gentoo: python sudo gentoolkit
   RedHat: python3 sudo
   Suse: python3 python3-xml sudo
   Amazon: python sudo
   CentOS_7: python sudo
+  CentOS_8: python3-lxml
   Debian_8: python sudo gnupg
   Debian_9: python sudo gnupg
   RedHat_7: python sudo
