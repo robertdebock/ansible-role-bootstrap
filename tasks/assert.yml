@@ -17,6 +17,7 @@
   assert:
     that:
       - bootstrap_timeout is defined
+      - bootstrap_timeout is number
       - bootstrap_timeout | int >= 0
     quiet: yes
 
@@ -24,5 +25,6 @@
   assert:
     that:
       - bootstrap_retries is defined
+      - bootstrap_retries is number
       - bootstrap_retries | int >= 0
     quiet: yes
