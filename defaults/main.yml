@@ -9,6 +9,3 @@ bootstrap_wait_for_host: no
 
 # The number of seconds you want to wait during connection test before failing.
 bootstrap_timeout: 3
-
-# The number of retries during installation
-bootstrap_retries: 3

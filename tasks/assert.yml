@@ -20,11 +20,3 @@
       - bootstrap_timeout is number
       - bootstrap_timeout | int >= 0
     quiet: yes
-
-- name: test if bootstrap_retries is set correctly
-  assert:
-    that:
-      - bootstrap_retries is defined
-      - bootstrap_retries is number
-      - bootstrap_retries | int >= 0
-    quiet: yes
