@@ -17,5 +17,5 @@
     that:
       - bootstrap_timeout is defined
       - bootstrap_timeout is number
-      - bootstrap_timeout | int >= 0
+      - bootstrap_timeout >= 0
     quiet: yes
