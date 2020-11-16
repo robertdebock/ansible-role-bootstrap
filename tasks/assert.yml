@@ -10,7 +10,7 @@
   assert:
     that:
       - bootstrap_wait_for_host is defined
-      - bootstrap_wait_for_host | type_debug == "bool"
+      - bootstrap_wait_for_host is boolean
     quiet: yes
 
 - name: test if bootstrap_timeout is set correctly
