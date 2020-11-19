@@ -6,12 +6,8 @@
 name: Release to Ansible Galaxy
 
 on:
-  push:
-    tags:
-      - '*'
-  schedule:
-    - cron: '2 2 2 * *'
-
+  release:
+    types: [created, edited, published, released]
 jobs:
   release:
     runs-on: ubuntu-20.04
