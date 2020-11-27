@@ -4,6 +4,7 @@
   assert:
     that:
       - bootstrap_user is defined
+      - bootstrap_user is string
     quiet: yes
 
 - name: test if bootstrap_wait_for_host is set correctly
