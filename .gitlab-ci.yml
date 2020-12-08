@@ -13,6 +13,7 @@ molecule:
     - image=${image} tag=${tag} molecule test
   rules:
     - if: $CI_COMMIT_TAG == null
+  retry: 2
   parallel:
     matrix:
       - image: "alpine"
