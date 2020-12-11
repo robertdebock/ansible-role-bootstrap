@@ -1,0 +1,10 @@
+# These role have been tested with these PIP component.
+# To install the required version yourself, use a command as:
+# `python -m pip --user install -r requirements.txt`
+# See the pip requirements file documentation for details:
+# https://pip.pypa.io/en/stable/user_guide/#requirements-files
+#
+# Tests run on the previous and current (latest) version of Ansible.
+ansible>=2.9
+# Some Jinja2 filters are used that are available in the newer releases.
+jinja2>=2.11.2
