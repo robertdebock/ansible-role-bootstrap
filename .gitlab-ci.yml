@@ -19,8 +19,6 @@ molecule:
       - image: "alpine"
         tag: "latest"
       - image: "amazonlinux"
-        tag: "1"
-      - image: "amazonlinux"
         tag: "latest"
       - image: "centos"
         tag: "7"

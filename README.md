@@ -58,7 +58,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |alpine|all|
-|amazon|all|
+|amazon|Candidate|
 |el|7, 8|
 |debian|all|
 |fedora|all|
