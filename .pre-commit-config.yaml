@@ -1,7 +1,7 @@
 ---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.3.0
+    rev: v3.4.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -20,6 +20,6 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/robertdebock/pre-commit
-    rev: v0.0.3
+    rev: v1.0.0
     hooks:
       - id: ansible_role_find_unused_variable
