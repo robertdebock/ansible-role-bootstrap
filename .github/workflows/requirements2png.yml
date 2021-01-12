@@ -1,0 +1,34 @@
+---
+#
+# Ansible managed
+#
+
+on:
+  - push
+
+name: Ansible Graphviz
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          path: ${{ github.repository }}
+      - name: create png
+        uses: robertdebock/graphviz-action@1.0.6
+      - name: Commit files
+        run: |
+          cd ${{ github.repository }}
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add requirements.dot requirements.png
+          git commit -m "Add generated files"
+      - name: save to png branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: ${{ github.repository }}
+          force: true
+          branch: png
