@@ -16,8 +16,6 @@ molecule:
   retry: 2
   parallel:
     matrix:
-      - image: "alpine"
-        tag: "latest"
       - image: "amazonlinux"
         tag: "latest"
       - image: "centos"
