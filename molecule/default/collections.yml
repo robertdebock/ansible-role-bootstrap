@@ -1,6 +1,4 @@
 ---
 collections:
   - name: community.docker
-    version: "== 1.*"
   - name: community.general
-    version: "== 2.*"
