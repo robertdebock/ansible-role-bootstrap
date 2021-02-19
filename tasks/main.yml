@@ -7,7 +7,7 @@
   delegate_to: localhost
 
 - name: wait for host
-  wait_for:
+  ansible.builtin.wait_for:
     port: "{{ ansible_port | default('22') }}"
     host: "{{ (ansible_ssh_host | default(ansible_host) | default(inventory_hostname)) }}"
   connection: local

@@ -1,21 +1,21 @@
 ---
 
 - name: test if bootstrap_user is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - bootstrap_user is defined
       - bootstrap_user is string
     quiet: yes
 
 - name: test if bootstrap_wait_for_host is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - bootstrap_wait_for_host is defined
       - bootstrap_wait_for_host is boolean
     quiet: yes
 
 - name: test if bootstrap_timeout is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - bootstrap_timeout is defined
       - bootstrap_timeout is number
