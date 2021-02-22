@@ -20,16 +20,16 @@
 - name: prepare system
   block:
     - name: test connection
-      wait_for_connection:
+      ansible.builtin.wait_for_connection:
         timeout: "{{ bootstrap_timeout }}"
       register: bootstrap_connect
       changed_when: no
   rescue:
     - name: gather bootstrap facts
-      include_tasks: "gather_facts.yml"
+      ansible.builtin.include_tasks: "gather_facts.yml"
 
     - name: install bootstrap packages
-      raw: "{{ bootstrap_install.raw }}"
+      ansible.builtin.raw: "{{ bootstrap_install.raw }}"
       register: bootstrap_install_packages
       changed_when:
         - (bootstrap_install.stdout_regex in bootstrap_install_packages.stdout and
@@ -40,17 +40,17 @@
         ansible_user: "{{ bootstrap_user }}"
   always:
     - name: set bootstrap_ansible_user
-      set_fact:
+      ansible.builtin.set_fact:
         bootstrap_ansible_user: "{{ ansible_user | default(omit) if bootstrap_connect is succeeded else bootstrap_user }}"
       changed_when: no
 
 - name: ensure system is prepared
   block:
     - name: gather ansible facts
-      setup:
+      ansible.builtin.setup:
 
     - name: install bootstrap packages
-      package:
+      ansible.builtin.package:
         name: "{{ item }}"
         state: present
       loop: "{{ bootstrap_facts_packages.split() }}"
