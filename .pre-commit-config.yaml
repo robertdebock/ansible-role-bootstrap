@@ -13,14 +13,9 @@ repos:
       - id: yamllint
         args: [-c=.yamllint]
 
-  # - repo: https://github.com/ansible/ansible-lint
-  #   rev: v5.0.1
-  #   hooks:
-  #     - id: ansible-lint
-  #       pass_filenames: false
-
   - repo: https://github.com/robertdebock/pre-commit
-    rev: v1.1.2
+    rev: v1.2.1
     hooks:
       - id: ansible_role_find_unused_variable
       - id: ansible_role_find_empty_files
+      - id: ansible_role_find_empty_directories
