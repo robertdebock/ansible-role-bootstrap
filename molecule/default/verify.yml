@@ -6,9 +6,9 @@
 
   tasks:
     - name: test connection
-      ping:
+      ansible.builtin.ping:
 
     - name: try the package module
-      package:
+      ansible.builtin.package:
         name: gzip
         state: present
