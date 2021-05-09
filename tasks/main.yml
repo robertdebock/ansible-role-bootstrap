@@ -39,7 +39,7 @@
       vars:
         ansible_user: "{{ bootstrap_user }}"
   always:
-    - name: set bootstrap_ansible_user when connection succeeded
+    - name: set bootstrap_ansible_user connected
       ansible.builtin.set_fact:
         bootstrap_ansible_user: "{{ ansible_user }}"
       # changed_when: no
@@ -47,7 +47,7 @@
         - bootstrap_connect is succeeded
         - ansible_user is defined
 
-    - name: set bootstrap_ansible_user when connection failed
+    - name: set bootstrap_ansible_user not connected
       ansible.builtin.set_fact:
         bootstrap_ansible_user: "{{ bootstrap_user }}"
       # changed_when: no
