@@ -26,7 +26,8 @@
       changed_when: no
   rescue:
     - name: gather bootstrap facts
-      ansible.builtin.include_tasks: gather_facts.yml
+      ansible.builtin.include_tasks:
+        file: gather_facts.yml
 
     - name: install bootstrap packages
       ansible.builtin.raw: "{{ bootstrap_install.raw }}"
