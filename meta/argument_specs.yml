@@ -1,0 +1,18 @@
+---
+
+argument_specs:
+  main:
+    short_description: "Prepare a system to be managed by Ansible."
+    options:
+      bootstrap_user:
+        type: "str"
+        required: true
+        description: "The username to use to connect to machines."
+      bootstrap_wait_for_host:
+        type: "bool"
+        required: true
+        description: "Wait for the machine to be available."
+      bootstrap_timeout:
+        type: "int"
+        required: true
+        description: "Time (in seconds) to wait for connection."
