@@ -18,8 +18,7 @@ cache:
 
 install:
   - pip install --upgrade pip
-  - pip install yamllint
-  - pip install ansible-lint
+  - pip install ansible ansible-lint yamllint
 
 script:
   - yamllint .
