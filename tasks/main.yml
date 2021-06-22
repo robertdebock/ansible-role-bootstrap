@@ -28,7 +28,6 @@
     - name: gather bootstrap facts
       ansible.builtin.include_tasks:
         file: gather_facts.yml
-
     - name: install bootstrap packages
       ansible.builtin.raw: "{{ bootstrap_install.raw }}"
       register: bootstrap_install_packages
@@ -43,7 +42,6 @@
     - name: set bootstrap_ansible_user connected
       ansible.builtin.set_fact:
         bootstrap_ansible_user: "{{ ansible_user }}"
-      # changed_when: no
       when:
         - bootstrap_connect is succeeded
         - ansible_user is defined
@@ -51,7 +49,6 @@
     - name: set bootstrap_ansible_user not connected
       ansible.builtin.set_fact:
         bootstrap_ansible_user: "{{ bootstrap_user }}"
-      # changed_when: no
       when:
         - bootstrap_connect is failed
 

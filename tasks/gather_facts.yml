@@ -1,4 +1,5 @@
 ---
+
 - name: lookup bootstrap facts
   become: no
   ansible.builtin.raw: "cat /etc/os-release"
