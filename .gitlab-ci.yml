@@ -18,9 +18,7 @@ molecule:
     matrix:
       - image: "amazonlinux"
         tag: "latest"
-      - image: "centos"
-        tag: "7"
-      - image: "centos"
+      - image: "rockylinux"
         tag: "latest"
       - image: "debian"
         tag: "latest"
