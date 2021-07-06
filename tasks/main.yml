@@ -35,7 +35,7 @@
         - (bootstrap_install.stdout_regex in bootstrap_install_packages.stdout and
            bootstrap_os_family in [ "Alpine", "Archlinux", "Gentoo" ]) or
           (bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
-           bootstrap_os_family in [ "Debian", "RedHat", "Suse" ])
+           bootstrap_os_family in [ "Debian", "RedHat", "Rocky", "Suse" ])
       vars:
         ansible_user: "{{ bootstrap_user }}"
   always:
