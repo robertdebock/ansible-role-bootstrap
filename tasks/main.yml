@@ -14,7 +14,7 @@
   become: no
   when:
     - ansible_connection is defined
-    - ansible_connection not in [ "docker", "container" ]
+    - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - bootstrap_wait_for_host | bool
 
 - name: prepare system
