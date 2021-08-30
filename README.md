@@ -8,7 +8,7 @@ Prepare your system to be managed by Ansible.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: Converge
