@@ -17,8 +17,8 @@ _bootstrap_packages:
 
 # Map the right set of packages, based on gathered bootstrap facts.
 bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'_'~ bootstrap_distribution_major_version]|default(
-                     _bootstrap_packages[bootstrap_distribution])|default(
-                     _bootstrap_packages[bootstrap_os_family]) }}"
+                     _bootstrap_packages[bootstrap_distribution] )|default(
+                     _bootstrap_packages[bootstrap_os_family] ) }}"
 
 _bootstrap_install:
   Alpine:
@@ -43,8 +43,8 @@ _bootstrap_install:
 
 # Map the right install command, based on gathered bootstrap facts.
 bootstrap_install: "{{ _bootstrap_install[bootstrap_distribution ~'_'~ bootstrap_distribution_major_version]|default(
-                    _bootstrap_install[bootstrap_distribution])|default(
-                    _bootstrap_install[bootstrap_os_family]) }}"
+                    _bootstrap_install[bootstrap_distribution] )|default(
+                    _bootstrap_install[bootstrap_os_family] ) }}"
 
 # See URL for available OS families and search queries
 # https://github.com/ansible/ansible/blob/devel/lib/ansible/module_utils/facts/system/distribution.py
@@ -69,5 +69,5 @@ bootstrap_search:
 
 # Map the right set of packages, based on gathered ansible_facts.
 bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~'_'~ ansible_distribution_major_version]|default(
-                           _bootstrap_packages[ansible_distribution])|default(
-                           _bootstrap_packages[ansible_os_family]) }}"
+                           _bootstrap_packages[ansible_distribution] )|default(
+                           _bootstrap_packages[ansible_os_family] ) }}"

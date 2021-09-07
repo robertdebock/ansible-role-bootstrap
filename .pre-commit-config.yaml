@@ -1,21 +1,22 @@
 ---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v4.0.1
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-added-large-files
 
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.26.0
+    rev: v1.26.3
     hooks:
       - id: yamllint
         args: [-c=.yamllint]
 
   - repo: https://github.com/robertdebock/pre-commit
-    rev: v1.2.2
+    rev: v1.2.3
     hooks:
       - id: ansible_role_find_unused_variable
       - id: ansible_role_find_empty_files
       - id: ansible_role_find_empty_directories
+      - id: ansible_role_fix_readability
