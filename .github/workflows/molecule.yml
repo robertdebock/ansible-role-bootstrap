@@ -42,7 +42,7 @@ jobs:
           - image: "debian"
             tag: "latest"
           - image: "debian"
-            tag: "bullseye"
+            tag: "bookworm"
           - image: "fedora"
             tag: "33"
           - image: "fedora"
