@@ -36,8 +36,8 @@
            bootstrap_os_family in [ "Alpine", "Archlinux", "Gentoo" ]) or
           (bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
            bootstrap_os_family in [ "Debian", "RedHat", "Rocky", "Suse" ])
-      become: yes
-      become_user: "{{ bootstrap_ansible_user | default(bootstrap_user) }}"
+      vars:
+        ansible_user: "{{ bootstrap_user }}"
   always:
     - name: set bootstrap_ansible_user connected
       ansible.builtin.set_fact:

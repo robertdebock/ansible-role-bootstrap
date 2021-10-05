@@ -9,10 +9,9 @@ galaxy_info:
   min_ansible_version: "2.10"
 
   platforms:
-    # Broken: idempotence, gather_facts: Failed to create temporary directory.
-    # - name: Alpine
-    #   versions:
-    #     - all
+    - name: Alpine
+      versions:
+        - all
     - name: Amazon
       versions:
         - Candidate

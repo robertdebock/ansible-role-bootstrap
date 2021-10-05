@@ -33,6 +33,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
+          - image: "alpine"
+            tag: "latest"
           - image: "amazonlinux"
             tag: "latest"
           - image: "enterpriselinux"
