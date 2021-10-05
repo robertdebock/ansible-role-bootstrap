@@ -35,9 +35,9 @@ jobs:
         config:
           - image: "amazonlinux"
             tag: "latest"
-          - image: "centos"
+          - image: "enterpriselinux"
             tag: "7"
-          - image: "centos"
+          - image: "enterpriselinux"
             tag: "latest"
           - image: "debian"
             tag: "latest"

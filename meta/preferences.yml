@@ -1,3 +1,2 @@
 ---
 tox_parallel: yes
-enterprise_linux: centos
