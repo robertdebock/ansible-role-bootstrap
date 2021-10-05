@@ -62,5 +62,5 @@
         name: "{{ item }}"
         state: present
       loop: "{{ bootstrap_facts_packages.split() }}"
-  vars:
-    ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
+  become: yes
+  become_user: "{{ bootstrap_ansible_user | default(bootstrap_user) }}"
