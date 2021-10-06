@@ -29,6 +29,9 @@ The default values for the variables are set in `defaults/main.yml`:
 ---
 # defaults file for bootstrap
 
+# the root user needs to install sudo
+bootstrap_ansible_user: root
+
 # The user to use to connect to machines.
 bootstrap_user: root
 
