@@ -1,5 +1,5 @@
 ---
-image: robertdebock/github-action-molecule:3.0.6
+image: robertdebock/github-action-molecule:3.3.0
 
 services:
   - docker:dind
