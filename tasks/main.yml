@@ -25,7 +25,6 @@
       register: bootstrap_connect
       changed_when: no
   rescue:
-
     - name: gather bootstrap facts
       ansible.builtin.include_tasks:
         file: gather_facts.yml
@@ -41,7 +40,6 @@
       vars:
         ansible_user: "{{ bootstrap_user }}"
   always:
-
     - name: set bootstrap_ansible_user connected
       ansible.builtin.set_fact:
         bootstrap_ansible_user: "{{ ansible_user }}"
