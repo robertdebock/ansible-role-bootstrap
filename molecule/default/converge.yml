@@ -1,7 +1,7 @@
 ---
 - name: Converge
   hosts: all
-  become: no
+  become: yes
   gather_facts: no
 
   roles:

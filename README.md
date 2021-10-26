@@ -13,7 +13,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 ---
 - name: Converge
   hosts: all
-  become: no
+  become: yes
   gather_facts: no
 
   roles:
