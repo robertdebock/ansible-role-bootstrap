@@ -14,10 +14,11 @@ repos:
         args: [-c=.yamllint]
 
   - repo: https://github.com/robertdebock/pre-commit
-    rev: v1.3.1
+    rev: v1.4.4
     hooks:
       - id: ansible_role_find_unused_variable
       - id: ansible_role_find_empty_files
       - id: ansible_role_find_empty_directories
       - id: ansible_role_fix_readability
       - id: ansible_role_find_undefined_handlers
+      - id: ansible_role_find_unquoted_values
