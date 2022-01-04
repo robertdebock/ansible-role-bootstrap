@@ -17,6 +17,10 @@
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - bootstrap_wait_for_host | bool
 
+- name: gather bootstrap facts
+  ansible.builtin.include_tasks:
+    file: gather_facts.yml
+
 - name: prepare system
   block:
     - name: test connection
@@ -25,10 +29,6 @@
       register: bootstrap_connect
       changed_when: no
   rescue:
-    - name: gather bootstrap facts
-      ansible.builtin.include_tasks:
-        file: gather_facts.yml
-
     - name: install bootstrap packages (raw)
       ansible.builtin.raw: "{{ bootstrap_install.raw }}"
       register: bootstrap_install_packages
@@ -58,10 +58,52 @@
     - name: gather ansible facts
       ansible.builtin.setup:
 
-    - name: install bootstrap packages (package)
-      ansible.builtin.package:
+    - name: install bootstrap packages (apt)
+      ansible.builtin.apt:
         name: "{{ item }}"
-        state: present
+        update_cache: yes
+      changed_when: no
+      when: bootstrap_os_family == "Debian"
+      loop: "{{ bootstrap_facts_packages.split() }}"
+
+    - name: install bootstrap packages (yum)
+      ansible.builtin.yum:
+        name: "{{ item }}"
+        update_cache: yes
+      changed_when: no
+      when: bootstrap_os_family == "RedHat"
+      loop: "{{ bootstrap_facts_packages.split() }}"
+
+    - name: install bootstrap packages (apk)
+      community.general.apk:
+        name: "{{ item }}"
+        update_cache: yes
+      changed_when: no
+      when: bootstrap_os_family == "Alpine"
+      loop: "{{ bootstrap_facts_packages.split() }}"
+
+    - name: install bootstrap packages (zypper)
+      community.general.zypper:
+        name: "{{ item }}"
+        update_cache: yes
+      changed_when: no
+      when: bootstrap_os_family == "Suse"
+      loop: "{{ bootstrap_facts_packages.split() }}"
+
+    - name: install bootstrap packages (pacman)
+      community.general.pacman:
+        name: "{{ item }}"
+        update_cache: yes
+      changed_when: no
+      when: bootstrap_os_family == "Archlinux"
+      loop: "{{ bootstrap_facts_packages.split() }}"
+
+    - name: install bootstrap packages (portage)
+      community.general.portage:
+        name: "{{ item }}"
+        sync: yes
+      changed_when: no
+      when: bootstrap_os_family == "Gentoo"
       loop: "{{ bootstrap_facts_packages.split() }}"
   become: yes
   become_user: "{{ bootstrap_ansible_user | default(bootstrap_user) }}"
