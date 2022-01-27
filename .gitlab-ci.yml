@@ -10,7 +10,6 @@ variables:
 
 molecule:
   script:
-    - test -f requirements.yml && ansible-galaxy install -r requirements.yml
     - image=${image} tag=${tag} molecule test
   rules:
     - if: $CI_COMMIT_REF_NAME == "master"
