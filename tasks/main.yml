@@ -60,58 +60,51 @@
 
     - name: install bootstrap packages (apt)
       ansible.builtin.apt:
-        name: "{{ item }}"
+        name: "{{ bootstrap_facts_packages.split() }}"
         update_cache: yes
       changed_when: no
       when: ansible_pkg_mgr == "apt"
-      loop: "{{ bootstrap_facts_packages.split() }}"
 
     - name: install bootstrap packages (yum)
       ansible.builtin.yum:
-        name: "{{ item }}"
+        name: "{{ bootstrap_facts_packages.split() }}"
         update_cache: yes
       changed_when: no
       when: ansible_pkg_mgr == "yum"
-      loop: "{{ bootstrap_facts_packages.split() }}"
 
     - name: install bootstrap packages (apk)
       community.general.apk:
-        name: "{{ item }}"
+        name: "{{ bootstrap_facts_packages.split() }}"
         update_cache: yes
       changed_when: no
       when: ansible_pkg_mgr == "apk"
-      loop: "{{ bootstrap_facts_packages.split() }}"
 
     - name: install bootstrap packages (dnf)
       ansible.builtin.dnf:
-        name: "{{ item }}"
+        name: "{{ bootstrap_facts_packages.split() }}"
         update_cache: yes
       changed_when: no
       when: ansible_pkg_mgr == "dnf"
-      loop: "{{ bootstrap_facts_packages.split() }}"
 
     - name: install bootstrap packages (zypper)
       community.general.zypper:
-        name: "{{ item }}"
+        name: "{{ bootstrap_facts_packages.split() }}"
         update_cache: yes
       changed_when: no
       when: ansible_pkg_mgr == "zypper"
-      loop: "{{ bootstrap_facts_packages.split() }}"
 
     - name: install bootstrap packages (pacman)
       community.general.pacman:
-        name: "{{ item }}"
+        name: "{{ bootstrap_facts_packages.split() }}"
         update_cache: yes
       changed_when: no
       when: ansible_pkg_mgr == "pacman"
-      loop: "{{ bootstrap_facts_packages.split() }}"
 
     - name: install bootstrap packages (portage)
       community.general.portage:
-        name: "{{ item }}"
+        package: "{{ bootstrap_facts_packages.split() }}"
         sync: yes
       changed_when: no
       when: ansible_pkg_mgr == "portage"
-      loop: "{{ bootstrap_facts_packages.split() }}"
   become: yes
   become_user: "{{ bootstrap_ansible_user | default(bootstrap_user) }}"
