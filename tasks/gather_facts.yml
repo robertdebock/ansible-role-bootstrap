@@ -1,13 +1,11 @@
 ---
 
 - name: lookup bootstrap facts
-  become: no
   ansible.builtin.raw: "cat /etc/os-release"
+  become: no
   check_mode: no
   register: bootstrap_facts
   changed_when: no
-  vars:
-    ansible_user: "{{ bootstrap_user }}"
 
 - name: set bootstrap facts (I)
   ansible.builtin.set_fact:

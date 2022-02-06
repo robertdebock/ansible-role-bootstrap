@@ -8,10 +8,6 @@ argument_specs:
       This role tries to figure out what to install and uses the raw module to install the packages.
     author: Robert de Bock
     options:
-      bootstrap_user:
-        type: "str"
-        default: root
-        description: "The username to use to connect to machines."
       bootstrap_wait_for_host:
         type: "bool"
         default: no
