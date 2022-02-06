@@ -6,12 +6,13 @@
   run_once: yes
   delegate_to: localhost
 
-- name: wait for host
+- name: wait for port to be available
   ansible.builtin.wait_for:
     port: "{{ ansible_port | default('22') }}"
-    host: "{{ (ansible_ssh_host | default(ansible_host) | default(inventory_hostname)) }}"
-  connection: local
-  become: no
+    timeout: "{{ bootstrap_timeout }}"
+    # host: "{{ ansible_ssh_host | default(ansible_host) | default(inventory_hostname) }}"
+  # connection: local
+  # become: no
   when:
     - ansible_connection is defined
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
@@ -37,21 +38,6 @@
            bootstrap_os_family in [ "Alpine", "Archlinux", "Gentoo" ]) or
           (bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
            bootstrap_os_family in [ "Debian", "RedHat", "Rocky", "Suse" ])
-      vars:
-        ansible_user: "{{ bootstrap_user }}"
-  always:
-    - name: set bootstrap_ansible_user connected
-      ansible.builtin.set_fact:
-        bootstrap_ansible_user: "{{ ansible_user }}"
-      when:
-        - bootstrap_connect is succeeded
-        - ansible_user is defined
-
-    - name: set bootstrap_ansible_user not connected
-      ansible.builtin.set_fact:
-        bootstrap_ansible_user: "{{ bootstrap_user }}"
-      when:
-        - bootstrap_connect is failed
 
 - name: ensure system is prepared
   block:
@@ -63,5 +49,3 @@
         name: "{{ item }}"
         state: present
       loop: "{{ bootstrap_facts_packages.split() }}"
-  vars:
-    ansible_user: "{{ bootstrap_ansible_user | default(omit) }}"
