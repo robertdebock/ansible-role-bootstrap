@@ -17,6 +17,7 @@
     - bootstrap_facts.rc == 0
     - bootstrap_distribution is not defined
     - bootstrap_facts.stdout is regex('PRETTY_NAME=.'~ bootstrap_search[item] | default(item) ~'.*')
+  become: no
 
 - name: set bootstrap facts (II)
   ansible.builtin.set_fact:
@@ -26,3 +27,4 @@
     label: "{{ item.key }}"
   when:
     - bootstrap_distribution in item.value
+  become: no

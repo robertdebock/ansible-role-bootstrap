@@ -1,7 +1,12 @@
 ---
 - name: Converge
   hosts: all
+  # This role installs packages using the `raw` module and needs to connect as
+  # `root`. (`sudo` is not available before bootstrapping.)
   become: no
+  # This role installs python, gathering facts can't be done before `python` is
+  # installed. This role runs the `setup` module, so facts will be available
+  # after running the role.
   gather_facts: no
 
   roles:

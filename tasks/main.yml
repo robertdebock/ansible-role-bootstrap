@@ -10,9 +10,7 @@
   ansible.builtin.wait_for:
     port: "{{ ansible_port | default('22') }}"
     timeout: "{{ bootstrap_timeout }}"
-    # host: "{{ ansible_ssh_host | default(ansible_host) | default(inventory_hostname) }}"
-  # connection: local
-  # become: no
+  become: no
   when:
     - ansible_connection is defined
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
@@ -38,6 +36,8 @@
            bootstrap_os_family in [ "Alpine", "Archlinux", "Gentoo" ]) or
           (bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
            bootstrap_os_family in [ "Debian", "RedHat", "Rocky", "Suse" ])
+  become: no
+
 
 - name: ensure system is prepared
   block:
@@ -49,3 +49,4 @@
         name: "{{ item }}"
         state: present
       loop: "{{ bootstrap_facts_packages.split() }}"
+  become: no
