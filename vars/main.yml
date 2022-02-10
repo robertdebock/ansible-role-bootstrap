@@ -7,7 +7,6 @@ _bootstrap_packages:
   Debian: python3 sudo gnupg python3-apt
   Gentoo: python sudo gentoolkit
   RedHat: &redhat_packages python3 sudo
-  Rocky: *redhat_packages
   Suse: python3 python3-xml sudo
   Amazon: python sudo
   CentOS_7: python sudo
