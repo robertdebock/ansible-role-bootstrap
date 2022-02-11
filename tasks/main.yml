@@ -92,5 +92,4 @@
         sync: yes
       changed_when: no
       when: ansible_pkg_mgr == "portage"
-  become: yes
-  become_user: "{{ bootstrap_ansible_user | default(bootstrap_user) }}"
+  become: no
