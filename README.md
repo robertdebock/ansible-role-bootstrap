@@ -13,7 +13,14 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 ---
 - name: Converge
   hosts: all
-  become: yes
+  # This role installs packages using the `raw` module and needs to connect as
+  # `root`. (`sudo` is not available before bootstrapping.) All tasks in the
+  # role have `become` set to `no`, so you can use either `no` or `yes` for
+  # `become`, the role will not use become (so `sudo`) for any task.
+  become: yes  # `no` will also work.
+  # This role installs python, gathering facts can't be done before `python` is
+  # installed. This role runs the `setup` module, so facts will be available
+  # after running the role.
   gather_facts: no
 
   roles:
@@ -28,9 +35,6 @@ The default values for the variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for bootstrap
-
-# The user to use to connect to machines.
-bootstrap_user: root
 
 # Do you want to wait for the host to be available?
 bootstrap_wait_for_host: no
@@ -57,6 +61,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
+|alpine|all|
 |amazon|Candidate|
 |el|7, 8|
 |debian|all|
