@@ -29,7 +29,7 @@ molecule:
       - image: "debian"
         tag: "bookworm"
       - image: "fedora"
-        tag: "34"
+        tag: "35"
       - image: "fedora"
         tag: "latest"
       - image: "fedora"
