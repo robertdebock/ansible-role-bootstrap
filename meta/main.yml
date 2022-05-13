@@ -25,6 +25,9 @@ galaxy_info:
     - name: Fedora
       versions:
         - all
+    - name: FreeBSD
+      versions:
+        - 13
     - name: OpenSUSE
       versions:
         - all
