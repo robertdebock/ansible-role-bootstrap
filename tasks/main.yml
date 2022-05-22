@@ -30,6 +30,8 @@
 
     - name: install bootstrap packages (raw)
       ansible.builtin.raw: "{{ bootstrap_install.raw }}"
+      args:
+        executable: /bin/sh
       register: bootstrap_install_packages
       changed_when:
         - (bootstrap_install.stdout_regex in bootstrap_install_packages.stdout and
