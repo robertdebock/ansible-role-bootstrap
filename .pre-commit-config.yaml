@@ -1,7 +1,7 @@
 ---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1
+    rev: v4.3.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -14,7 +14,7 @@ repos:
         args: [-c=.yamllint]
 
   - repo: https://github.com/robertdebock/pre-commit
-    rev: v1.4.4
+    rev: v1.5.1
     hooks:
       - id: ansible_role_find_unused_variable
       - id: ansible_role_find_empty_files
@@ -22,3 +22,4 @@ repos:
       - id: ansible_role_fix_readability
       - id: ansible_role_find_undefined_handlers
       - id: ansible_role_find_unquoted_values
+      - id: ansible_role_find_horizontal_when

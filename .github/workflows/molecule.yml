@@ -61,7 +61,7 @@ jobs:
             tag: "bionic"
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           path: "${{ github.repository }}"
       - name: disable apparmor for mysql
