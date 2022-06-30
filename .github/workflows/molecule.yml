@@ -19,12 +19,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-        with:
-          path: "${{ github.repository }}"
-      - name: molecule
-        uses: robertdebock/molecule-action@4.0.7
-        with:
-          command: lint
+      - name: ansible-lint
+        uses: ansible-community/ansible-lint-action@main
   test:
     needs:
       - lint
@@ -61,7 +57,7 @@ jobs:
             tag: "bionic"
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: "${{ github.repository }}"
       - name: disable apparmor for mysql
@@ -69,7 +65,7 @@ jobs:
       - name: parse apparmor for mysql
         run: sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
       - name: molecule
-        uses: robertdebock/molecule-action@4.0.7
+        uses: robertdebock/molecule-action@4.0.8
         with:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
