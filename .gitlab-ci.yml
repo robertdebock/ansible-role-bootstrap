@@ -1,5 +1,5 @@
 ---
-image: "robertdebock/github-action-molecule:4.0.6"
+image: "robertdebock/github-action-molecule:4.0.8"
 
 services:
   - docker:dind
@@ -10,7 +10,8 @@ variables:
 
 molecule:
   script:
-    - image=${image} tag=${tag} molecule test
+    - if [ -f tox.ini ] ; then tox ; fi
+    - if [ ! -f tox.ini ; then molecule test ; fi
   rules:
     - if: $CI_COMMIT_REF_NAME == "master"
   retry: 1
