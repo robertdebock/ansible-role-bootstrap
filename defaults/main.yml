@@ -1,6 +1,9 @@
 ---
 # defaults file for bootstrap
 
+# Allow to bootstrap as non root ( e.g. vagrant user )
+bootstrap_not_as_root: no
+
 # Do you want to wait for the host to be available?
 bootstrap_wait_for_host: no
 
