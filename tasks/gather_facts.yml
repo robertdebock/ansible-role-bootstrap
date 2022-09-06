@@ -1,13 +1,13 @@
 ---
 
-- name: lookup bootstrap facts
+- name: Lookup bootstrap facts
   ansible.builtin.raw: "cat /etc/os-release"
   become: no
   check_mode: no
   register: bootstrap_facts
   changed_when: no
 
-- name: set bootstrap facts (I)
+- name: Set bootstrap facts (I)
   ansible.builtin.set_fact:
     bootstrap_distribution: "{{ item }}"
     bootstrap_distribution_major_version: "{{ bootstrap_facts.stdout_lines | join(',') | regex_replace(
@@ -19,7 +19,7 @@
     - bootstrap_facts.stdout is regex('PRETTY_NAME=.'~ bootstrap_search[item] | default(item) ~'.*')
   become: no
 
-- name: set bootstrap facts (II)
+- name: Set bootstrap facts (II)
   ansible.builtin.set_fact:
     bootstrap_os_family: "{{ item.key }}"
   loop: "{{ bootstrap_os_family_map | dict2items }}"

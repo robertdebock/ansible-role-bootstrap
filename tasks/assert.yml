@@ -1,13 +1,13 @@
 ---
 
-- name: test if bootstrap_wait_for_host is set correctly
+- name: Test if bootstrap_wait_for_host is set correctly
   ansible.builtin.assert:
     that:
       - bootstrap_wait_for_host is defined
       - bootstrap_wait_for_host is boolean
     quiet: yes
 
-- name: test if bootstrap_timeout is set correctly
+- name: Test if bootstrap_timeout is set correctly
   ansible.builtin.assert:
     that:
       - bootstrap_timeout is defined

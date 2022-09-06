@@ -1,12 +1,12 @@
 ---
 # tasks file for bootstrap
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: wait for port to be available
+- name: Wait for port to be available
   ansible.builtin.wait_for:
     port: "{{ ansible_port | default('22') }}"
     timeout: "{{ bootstrap_timeout }}"
@@ -16,19 +16,19 @@
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
     - bootstrap_wait_for_host | bool
 
-- name: prepare system
+- name: Prepare system
   block:
-    - name: test connection
+    - name: Test connection
       ansible.builtin.wait_for_connection:
         timeout: "{{ bootstrap_timeout }}"
       register: bootstrap_connect
       changed_when: no
   rescue:
-    - name: gather bootstrap facts
+    - name: Gather bootstrap facts
       ansible.builtin.include_tasks:
         file: gather_facts.yml
 
-    - name: install bootstrap packages (raw)
+    - name: Install bootstrap packages (raw)
       ansible.builtin.raw: "{{ bootstrap_install.raw }}"
       register: bootstrap_install_packages
       changed_when:
@@ -39,12 +39,12 @@
   become: no
 
 
-- name: ensure system is prepared
+- name: Ensure system is prepared
   block:
-    - name: gather ansible facts
+    - name: Gather ansible facts
       ansible.builtin.setup:
 
-    - name: install bootstrap packages (package)
+    - name: Install bootstrap packages (package)
       ansible.builtin.package:
         name: "{{ item }}"
         state: present
