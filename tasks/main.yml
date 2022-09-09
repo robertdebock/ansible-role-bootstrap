@@ -49,4 +49,4 @@
         name: "{{ item }}"
         state: present
       loop: "{{ bootstrap_facts_packages.split() }}"
-  become: no
+  become: yes
