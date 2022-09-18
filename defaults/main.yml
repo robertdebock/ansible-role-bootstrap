@@ -6,3 +6,6 @@ bootstrap_wait_for_host: no
 
 # The number of seconds you want to wait during connection test before failing.
 bootstrap_timeout: 3
+
+# Tell the role to "become" or not.
+bootstrap_become: yes

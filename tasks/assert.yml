@@ -14,3 +14,10 @@
       - bootstrap_timeout is number
       - bootstrap_timeout >= 0
     quiet: yes
+
+- name: Test if bootstrap_become is set correctly
+  ansible.builtin.assert:
+    that:
+      - bootstrap_become is defined
+      - bootstrap_become is boolean
+    quiet: yes
