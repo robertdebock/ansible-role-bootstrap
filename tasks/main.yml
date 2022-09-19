@@ -36,7 +36,8 @@
            bootstrap_os_family in [ "Alpine", "Archlinux", "Gentoo" ]) or
           (bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
            bootstrap_os_family in [ "Debian", "RedHat", "Rocky", "Suse" ])
-  become: "{{ bootstrap_become }}"
+  # At this stage, python and sudo are not installed, `become` can't be used.
+  become: no
 
 - name: Ensure system is prepared
   block:
