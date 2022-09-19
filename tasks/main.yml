@@ -39,14 +39,13 @@
   # At this stage, python and sudo are not installed, `become` can't be used.
   become: no
 
-- name: Ensure system is prepared
-  block:
-    - name: Gather ansible facts
-      ansible.builtin.setup:
+- name: Gather ansible facts
+  ansible.builtin.setup:
+  become: no
 
-    - name: Install bootstrap packages (package)
-      ansible.builtin.package:
-        name: "{{ item }}"
-        state: present
-      loop: "{{ bootstrap_facts_packages.split() }}"
+- name: Install bootstrap packages (package)
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ bootstrap_facts_packages.split() }}"
   become: "{{ bootstrap_become }}"
