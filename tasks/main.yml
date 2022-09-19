@@ -23,6 +23,9 @@
         timeout: "{{ bootstrap_timeout }}"
       register: bootstrap_connect
       changed_when: no
+    - name: Test sudo
+      ansible.builtin.command:
+        cmd: sudo --version
   rescue:
     - name: Gather bootstrap facts
       ansible.builtin.include_tasks:
@@ -36,7 +39,7 @@
            bootstrap_os_family in [ "Alpine", "Archlinux", "Gentoo" ]) or
           (bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
            bootstrap_os_family in [ "Debian", "RedHat", "Rocky", "Suse" ])
-  # At this stage, python and sudo are not installed, `become` can't be used.
+  # At this stage, python and/or sudo are not installed, `become` can't be used.
   become: no
 
 - name: Gather ansible facts
