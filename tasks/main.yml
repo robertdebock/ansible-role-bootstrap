@@ -26,6 +26,7 @@
     - name: Test sudo
       ansible.builtin.command:
         cmd: sudo --version
+      changed_when: no
   rescue:
     - name: Gather bootstrap facts
       ansible.builtin.include_tasks:
