@@ -1,11 +1,10 @@
 ---
 image: "robertdebock/github-action-molecule:4.0.8"
 
-services:
-  - docker:dind
+# services:
+#   - docker:dind
 
 variables:
-  DOCKER_HOST: "tcp://docker:2375"
   PY_COLORS: 1
 
 molecule:
