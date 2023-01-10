@@ -17,6 +17,8 @@
     - bootstrap_wait_for_host | bool
 
 - name: Prepare system
+  # At this stage, python and/or sudo are not installed, `become` can't be used.
+  become: no
   block:
     - name: Test connection
       ansible.builtin.wait_for_connection:
@@ -40,8 +42,6 @@
            bootstrap_os_family in [ "Alpine", "Archlinux", "Gentoo" ]) or
           (bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
            bootstrap_os_family in [ "Debian", "RedHat", "Rocky", "Suse" ])
-  # At this stage, python and/or sudo are not installed, `become` can't be used.
-  become: no
 
 - name: Gather ansible facts
   ansible.builtin.setup:
