@@ -43,6 +43,6 @@ molecule:
 
 galaxy:
   script:
-    - ansible-galaxy role import --api-key ${GALAXY_API_KEY} robertdebock-iac ${CI_PROJECT_NAME}
+    - ansible-galaxy role import --api-key ${GALAXY_API_KEY} robertdebock ${CI_PROJECT_NAME}
   rules:
     - if: $CI_COMMIT_TAG != null
