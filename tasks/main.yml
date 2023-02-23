@@ -14,7 +14,7 @@
   when:
     - ansible_connection is defined
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
-    - bootstrap_wait_for_host | bool
+    - bootstrap_wait_for_host
 
 - name: Prepare system
   # At this stage, python and/or sudo are not installed, `become` can't be used.
