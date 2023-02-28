@@ -1,5 +1,5 @@
 ---
-image: "robertdebock/github-action-molecule:5.0.0"
+image: "robertdebock/github-action-molecule:5.0.2"
 
 variables:
   PY_COLORS: 1
