@@ -11,6 +11,8 @@ name: Ansible Graphviz
 jobs:
   build:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -28,7 +30,6 @@ jobs:
       - name: save to png branch
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           directory: ${{ github.repository }}
           force: true
           branch: png
