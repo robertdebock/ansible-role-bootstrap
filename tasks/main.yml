@@ -14,6 +14,7 @@
   when:
     - ansible_connection is defined
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
+    - ansible_connection is not none
     - bootstrap_wait_for_host
 
 - name: Prepare system
