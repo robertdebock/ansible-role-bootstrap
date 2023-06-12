@@ -34,5 +34,6 @@ galaxy_info:
     - bootstrap
     - python
     - sudo
+    - system
 
 dependencies: []
