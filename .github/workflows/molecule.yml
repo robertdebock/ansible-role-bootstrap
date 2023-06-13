@@ -44,7 +44,7 @@ jobs:
           - image: "debian"
             tag: "bookworm"
           - image: "fedora"
-            tag: "36"
+            tag: "37"
           - image: "fedora"
             tag: "latest"
           - image: "fedora"
