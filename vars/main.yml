@@ -2,17 +2,17 @@
 # vars file for bootstrap
 
 _bootstrap_packages:
-  Alpine: python3 sudo
-  Archlinux: python sudo
-  Debian: python3 sudo gnupg python3-apt
-  Gentoo: python sudo gentoolkit
-  RedHat: python3 sudo
-  Suse: python3 python3-xml sudo python3-rpm
-  Amazon: python sudo
-  CentOS_7: python sudo
-  Debian_8: python sudo gnupg
-  Debian_9: python sudo gnupg
-  RedHat_7: python sudo
+  Alpine: python3 python3-setuptools sudo
+  Archlinux: python python-setuptools sudo
+  Debian: python3 python3-setuptools sudo gnupg python3-apt
+  Gentoo: python python-setuptools sudo gentoolkit
+  RedHat: python3 python3-setuptools sudo
+  Suse: python3 python3-setuptools python3-xml sudo python3-rpm
+  Amazon: python python-setuptools sudo
+  CentOS_7: python python-setuptools sudo
+  Debian_8: python python-setuptools sudo gnupg
+  Debian_9: python python-setuptools sudo gnupg
+  RedHat_7: python python-setuptools sudo
 
 # Map the right set of packages, based on gathered bootstrap facts.
 bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'_'~ bootstrap_distribution_major_version]|default(
