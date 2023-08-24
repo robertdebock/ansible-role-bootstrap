@@ -21,23 +21,23 @@ bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'_'~ bootstr
 
 _bootstrap_install:
   Alpine:
-    raw: "LANG=C apk update ; apk add {{ bootstrap_packages }}"
+    raw: "export LANG=C ; apk update ; apk add {{ bootstrap_packages }}"
     stdout_regex: 'Installing'
   Archlinux:
-    raw: "LANG=C pacman -Sy --noconfirm {{ bootstrap_packages }}"
+    raw: "export LANG=C ; pacman -Sy --noconfirm {{ bootstrap_packages }}"
     stdout_regex: ' installing python'
   Debian:
-    raw: "LANG=C apt-get update && apt-get install -y {{ bootstrap_packages }}"
+    raw: "export LANG=C ; apt-get update && apt-get install -y {{ bootstrap_packages }}"
     stdout_regex: ' 0 newly installed'
   Gentoo:
-    raw: "LANG=C equery l {{ bootstrap_packages }} ||
+    raw: "export LANG=C ; equery l {{ bootstrap_packages }} ||
           (emaint -a sync ; emerge -qkv {{ bootstrap_packages }} ; echo 'changed')"
     stdout_regex: 'changed'
   RedHat:
-    raw: "LANG=C yum -y install {{ bootstrap_packages }}"
+    raw: "export LANG=C ; yum -y install {{ bootstrap_packages }}"
     stdout_regex: 'Nothing'
   Suse:
-    raw: "LANG=C zypper -n install {{ bootstrap_packages }}"
+    raw: "export LANG=C ; zypper -n install {{ bootstrap_packages }}"
     stdout_regex: 'Nothing'
 
 # Map the right install command, based on gathered bootstrap facts.
