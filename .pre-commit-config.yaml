@@ -11,7 +11,8 @@ repos:
     rev: v1.32.0
     hooks:
       - id: yamllint
-        args: [-c=.yamllint]
+        args:
+          - -c=.yamllint
 
   - repo: https://github.com/robertdebock/pre-commit
     rev: v1.5.2

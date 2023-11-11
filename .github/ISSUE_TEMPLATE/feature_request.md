@@ -4,7 +4,7 @@ about: Suggest an idea for this project
 
 ---
 
-## Proposed feature
+# Proposed feature
 
 A clear and concise description of what you want to happen.
 
