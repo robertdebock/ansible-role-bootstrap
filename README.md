@@ -1,4 +1,4 @@
-# Ansible role [bootstrap](#bootstrap)
+# [Ansible role bootstrap](#bootstrap)
 
 Prepare your system to be managed by Ansible.
 
