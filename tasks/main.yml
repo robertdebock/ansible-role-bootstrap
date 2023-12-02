@@ -1,12 +1,13 @@
 ---
 # tasks file for bootstrap
 
-- name: import assert.yml
-  ansible.builtin.import_tasks: assert.yml
+- name: Import assert.yml
+  ansible.builtin.import_tasks:
+    file: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: wait for port to be available
+- name: Wait for port to be available
   ansible.builtin.wait_for:
     port: "{{ ansible_port | default('22') }}"
     timeout: "{{ bootstrap_timeout }}"
@@ -14,39 +15,45 @@
   when:
     - ansible_connection is defined
     - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
-    - bootstrap_wait_for_host | bool
+    - ansible_connection is not none
+    - bootstrap_wait_for_host
 
-- name: prepare system
+- name: Prepare system
+  # At this stage, python and/or sudo are not installed, `become` can't be used.
+  become: no
   block:
-    - name: test connection
+    - name: Test connection
       ansible.builtin.wait_for_connection:
         timeout: "{{ bootstrap_timeout }}"
       register: bootstrap_connect
       changed_when: no
+    - name: Test sudo
+      ansible.builtin.command:
+        cmd: sudo --version
+      changed_when: no
   rescue:
-    - name: gather bootstrap facts
+    - name: Gather bootstrap facts
       ansible.builtin.include_tasks:
         file: gather_facts.yml
 
-    - name: install bootstrap packages (raw)
+    - name: Install bootstrap packages (raw)
       ansible.builtin.raw: "{{ bootstrap_install.raw }}"
+      args:
+        executable: /bin/sh
       register: bootstrap_install_packages
       changed_when:
         - (bootstrap_install.stdout_regex in bootstrap_install_packages.stdout and
            bootstrap_os_family in [ "Alpine", "Archlinux", "Gentoo" ]) or
           (bootstrap_install.stdout_regex not in bootstrap_install_packages.stdout and
            bootstrap_os_family in [ "Debian", "RedHat", "Rocky", "Suse" ])
+
+- name: Gather ansible facts
+  ansible.builtin.setup:
   become: no
 
-
-- name: ensure system is prepared
-  block:
-    - name: gather ansible facts
-      ansible.builtin.setup:
-
-    - name: install bootstrap packages (package)
-      ansible.builtin.package:
-        name: "{{ item }}"
-        state: present
-      loop: "{{ bootstrap_facts_packages.split() }}"
-  become: no
+- name: Install bootstrap packages (package)
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ bootstrap_facts_packages.split() }}"
+  become: "{{ bootstrap_become }}"

@@ -5,10 +5,10 @@
   gather_facts: no
 
   tasks:
-    - name: test connection
+    - name: Test connection
       ansible.builtin.ping:
 
-    - name: try the package module
+    - name: Try the package module
       ansible.builtin.package:
         name: gzip
         state: present

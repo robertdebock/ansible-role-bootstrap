@@ -4,7 +4,7 @@ about: Create a report to help me improve
 
 ---
 
-## Describe the bug
+# Describe the bug
 
 A clear and concise description of what the bug is.
 
@@ -12,7 +12,6 @@ A clear and concise description of what the bug is.
 
 Please paste the playbook you are using. (Consider `requirements.yml` and
 optionally the command you've invoked.)
-
 
 ```yaml
 ---
