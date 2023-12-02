@@ -18,13 +18,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: checkout
-        uses: actions/checkout@v2
-        with:
-          path: "${{ github.repository }}"
-      - name: molecule
-        uses: robertdebock/molecule-action@4.0.7
-        with:
-          command: lint
+        uses: actions/checkout@v3
+      - name: ansible-lint
+        uses: ansible-community/ansible-lint-action@main
   test:
     needs:
       - lint
@@ -40,13 +36,15 @@ jobs:
           - image: "enterpriselinux"
             tag: "7"
           - image: "enterpriselinux"
+            tag: "8"
+          - image: "enterpriselinux"
             tag: "latest"
           - image: "debian"
             tag: "latest"
           - image: "debian"
-            tag: "bookworm"
+            tag: "bullseye"
           - image: "fedora"
-            tag: "34"
+            tag: "38"
           - image: "fedora"
             tag: "latest"
           - image: "fedora"
@@ -56,18 +54,20 @@ jobs:
           - image: "ubuntu"
             tag: "latest"
           - image: "ubuntu"
+            tag: "focal"
+          - image: "ubuntu"
             tag: "bionic"
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: "${{ github.repository }}"
-      - name: disable apparmor for mysql
-        run: sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
-      - name: parse apparmor for mysql
-        run: sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
+      # - name: disable apparmor for mysql
+      #   run: sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
+      # - name: parse apparmor for mysql
+      #   run: sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
       - name: molecule
-        uses: robertdebock/molecule-action@4.0.7
+        uses: robertdebock/molecule-action@6.0.1
         with:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
