@@ -4,7 +4,7 @@ Prepare your system to be managed by Ansible.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/bootstrap)](https://galaxy.ansible.com/robertdebock/bootstrap))|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bootstrap.svg)](https://github.com/robertdebock/ansible-role-bootstrap/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-bootstrap)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/bootstrap)](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-bootstrap.svg)](https://github.com/robertdebock/ansible-role-bootstrap/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
