@@ -55,6 +55,6 @@
   ansible.builtin.package:
     name: "{{ item }}"
     state: present
-    update_cache: true
+    update_cache: yes
   loop: "{{ bootstrap_facts_packages.split() }}"
   become: "{{ bootstrap_become }}"
