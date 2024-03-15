@@ -31,5 +31,5 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           directory: ${{ github.repository }}
-          force: true
+          force: yes
           branch: png
