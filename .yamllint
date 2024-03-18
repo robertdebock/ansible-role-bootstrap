@@ -11,9 +11,6 @@ rules:
   line-length: disable
   truthy:
     check-keys: no
-    allowed-values:
-      - "yes"
-      - "no"
 
 ignore: |
   .tox/

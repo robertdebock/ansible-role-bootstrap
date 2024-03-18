@@ -1,8 +1,8 @@
 ---
 - name: Verify
   hosts: all
-  become: no
-  gather_facts: no
+  become: false
+  gather_facts: false
 
   tasks:
     - name: Test connection

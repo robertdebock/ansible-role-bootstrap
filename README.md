@@ -16,13 +16,13 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   hosts: all
   # This role installs packages using the `raw` module and needs to connect as
   # `root`. (`sudo` is not available before bootstrapping.) All tasks in the
-  # role have `become` set to `no`, so you can use either `no` or `yes` for
-  # `become`, the role will not use become (so `sudo`) for any task.
-  become: yes  # `no` will also work.
+  # role have `become` set to `false`, so you can use either `false` or `true`
+  # for `become`, the role will not use become (so `sudo`) for any task.
+  become: true  # `false` will also work.
   # This role installs python, gathering facts can't be done before `python` is
   # installed. This role runs the `setup` module, so facts will be available
   # after running the role.
-  gather_facts: no
+  gather_facts: false
 
   roles:
     - role: robertdebock.bootstrap
@@ -39,13 +39,13 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for bootstrap
 
 # Do you want to wait for the host to be available?
-bootstrap_wait_for_host: no
+bootstrap_wait_for_host: false
 
 # The number of seconds you want to wait during connection test before failing.
 bootstrap_timeout: 3
 
 # Tell the role to "become" or not.
-bootstrap_become: yes
+bootstrap_become: true
 ```
 
 ## [Requirements](#requirements)

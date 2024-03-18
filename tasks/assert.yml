@@ -5,7 +5,7 @@
     that:
       - bootstrap_wait_for_host is defined
       - bootstrap_wait_for_host is boolean
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bootstrap_timeout
   ansible.builtin.assert:
@@ -13,11 +13,11 @@
       - bootstrap_timeout is defined
       - bootstrap_timeout is number
       - bootstrap_timeout >= 0
-    quiet: yes
+    quiet: true
 
 - name: assert | Test bootstrap_become
   ansible.builtin.assert:
     that:
       - bootstrap_become is defined
       - bootstrap_become is boolean
-    quiet: yes
+    quiet: true

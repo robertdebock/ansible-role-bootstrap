@@ -10,7 +10,7 @@ argument_specs:
     options:
       bootstrap_wait_for_host:
         type: "bool"
-        default: no
+        default: false
         description: "Wait for the machine to be available."
       bootstrap_timeout:
         type: "int"
