@@ -19,8 +19,8 @@ platforms:
     command: /sbin/init
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    privileged: yes
-    pre_build_image: yes
+    privileged: true
+    pre_build_image: true
 provisioner:
   name: ansible
 verifier:
