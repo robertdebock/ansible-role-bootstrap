@@ -27,7 +27,7 @@ molecule:
       - image: "debian"
         tag: "bullseye"
       - image: "fedora"
-        tag: "38"
+        tag: "39"
       - image: "fedora"
         tag: "latest"
       - image: "fedora"
@@ -37,9 +37,9 @@ molecule:
       - image: "ubuntu"
         tag: "latest"
       - image: "ubuntu"
-        tag: "focal"
+        tag: "jammy"
       - image: "ubuntu"
-        tag: "bionic"
+        tag: "focal"
 
 galaxy:
   script:
