@@ -12,6 +12,9 @@ _bootstrap_packages:
   CentOS_7: python sudo
   Debian_8: python sudo gnupg
   Debian_9: python sudo gnupg
+  Debian_10: python3 sudo gnupg2
+  Debian_11: python3 sudo gnupg2
+  Debian_12: python3 sudo gnupg2
   RedHat_7: python sudo
 
 # Map the right set of packages, based on gathered bootstrap facts.
