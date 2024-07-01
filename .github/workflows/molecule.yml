@@ -76,8 +76,10 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install test dependencies.
-        run: pip3 install ansible molecule molecule-plugins[docker] docker
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install molecule docker ansible
 
       - name: Run Molecule tests.
         run: molecule test
