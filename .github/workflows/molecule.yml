@@ -94,6 +94,9 @@ jobs:
       - name: docker | ps
         run: docker ps -a
 
+      - name: docker | inspect
+        run: docker inspect $(docker ps -qa)
+
       - name: molecule | list
         run: molecule list
         env:
