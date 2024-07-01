@@ -82,11 +82,17 @@ jobs:
           # pip install molecule molecule-plugins[docker] docker ansible
           pip install -r requirements.txt
 
+      - name: docker | ps
+        run: docker ps -a
+
       - name: molecule | create
         run: molecule create
         env:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
+
+      - name: docker | ps
+        run: docker ps -a
 
       - name: molecule | list
         run: molecule list
@@ -100,8 +106,26 @@ jobs:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
 
+      - name: docker | ps
+        run: docker ps -a
+
+      - name: molecule | list
+        run: molecule list
+        env:
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
+
       - name: molecule | converge
         run: molecule converge
+        env:
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
+
+      - name: docker | ps
+        run: docker ps -a
+
+      - name: molecule | list
+        run: molecule list
         env:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
@@ -112,8 +136,32 @@ jobs:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
 
+      - name: docker | ps
+        run: docker ps -a
+
+      - name: molecule | list
+        run: molecule list
+        env:
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
+
       - name: molecule | verify
         run: molecule verify
+        env:
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
+
+      - name: docker | ps
+        run: docker ps -a
+
+      - name: molecule | list
+        run: molecule list
+        env:
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
+
+      - name: molecule | destroy
+        run: molecule destroy
         env:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
