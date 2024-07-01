@@ -82,11 +82,32 @@ jobs:
           # pip install molecule molecule-plugins[docker] docker ansible
           pip install -r requirements.txt
 
-      - name: Run Molecule tests.
-        run: molecule test
+      - name: molecule | create
+        run: molecule create
         env:
-          # PY_COLORS: '1'
-          # ANSIBLE_FORCE_COLOR: '1'
-          # MOLECULE_DISTRO: ${{ matrix.con }}
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
+
+      - name: molecule | list
+        run: molecule list
+        env:
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
+
+      - name: molecule | converge
+        run: molecule converge
+        env:
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
+
+      - name: molecule | idempotence
+        run: molecule idempotence
+        env:
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
+
+      - name: molecule | verify
+        run: molecule verify
+        env:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
