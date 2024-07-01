@@ -34,8 +34,6 @@ jobs:
           - image: "amazonlinux"
             tag: "latest"
           - image: "enterpriselinux"
-            tag: "8"
-          - image: "enterpriselinux"
             tag: "latest"
           - image: "debian"
             tag: "latest"
@@ -47,8 +45,6 @@ jobs:
             tag: "latest"
           - image: "fedora"
             tag: "rawhide"
-          - image: "opensuse"
-            tag: "latest"
           - image: "ubuntu"
             tag: "latest"
           - image: "ubuntu"
@@ -58,18 +54,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-        # with:
-        #   path: "${{ github.repository }}"
-
-      - name: Debug
-        run: |
-          pwd
-          ls -la
-      # - name: molecule
-      #   uses: robertdebock/molecule-action@6.0.1
-      #   with:
-      #     image: ${{ matrix.config.image }}
-      #     tag: ${{ matrix.config.tag }}
 
       - name: Set up Python 3.
         uses: actions/setup-python@v5
@@ -82,92 +66,8 @@ jobs:
           # pip install molecule molecule-plugins[docker] docker ansible
           pip install -r requirements.txt
 
-      - name: python | version
-        run: python --version
-
-      - name: docker | ps
-        run: docker ps -a
-
-      - name: molecule | create
-        run: molecule create
-        env:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
-
-      - name: docker | ps
-        run: docker ps -a
-
-      - name: docker | inspect
-        run: docker inspect $(docker ps -qa)
-
-      - name: molecule | list
-        run: molecule list
-        env:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
-
-      - name: molecule | prepare
-        run: molecule prepare
-        env:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
-
-      - name: docker | ps
-        run: docker ps -a
-
-      - name: molecule | list
-        run: molecule list
-        env:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
-
-      - name: molecule | converge
+      - name: molecule
         run: molecule converge
-        env:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
-
-      - name: docker | ps
-        run: docker ps -a
-
-      - name: molecule | list
-        run: molecule list
-        env:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
-
-      - name: molecule | idempotence
-        run: molecule idempotence
-        env:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
-
-      - name: docker | ps
-        run: docker ps -a
-
-      - name: molecule | list
-        run: molecule list
-        env:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
-
-      - name: molecule | verify
-        run: molecule verify
-        env:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
-
-      - name: docker | ps
-        run: docker ps -a
-
-      - name: molecule | list
-        run: molecule list
-        env:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
-
-      - name: molecule | destroy
-        run: molecule destroy
         env:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}

@@ -21,7 +21,6 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     privileged: true
     pre_build_image: true
-    cgroupns_mode: host
 provisioner:
   name: ansible
 verifier:
