@@ -18,7 +18,7 @@ platforms:
     image: "${namespace:-robertdebock}/${image:-fedora}:${tag:-latest}"
     command: /sbin/init
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
     privileged: true
     pre_build_image: true
     cgroupns_mode: host
