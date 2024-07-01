@@ -82,6 +82,9 @@ jobs:
           # pip install molecule molecule-plugins[docker] docker ansible
           pip install -r requirements.txt
 
+      - name: python | version
+        run: python --version
+
       - name: docker | ps
         run: docker ps -a
 
