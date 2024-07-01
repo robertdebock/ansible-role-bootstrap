@@ -94,6 +94,12 @@ jobs:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
 
+      - name: molecule | prepare
+        run: molecule prepare
+        env:
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
+
       - name: molecule | converge
         run: molecule converge
         env:
