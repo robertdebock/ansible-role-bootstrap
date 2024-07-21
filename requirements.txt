@@ -1,5 +1,3 @@
-ansible-compat == 24.*
-molecule == 24.*
-molecule-plugins[docker] == 23.*
-ansible-lint == 24.*
-paramiko == 3.*
+molecule
+molecule-plugins[docker]
+paramiko
