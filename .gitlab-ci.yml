@@ -17,37 +17,37 @@ molecule:
     matrix:
       - image: "alpine"
         tag: "latest"
-        python: ['python:3.9', 'python:3.10']
+        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "amazonlinux"
         tag: "latest"
         python: ['python:3.9', 'python:3.10']
       - image: "enterpriselinux"
         tag: "latest"
-        python: ['python:3.9', 'python:3.10']
+        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "debian"
         tag: "latest"
-        python: ['python:3.9', 'python:3.10']
+        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "debian"
         tag: "bullseye"
-        python: ['python:3.9', 'python:3.10']
+        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "fedora"
-        tag: "39"
-        python: ['python:3.9', 'python:3.10']
+        tag: "40"
+        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "fedora"
         tag: "latest"
-        python: ['python:3.9', 'python:3.10']
+        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "fedora"
         tag: "rawhide"
-        python: ['python:3.9', 'python:3.10']
+        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "ubuntu"
         tag: "latest"
-        python: ['python:3.9', 'python:3.10']
+        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "ubuntu"
         tag: "jammy"
-        python: ['python:3.9', 'python:3.10']
+        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "ubuntu"
         tag: "focal"
-        python: ['python:3.9', 'python:3.10']
+        python: ['python:3.9', 'python:3.10', 'python:3.13']
 
 galaxy:
   script:

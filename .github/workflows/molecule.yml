@@ -43,7 +43,7 @@ jobs:
           - image: "debian"
             tag: "bullseye"
           - image: "fedora"
-            tag: "39"
+            tag: "40"
           - image: "fedora"
             tag: "latest"
           - image: "fedora"
@@ -89,7 +89,51 @@ jobs:
           - image: "debian"
             tag: "bullseye"
           - image: "fedora"
-            tag: "39"
+            tag: "40"
+          - image: "fedora"
+            tag: "latest"
+          - image: "fedora"
+            tag: "rawhide"
+          - image: "ubuntu"
+            tag: "latest"
+          - image: "ubuntu"
+            tag: "jammy"
+          - image: "ubuntu"
+            tag: "focal"
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: molecule
+        run: |
+          apt-get update -qq
+          apt-get -y -qq install yamllint docker.io
+          pip install --no-cache-dir tox
+          if [ -f tox.ini ] ; then tox ; fi
+          if [ ! -f tox.ini ] ; then pip install -r requirements.yml ; pip install ansible-lint ansible-core ; molecule test ; fi
+        env:
+          image: ${{ matrix.config.image }}
+          tag: ${{ matrix.config.tag }}
+  python-3-13:
+    needs:
+      - lint
+    runs-on: ubuntu-20.04
+    container:
+      image: python:3.13
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - image: "alpine"
+            tag: "latest"
+          - image: "enterpriselinux"
+            tag: "latest"
+          - image: "debian"
+            tag: "latest"
+          - image: "debian"
+            tag: "bullseye"
+          - image: "fedora"
+            tag: "40"
           - image: "fedora"
             tag: "latest"
           - image: "fedora"
