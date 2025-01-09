@@ -16,7 +16,7 @@ _bootstrap_packages:
   Debian_11: python3 sudo gnupg2
   Debian_12: python3 sudo gnupg2
   RedHat_7: python sudo
-  Fedora: python3 sudo python3-libdnf5
+  Fedora: python3 sudo python3-libdnf5 python3-rpm
 
 # Map the right set of packages, based on gathered bootstrap facts.
 bootstrap_packages: "{{ _bootstrap_packages[bootstrap_distribution ~'_'~ bootstrap_distribution_major_version]|default(
