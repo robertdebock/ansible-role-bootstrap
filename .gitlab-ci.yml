@@ -4,54 +4,56 @@ variables:
   DEBIAN_FRONTEND: noninteractive
 
 molecule:
-  image: $python
+  image: python:3.13
   script:
     - apt-get update -qq
     - apt-get -y -qq install yamllint docker.io
-    - pip install --no-cache-dir tox
-    - if [ -f tox.ini ] ; then tox ; fi
-    - if [ ! -f tox.ini ] ; then pip install -r requirements.yml ; pip install ansible-lint ansible-core ; molecule test ; fi
+    # Configure Docker for systemd
+    - mkdir -p /etc/docker
+    - echo '{"features":{"buildkit":true},"exec-opts":["native.cgroupdriver=systemd"]}' > /etc/docker/daemon.json
+    - service docker restart || true
+    # Install dependencies and run tests
+    - pip install --no-cache-dir ansible-lint molecule molecule-plugins[docker] ansible-core
+    - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - if [ -f requirements.yml ]; then ansible-galaxy install -r requirements.yml; fi
+    # Create proper role directory structure for molecule
+    - mkdir -p ~/.ansible/roles
+    - ln -s $CI_PROJECT_DIR ~/.ansible/roles/robertdebock.bootstrap
+    # Run molecule tests
+    - cd $CI_PROJECT_DIR
+    - ANSIBLE_ROLES_PATH=~/.ansible/roles:$CI_PROJECT_DIR molecule test
   rules:
     - if: $CI_COMMIT_REF_NAME == "master"
   parallel:
     matrix:
       - image: "alpine"
         tag: "latest"
-        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "amazonlinux"
         tag: "latest"
-        python: ['python:3.9', 'python:3.10']
       - image: "enterpriselinux"
         tag: "latest"
-        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "debian"
         tag: "latest"
-        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "debian"
         tag: "bullseye"
-        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "fedora"
         tag: "40"
-        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "fedora"
         tag: "latest"
-        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "fedora"
         tag: "rawhide"
-        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "ubuntu"
         tag: "latest"
-        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "ubuntu"
         tag: "jammy"
-        python: ['python:3.9', 'python:3.10', 'python:3.13']
       - image: "ubuntu"
         tag: "focal"
-        python: ['python:3.9', 'python:3.10', 'python:3.13']
 
 galaxy:
+  image: python:3.13
   script:
-    - apk add ansible-core
+    - apt-get update -qq
+    - apt-get -y -qq install ansible-core
     - ansible-galaxy role import --api-key ${GALAXY_API_KEY} robertdebock ${CI_PROJECT_NAME}
   rules:
     - if: $CI_COMMIT_TAG != null

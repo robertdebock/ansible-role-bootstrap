@@ -4,3 +4,4 @@
 .tox
 .cache
 .DS_Store
+.ansible
