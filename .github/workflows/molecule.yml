@@ -94,5 +94,7 @@ jobs:
           PY_COLORS: 1
           ANSIBLE_FORCE_COLOR: 1
           ANSIBLE_ROLES_PATH: ~/.ansible/roles:${GITHUB_WORKSPACE}/ansible-role-bootstrap
+          MOLECULE_DEBUG: 1
+          ANSIBLE_VERBOSITY: 3
           image: ${{ matrix.distro.image }}
           tag: ${{ matrix.distro.tag }}

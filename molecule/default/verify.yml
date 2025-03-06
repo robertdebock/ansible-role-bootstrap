@@ -2,7 +2,7 @@
 - name: Verify
   hosts: all
   become: false
-  gather_facts: false
+  gather_facts: true
 
   tasks:
     - name: Test connection
@@ -12,3 +12,44 @@
       ansible.builtin.package:
         name: gzip
         state: present
+
+    - name: Check if python is installed
+      ansible.builtin.command:
+        cmd: python3 --version
+      changed_when: false
+      register: python_version
+
+    - name: Show python version
+      ansible.builtin.debug:
+        var: python_version.stdout
+
+    # Add specific checks for Fedora to debug sudo issues
+    - name: Check sudo configuration
+      ansible.builtin.command:
+        cmd: "{{ item }}"
+      loop:
+        - "id"
+        - "whoami"
+        - "sudo -V"
+      register: sudo_check
+      changed_when: false
+      ignore_errors: true
+      when: ansible_distribution == "Fedora"
+
+    - name: Show sudo configuration
+      ansible.builtin.debug:
+        var: sudo_check
+      when: ansible_distribution == "Fedora"
+
+    - name: Check sudoers file
+      ansible.builtin.command:
+        cmd: "cat /etc/sudoers"
+      register: sudoers_content
+      changed_when: false
+      ignore_errors: true
+      when: ansible_distribution == "Fedora"
+
+    - name: Show sudoers content
+      ansible.builtin.debug:
+        var: sudoers_content
+      when: ansible_distribution == "Fedora"
