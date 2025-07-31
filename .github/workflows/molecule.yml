@@ -20,7 +20,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: ansible-lint
-        uses: ansible-community/ansible-lint-action@main
+        uses: ansible/ansible-lint@main
 
   molecule:
     needs:
@@ -41,8 +41,6 @@ jobs:
           - image: "debian"
             tag: "bullseye"
           - image: "fedora"
-            tag: "40"
-          - image: "fedora"
             tag: "latest"
           - image: "ubuntu"
             tag: "latest"
@@ -59,7 +57,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.*"
 
       - name: Configure Docker for systemd
         run: |
@@ -78,13 +76,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install ansible-lint molecule molecule-plugins[docker] ansible-core
-          if [ -f ansible-role-bootstrap/requirements.txt ]; then pip install -r ansible-role-bootstrap/requirements.txt; fi
-          if [ -f ansible-role-bootstrap/requirements.yml ]; then ansible-galaxy install -r ansible-role-bootstrap/requirements.yml; fi
-
-          # Create proper role directory structure for molecule
-          mkdir -p ~/.ansible/roles
-          ln -s ${GITHUB_WORKSPACE}/ansible-role-bootstrap ~/.ansible/roles/robertdebock.bootstrap
+          pip3 install ansible molecule molecule-plugins[docker] docker
 
       - name: Test with molecule
         run: |
