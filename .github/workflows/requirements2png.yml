@@ -4,7 +4,9 @@
 #
 
 on:
-  - push
+  release:
+    types:
+      - published
 
 name: Ansible Graphviz
 

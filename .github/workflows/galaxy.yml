@@ -7,7 +7,8 @@ name: Release to Ansible Galaxy
 
 on:
   release:
-    types: [created, edited, published, released]
+    types:
+      - published
 jobs:
   release:
     runs-on: ubuntu-latest
