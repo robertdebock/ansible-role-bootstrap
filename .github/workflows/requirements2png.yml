@@ -34,4 +34,4 @@ jobs:
         with:
           directory: ${{ github.repository }}
           force: true
-          branch: png
+          branch: refs/heads/png

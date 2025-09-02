@@ -1,0 +1,127 @@
+---
+alwaysApply: true
+---
+
+# Ansible Role Conventions
+
+- Prefer readability over complexity.
+- Split logic into Ansible Roles to allow composing a combination of roles.
+- Ansible Roles do not solve business logic; they offer system logic.
+- Playbooks can combine Ansible Roles into business logic.
+- Ansible Roles need to be compatible with the distributions listed in `meta/main.yml`.
+- `ansible-lint` should succeed without errors.
+
+## Development Focus Ordering
+
+1. Focus on the intent of the role in `meta/main.yml`.
+2. Focus on user variables, defined in `defaults/main.yml`.
+3. Focus on role variables, defined in `vars/main.yml`.
+4. Focus on tasks, templates, and files.
+
+## Meta (`meta/main.yml`)
+
+- The `galaxy_info.description` captures the intent of the role.
+- The file `meta/main.yml` is used to generate many other files using [Ansible Generator](https://github.com/robertdebock/ansible-generator).
+- **Don't** use `dependencies`: This may surprise a user with extra roles being downloaded and executed.
+- Distributions mentioned are tested using Molecule.
+
+## User Variables (`defaults/main.yml`)
+
+- The user will need to adjust these settings, so making life easier in this file is helpful.
+- Variables must start with the name of the role. For example: the role `ansible-role-xyz` should have `xyz_` prepended to its variables. The intent is to limit variable bleeding and help a user understand where a variable is applicable.
+- Carefully consider if a variable is a string, integer, boolean, list, or map. Changing a variable type later can be difficult for users.
+- Above the variable, in comment style, describe the behaviour of the variable.
+
+## Role Variables (`vars/main.yml`)
+
+- The file `vars/main.yml` is used to determine or set "internal variables". The user should not be interested in these variables, as they are difficult to overwrite.
+- Determining a variable for a value can be done using lookup maps:
+
+    ```yaml
+    _xyz_packages:
+      default:
+        - foo
+        - bar
+      Suse:
+        - foobar
+
+    xyz_packages: "{{ _xyz_packages[ansible_os_family] | default(_xyz_packages['default']) }}"
+    ```
+
+    This pattern can be used for all kinds of things, such as:
+
+    1. Packages
+    2. Service names
+    3. Users and groups
+    4. Logic (tasks/main.yml)
+
+- In the name: line of a task, describe the intent of the task. That may differ slightly from what the task is doing. For example:
+
+    ```yaml
+    # Describes the intent of a task (strong)
+    - name: Configure xyz
+
+    # Describes what the task does (weak)
+    - name: Place xyz.conf
+    ```
+
+- Spread lines vertically as much as possible to increase readability. For example:
+
+    ```yaml
+    # Easy to read (vertical)
+    - name: Do something
+      ansible.builtin.file:
+        src: foo
+        dest: /foo
+      when:
+        - xyz
+      failed_when:
+        - xyz == "xyz"
+      notify:
+        - XYZ Handler
+
+    # Difficult to read (horizontal)
+    - name: Do something
+      ansible.builtin.file:
+        src: foo
+        dest: /foo
+      when: xyz
+      failed_when: xyz == "xyz"
+      notify: XYZ Handler
+    ```
+
+    An added benefit is that it's very obvious that when, failed_when, changed_when, and handlers are actually (AND) lists.
+
+- Never use equal signs (=) where colons (:) are possible.
+- Never use Jinja in tasks or handlers. Instead, use a mapping in vars/main.yml to determine a value.
+- Try to resolve values in vars/main.yml to prevent unnecessary when conditions.
+- Prefer modules over `ansible.builtin.shell` and `ansible.builtin.command`.
+- Packages should not use `latest` as a version, unless the role is intended to update the package.
+- The `ansible.builtin.file` should mention an `owner`, `group`, and `mode`.
+- Use FQCNs for modules.
+- Used collections should be mentioned in the role `requirements.txt`.
+- Test all variables mentioned in `defaults/main.yml` using `ansible.builtin.assert` in `tasks/assert.yml`.
+- Fail as fast as possible, using `meta/argument_specs.yml` and `tasks/assert.yml`.
+- Avoid using `ansible.builtin.set_fact`.
+- For error-handling, prefer `block` and `rescue`.
+- `failed_when: true` is never preferred, just as `ignore_errors: true`.
+- Only use `gather_facts: true` when the facts are required.
+
+## Handlers
+
+- Don't use the listen directive.
+
+## Templates
+
+- Use `{{ ansible_managed | comment }}` (with the correct comment style)at the top of templates.
+- Although difficult, try to prevent using Jinja. There are exceptions to this rule.
+
+## Files
+
+- It’s nearly always beneficial to use templates. Exceptions are:
+
+    1. Binary files (keep in mind: Ansible is not a packaging solution).
+
+## Molecule
+
+- The `molecule/default/verify.yml` should test the intent of the role. This can mean: to test if a port is open, to test if an installed softwareproduct can show a version number, etc.
