@@ -56,7 +56,7 @@ bootstrap_os_family_map:
   Archlinux: [Archlinux, Antergos, Manjaro]
   Debian: [Debian, Ubuntu, Raspbian, Neon, KDE neon,
            Linux Mint, SteamOS, Devuan, Kali, Cumulus Linux,
-           'Pop!_OS', Parrot, Pardus GNU/Linux]
+           'Pop!_OS', Parrot, Pardus GNU/Linux, 'Univention Corporate Server']
   Gentoo: [Gentoo, Funtoo]
   RedHat: [RedHat, Fedora, CentOS, Scientific, SLC,
            Ascendos, CloudLinux, PSBM, Rocky, OracleLinux,
