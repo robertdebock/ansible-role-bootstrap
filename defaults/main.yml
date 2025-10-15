@@ -8,4 +8,4 @@ bootstrap_wait_for_host: false
 bootstrap_timeout: 3
 
 # Tell the role to "become" or not.
-bootstrap_become: true
+bootstrap_become: false
