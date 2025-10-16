@@ -21,8 +21,6 @@ molecule:
     matrix:
       - image: "alpine"
         tag: "latest"
-      - image: "amazonlinux"
-        tag: "latest"
       - image: "enterpriselinux"
         tag: "latest"
       - image: "debian"
