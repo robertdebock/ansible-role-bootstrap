@@ -37,22 +37,16 @@ Now you can start to edit on your laptop.
 
 ### [4. Optionally: test your changes](#4-optionally-test-your-changes)
 
-Install [molecule](https://molecule.readthedocs.io/en/stable/) and [Tox](https://tox.readthedocs.io/):
+Install [molecule](https://molecule.readthedocs.io/en/stable/):
 
 ```shell
-pip install molecule tox ansible-lint docker
+pip install molecule ansible-lint docker
 ```
 
 And run `molecule test`. If you want to test a specific distribution, set `image` and optionally `tag`:
 
 ```shell
 image=centos tag=7 molecule test
-```
-
-Once it start to work, you can test multiple version of Ansible:
-
-```shell
-image=centos tag=7 tox
 ```
 
 ### [5. Optionally: Regenerate all dynamic content](#5-optionally-regenerate-all-dynamic-content)
