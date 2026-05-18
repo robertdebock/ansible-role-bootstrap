@@ -70,6 +70,6 @@ bootstrap_search:
   RedHat: 'Red Hat'
 
 # Map the right set of packages, based on gathered ansible_facts.
-bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_distribution ~'_'~ ansible_distribution_major_version]|default(
-                           _bootstrap_packages[ansible_distribution] )|default(
-                           _bootstrap_packages[ansible_os_family] ) }}"
+bootstrap_facts_packages: "{{ _bootstrap_packages[ansible_facts['distribution'] ~'_'~ ansible_facts['distribution_major_version']]|default(
+                           _bootstrap_packages[ansible_facts['distribution']] )|default(
+                           _bootstrap_packages[ansible_facts['os_family']] ) }}"
