@@ -10,58 +10,83 @@ on:
     branches:
       - master
   pull_request:
+    branches:
+      - master
+  workflow_dispatch:
   schedule:
     - cron: '3 2 2 * *'
 
 jobs:
   lint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
       - name: ansible-lint
-        uses: ansible-community/ansible-lint-action@main
-  test:
+        uses: ansible/ansible-lint@v25.9.2
+
+  molecule:
     needs:
       - lint
-    runs-on: ubuntu-20.04
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        config:
+        distro:
           - image: "alpine"
             tag: "latest"
-          - image: "amazonlinux"
-            tag: "latest"
-          - image: "enterpriselinux"
-            tag: "8"
           - image: "enterpriselinux"
             tag: "latest"
           - image: "debian"
             tag: "latest"
+          - image: "debian"
+            tag: "bookworm"
           - image: "debian"
             tag: "bullseye"
           - image: "fedora"
-            tag: "39"
-          - image: "fedora"
-            tag: "latest"
-          - image: "fedora"
-            tag: "rawhide"
-          - image: "opensuse"
             tag: "latest"
           - image: "ubuntu"
             tag: "latest"
           - image: "ubuntu"
             tag: "jammy"
-          - image: "ubuntu"
-            tag: "focal"
     steps:
       - name: checkout
         uses: actions/checkout@v4
         with:
-          path: "${{ github.repository }}"
-      - name: molecule
-        uses: robertdebock/molecule-action@6.0.1
+          path: ansible-role-bootstrap
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
+          python-version: "3.13"
+
+      - name: Configure Docker for systemd
+        run: |
+          sudo mkdir -p /etc/docker
+          echo '{
+            "features": {
+              "buildkit": true
+            },
+            "exec-opts": ["native.cgroupdriver=systemd"]
+          }' | sudo tee /etc/docker/daemon.json
+          sudo systemctl restart docker || true
+
+      - name: Install Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip3 install ansible molecule molecule-plugins[docker] docker
+
+      - name: Test with molecule
+        run: |
+          cd ansible-role-bootstrap
+          molecule test
+        env:
+          PY_COLORS: 1
+          ANSIBLE_FORCE_COLOR: 1
+          ANSIBLE_ROLES_PATH: ~/.ansible/roles:${GITHUB_WORKSPACE}/ansible-role-bootstrap
+          image: ${{ matrix.distro.image }}
+          tag: ${{ matrix.distro.tag }}

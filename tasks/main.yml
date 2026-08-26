@@ -20,6 +20,7 @@
 
 - name: Prepare system
   # At this stage, python and/or sudo are not installed, `become` can't be used.
+  # This means this role has to run as root, can't switch user.
   become: false
   block:
     - name: Test connection

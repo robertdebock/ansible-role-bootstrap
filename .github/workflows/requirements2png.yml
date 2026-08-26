@@ -4,13 +4,15 @@
 #
 
 on:
-  - push
+  release:
+    types:
+      - published
 
 name: Ansible Graphviz
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
@@ -32,4 +34,4 @@ jobs:
         with:
           directory: ${{ github.repository }}
           force: true
-          branch: png
+          branch: refs/heads/png

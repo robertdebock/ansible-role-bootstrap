@@ -13,5 +13,4 @@ rules:
     check-keys: false
 
 ignore: |
-  .tox/
   .cache/

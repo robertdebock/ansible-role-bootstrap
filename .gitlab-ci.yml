@@ -1,46 +1,46 @@
 ---
-image: "robertdebock/github-action-molecule:6.0.1"
 
 variables:
-  PY_COLORS: 1
+  DEBIAN_FRONTEND: noninteractive
 
 molecule:
+  image: python:3.13
   script:
-    - if [ -f tox.ini ] ; then tox ; fi
-    - if [ ! -f tox.ini ] ; then molecule test ; fi
+    - apt-get update -qq
+    - apt-get -y -qq install yamllint docker.io
+    - mkdir -p /etc/docker
+    - echo '{"features":{"buildkit":true},"exec-opts":["native.cgroupdriver=systemd"]}' > /etc/docker/daemon.json
+    - service docker restart || true
+    - python -m pip install --upgrade pip
+    - pip3 install ansible molecule molecule-plugins[docker] docker
+    - cd $CI_PROJECT_DIR
+    - molecule test
   rules:
     - if: $CI_COMMIT_REF_NAME == "master"
   parallel:
     matrix:
       - image: "alpine"
         tag: "latest"
-      - image: "amazonlinux"
-        tag: "latest"
-      - image: "enterpriselinux"
-        tag: "8"
       - image: "enterpriselinux"
         tag: "latest"
       - image: "debian"
         tag: "latest"
+      - image: "debian"
+        tag: "bookworm"
       - image: "debian"
         tag: "bullseye"
       - image: "fedora"
-        tag: "39"
-      - image: "fedora"
-        tag: "latest"
-      - image: "fedora"
-        tag: "rawhide"
-      - image: "opensuse"
         tag: "latest"
       - image: "ubuntu"
         tag: "latest"
       - image: "ubuntu"
         tag: "jammy"
-      - image: "ubuntu"
-        tag: "focal"
 
 galaxy:
+  image: python:3.13
   script:
+    - apt-get update -qq
+    - apt-get -y -qq install ansible-core
     - ansible-galaxy role import --api-key ${GALAXY_API_KEY} robertdebock ${CI_PROJECT_NAME}
   rules:
     - if: $CI_COMMIT_TAG != null
