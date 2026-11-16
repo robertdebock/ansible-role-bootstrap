@@ -1,7 +1,3 @@
----
-alwaysApply: true
----
-
 # Ansible Role Conventions
 
 - Prefer readability over complexity.
