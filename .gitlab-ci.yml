@@ -2,15 +2,17 @@
 
 variables:
   DEBIAN_FRONTEND: noninteractive
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
 
+# Runs on GitLab's shared (instance) Linux runners, using Docker-in-Docker.
 molecule:
   image: python:3.13
+  services:
+    - docker:dind
   script:
     - apt-get update -qq
-    - apt-get -y -qq install yamllint docker.io
-    - mkdir -p /etc/docker
-    - echo '{"features":{"buildkit":true},"exec-opts":["native.cgroupdriver=systemd"]}' > /etc/docker/daemon.json
-    - service docker restart || true
+    - apt-get -y -qq install docker-cli
     - python -m pip install --upgrade pip
     - pip3 install ansible molecule molecule-plugins[docker] docker
     - pip3 install --upgrade "ansible-core>=2.22"
