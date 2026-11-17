@@ -13,6 +13,7 @@ molecule:
     - service docker restart || true
     - python -m pip install --upgrade pip
     - pip3 install ansible molecule molecule-plugins[docker] docker
+    - pip3 install --upgrade "ansible-core>=2.22"
     - cd $CI_PROJECT_DIR
     - molecule test
   rules:
