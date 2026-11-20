@@ -18,7 +18,7 @@
 
 - The `galaxy_info.description` captures the intent of the role.
 - The file `meta/main.yml` is used to generate many other files using [Ansible Generator](https://github.com/robertdebock/ansible-generator).
-- **Don't** use `dependencies`: This may surprise a user with extra roles being downloaded and executed.
+- Only use `dependencies` if it is really required (for example for a shared handler or variable). It may surprise a user with extra roles being downloaded and executed.
 - Distributions mentioned are tested using Molecule.
 
 ## User Variables (`defaults/main.yml`)
