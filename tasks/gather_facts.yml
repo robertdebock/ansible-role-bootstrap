@@ -5,7 +5,8 @@
   become: false
   check_mode: false
   register: bootstrap_facts
-  changed_when: false
+  changed_when:
+    - false
 
 - name: gather_facts | Set bootstrap facts (I)
   ansible.builtin.set_fact:

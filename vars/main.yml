@@ -53,12 +53,18 @@ bootstrap_install: "{{ _bootstrap_install[bootstrap_distribution ~'_'~ bootstrap
 # See URL for available OS families and search queries
 # https://github.com/ansible/ansible/blob/devel/lib/ansible/module_utils/facts/system/distribution.py
 bootstrap_os_family_map:
-  Alpine: [Alpine]
-  Archlinux: [Archlinux, Antergos, Manjaro]
+  Alpine:
+    - "Alpine"
+  Archlinux:
+    - "Archlinux"
+    - "Antergos"
+    - "Manjaro"
   Debian: [Debian, Ubuntu, Raspbian, Neon, KDE neon,
            Linux Mint, SteamOS, Devuan, Kali, Cumulus Linux,
            'Pop!_OS', Parrot, Pardus GNU/Linux, 'Univention Corporate Server']
-  Gentoo: [Gentoo, Funtoo]
+  Gentoo:
+    - "Gentoo"
+    - "Funtoo"
   RedHat: [RedHat, Fedora, CentOS, Scientific, SLC,
            Ascendos, CloudLinux, PSBM, Rocky, OracleLinux,
            OVS, OEL, Amazon, Virtuozzo, XenServer, Alibaba,

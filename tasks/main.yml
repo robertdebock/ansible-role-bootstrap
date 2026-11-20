@@ -27,11 +27,13 @@
       ansible.builtin.wait_for_connection:
         timeout: "{{ bootstrap_timeout }}"
       register: bootstrap_connect
-      changed_when: false
+      changed_when:
+        - false
     - name: Test sudo
       ansible.builtin.command:
         cmd: sudo --version
-      changed_when: false
+      changed_when:
+        - false
   rescue:
     - name: Gather bootstrap facts
       ansible.builtin.include_tasks:
