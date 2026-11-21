@@ -1,0 +1,7 @@
+digraph PhiloDilemma {
+  label = "Robert de Bock" ;
+  overlap=false
+  {
+    "bootstrap" [fillcolor=yellow style=filled penwidth=3]
+  }
+}
