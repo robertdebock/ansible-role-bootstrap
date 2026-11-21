@@ -83,3 +83,6 @@ bootstrap_facts_packages: "{{
   | default(_bootstrap_packages[ansible_facts['distribution']])
   | default(_bootstrap_packages[ansible_facts['os_family']])
 }}"
+
+# The major version, taken from VERSION_ID in the output of `cat /etc/os-release`, gathered into bootstrap_facts.
+_bootstrap_os_release_major_version: "{{ bootstrap_facts.stdout_lines | join(',') | regex_replace('^.*VERSION_ID=\"(\\d{1,2})(\\.\\d{1,4})*?\".*$', '\\1') | default('NA') }}"
